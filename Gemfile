@@ -7,6 +7,11 @@ gem 'rails', '3.0.1'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
+gem 'rake', '0.9.2'
+#gem 'will_paginate', '~> 3.0.beta'
+gem 'haml'
+#gem 'formtastic'
+gem 'activeadmin'
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -25,6 +30,15 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
+
+group :development do
+  gem 'rspec-rails', '2.0.1'
+  gem 'faker', '0.3.1'
+#  gem 'annotate-models', '1.0.4'
+end
+
+group :test do
+  gem 'rspec', '2.0.1'
+  gem 'webrat', '0.7.1'
+  gem 'factory_girl_rails', '1.0'
+end
