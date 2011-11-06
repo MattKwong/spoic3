@@ -10,7 +10,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'rake', '0.9.2'
 #gem 'will_paginate', '~> 3.0.beta'
 gem 'haml'
-#gem 'formtastic'
+gem 'formtastic'
 gem 'activeadmin'
 # Use unicorn as the web server
 # gem 'unicorn'
