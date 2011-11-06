@@ -1,0 +1,34 @@
+<h1>Group Registration Wizard</h1>
+
+<%= form_for(@registration) do |r| %>
+<p>This wizard will allow you to register your group and accept your deposit payment.</p><br/>
+<h4>Step 1: Verify Information and Begin Registration</h4>
+
+<div>
+  Select liaison and church:
+  <%= r.select :liaison_id, options_for_select(@liaisons_churches) %><br/><br/>
+</div>
+
+<div>
+  Select group type:
+  <%= r.select :group_type_id, options_for_select(@group_types) %><br/><br/>
+</div>
+
+<b>Enter the number of spots you are requesting:</b><br/><br/>
+    <div class="field">
+      <%= r.label "Counselors" %>
+      <%= r.number_field :requested_counselors %>
+  </div><br/>
+  <div class="field">
+    <%= r.label "Youth" %>
+    <%= r.number_field :requested_youth %>
+  </div><br/>
+  <b>Enter a name that you can use to identify this group (optional):</b><br/><br/>
+  <div class="field">
+     <%= r.label "Optional Group Name" %>
+     <%= r.number_field :name %>
+  </div><br/>
+  <div class="actions">
+    <%= r.submit "Continue" %>
+  </div>
+<% end %>

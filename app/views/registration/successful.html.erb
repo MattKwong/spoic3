@@ -1,0 +1,21 @@
+<h1>Group Registration Wizard</h1>
+
+<%= form_for(@registration) do |r| %>
+    <h4>Congratulations! You have successfully registered your group.</h4>
+    <p>Group name:  <%= @registration.name %></p><br/>
+    <p>Group size:  <%= @registration.requested_counselors %> counselors and <%= @registration.requested_youth %> youth<p/><br/>
+    <p>Session:     <%= @session.name %><p/><br/>
+    <p>Amount paid: <%= @registration.amount_paid %><p/><br/>
+
+    <p>You will shortly receive an email confirmation of your registration.
+      Please be sure to add the email address registrar@sierraserviceproject.org
+      to your list of permissible senders. If you have any questions, don't hesitate
+      to call or email us.</p><br/>
+
+    <div class="actions">
+
+      <%= link_to "Register another group", registration_register_path %>
+      <%= link_to 'Logout', root_path %>
+    </div>
+
+<% end %>

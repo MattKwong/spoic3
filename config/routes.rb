@@ -1,9 +1,58 @@
 Spoic3::Application.routes.draw do
 
+  #resources :groups
+  match "registration/register", :to => 'registration#register'
+  match "registration/:id/update", :to => 'registration#process_payment', :as => 'registration_payment'
+  match "registration/:id/finalize" => 'registration#finalize', :as => 'registration_finalize'
+  match "registration/:id/successful" => 'registration#successful', :as => 'registration_success'
+  match "registration/show_schedule" => 'registration#show_schedule'
+
+  resources :registration do
+    post 'create'
+    put :edit
+    put 'process_payment'
+  end
+
+  match "registration", :to => 'registration#index', :as => 'registrations'
+  match "registration/show_schedule", :to => 'registration#show_schedule'
+  match "registration/schedule", :to => 'registration#schedule'
+  match "registration/update", :to => 'registration#update'
+  match "registration/delete", :to => 'registration#delete'
+
+ # match "groups/register_group", :to => 'groups#create', :as => 'liaison'
 
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
+
+    match '/admin', :to => 'admin#index'
+    match '/food', :to => 'pages#food'
+    match 'RegistrationController', :to => 'pages#groups'
+    match '/construction', :to => 'pages#construction'
+    match '/help', :to => 'pages#help'
+    match '/contact', :to => 'pages#contact'
+    match '/about', :to => 'pages#about'
+    match '/signin', :to => 'pages#home'
+    match '/signout', :to => 'pages#home'
+    root :to => 'pages#home'
+
+  get "churches/new"
+
+  get "churches/edit"
+
+  get "churches/delete"
+
+  get "churches/show"
+
+  get "liaisons/new"
+
+  get "liaisons/edit"
+
+  get "liaisons/delete"
+
+  get "liaisons/show"
+
+  get "program_type/show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

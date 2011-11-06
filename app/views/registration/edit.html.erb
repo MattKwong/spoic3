@@ -1,0 +1,35 @@
+<h1>Group Registration Wizard</h1>
+<%= form_for(@registration) do |r| %>
+    <%= form_tag(:method => "put") %>
+    <h4>Step 2: Make Your Requests</h4>
+    <p>Group name:   <%= @registration.name %></p><br/>
+    <p>Liaison name: <%= @liaison.name %></p><br/>
+    <p>Church name:  <%= @church.name %></p><br/>
+    <p>Group type:   <%= @group_type.name %></p><br/>
+
+<p>Please select a session (week and site) for your group. You may provide up to 5 choices in priority sequence.</p><br/>
+    <div class="field">
+      <%= r.label "Choice #1" %>
+      <%= r.select :request1, options_for_select(@sessions) %>
+    </div>
+    <div class="field">
+      <%= r.label "Choice #2" %>
+      <%= r.select :request2, @sessions %>
+    </div>
+    <div class="field">
+      <%= r.label "Choice #3" %>
+      <%= r.select :request3, @sessions %>
+    </div>
+    <div class="field">
+      <%= r.label "Choice #4" %>
+      <%= r.select :request4, @sessions %>
+    </div>
+    <div class="field">
+      <%= r.label "Choice #5" %>
+      <%= r.select :request5, @sessions %>
+    </div>
+    <div class="actions">
+      <%= r.submit 'Continue' %>
+    </div>
+
+<% end %>

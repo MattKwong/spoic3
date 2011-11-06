@@ -1,0 +1,25 @@
+<h1>Group Registration Wizard</h1>
+
+<%= form_for(@registration) do |r| %>
+    <h4>Step 3: Verify and Accept Payment</h4>
+    <p>Group name: <%= @registration.name %></p><br/>
+    <p>Group size: <%= @registration.requested_counselors %> counselors and <%= @registration.requested_youth %> youth.<p/><br/>
+    <p>Amount due: <%= @registration.amount_due %><p/><br/>
+    <div>
+      Select payment type:
+      <%= r.select(:payment_method, options_for_select(@payment_types)) %><br/><br/>
+    </div>
+    <div class="field">
+      <%= r.label "Payment Notes" %>
+      <%= r.text_field :payment_notes %>
+    </div>
+    <div class="field">
+      <%= r.label "Amount Received" %>
+      <%= r.number_field :amount_paid %>
+    </div>
+<b/>
+    <div class="actions">
+      <%= submit_tag 'Submit'%>
+    </div>
+
+<% end %>

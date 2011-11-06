@@ -1,0 +1,23 @@
+<h1>Registration Schedule</h1>
+<p>Current registration information as of: <%= Time.now %></p>
+
+<div>
+  <table>
+    <tr>
+      <td></td>
+      <% for i in 0..@schedule[:period_count] - 1 do %>
+        <td><%= @schedule[:period_names][i] %><td/>
+      <% end %>
+    </tr>
+    <% for i in 0..@schedule[:site_count] - 1 do %>
+
+        <tr>
+           <td><%= @schedule[:site_names][i] %></td>
+              <% for j in 0..@schedule[:period_count] - 1 do %>
+                 <td><%= @schedule[:matrix][i][j] %></td>
+              <% end %>
+
+          <% end %>
+        </tr>
+  </table>
+</div>
