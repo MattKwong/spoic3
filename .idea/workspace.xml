@@ -4,9 +4,8 @@
     <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20111028220945_create_admin_notes.rb" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20111028220946_move_admin_notes_to_comments.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20111029050907_devise_create_admin_users.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/production.rb" afterPath="$PROJECT_DIR$/config/environments/production.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20111029050907_devise_create_admin_users.rb" afterPath="$PROJECT_DIR$/db/migrate/20111029050907_devise_create_admin_users.rb" />
     </list>
     <ignored path="spoic3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -90,7 +89,7 @@
       <file leaf-file-name="20111029050907_devise_create_admin_users.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/migrate/20111029050907_devise_create_admin_users.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="25" selection-start="219" selection-end="219" vertical-scroll-proportion="0.64324325">
+            <state line="6" column="53" selection-start="213" selection-end="213" vertical-scroll-proportion="0.55135137">
               <folding />
             </state>
           </provider>
@@ -850,7 +849,7 @@
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="P5" />
+    <option name="LAST_COMMIT_MESSAGE" value="P6" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -867,6 +866,7 @@
     <MESSAGE value="P3" />
     <MESSAGE value="P4" />
     <MESSAGE value="P5" />
+    <MESSAGE value="P6" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -977,7 +977,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20111029050907_devise_create_admin_users.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="25" selection-start="219" selection-end="219" vertical-scroll-proportion="0.64324325">
+        <state line="6" column="53" selection-start="213" selection-end="213" vertical-scroll-proportion="0.55135137">
           <folding />
         </state>
       </provider>
