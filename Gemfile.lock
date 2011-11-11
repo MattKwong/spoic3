@@ -15,7 +15,7 @@ GEM
       rack-mount (~> 0.6.12)
       rack-test (~> 0.5.4)
       tzinfo (~> 0.3.23)
-    activeadmin (0.3.2)
+    activeadmin (0.3.3)
       devise (>= 1.1.2)
       fastercsv
       formtastic (< 2.0.0)
@@ -76,10 +76,10 @@ GEM
       activerecord (~> 3.0.0)
       activesupport (~> 3.0.0)
       arel (~> 1.0.1)
-    mime-types (1.16)
+    mime-types (1.17.2)
     nokogiri (1.5.0-x86-mingw32)
     orm_adapter (0.0.5)
-    polyglot (0.3.2)
+    polyglot (0.3.3)
     rack (1.2.4)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
@@ -98,7 +98,7 @@ GEM
       activesupport (= 3.0.1)
       rake (>= 0.8.4)
       thor (~> 0.14.0)
-    rake (0.9.2)
+    rake (0.8.7)
     responders (0.6.4)
     rspec (2.0.1)
       rspec-core (~> 2.0.1)
@@ -120,7 +120,7 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.30)
+    tzinfo (0.3.31)
     warden (1.0.6)
       rack (>= 1.0)
     webrat (0.7.1)
@@ -138,7 +138,7 @@ DEPENDENCIES
   formtastic
   haml
   rails (= 3.0.1)
-  rake (= 0.9.2)
+  rake (= 0.8.7)
   rspec (= 2.0.1)
   rspec-rails (= 2.0.1)
   sqlite3-ruby

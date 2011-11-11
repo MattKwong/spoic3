@@ -3,19 +3,19 @@
     <nav class="round">
       <ul>
         <li><%= link_to "Home", root_path, %></li>
-        <% if signed_in? %>
+       <%# if signed_in? %>
             <li><%= link_to "Group Manager", registrations_path %></li>
             <li><%= link_to "Admin Center", admin_path %></li>
             <li><%= link_to "Food/Tabatha", food_path %></li>
             <li><%= link_to "Construction", construction_path %></li>
-        <% end %>
+        <%# end %>
         <li><%= link_to "Help" %></li>
-        <% if signed_in? %>
+        <%# if signed_in? %>
         <li><%= link_to "Sign out", signout_path, :method => :delete  %></li>
-        <% else %>
+        <%# else %>
         <li><%= link_to "Sign in", signin_path %></li>
-        <% end %>
+        <%# end %>
       </ul>
     </nav>
-<h1> Welcome to SPOIC</h1>
+<h1> Welcome to SSP Information Center</h1>
 </header>

@@ -1,5 +1,9 @@
 Spoic3::Application.routes.draw do
 
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
   #resources :groups
   match "registration/register", :to => 'registration#register'
   match "registration/:id/update", :to => 'registration#process_payment', :as => 'registration_payment'
@@ -20,10 +24,6 @@ Spoic3::Application.routes.draw do
   match "registration/delete", :to => 'registration#delete'
 
  # match "groups/register_group", :to => 'groups#create', :as => 'liaison'
-
-  ActiveAdmin.routes(self)
-
-  devise_for :admin_users, ActiveAdmin::Devise.config
 
     match '/admin', :to => 'admin#index'
     match '/food', :to => 'pages#food'

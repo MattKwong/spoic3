@@ -10,4 +10,8 @@ class Church < ActiveRecord::Base
                     :church_type_id, :liaison_id, :office_phone, :state, :zip,
                     :registered
 
+  validates :name,  :presence => true,
+                    :length => { :within => 6..40},
+                    :uniqueness => true
+
 end

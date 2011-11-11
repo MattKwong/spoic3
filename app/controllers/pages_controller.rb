@@ -15,8 +15,17 @@ class PagesController < ApplicationController
     @title = "CTAB"
   end
 
-  def groups
-    @title = "Group Manager"
+  def contact
+    @title = "Contact"
   end
+
+  def about
+    @title = "About"
+  end
+
+  def help
+    @title = "Help"
+  end
+
 
 end
