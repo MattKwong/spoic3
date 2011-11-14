@@ -13,5 +13,15 @@ class Church < ActiveRecord::Base
   validates :name,  :presence => true,
                     :length => { :within => 6..40},
                     :uniqueness => true
+  validates :address1, :presence => true
+  validates :city, :presence => true
+  validates :state, :presence => true,
+                    :length => { :is => 2}
+  validates_inclusion_of :state, :in => State::STATE_ABBREVIATIONS, :message => 'Invalid state'
+  validates :zip,   :presence => true,
+                    :length => { :is => 5},
+                    :numericality => true
+  validates :email1,
+            :format => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :allow_blank => true
 
 end

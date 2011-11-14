@@ -44,6 +44,7 @@ describe Church do
 
   describe "state should be valid 2-letter upper case abbreviation" do
     it "should be in valid states list" do
+      invalid_state_church = Church.new(@attr.merge(:state => "XX"))
 
     end
 

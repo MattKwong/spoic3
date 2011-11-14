@@ -10,10 +10,25 @@ ActiveAdmin.register Church do
                      :fax, :email1, :active, :registered
   end
 
-  #new do
-  #  attributes_table :name, :address1, :address2, :city, :state, :zip, :office_phone,
-  #                   :fax, :email1, :active, :registered
-  #end
+form do |f|
+    f.inputs "Church Details" do
+      f.input :name
+      f.input :address1
+      f.input :address2
+      f.input :city
+      f.input :state
+      f.input :zip
+      f.input :email1
+      f.input :office_phone
+      f.input :fax
+      f.input :updated_at
+      f.input :created_at
+      f.input :liaison_id
+      f.input :active
+      f.input :registered
+    end
+    f.buttons
+  end
 
   index do
     column :name
