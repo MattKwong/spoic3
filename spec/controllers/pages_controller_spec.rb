@@ -1,11 +1,13 @@
 require 'spec_helper'
 
-#sign in - to make these tests work without having a signed in user, I commented out the tests in the
-#_header partial to eliminate the signed_in? test
-@current_admin_user = AdminUser.new()
-
 describe PagesController do
+  include Devise::TestHelpers
   render_views
+
+  before (:each) do
+    @current_admin_user = AdminUser.find(1)
+    sign_in @current_admin_user
+  end
 
   before (:each) do
     @base_title = "Sierra Service Project Online Information Center "
@@ -22,9 +24,6 @@ describe PagesController do
       response.should have_selector("title", :content => @base_title + "| Welcome")
     end
   end
-
-
-
 
   describe "Get 'Tabatha'" do
     it "should be successful" do
