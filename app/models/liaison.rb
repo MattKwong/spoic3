@@ -22,7 +22,11 @@ class Liaison < ActiveRecord::Base
   validates :zip,   :presence => true,
                     :length => { :is => 5},
                     :numericality => true
-  validates_format_of :email1, :email2,
+  validates_format_of :email1,
+            :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i,
+            :message => 'Email appears to be invalid.', :allow_blank => false
+
+  validates_format_of :email2,
             :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i,
             :message => 'Email appears to be invalid.', :allow_blank => true
 
