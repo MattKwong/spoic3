@@ -7,7 +7,7 @@ ActiveAdmin.register Church do
 
   show do
     attributes_table :name, :address1, :address2, :city, :state, :zip, :office_phone,
-                     :fax, :email1, :active, :registered
+                     :fax, :email1, :liaison, :active, :registered
   end
 
 form do |f|
@@ -23,7 +23,7 @@ form do |f|
       f.input :fax
       f.input :updated_at
       f.input :created_at
-      f.input :liaison_id
+      f.input :liaison
       f.input :active
       f.input :registered
     end
@@ -32,8 +32,6 @@ form do |f|
 
   index do
     column :name
-    #column :address1
-    #column :address2
     column :city
     column :state
     column :zip

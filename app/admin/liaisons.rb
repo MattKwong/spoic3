@@ -7,14 +7,15 @@ ActiveAdmin.register Liaison do
   menu :priority => 3
 
   show do
-    attributes_table :last_name, :first_name, :title, :address1, :address2, :city,
+    attributes_table :name, :title, :address1, :address2, :city,
       :state, :zip, :email1, :email2, :cell_phone, :work_phone, :home_phone, :fax,
       :updated_at, :created_at
     end
 
   form do |f|
     f.inputs "Liaison Details" do
-      f.input :name
+      f.input :first_name
+      f.input :last_name
       f.input :church
       f.input :title
       f.input :address1
