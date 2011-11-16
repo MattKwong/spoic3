@@ -10,11 +10,6 @@ class Church < ActiveRecord::Base
                     :church_type_id, :liaison_id, :office_phone, :state, :zip,
                     :registered
 
-  before_validation do
-    fax = fax.to_s.gsub('-','').to_i
-    office_phone = office_phone.to_s.gsub('-','').to_i
-  end
-
   validates :name,  :presence => true,
                     :length => { :within => 6..40},
                     :uniqueness => true

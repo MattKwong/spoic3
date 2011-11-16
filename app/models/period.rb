@@ -8,7 +8,7 @@ class Period < ActiveRecord::Base
   def start_date_before_end_date
     unless start_date.nil? or end_date.nil?
       unless start_date < end_date
-        errors.add(:end_date, "must be after start date")
+        errors.add(:end_date, "End date must be after the start date")
       end
     end
   end
@@ -16,7 +16,7 @@ class Period < ActiveRecord::Base
   def start_date_not_in_past
      unless start_date.nil?
        if start_date < Date.today
-        errors.add(:end_date, "cannot be in the past")
+        errors.add(:start_date, "Start date cannot be in the past")
        end
     end
   end
