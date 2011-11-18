@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+AdminUser.create(:email => 'admin@sierraserviceproject.org', :password => 'ssp4admin')
