@@ -12,6 +12,8 @@ gem 'rake', '0.8.7'
 gem 'haml'
 gem 'formtastic'
 gem 'activeadmin'
+gem 'validates_timeliness'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

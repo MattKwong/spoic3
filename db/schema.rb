@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111107184837) do
+ActiveRecord::Schema.define(:version => 20111120210406) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -137,6 +137,8 @@ ActiveRecord::Schema.define(:version => 20111107184837) do
     t.decimal  "final_payment"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "second_payment_date"
+    t.date     "final_payment_date"
   end
 
   create_table "payments", :force => true do |t|

@@ -2,18 +2,23 @@ ActiveAdmin.register PaymentSchedule do
   menu :parent => "Configure Sites and Sessions"
 
    show do
-    attributes_table :name, :deposit, :second_payment, :final_payment, :total_payment
+    attributes_table :name, :deposit, :second_payment, :second_payment_date, :final_payment,
+                     :final_payment_date, :total_payment
    end
 
   index do
     column :name
     column :deposit
-    column :second_payment
-#    column "Second Payment Date"
-    column :final_payment
-#    column "Final Payment Date"
-    column "Total Fee" do |ps|
-      number_to_currency ps.total_payment
+    column "Second Payment" do |a|
+      number_to_currency a.second_payment
+    end
+    column :second_payment_date
+    column "Final Payment" do |a|
+      number_to_currency a.final_payment
+    end
+    column :final_payment_date
+    column "Total Fee" do |a|
+      number_to_currency a.total_payment
     end
   end
 end
