@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111120210406) do
+ActiveRecord::Schema.define(:version => 20111121182751) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -186,17 +186,37 @@ ActiveRecord::Schema.define(:version => 20111120210406) do
     t.integer  "requested_youth"
     t.integer  "requested_total"
     t.boolean  "scheduled"
-    t.integer  "scheduled_priority"
-    t.integer  "scheduled_session"
-    t.integer  "current_counselors"
-    t.integer  "current_youth"
-    t.integer  "current_total"
     t.text     "comments"
     t.decimal  "amount_due"
     t.decimal  "amount_paid"
     t.string   "payment_method"
     t.text     "payment_notes"
     t.integer  "group_type_id"
+  end
+
+  create_table "scheduled_groups", :force => true do |t|
+    t.integer  "current_youth"
+    t.integer  "current_counselors"
+    t.integer  "current_total"
+    t.integer  "session_id"
+    t.integer  "church_id"
+    t.integer  "history"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "comments"
+    t.integer  "registration_id"
+    t.string   "liaison_id"
+    t.integer  "scheduled_priority"
+  end
+
+  create_table "scheduled_histories", :force => true do |t|
+    t.integer  "registration_id"
+    t.date     "history_date"
+    t.string   "action"
+    t.string   "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "session_types", :force => true do |t|

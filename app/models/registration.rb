@@ -1,10 +1,8 @@
 class Registration < ActiveRecord::Base
-  attr_accessible :name,:comments, :current_counselors, :current_youth,
-                  :current_total, :liaison_id, :request1, :request2, :request3,
+  attr_accessible :name,:comments, :liaison_id, :request1, :request2, :request3,
                   :request4, :request5, :request6,:request7, :request8, :request9,
                   :request10, :requested_counselors, :requested_youth,
-                  :requested_total, :scheduled, :scheduled_priority,
-                  :scheduled_session, :amount_due, :amount_paid, :payment_method,
+                  :requested_total, :scheduled,  :amount_due, :amount_paid, :payment_method,
                   :payment_notes, :group_type_id
   has_many :payments
 
@@ -15,16 +13,7 @@ class Registration < ActiveRecord::Base
                             :only_integer => true, :greater_than => 0
   validates_numericality_of :request1
 
-  #conditional validations of scheduled registrations
-  validates_numericality_of :scheduled_priority, :greater_than => 0,
-                            :less_than_or_equal_to => 10,
-                            :only_integer => true,
-                            :if => :scheduled
-  validates_numericality_of :current_youth, :greater_than => 0,
-                            :only_integer => true, :if => :scheduled
-  validates_numericality_of :current_counselors, :greater_than_or_equal_to => 0,
-                            :only_integer => true, :if => :scheduled
-#TODO: Test that the requested totals don't exceed the limit which is currently 30'
+ #TODO: Test that the requested totals don't exceed the limit which is currently 30'
 
   validate :request_sequence
   validate :check_for_duplicate_choices
