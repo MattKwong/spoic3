@@ -8,13 +8,28 @@ class Registration < ActiveRecord::Base
                   :payment_notes, :group_type_id
   has_many :payments
 
+ # before_save :sum_total
+
   validates :name, :requested_youth, :requested_counselors, :request1, :presence => true
   validates_numericality_of :requested_youth, :requested_counselors,
                             :only_integer => true, :greater_than => 0
   validates_numericality_of :request1
 
+  #conditional validations of scheduled registrations
+  validates_numericality_of :scheduled_priority, :greater_than => 0,
+                            :less_than_or_equal_to => 10,
+                            :only_integer => true,
+                            :if => :scheduled
+  validates_numericality_of :current_youth, :greater_than => 0,
+                            :only_integer => true, :if => :scheduled
+  validates_numericality_of :current_counselors, :greater_than_or_equal_to => 0,
+                            :only_integer => true, :if => :scheduled
+#TODO: Test that the requested totals don't exceed the limit which is currently 30'
+
   validate :request_sequence
   validate :check_for_duplicate_choices
+
+private
 
   def request_sequence
   #This routine fails if there are any non-requests within the sequence of requests.
@@ -39,6 +54,16 @@ class Registration < ActiveRecord::Base
             errors.add(:request4, no_request_message)
           when 5
             errors.add(:request5, no_request_message)
+          when 6
+            errors.add(:request6, no_request_message)
+          when 7
+            errors.add(:request7, no_request_message)
+          when 8
+            errors.add(:request8, no_request_message)
+          when 9
+            errors.add(:request9, no_request_message)
+          when 10
+            errors.add(:request10, no_request_message)
         end
       end
     end
@@ -91,6 +116,12 @@ class Registration < ActiveRecord::Base
         when 10
           errors.add(:request10, dup_request_message )
       end
+    end
+  end
+
+  def sum_total
+    if :scheduled
+      self.current_total = self.current_youth + self.current_counselors
     end
   end
 end
