@@ -5,6 +5,8 @@ describe "Registration" do
 
     before (:each) do
       @attr = { :name => "Group Name", :request1 => 1, :request2 => 2, :request3 => 3,
+                  :request4 => 4, :request5 => 5, :request6 => 6, :request7 => 7,
+                  :request8 => 8, :request9 => 9, :request10 => 10,
                   :requested_counselors => 2, :requested_youth => 10,
                   :amount_due => 1000.00, :amount_paid => 200.00, :payment_method => "Check",
                   :scheduled => false}
@@ -44,7 +46,7 @@ describe "Registration" do
       end
 
       it "should require that there be no duplicate requests" do
-        item = Registration.new(@attr.merge(:request4 => 1, :request5 => 1))
+        item = Registration.new(@attr.merge(:request4 => 7))
         item.should_not be_valid
       end
     end

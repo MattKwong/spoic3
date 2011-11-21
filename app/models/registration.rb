@@ -50,7 +50,7 @@ class Registration < ActiveRecord::Base
     a = [request1, request2, request3, request4, request5, request6, request7,
        request8, request9, request10]
     first_nil = a.index{|i| i.nil?}
-    if first_nil.nil? do
+    if first_nil.nil?
       first_nil = 9
     end
 
@@ -59,14 +59,14 @@ class Registration < ActiveRecord::Base
     a = a.slice(0, first_nil)
     for i in 1..first_nil - 1 do
       test_value = a.shift
-      dup_location = a.rindex(test_value)
+      dup_location = a.index(test_value)
       if dup_location
         violations.push(i + dup_location + 1)
       end
     end
 
   #if violations is nil, then everything passes.
-    unless violations.nil?
+    if violations.size > 0
       error_item = violations.first
       dup_request_message = "Duplicate requests are not permitted."
       case error_item
@@ -80,8 +80,17 @@ class Registration < ActiveRecord::Base
           errors.add(:request4, dup_request_message )
         when 5
           errors.add(:request5, dup_request_message )
+        when 6
+          errors.add(:request6, dup_request_message )
+        when 7
+          errors.add(:request7, dup_request_message )
+        when 8
+          errors.add(:request8, dup_request_message )
+        when 9
+          errors.add(:request9, dup_request_message )
+        when 10
+          errors.add(:request10, dup_request_message )
       end
     end
-  end
   end
 end
