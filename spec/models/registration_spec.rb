@@ -39,7 +39,12 @@ describe "Registration" do
       end
 
       it "should require that requests be in sequence" do
-        item = Registration.new(@attr.merge(:request5 => 5))
+        item = Registration.new(@attr.merge(:request5 => 2))
+        item.should_not be_valid
+      end
+
+      it "should require that there be no duplicate requests" do
+        item = Registration.new(@attr.merge(:request4 => 1, :request5 => 1))
         item.should_not be_valid
       end
     end
