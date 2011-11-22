@@ -5,7 +5,7 @@ describe PagesController do
   render_views
 
   before (:each) do
-    @current_admin_user = AdminUser.find(1)
+    @current_admin_user = AdminUser.find_by_email('admin@sierraserviceproject.org')
     sign_in @current_admin_user
   end
 
