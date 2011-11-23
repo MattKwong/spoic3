@@ -6,11 +6,47 @@ ActiveAdmin.register Liaison do
 
   menu :priority => 3
 
-  show do
-    attributes_table :name, :title, :address1, :address2, :city,
-      :state, :zip, :email1, :email2, :cell_phone, :work_phone, :home_phone, :fax,
-      :updated_at, :created_at
+  show :title => :name do
+    panel "Liaison Details" do
+      attributes_table_for liaison do
+        row("Name") { liaison.name }
+        row("Liaison to") {liaison.church }
+        row("Title") { liaison.title }
+        row("Liaison Type") { liaison.liaison_type}
+        row("Address") { liaison.address1 }
+        row("Address 2") {liaison.address2 }
+        row("City") {liaison.city}
+        row("State") {liaison.state }
+        row("Zip code") {liaison.zip }
+        row("Last update") { :updated_at }
+      end
     end
+
+    panel "Registration Information" do
+      attributes_table_for liaison do
+        row("Name") { liaison.name }
+      end
+    end
+
+    active_admin_comments
+  end
+
+  sidebar "Contact Information", :only => :show do
+    attributes_table_for liaison.church do
+      row("Primary email") { liaison.email1 }
+      row("Second email") { liaison.email2 }
+      row("Cell Phone") { liaison.cell_phone }
+      row("Work Phone") { liaison.work_phone }
+      row("Home Phone") { liaison.home_phone }
+      row("Fax") { liaison.fax }
+    end
+  end
+
+  sidebar "Church Information", :only => :show do
+    attributes_table_for liaison.church do
+      row("Primary email") { liaison.email1 }
+    end
+  end
 
   form do |f|
     f.inputs "Liaison Details" do
@@ -18,6 +54,7 @@ ActiveAdmin.register Liaison do
       f.input :last_name
       f.input :church
       f.input :title
+      f.input :liaison_type
       f.input :address1
       f.input :address2
       f.input :city
@@ -29,24 +66,22 @@ ActiveAdmin.register Liaison do
       f.input :work_phone
       f.input :home_phone
       f.input :fax
-      f.input :updated_at
-      f.input :created_at
+#      f.input :updated_at
+#      f.input :created_at
     end
     f.buttons
   end
 
    index do
-     column :name
+     column :name do |liaison|
+       link_to liaison.name, admin_liaison_path(liaison)
+     end
+     column :church
      column :liaison_type
      column :city
      column :state
-     column :church
-     column :home_phone
-     column :cell_phone
-     column :work_phone
-     column :fax
-     column :email1
-     default_actions
+    default_actions
    end
-
 end
+
+

@@ -7,7 +7,7 @@ ActiveAdmin.register Church do
 
   show do
     attributes_table :name, :address1, :address2, :city, :state, :zip, :office_phone,
-                     :fax, :email1, :liaison, :active, :registered
+                     :fax, :email1, :liaison_id, :active, :registered
   end
 
 form do |f|
