@@ -5,7 +5,7 @@ class Liaison < ActiveRecord::Base
   scope :for_registered_groups, where(:liaison_type_id => '')
 
  #TODO Change the :church belongs_to relation to has_many and test
-  has_one :church
+  belongs_to :church
   belongs_to :liaison_type
 
   attr_accessible :active, :address1, :address2, :city, :state, :zip, :first_name,

@@ -1,5 +1,5 @@
 class Church < ActiveRecord::Base
-  has_many :liaison
+  has_many :liaisons
   belongs_to :church_type
   scope :inactive, where(:active => 'f')
   scope :unregistered, where(:registered => 'f')
