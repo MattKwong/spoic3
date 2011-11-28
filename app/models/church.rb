@@ -1,5 +1,9 @@
 class Church < ActiveRecord::Base
   has_many :liaisons
+  has_many :registrations
+  accepts_nested_attributes_for :liaisons
+  accepts_nested_attributes_for :registrations
+
   belongs_to :church_type
   scope :inactive, where(:active => 'f')
   scope :unregistered, where(:registered => 'f')

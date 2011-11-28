@@ -1,9 +1,10 @@
 class Registration < ActiveRecord::Base
+  belongs_to :church
   attr_accessible :name,:comments, :liaison_id, :request1, :request2, :request3,
                   :request4, :request5, :request6,:request7, :request8, :request9,
                   :request10, :requested_counselors, :requested_youth,
                   :requested_total, :scheduled,  :amount_due, :amount_paid, :payment_method,
-                  :payment_notes, :group_type_id
+                  :payment_notes, :group_type_id, :church_id
   has_many :payments
 
  # before_save :sum_total
@@ -24,6 +25,7 @@ private
   #This routine fails if there are any non-requests within the sequence of requests.
   a = [request1, request2, request3, request4, request5, request6, request7,
        request8, request9, request10]
+  a.map! { |i| if a[i] = 0 then a[i] = nil end }
   first_nil = a.index{|i| i.nil?}
 
     unless first_nil.nil?
@@ -60,9 +62,10 @@ private
 
   def check_for_duplicate_choices
 
-    #TODO this routine doesn't appear to work'
+    #TODO this routine doesn't appear to work - zero in request field might be problem'
     a = [request1, request2, request3, request4, request5, request6, request7,
        request8, request9, request10]
+    a.map! { |i| if a[i] = 0 then a[i] = nil end }
     first_nil = a.index{|i| i.nil?}
     if first_nil.nil?
       first_nil = 9

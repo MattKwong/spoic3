@@ -10,8 +10,10 @@ ActiveAdmin.register Liaison do
     panel "Liaison Details" do
       attributes_table_for liaison do
         row("Name") { liaison.name }
-        row("Liaison to") {liaison.church }
         row("Title") { liaison.title }
+        row("Liaison to") { liaison.church do |church|
+          link_to liaison.church, admin_church_path(church)
+        end }
         row("Liaison Type") { liaison.liaison_type}
         row("Address") { liaison.address1 }
         row("Address 2") {liaison.address2 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111121182751) do
+ActiveRecord::Schema.define(:version => 20111128052221) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -129,6 +129,12 @@ ActiveRecord::Schema.define(:version => 20111121182751) do
     t.datetime "updated_at"
   end
 
+  create_table "other_parameters", :force => true do |t|
+    t.date     "current_fiscal_year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "payment_schedules", :force => true do |t|
     t.string   "name"
     t.decimal  "deposit"
@@ -192,6 +198,7 @@ ActiveRecord::Schema.define(:version => 20111121182751) do
     t.string   "payment_method"
     t.text     "payment_notes"
     t.integer  "group_type_id"
+    t.integer  "church_id"
   end
 
   create_table "scheduled_groups", :force => true do |t|

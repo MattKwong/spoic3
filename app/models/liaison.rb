@@ -4,7 +4,7 @@ class Liaison < ActiveRecord::Base
   scope :both, where(:liaison_type_id => 3)
   scope :for_registered_groups, where(:liaison_type_id => '')
 
- #TODO Change the :church belongs_to relation to has_many and test
+ #TODO Change the :churches belongs_to relation to has_many and test
   belongs_to :church
   belongs_to :liaison_type
 
