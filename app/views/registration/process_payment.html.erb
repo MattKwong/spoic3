@@ -1,5 +1,5 @@
 <h1>Group Registration Wizard</h1>
-
+#PROBLEM: On submit, this form fires the update method in the controller when there is an error
 <%= form_for(@registration) do |r| %>
     <h4>Step 3: Verify and Accept Payment</h4>
     <p>Group name: <%= @registration.name %></p><br/>
@@ -18,6 +18,7 @@
       <%= r.number_field :amount_paid %>
     </div>
 <b/>
+    <input type = "hidden" name="registration[registration_step]" value='Step 3' />
     <div class="actions">
       <%= submit_tag 'Submit'%>
     </div>

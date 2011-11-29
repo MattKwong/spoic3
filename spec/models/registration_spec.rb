@@ -47,6 +47,10 @@ describe "Registration" do
         item = Registration.new(@attr.merge(:request4 => 7))
         item.should_not be_valid
       end
+      it "should treat 0 the same as nil" do
+        item = Registration.new(@attr.merge(:request9 => 0, :request10 => 0))
+        item.should be_valid
+      end
     end
   end
 

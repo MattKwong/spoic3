@@ -2,6 +2,7 @@ class RegistrationController < ApplicationController
   def index
     @title = "Manage Groups"
   end
+# SHOULD these be rewritten to make use of the reg_step field?
 
   def create       #triggered by register view
     @registration = Registration.new(params[:registration])
@@ -9,7 +10,12 @@ class RegistrationController < ApplicationController
       flash[:notice] = "Successful save"
       redirect_to edit_registration_path(:id => @registration.id)
     else
-      @title = "Register a group"
+      msg = "Update of step 1 failed: " + @registration.registration_step
+      flash[:error] = msg
+      @liaisons = Liaison.all.map { |l| [l.name, 1 ] }
+      @group_types = SessionType.all.map { |s| [s.name, s.id ] }
+      @registration = Registration.new
+      @title = "Register A Group"
       render "register"
     end
   end
@@ -17,8 +23,8 @@ class RegistrationController < ApplicationController
   def edit              #prior to /:id/edit view
     @registration = Registration.find(params[:id])
     @liaison = Liaison.find(@registration.liaison_id)
-    @group_type = SessionType.find(@registration.group_type_id)
     @church = Church.find(@liaison.church_id)
+    @group_type = SessionType.find(@registration.group_type_id)
     @temp = Array.new()
     @temp << "None" << 0
     @sessions = Session.all.map  { |s| [s.name, s.id ]}
@@ -27,16 +33,12 @@ class RegistrationController < ApplicationController
   end
 
   def register                #prior to display of register view
-    @liaisons = Liaison.all
-    @liaisons_churches = @liaisons.map { |l| [l.name, l.id ]}
-    @group_types = SessionType.all.map { |s| [s.name, s.id ]}
-    @registration = Registration.new
-    @title = "Register A Group"
-
-  end
-
-  def schedule
-  end
+      @liaisons = Liaison.all.map { |l| [l.name, 1 ]}
+      @group_types = SessionType.all.map { |s| [s.name, s.id ]}
+      @registration = Registration.new
+      @title = "Register A Group"
+      render "register"
+    end
 
   def update
     @registration = Registration.find(params[:id])
@@ -44,12 +46,21 @@ class RegistrationController < ApplicationController
       flash[:success] = "Successful update"
       redirect_to registration_payment_path(:id => @registration.id)
     else
+      flash[:error] = "Unsuccessful update"
+      @registration = Registration.find(params[:id])
+      @liaison = Liaison.find(@registration.liaison_id)
+      @church = Church.find(@liaison.church_id)
+      @group_type = SessionType.find(@registration.group_type_id)
+      @temp = Array.new()
+      @temp << "None" << 0
+      @sessions = Session.all.map  { |s| [s.name, s.id ]}
+      @sessions.insert(0, @temp)
       @title = "Registration Step 2"
       render "edit"
     end
   end
 
-  def process_payment
+  def process_payment   #prior to rendering process_payment step 3
     @registration = Registration.find(params[:id])
     if @registration.payment_method.nil?
       @session = Session.find(@registration.request1)
@@ -71,7 +82,7 @@ class RegistrationController < ApplicationController
       else
         flash[:error] = "Update of registration or payment information failed."
         @title = "Registration Step 3"
-        render "update"
+        render registration_payment_path(:id => @registration.id)
       end
     end
   end

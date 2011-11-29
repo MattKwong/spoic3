@@ -17,7 +17,7 @@ ActiveAdmin.register Church do
         row("Zip code") {church.zip}
       end
     end
-#TODO: Change this to schedule information when the scheduling function has been writen
+#TODO: Change this to schedule information when the scheduling function has been written
     panel "Registration Information" do
       attributes_table_for church do
         row("Is active church?") { church.active } #:as => radio

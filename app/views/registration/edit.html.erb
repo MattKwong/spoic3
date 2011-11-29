@@ -28,6 +28,7 @@
       <%= r.label "Choice #5" %>
       <%= r.select :request5, @sessions %>
     </div>
+    <input type = "hidden" name="registration[registration_step]" value='Step 2' />
     <div class="actions">
       <%= r.submit 'Continue' %>
     </div>

@@ -4,28 +4,43 @@ class Registration < ActiveRecord::Base
                   :request4, :request5, :request6,:request7, :request8, :request9,
                   :request10, :requested_counselors, :requested_youth,
                   :requested_total, :scheduled,  :amount_due, :amount_paid, :payment_method,
-                  :payment_notes, :group_type_id, :church_id
-  has_many :payments
+                  :payment_notes, :group_type_id, :church_id, :registration_step, :id
+    has_many :payments
 
- # before_save :sum_total
+   validates :name, :requested_youth, :requested_counselors, :presence => true
+   validates_numericality_of :requested_youth, :requested_counselors,
+                             :only_integer => true, :greater_than => 0
 
-  validates :name, :requested_youth, :requested_counselors, :request1, :presence => true
-  validates_numericality_of :requested_youth, :requested_counselors,
-                            :only_integer => true, :greater_than => 0
-  validates_numericality_of :request1
 
  #TODO: Test that the requested totals don't exceed the limit which is currently 30'
 
-  validate :request_sequence
-  validate :check_for_duplicate_choices
+  with_options :if => :step2? do |registration|
+    registration.validates_presence_of :request1
+    registration.validates_numericality_of :request1, :only_integer => true, :greater_than => 0
+    registration.validate :request_sequence
+    registration.validate :check_for_duplicate_choices
+  end
 
-private
+  with_options :if => :step3? do |registration|
+    registration.validates_presence_of :amount_paid, :payment_method
+    registration.validates_numericality_of :amount_paid, :greater_than => 0
+  end
 
+  private
+  def step1?
+    registration_step == 'Step 1'
+  end
+  def step2?
+    registration_step == 'Step 2'
+  end
+  def step3?
+    registration_step == 'Step 3'
+  end
   def request_sequence
   #This routine fails if there are any non-requests within the sequence of requests.
   a = [request1, request2, request3, request4, request5, request6, request7,
        request8, request9, request10]
-  a.map! { |i| if a[i] = 0 then a[i] = nil end }
+
   first_nil = a.index{|i| i.nil?}
 
     unless first_nil.nil?
@@ -62,10 +77,9 @@ private
 
   def check_for_duplicate_choices
 
-    #TODO this routine doesn't appear to work - zero in request field might be problem'
     a = [request1, request2, request3, request4, request5, request6, request7,
        request8, request9, request10]
-    a.map! { |i| if a[i] = 0 then a[i] = nil end }
+    a.map! { |i| if i == 0 then i = nil else i end }    # eliminate cases were zeroes are entered for no choice.
     first_nil = a.index{|i| i.nil?}
     if first_nil.nil?
       first_nil = 9
@@ -108,12 +122,6 @@ private
         when 10
           errors.add(:request10, dup_request_message )
       end
-    end
-  end
-
-  def sum_total
-    if :scheduled
-      self.current_total = self.current_youth + self.current_counselors
     end
   end
 end
