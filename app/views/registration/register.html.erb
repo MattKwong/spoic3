@@ -1,6 +1,7 @@
 <h1>Group Registration Wizard</h1>
 
 <%= form_for(@registration) do |r| %>
+      <%= render 'shared/error_messages_registration' %>
 <p>This wizard will allow you to register your group and accept your deposit payment.</p><br/>
 <h4>Step 1: Verify Information and Begin Registration</h4>
 <div>

@@ -16,9 +16,9 @@ class Registration < ActiveRecord::Base
 
   with_options :if => :step2? do |registration|
     registration.validates_presence_of :request1
-    registration.validates_numericality_of :request1, :only_integer => true, :greater_than => 0
-    registration.validate :request_sequence
-    registration.validate :check_for_duplicate_choices
+    registration.validates_numericality_of :request1, :only_integer => true, :greater_than => 0, :message => "must be valid request"
+    registration.validate :request_sequence, :message => "All requests must be made in order."
+    registration.validate :check_for_duplicate_choices, :message => "You may not select the same session twice."
   end
 
   with_options :if => :step3? do |registration|
@@ -47,7 +47,7 @@ class Registration < ActiveRecord::Base
       suba = a.slice(first_nil, a.size - first_nil)
       next_non_nil = suba.index{|i| i != nil}
       unless next_non_nil.nil?
-        error_item = next_non_nil + first_nil + 1
+        error_item = next_non_nil + first_nil
         no_request_message = "A request is required here."
         case error_item
           when 1

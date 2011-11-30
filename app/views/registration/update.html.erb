@@ -1,6 +1,7 @@
 <h1>Group Registration Wizard</h1>
 
 <%= form_for(@registration) do |r| %>
+  <%= render 'shared/error_messages_registration' %>
     <h4>Step 3: Verify and Accept Payment</h4>
 
     <p>Group name: <%= @registration.name %></p><br/>

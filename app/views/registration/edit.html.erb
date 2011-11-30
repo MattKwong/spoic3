@@ -1,5 +1,6 @@
 <h1>Group Registration Wizard</h1>
 <%= form_for(@registration) do |r| %>
+    <%= render 'shared/error_messages_registration' %>
     <%= form_tag(:method => "put") %>
     <h4>Step 2: Make Your Requests</h4>
     <p>Group name:   <%= @registration.name %></p><br/>
@@ -10,7 +11,7 @@
 <p>Please select a session (week and site) for your group. You may provide up to 5 choices in priority sequence.</p><br/>
     <div class="field">
       <%= r.label "Choice #1" %>
-      <%= r.select :request1, options_for_select(@sessions) %>
+      <%= r.select :request1, @sessions %>
     </div>
     <div class="field">
       <%= r.label "Choice #2" %>

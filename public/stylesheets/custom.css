@@ -1,9 +1,7 @@
-.container {
-    width: 710px;
-}
-
 body {
-    background:  #cff;
+    background:  white;
+    font-size: 75%;
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 header {
@@ -171,29 +169,6 @@ div.field, div.actions {
 #error_explanation ul li{
     font-size:  12px;
     list-style: square;
-}
-
-ul.users {
-    margin-top: 1em;
-}
-
-.users li {
-    list-style: none;
-}
-
-div.user_info img { padding-right: 0.1cm }
-
-div.user_info a { text-decoration: none; }
-
-div.user_info span.user_name { position: absolute; }
-
-div.user_info span.microposts {font-size: 80% }
-
-form.new_micropost { margin-bottom:  2em; }
-
-form.new_micropost textarea {
-    height: 4em;
-    margin-bottom: 0;
 }
 
 /* Registration wizard */

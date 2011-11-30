@@ -1,9 +1,8 @@
-<header>
-  <%= link_to logo, root_path %>
-    <nav class="round">
-      <ul>
+<div id= "header">
+    <h1 id="site_title"><a href="/">Sierra Service Project Manager</a></h1>
+    <ul class="tabbed_navigation" id="tabs">
         <li><%= link_to "Home", root_path, %></li>
-       <% if signed_in? %>
+        <% if signed_in? %>
             <li><%= link_to "Group Manager", registrations_path %></li>
             <li><%= link_to "Admin Center", admin_path %></li>
             <li><%= link_to "Food/Tabatha", food_path %></li>
@@ -11,11 +10,9 @@
         <% end %>
         <li><%= link_to "Help" %></li>
         <% if signed_in? %>
-        <li><%= link_to "Sign out", signout_path, :method => :delete  %></li>
+            <li><%= link_to "Sign out", signout_path, :method => :delete  %></li>
         <% else %>
-        <li><%= link_to "Sign in", signin_path %></li>
+            <li><%= link_to "Sign in", signin_path %></li>
         <% end %>
-      </ul>
-    </nav>
-<h1> Welcome to SSP Information Center</h1>
-</header>
+    </ul>
+</div>
