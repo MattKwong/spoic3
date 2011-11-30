@@ -1,12 +1,12 @@
 <h1>Group Registration Wizard</h1>
-#PROBLEM: On submit, this form fires the update method in the controller when there is an error
 <%= form_for(@registration) do |r| %>
+    <%= form_tag(:method => "put") %>
     <h4>Step 3: Verify and Accept Payment</h4>
     <p>Group name: <%= @registration.name %></p><br/>
     <p>Group size: <%= @registration.requested_counselors %> counselors and <%= @registration.requested_youth %> youth.<p/><br/>
     <p>Amount due: <%= @registration.amount_due %><p/><br/>
     <div>
-      Select payment type:
+      <%= r.label "Select payment type:" %>
       <%= r.select(:payment_method, options_for_select(@payment_types)) %><br/><br/>
     </div>
     <div class="field">
@@ -14,7 +14,7 @@
       <%= r.text_field :payment_notes %>
     </div>
     <div class="field">
-      <%= r.label "Amount Received" %>
+      <%= r.label "Amount Received:" %>
       <%= r.number_field :amount_paid %>
     </div>
 <b/>
