@@ -10,6 +10,7 @@ Spoic3::Application.routes.draw do
   match "registration/:id/finalize" => 'registration#finalize', :as => 'registration_finalize'
   match "registration/:id/successful" => 'registration#successful', :as => 'registration_success'
   match "registration/show_schedule" => 'registration#show_schedule'
+  match "registration/:id/schedule" => 'registration#schedule', :as => 'schedule_request'
 
   resources :registration do
     post 'create'

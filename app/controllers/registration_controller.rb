@@ -4,7 +4,7 @@ class RegistrationController < ApplicationController
   end
 
   def register                #prior to display of register view
-      @liaisons = Liaison.all.map { |l| [l.name, 1 ]}
+      @liaisons = Liaison.all.map { |l| [l.name, l.id ]}
       @group_types = SessionType.all.map { |s| [s.name, s.id ]}
       @registration = Registration.new
       @title = "Register A Group"
@@ -52,6 +52,8 @@ class RegistrationController < ApplicationController
     @liaison = Liaison.find(@registration.liaison_id)
     @group_type = SessionType.find(@registration.group_type_id)
     @registration.church_id = @liaison.church_id
+    total_requested = @registration.requested_counselors + @registration.requested_youth
+    @registration.requested_total = total_requested
     @church = Church.find(@liaison.church_id)
     @registration.update_attributes(params[:registration])
     @payment_types = 'Check', 'Credit Card', 'Cash'
@@ -72,6 +74,7 @@ class RegistrationController < ApplicationController
  #   logger.debug "Test info 3: #{@registration.attributes.inspect}"
     if (step3?)
  #      logger.debug "Test info 3: #{params}"
+      @registration.scheduled= false
       if @registration.update_attributes(params[:registration]) then
         @payment = Payment.new
         @payment.registration_id = @registration.id
@@ -105,7 +108,10 @@ class RegistrationController < ApplicationController
   def successful
     @title = "Completed Registration"
     @registration = Registration.find(params[:id])
+    @church = Church.find(@registration.church_id)
+    @liaison = Liaison.find(@registration.liaison_id)
     @session = Session.find(@registration.request1)
+
   end
 
   def delete

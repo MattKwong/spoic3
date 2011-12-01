@@ -3,6 +3,8 @@
 <%= form_for(@registration) do |r| %>
     <h4>Congratulations! You have successfully registered your group.</h4>
     <p>Group name:  <%= @registration.name %></p><br/>
+    <p>Church name:  <%= @church.name %></p><br/>
+    <p>Liaison name:  <%= @liaison.name %></p><br/>
     <p>Group size:  <%= @registration.requested_counselors %> counselors and <%= @registration.requested_youth %> youth<p/><br/>
     <p>Session:     <%= @session.name %><p/><br/>
     <p>Amount paid: <%= @registration.amount_paid %><p/><br/>
