@@ -1,5 +1,5 @@
 ActiveAdmin.register PaymentSchedule do
-  menu :parent => "Configure Sites and Sessions"
+  menu :parent => "Configuration"
 
    show do
     attributes_table :name, :deposit, :second_payment, :second_payment_date, :final_payment,

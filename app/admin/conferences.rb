@@ -1,3 +1,3 @@
 ActiveAdmin.register Conference do
-  menu :parent => "Other Configuration"
+  menu :parent => "Configuration"
 end

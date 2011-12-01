@@ -1,3 +1,3 @@
 ActiveAdmin.register Denomination do
- menu :parent => "Other Configuration"
+ menu :parent => "Configuration"
 end

@@ -1,3 +1,3 @@
 ActiveAdmin.register Organization do
- menu :parent => "Other Configuration",
+ menu :parent => "Configuration"
 end
