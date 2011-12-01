@@ -1,5 +1,10 @@
 class Registration < ActiveRecord::Base
   belongs_to :church
+  belongs_to :liaison
+
+  scope :scheduled, where(:scheduled => 't')
+  scope :unscheduled, where(:scheduled => 'f')
+
   attr_accessible :name,:comments, :liaison_id, :request1, :request2, :request3,
                   :request4, :request5, :request6,:request7, :request8, :request9,
                   :request10, :requested_counselors, :requested_youth,

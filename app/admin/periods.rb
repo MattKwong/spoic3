@@ -7,5 +7,6 @@ ActiveAdmin.register Period do
       f.input :start_date, :start_year => 2011, :required => true
       f.input :end_date, :start_year => 2011, :required => true
     end
+    f.buttons
   end
 end
