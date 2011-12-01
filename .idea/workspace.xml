@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="Completed display of pending requests. Next: schedule groups.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/admin/registrations.rb" />
+    <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="spoic3.iws" />
