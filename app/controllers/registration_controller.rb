@@ -54,6 +54,7 @@ class RegistrationController < ApplicationController
     @registration.church_id = @liaison.church_id
     total_requested = @registration.requested_counselors + @registration.requested_youth
     @registration.requested_total = total_requested
+    @registration.scheduled = false
     @church = Church.find(@liaison.church_id)
     @registration.update_attributes(params[:registration])
     @payment_types = 'Check', 'Credit Card', 'Cash'
@@ -74,7 +75,6 @@ class RegistrationController < ApplicationController
  #   logger.debug "Test info 3: #{@registration.attributes.inspect}"
     if (step3?)
  #      logger.debug "Test info 3: #{params}"
-      @registration.scheduled= false
       if @registration.update_attributes(params[:registration]) then
         @payment = Payment.new
         @payment.registration_id = @registration.id
@@ -112,6 +112,24 @@ class RegistrationController < ApplicationController
     @liaison = Liaison.find(@registration.liaison_id)
     @session = Session.find(@registration.request1)
 
+  end
+
+  def schedule
+    @title = "Schedule a Group"
+    @registration = Registration.find(params[:id])
+    @church = Church.find(@registration.church_id)
+    @liaison = Liaison.find(@registration.liaison_id)
+    @session = Session.find(@registration.request1)
+    @site = Site.find(@session.site_id)
+    @period = Period.find(@session.period_id)
+    @requests = Array[@registration.request1, @registration.request2, @registration.request3,
+        @registration.request4, @registration.request5, @registration.request6,
+        @registration.request7, @registration.request8, @registration.request9,
+        @registration.request10]
+    first_nil = @requests.index(nil)
+    first_zero = @requests.index(0)
+    @requests_size = (first_nil < first_zero ? first_nil : first_zero)
+    @requests.slice!(@requests_size, @requests.size - @requests_size)
   end
 
   def delete

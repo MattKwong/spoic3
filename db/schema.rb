@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111129005426) do
+ActiveRecord::Schema.define(:version => 20111202161311) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -216,6 +216,7 @@ ActiveRecord::Schema.define(:version => 20111129005426) do
     t.integer  "registration_id"
     t.string   "liaison_id"
     t.integer  "scheduled_priority"
+    t.integer  "payments"
   end
 
   create_table "scheduled_histories", :force => true do |t|

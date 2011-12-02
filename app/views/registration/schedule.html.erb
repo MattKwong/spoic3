@@ -1,2 +1,31 @@
-<h1>Groups::Groups#schedule</h1>
-<p>Find me in app/views/groups/schedule.html.erb</p>
+<h1>Schedule a Group</h1>
+<h4>Use this screen to schedule a group in a session.</h4>
+<%= form_for(@registration) do |r| %>
+
+    <p>Group name:  <%= @registration.name %></p>
+    <p>Church name:  <%= @church.name %></p>
+    <p>Liaison name:  <%= @liaison.name %></p>
+    <p>Youth:  <%= @registration.requested_youth %> <p/>
+    <p>Counselors:  <%= @registration.requested_counselors %><p/>
+    <p>Total:  <%= @registration.requested_total %><p/><br/>
+
+    <p>This group submitted <%= @requests_size %> choices:<p/><br/>
+    <% @requests.each do |choice| %>
+      <div>
+        <p>Session: <%= Session.find(choice).name %><p/>
+        <p>Location: <%= Site.find(Session.find(choice).site_id).name %><p/>
+        <p>Start Date: <%= Period.find(Session.find(choice).period_id).start_date.to_formatted_s(:long) %><p/>
+        <p>End Date: <%= Period.find(Session.find(choice).period_id).end_date.to_formatted_s(:long) %><p/>
+      </div><br/>
+    <% end %>
+
+    <p>Please select a session from the list of requests above. To schedule in a session that
+    has not been requested, use the drop-down list below.</p><br/>
+
+    <div class="actions">
+
+      <%= link_to "Schedule another group", admin_registrations_path %>
+      <%= link_to 'Logout', root_path %>
+    </div>
+
+<% end %>

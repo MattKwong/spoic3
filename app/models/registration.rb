@@ -4,6 +4,8 @@ class Registration < ActiveRecord::Base
 
   scope :scheduled, where(:scheduled => 't')
   scope :unscheduled, where(:scheduled => 'f')
+  scope :high_school_unscheduled, where(:group_type_id => 1)
+
 
   attr_accessible :name,:comments, :liaison_id, :request1, :request2, :request3,
                   :request4, :request5, :request6,:request7, :request8, :request9,
