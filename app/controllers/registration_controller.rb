@@ -130,6 +130,7 @@ class RegistrationController < ApplicationController
     first_zero = @requests.index(0)
     @requests_size = (first_nil < first_zero ? first_nil : first_zero)
     @requests.slice!(@requests_size, @requests.size - @requests_size)
+    @sessions = Session.all.map  { |s| [s.name, s.id ]}
   end
 
   def delete
@@ -139,6 +140,12 @@ class RegistrationController < ApplicationController
   end
 
   def show_schedule
+    build_schedule
+  end
+
+  private
+
+  def build_schedule
     @schedule = {}
     @site_names = Site.order(:listing_priority).find_all_by_active(true).map { |s| s.name}
     @period_names = Period.order(:start_date).find_all_by_active(true).map { |p| p.name}
