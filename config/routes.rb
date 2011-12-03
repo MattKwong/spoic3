@@ -12,6 +12,8 @@ Spoic3::Application.routes.draw do
   match "registration/show_schedule" => 'registration#show_schedule'
   match "registration/:id/schedule" => 'registration#schedule', :as => 'schedule_request'
 
+  resources :scheduled_groups
+
   resources :registration do
     post 'create'
     put :edit

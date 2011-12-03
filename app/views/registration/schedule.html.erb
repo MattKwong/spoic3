@@ -1,4 +1,12 @@
-<h1>Schedule a Group</h1>
+<div id="title_bar">
+    <div id="titlebar_left">
+          <span class="breadcrumb">
+            <a href="/admin">Admin</a>
+            <span class="breadcrumb_sep">/</span>
+          </span>
+          <h2 id="page_title">Schedule a Group</h2>
+    </div>
+</div>
 <h4>Use this screen to schedule a group in a session.</h4>
 <%= form_for(@registration) do |r| %>
 
@@ -9,15 +17,50 @@
     <p>Counselors:  <%= @registration.requested_counselors %><p/>
     <p>Total:  <%= @registration.requested_total %><p/><br/>
 
-    <p>This group submitted <%= @requests_size %> choices:<p/><br/>
-    <% @requests.each do |choice| %>
-      <div>
-        <p>Session: <%= Session.find(choice).name %><p/>
-        <p>Location: <%= Site.find(Session.find(choice).site_id).name %><p/>
-        <p>Start Date: <%= Period.find(Session.find(choice).period_id).start_date.to_formatted_s(:long) %><p/>
-        <p>End Date: <%= Period.find(Session.find(choice).period_id).end_date.to_formatted_s(:long) %><p/>
-      </div><br/>
-    <% end %>
+     <div id="active_admin_content" class="with_sidebar">
+        <div id="main_content_wrapper">
+          <div id="main_content">
+            <div class="paginated_collection">
+              <div class="pagination_information">Displaying <b><%= @requests_size %></b> choices</div>
+                <div class="paginated_collection_contents">
+                    <div class="index_content">
+                        <div class="index_as_table">
+                            <table border="0" cellspacing="0" cellpadding="0" id="requests" class="index_table">
+
+                      <thead>
+                        <tr>
+                          <th>Choice</th>
+                          <th>Session</th>
+                          <th>Site</th>
+                          <th>Week</th>
+                          <th>Start Date</th>
+                          <th>End Date</th>
+                          <th>Session Enrollment</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% @requests.each do |choice| %>
+                        <tr class="odd" id="registration_64">
+                          <td><%= choice %></td>
+                          <td><%= Session.find(choice).name %></td>
+                          <td><%= Site.find(Session.find(choice).site_id).name %></td>
+                          <td><%= Period.find(Session.find(choice).period_id).name %></td>
+                          <td><%= Period.find(Session.find(choice).period_id).start_date.to_formatted_s(:long) %></td>
+                          <td><%= Period.find(Session.find(choice).period_id).end_date.to_formatted_s(:long) %></td>
+                          <td></td>
+                          <td><a href="/admin/churches/1" class="member_link view_link">Schedule This Choice</a></td>
+
+                        </tr>
+                        <% end %>
+                    </table>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+     </div>
+     </div>
 
     <p>Please select a session from the list of requests above. To schedule in a session that
     has not been requested, use the drop-down list below.</p><br/>
