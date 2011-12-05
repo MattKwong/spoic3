@@ -24,7 +24,7 @@
                     <tr>
                       <th>Church name</th>
                       <td><%= @church.name %></td>
-                    </tr
+                    </tr>
                     <tr>
                       <th>Liaison name</th>
                       <td><%= @liaison.name %></td>
@@ -32,7 +32,7 @@
                     <tr>
                       <th>Youth</th>
                       <td><%= @registration.requested_youth %></td>
-                    </tr
+                    </tr>
                     <tr>
                       <th>Counselors</th>
                       <td><%= @registration.requested_counselors %></td>
@@ -76,21 +76,24 @@
                                             <td><%= Period.find(Session.find(choice).period_id).start_date.to_formatted_s(:long) %></td>
                                             <td><%= Period.find(Session.find(choice).period_id).end_date.to_formatted_s(:long) %></td>
                                             <td><%= ScheduledGroup.sum(:current_total, :conditions => ['session_id = ?', choice]) %></td>
-                                            <td><%= link_to "Schedule this choice", schedule_request_path(:id => choice) %></td>
+                                            <td><%= link_to "Schedule this choice",
+                                                            scheduled_group_schedule_path(:id => choice, :reg => @registration.id) %></td>
                                         </tr>
                                     <% end %>
                           </tbody>
                       </table>
-                      <h3>Or pick from the list below: </h3><br></br>
+                   #TODO: This isn't working. The url resulting from the link_to statement doesn't include the literal value of the
+                     #choice that has been selected.
+                      <h3>Or pick from the list below: </h3><br>
                       <div class="field">
                         <%= r.label "Session" %>
-                        <%= r.select :liaison_id, @sessions %>
-                        <%= link_to "Schedule this choice", schedule_request_path(:id => :liaison_id) %>
+                        <%= collection_select("Registration", "Session", Session.all, :id, :name, {:prompt => false}) %>
+                        <%= link_to "Schedule this session", scheduled_group_schedule_path(:id => :session, :reg => @registration.id) %>
                       </div>
                    </div>
                 </div>
               </div>
           </div>
-        </div>
      </div>
     <% end %>
+  </div>

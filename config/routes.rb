@@ -13,6 +13,7 @@ Spoic3::Application.routes.draw do
   match "registration/:id/schedule" => 'registration#schedule', :as => 'schedule_request'
 
   resources :scheduled_groups
+  match "scheduled_group/:id/schedule" => 'scheduled_group#confirmation', :as => "scheduled_group_schedule"
 
   resources :registration do
     post 'create'

@@ -130,7 +130,7 @@ class RegistrationController < ApplicationController
     first_zero = @requests.index(0)
     @requests_size = (first_nil < first_zero ? first_nil : first_zero)
     @requests.slice!(@requests_size, @requests.size - @requests_size)
-    @sessions = Session.all.map  { |s| [s.name, s.id ]}
+    @sessions = Session.all
   end
 
   def delete
