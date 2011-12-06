@@ -20,7 +20,7 @@ ActiveAdmin.register Liaison do
         row("City") {liaison.city}
         row("State") {liaison.state }
         row("Zip code") {liaison.zip }
-        row("Last update") { :updated_at }
+        row("Last update") { liaison.updated_at }
       end
     end
 
@@ -35,8 +35,8 @@ ActiveAdmin.register Liaison do
 
   sidebar "Contact Information", :only => :show do
     attributes_table_for liaison.church do
-      row("Primary email") { liaison.email1 }
-      row("Second email") { liaison.email2 }
+      row("Primary email") { mail_to liaison.email1, liaison.email1, :subject => "SSP", :body => "Dear " }
+      row("Second email") { mail_to liaison.email2, liaison.email2, :subject => "SSP", :body => "Dear " }
       row("Cell Phone") { liaison.cell_phone }
       row("Work Phone") { liaison.work_phone }
       row("Home Phone") { liaison.home_phone }
@@ -46,7 +46,8 @@ ActiveAdmin.register Liaison do
 
   sidebar "Church Information", :only => :show do
     attributes_table_for liaison.church do
-      row("Primary email") { liaison.email1 }
+      row("Primary email") { mail_to liaison.church.email1, liaison.church.email1,
+      :subject => "SSP", :body => "Dear " }
     end
   end
 

@@ -77,7 +77,7 @@
                                             <td><%= Period.find(Session.find(choice).period_id).end_date.to_formatted_s(:long) %></td>
                                             <td><%= ScheduledGroup.sum(:current_total, :conditions => ['session_id = ?', choice]) %></td>
                                             <td><%= link_to "Schedule this choice",
-                                                            scheduled_group_schedule_path(:id => choice, :reg => @registration.id) %></td>
+                                                            scheduled_groups_schedule_path(:priority => 1, :id => choice, :reg => @registration.id) %></td>
                                         </tr>
                                     <% end %>
                           </tbody>
@@ -88,7 +88,7 @@
                       <div class="field">
                         <%= r.label "Session" %>
                         <%= collection_select("Registration", "Session", Session.all, :id, :name, {:prompt => false}) %>
-                        <%= link_to "Schedule this session", scheduled_group_schedule_path(:id => :session, :reg => @registration.id) %>
+                        <%= link_to "Schedule this session", scheduled_groups_schedule_path(:priority => 0,:id => :session, :reg => @registration.id) %>
                       </div>
                    </div>
                 </div>

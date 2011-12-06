@@ -1,0 +1,32 @@
+<div id="title_bar">
+        <div id="titlebar_left">
+          <span class="breadcrumb">
+            <a href="/admin">Admin</a>
+            <span class="breadcrumb_sep">/</span>
+          </span>
+          <h2 id="page_title"><%= @title %></h2>
+        </div>
+    </div>
+    <%= form_for(@scheduled_group) do |r| %>
+     <div id="active_admin_content"  class="with_sidebar">
+        <div id="main_content_wrapper">
+          <div id="main_content">
+              <div class="panel">
+                <div class="panel_contents">
+                <div class="attributes_table liaison" id="attributes_table_liaison_3">
+			      <%= render 'layouts/scheduled_group_table' %>
+                  <h3>Click to send a confirming email: <%= mail_to Liaison.find(@scheduled_group.liaison_id).email1,
+                                                        Liaison.find(@scheduled_group.liaison_id).name,
+                                                        :subject => "SSP Schedule Confirmation",
+                                                        :body => "Dear Rick," %></h3>
+                  <div class="actions">
+                    <%= link_to 'Schedule Another Group', admin_registrations_path  %>
+                  </div>
+                  <% end %>
+                </div>
+                </div>
+              </div>
+             </div>
+            </div>
+         </div>
+       </div>

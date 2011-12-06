@@ -1,0 +1,32 @@
+<div id="title_bar">
+        <div id="titlebar_left">
+          <span class="breadcrumb">
+            <a href="/admin">Admin</a>
+            <span class="breadcrumb_sep">/</span>
+          </span>
+          <h2 id="page_title"><%= @title %></h2>
+        </div>
+    </div>
+    <%= form_for(@scheduled_group) do |r| %>
+     <div id="active_admin_content"  class="with_sidebar">
+        <div id="main_content_wrapper">
+          <div id="main_content">
+              <div class="panel">
+                <div class="panel_contents">
+                <div class="attributes_table liaison" id="attributes_table_liaison_3">
+			      <%= render 'layouts/scheduled_group_table' %>
+                  <h3>To complete the scheduling of this group, press Confirm below. Otherwise, Cancel or return to the previous screen.</h3>
+                  <div class="actions">
+                    <%= submit_tag 'Confirm', { :confirm => "Are you sure you want to complete this transaction?", :regid => @scheduled_group.registration_id } %>
+                    <%= submit_tag "Cancel", { :confirm => "Are you sure you want to cancel and return to the Requests page?" } %>
+                    <%= submit_tag "Back",  { :confirm => "Are you sure?" } %>
+                  </div>
+                  <% end %>
+                </div>
+                </div>
+              </div>
+             </div>
+            </div>
+         </div>
+       </div>
+

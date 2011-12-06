@@ -38,7 +38,7 @@ ActiveAdmin.register Church do
     attributes_table_for church do
       row("Church phone") { church.office_phone }
       row("Church fax") { church.fax }
-      row("Church email") { church.email1 }
+      row("Church email") { mail_to church.email1, church.email1, :subject => "SSP", :body => "Dear " }
     end
   end
 
