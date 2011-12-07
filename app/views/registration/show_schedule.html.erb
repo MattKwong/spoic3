@@ -1,23 +1,40 @@
 <h1>Registration Schedule</h1>
-<p>Current registration information as of: <%= Time.now %></p>
-
-<div>
-  <table>
-    <tr>
-      <td></td>
-      <% for i in 0..@schedule[:period_count] - 1 do %>
-        <td><%= @schedule[:period_names][i] %><td/>
-      <% end %>
-    </tr>
-    <% for i in 0..@schedule[:site_count] - 1 do %>
-
-        <tr>
-           <td><%= @schedule[:site_names][i] %></td>
-              <% for j in 0..@schedule[:period_count] - 1 do %>
-                 <td><%= @schedule[:matrix][i][j] %></td>
-              <% end %>
-
-          <% end %>
-        </tr>
-  </table>
+<p>Current registration information as of <%= Time.now.strftime("%A, %B %d, %Y at %M:%H") %></p>
+<div id="title_bar">
+        <div id="titlebar_left">
+          <span class="breadcrumb">
+            <a href="/registration">Manage Groups</a>
+            <span class="breadcrumb_sep">/</span>
+          </span>
+          <h2 id="page_title"><%= @title %></h2>
+        </div>
 </div>
+     <div id="active_admin_content"  class="with_sidebar">
+        <div id="main_content_wrapper">
+          <div id="main_content">
+              <div class="panel">
+                <div class="panel_contents">
+                <div class="attributes_table liaison" id="attributes_table_liaison_3">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td></td>
+                            <% for i in 0..@schedule[:period_count] - 1 do %>
+                                <td><%= @schedule[:period_names][i]%><td/>
+                            <% end %>
+                         </tr>
+                        <% for i in 0..@schedule[:site_count] - 1 do %>
+                        <tr>
+                            <td><%= @schedule[:site_names][i] %></td>
+                            <% for j in 0..@schedule[:period_count] - 1 do %>
+                                <td><%= @schedule[:registration_matrix][i][j] %> | <%= @schedule[:scheduled_matrix][i][j] %></td>
+                            <% end %>
+                        <% end %>
+                        </tr>
+                    </table>
+
+                </div>
+                </div>
+              </div>
+             </div>
+            </div>
+         </div>

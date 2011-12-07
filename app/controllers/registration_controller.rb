@@ -140,15 +140,15 @@ class RegistrationController < ApplicationController
   end
 
   def show_schedule
-    build_schedule
+    build_schedule("summer_domestic")
   end
 
   private
 
-  def build_schedule
+  def build_schedule(type)
     @schedule = {}
-    @site_names = Site.order(:listing_priority).find_all_by_active(true).map { |s| s.name}
-    @period_names = Period.order(:start_date).find_all_by_active(true).map { |p| p.name}
+    @site_names = Site.order(:listing_priority).find_all_by_active_and_summer_domestic(true, true).map { |s| s.name}
+    @period_names = Period.order(:start_date).find_all_by_active_and_summer_domestic(true, true).map { |p| p.name}
 
     @period_ordinal = Array.new
     for i in 0..@period_names.size - 1 do
@@ -160,7 +160,8 @@ class RegistrationController < ApplicationController
       @site_ordinal[i] = @site_names[i]
     end
 
-    @matrix = Array.new(@site_names.size){ Array.new(@period_names.size, 0)}
+    @registration_matrix = Array.new(@site_names.size){ Array.new(@period_names.size, 0)}
+    @scheduled_matrix = Array.new(@site_names.size){ Array.new(@period_names.size, 0)}
 
     #This is almost correct. I need to map the row and column positions to the ordinal
     #positions of the columns and rows...
@@ -171,12 +172,27 @@ class RegistrationController < ApplicationController
         @period = Period.find(@session.period_id)
         @row_position = @site_ordinal.index(@site.name)
         @column_position = @period_ordinal.index(@period.name)
-        @matrix[@row_position][@column_position] += r.requested_counselors + r.requested_youth
+        @registration_matrix[@row_position][@column_position] += r.requested_counselors + r.requested_youth
+          unless (@column_position.nil? || @row_position.nil?)
+          end
+
     end
+
+    ScheduledGroup.all.each do |r|
+        @session = Session.find(r.session_id)
+        @site = Site.find(@session.site_id)
+        @period = Period.find(@session.period_id)
+        @row_position = @site_ordinal.index(@site.name)
+        @column_position = @period_ordinal.index(@period.name)
+        @scheduled_matrix[@row_position][@column_position] += r.current_total
+          unless (@column_position.nil? || @row_position.nil?)
+          end
+    end
+    logger.debug @scheduled_matrix.inspect
 
     @schedule = { :site_count => @site_names.size, :period_count => @period_names.size,
                   :site_names => @site_names, :period_names => @period_names,
-                  :matrix => @matrix}
+                  :registration_matrix => @registration_matrix, :scheduled_matrix => @scheduled_matrix }
   end
  end
 

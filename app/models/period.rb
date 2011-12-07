@@ -1,5 +1,5 @@
 class Period < ActiveRecord::Base
-  attr_accessible :name, :start_date, :end_date, :active
+  attr_accessible :name, :start_date, :end_date, :active, :summer_domestic
 
   validates :name, :start_date, :end_date, :presence => true
   validate :start_date_before_end_date
