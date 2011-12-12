@@ -1,0 +1,49 @@
+<div id="title_bar">
+    <div id="titlebar_left">
+        <span class="breadcrumb">
+            <a href="/admin">Admin</a>
+            <span class="breadcrumb_sep">/</span>
+        </span>
+        <h2 id="page_title">Groups Scheduled for <%= @session_week %> <%= @session_site %></h2>
+    </div>
+</div>
+
+    <div id="active_admin_content"  class="with_sidebar">
+        <div id="main_content_wrapper">
+            <div id="main_content">
+               <div class="panel">
+                 <div class="panel_contents">
+                   <div class="attributes_table choices" id="attributes_table_choices">
+                      <table border="0" cellspacing="0" cellpadding="0" id="requests" class="index_table">
+                        <h3>Groups Scheduled for <%= @session_week %> <%= @session_site %></h3>
+                        <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Liaison</th>
+                                            <th>Church</th>
+                                            <th>Requested Youth</th>
+                                            <th>Requested Adults</th>
+                                            <th>Requested Total</th>
+                                            <th></th>
+                                        </tr>
+                        </thead>
+                        <tbody>
+                            <% @groups.each do |r| %>
+                                        <tr>
+                                            <td><%= r.name %></td>
+                                            <td><%= Liaison.find(r.liaison_id).name %></td>
+                                            <td><%= Church.find(r.church_id).name %></td>
+                                            <td><%= r.current_youth %></td>
+                                            <td><%= r.current_counselors %></td>
+                                            <td><%= r.current_total %></td>
+                                            <td><%= link_to "Change this group", schedule_request_path(:id => r.id) %></td>
+                                        </tr>
+                                    <% end %>
+                        </tbody>
+                      </table>
+                   </div>
+                 </div>
+               </div>
+            </div>
+        </div>
+    </div>

@@ -143,6 +143,13 @@ class RegistrationController < ApplicationController
     build_schedule(params[:reg_or_sched], params[:type])
   end
 
+  def program_session
+    @requests = Registration.find_all_by_request1(params[:id])
+    session = Session.find(params[:id])
+    @session_week = Period.find(session.period.id).name
+    @session_site = Site.find(session.site_id).name
+  end
+
   private
 
   def build_schedule(reg_or_sched, type)
@@ -172,6 +179,7 @@ class RegistrationController < ApplicationController
 
     @registration_matrix = Array.new(@site_names.size + 1){ Array.new(@period_names.size + 1, 0)}
     @scheduled_matrix = Array.new(@site_names.size + 1){ Array.new(@period_names.size + 1, 0)}
+    @session_id_matrix = Array.new(@site_names.size + 1){ Array.new(@period_names.size + 1, 0)}
 
     Registration.find(:all, :conditions => "request1 IS NOT NULL").each do |r|
         @session = Session.find(r.request1)
@@ -179,6 +187,7 @@ class RegistrationController < ApplicationController
         @period = Period.find(@session.period_id)
         @row_position = @site_ordinal.index(@site.name)
         @column_position = @period_ordinal.index(@period.name)
+        @session_id_matrix[@row_position][@column_position] = @session.id
         @registration_matrix[@row_position][@column_position] += r.requested_counselors + r.requested_youth
           unless (@column_position.nil? || @row_position.nil?)
           end
@@ -191,6 +200,7 @@ class RegistrationController < ApplicationController
         @period = Period.find(@session.period_id)
         @row_position = @site_ordinal.index(@site.name)
         @column_position = @period_ordinal.index(@period.name)
+        @session_id_matrix[@row_position][@column_position] = @session.id
         @scheduled_matrix[@row_position][@column_position] += r.current_total
           unless (@column_position.nil? || @row_position.nil?)
           end
@@ -234,8 +244,8 @@ class RegistrationController < ApplicationController
     @schedule = { :site_count => @site_names.size - 1, :period_count => @period_names.size - 1,
                   :site_names => @site_names, :period_names => @period_names,
                   :registration_matrix => @registration_matrix, :scheduled_matrix => @scheduled_matrix,
-                  :reg_or_sched => reg_or_sched, :type => type}
-      #logger.debug @schedule.inspect
+                  :session_id_matrix => @session_id_matrix, :reg_or_sched => reg_or_sched, :type => type}
+      logger.debug @schedule.inspect
   end
  end
 
