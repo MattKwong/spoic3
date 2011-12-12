@@ -1,40 +1,95 @@
-<h1>Registration Schedule</h1>
-<p>Current registration information as of <%= Time.now.strftime("%A, %B %d, %Y at %M:%H") %></p>
 <div id="title_bar">
         <div id="titlebar_left">
           <span class="breadcrumb">
             <a href="/registration">Manage Groups</a>
             <span class="breadcrumb_sep">/</span>
           </span>
-          <h2 id="page_title"><%= @title %></h2>
+          <h2 id="page_title"><%= params[:type].gsub!('_', ' ').capitalize + ': ' + params[:reg_or_sched].capitalize %></h2>
         </div>
 </div>
+
+
      <div id="active_admin_content"  class="with_sidebar">
         <div id="main_content_wrapper">
-          <div id="main_content">
-              <div class="panel">
+            <div id="main_content">
+            <div class="panel">
                 <div class="panel_contents">
+                  <span class="scopes">
+                    <span class = scope><%= link_to "Domestic Summer Scheduled",
+                              registration_show_schedule_path(:reg_or_sched => 'scheduled', :type => 'summer_domestic') %>
+                    </span>
+                    <span class = "scope"><%= link_to "Domestic Summer Unscheduled",
+                              registration_show_schedule_path(:reg_or_sched => 'registered', :type => 'summer_domestic') %>
+                    </span>
+                    <span class = "scope"><%= link_to "Other Scheduled",
+                              registration_show_schedule_path(:reg_or_sched => 'scheduled', :type => 'other') %>
+                    </span>
+                    <span class = "scope"><%= link_to "Other Unscheduled",
+                              registration_show_schedule_path(:reg_or_sched => 'registered', :type => 'other') %>
+                    </span>
+                  </span>
+                </div>
+            </div>
+            <div class="panel">
+              <div class = "panel contents">
                 <div class="attributes_table liaison" id="attributes_table_liaison_3">
                     <table border="0" cellspacing="0" cellpadding="0">
+                        <thead>
                         <tr>
                             <td></td>
-                            <% for i in 0..@schedule[:period_count] - 1 do %>
-                                <td><%= @schedule[:period_names][i]%><td/>
+                            <% for i in 0..@schedule[:period_count] do %>
+                                <td><%= @schedule[:period_names][i]%></td>
                             <% end %>
-                         </tr>
-                        <% for i in 0..@schedule[:site_count] - 1 do %>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% s_count = @schedule[:site_count].to_s.to_i %>
+                        <% for i in 0..s_count - 1 do %>
                         <tr>
                             <td><%= @schedule[:site_names][i] %></td>
-                            <% for j in 0..@schedule[:period_count] - 1 do %>
-                                <td><%= @schedule[:registration_matrix][i][j] %> | <%= @schedule[:scheduled_matrix][i][j] %></td>
+                            <% count = @schedule[:period_count].to_s.to_i %>
+                            <% for j in 0..count - 1 do %>
+                                <% if params[:reg_or_sched] == "registered" then %>
+                                    <% if @schedule[:registration_matrix][i][j] > 0 then %>
+                                          <td><%= link_to (@schedule[:registration_matrix][i][j]).to_s,
+                                                registration_show_schedule_path  %></td>
+                                          <% else %>
+                                            <td><%= @schedule[:registration_matrix][i][j].to_s %></td>
+                                          <% end %>
+                                <% else %>
+                                     <% if @schedule[:scheduled_matrix][i][j] > 0 then %>
+                                          <td><%= link_to (@schedule[:scheduled_matrix][i][j]).to_s,
+                                                registration_show_schedule_path  %></td>
+                                          <% else %>
+                                            <td><%= @schedule[:registration_matrix][i][j].to_s %></td>
+                                          <% end %>
+                                <% end %>
                             <% end %>
-                        <% end %>
+                            <% if params[:reg_or_sched] == "registered" then %>
+                                    <td><%= (@schedule[:registration_matrix][i][count]).to_s %></td>
+                            <% else %>
+                                    <td><%= (@schedule[:scheduled_matrix][i][count]).to_s %></td>
+                            <% end %>
                         </tr>
+                        <% end %>
+                        <tr>
+                             <% count = @schedule[:period_count].to_s.to_i %>
+                             <td><%= @schedule[:site_names][s_count] %></td>
+                             <% for j in 0..count do %>
+                                <% if params[:reg_or_sched] == "registered" then %>
+                                    <td><%= (@schedule[:registration_matrix][@schedule[:site_count]][j]).to_s %></td>
+                                <% else %>
+                                    <td><%= (@schedule[:scheduled_matrix][@schedule[:site_count]][j]).to_s %></td>
+                                <% end %>
+                            <% end %>
+                        </tr>
+                        </tbody>
                     </table>
-
                 </div>
                 </div>
               </div>
              </div>
             </div>
-         </div>
+            </div>
+            </div>
+

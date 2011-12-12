@@ -140,15 +140,24 @@ class RegistrationController < ApplicationController
   end
 
   def show_schedule
-    build_schedule("summer_domestic")
+    build_schedule(params[:reg_or_sched], params[:type])
   end
 
   private
 
-  def build_schedule(type)
+  def build_schedule(reg_or_sched, type)
+#    logger.debug type.inspect
+
     @schedule = {}
-    @site_names = Site.order(:listing_priority).find_all_by_active_and_summer_domestic(true, true).map { |s| s.name}
-    @period_names = Period.order(:start_date).find_all_by_active_and_summer_domestic(true, true).map { |p| p.name}
+    if type == "summer_domestic" then
+      @site_names = Site.order(:listing_priority).find_all_by_active_and_summer_domestic(true, true).map { |s| s.name}
+      @period_names = Period.order(:start_date).find_all_by_active_and_summer_domestic(true, true).map { |p| p.name}
+      @title = "Domestic Summer Schedule"
+    else
+      @site_names = Site.order(:listing_priority).find_all_by_active_and_summer_domestic(true, false).map { |s| s.name}
+      @period_names = Period.order(:start_date).find_all_by_active_and_summer_domestic(true, false).map { |p| p.name}
+      @title = "Special Program Schedule"
+    end
 
     @period_ordinal = Array.new
     for i in 0..@period_names.size - 1 do
@@ -160,11 +169,9 @@ class RegistrationController < ApplicationController
       @site_ordinal[i] = @site_names[i]
     end
 
-    @registration_matrix = Array.new(@site_names.size){ Array.new(@period_names.size, 0)}
-    @scheduled_matrix = Array.new(@site_names.size){ Array.new(@period_names.size, 0)}
 
-    #This is almost correct. I need to map the row and column positions to the ordinal
-    #positions of the columns and rows...
+    @registration_matrix = Array.new(@site_names.size + 1){ Array.new(@period_names.size + 1, 0)}
+    @scheduled_matrix = Array.new(@site_names.size + 1){ Array.new(@period_names.size + 1, 0)}
 
     Registration.find(:all, :conditions => "request1 IS NOT NULL").each do |r|
         @session = Session.find(r.request1)
@@ -188,11 +195,47 @@ class RegistrationController < ApplicationController
           unless (@column_position.nil? || @row_position.nil?)
           end
     end
-    logger.debug @scheduled_matrix.inspect
+#total the rows and columns
+    @reg_total = 0
+    @sched_total = 0
+    for i in 0..@site_names.size - 1 do
+      for j in 0..@period_names.size - 1 do
+        @reg_total = @reg_total + @registration_matrix[i][j]
+        @sched_total = @sched_total + @scheduled_matrix[i][j]
+      end
+      @registration_matrix[i][@period_names.size] = @reg_total
+      @scheduled_matrix[i][@period_names.size] = @sched_total
+      @reg_total = @sched_total = 0
+    end
 
-    @schedule = { :site_count => @site_names.size, :period_count => @period_names.size,
+    @reg_total = 0
+    @sched_total = 0
+    for j in 0..@period_names.size - 1 do
+      for i in 0..@site_names.size - 1 do
+        @reg_total = @reg_total + @registration_matrix[i][j]
+        @sched_total = @sched_total + @scheduled_matrix[i][j]
+      end
+      @registration_matrix[@period_names.size - 1][j] = @reg_total
+      @scheduled_matrix[@period_names.size - 1][j] = @sched_total
+      @reg_total = @sched_total = 0
+    end
+
+    #Grand total
+    @reg_total = @sched_total = 0
+    for i in 0..@site_names.size - 1 do
+      @reg_total = @reg_total + @registration_matrix[i][@period_names.size]
+      @sched_total = @sched_total + @scheduled_matrix[i][@period_names.size]
+    end
+    @registration_matrix[@site_names.size][@period_names.size] = @reg_total
+    @scheduled_matrix[@site_names.size][@period_names.size] = @sched_total
+
+    @period_names << "Total"
+    @site_names << "Total"
+    @schedule = { :site_count => @site_names.size - 1, :period_count => @period_names.size - 1,
                   :site_names => @site_names, :period_names => @period_names,
-                  :registration_matrix => @registration_matrix, :scheduled_matrix => @scheduled_matrix }
+                  :registration_matrix => @registration_matrix, :scheduled_matrix => @scheduled_matrix,
+                  :reg_or_sched => reg_or_sched, :type => type}
+      #logger.debug @schedule.inspect
   end
  end
 
