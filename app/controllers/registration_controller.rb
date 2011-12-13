@@ -180,12 +180,12 @@ class RegistrationController < ApplicationController
       @site_ordinal[i] = @site_names[i]
     end
 
-
     @registration_matrix = Array.new(@site_names.size + 1){ Array.new(@period_names.size + 1, 0)}
     @scheduled_matrix = Array.new(@site_names.size + 1){ Array.new(@period_names.size + 1, 0)}
     @session_id_matrix = Array.new(@site_names.size + 1){ Array.new(@period_names.size + 1, 0)}
 
-    Registration.find(:all, :conditions => "request1 IS NOT NULL").each do |r|
+#    Registration.find_all_by_request1_and_scheduled(not nil, false).each do |r|
+    Registration.find(:all, :conditions => "(request1 IS NOT NULL) AND (scheduled = 'f')").each do |r|
         @session = Session.find(r.request1)
         @site = Site.find(@session.site_id)
         @period = Period.find(@session.period_id)
@@ -249,7 +249,7 @@ class RegistrationController < ApplicationController
                   :site_names => @site_names, :period_names => @period_names,
                   :registration_matrix => @registration_matrix, :scheduled_matrix => @scheduled_matrix,
                   :session_id_matrix => @session_id_matrix, :reg_or_sched => reg_or_sched, :type => type}
-      logger.debug @schedule.inspect
+#      logger.debug @schedule.inspect
   end
  end
 

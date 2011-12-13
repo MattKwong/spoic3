@@ -3,14 +3,29 @@
     <ul class="tabbed_navigation" id="tabs">
         <li><%= link_to "Home", root_path, %></li>
         <% if signed_in? %>
-            <li><%= link_to "Group Manager", registrations_path %></li>
+            <li><a href="#">Group Manager</a>
+                <ul>
+                  <li><%= link_to "Register a group", registration_register_path%></li>
+                  <li><%= link_to "Schedule a group", registration_schedule_path%></li>
+                  <li><%= link_to "Make other group changes", registration_update_path%></li>
+                  <li><%= link_to "Show the schedule - scheduled summer domestic",
+                          registration_show_schedule_path(:reg_or_sched => 'scheduled', :type => 'summer_domestic')%></li>
+                  <li><%= link_to "Show the schedule - unscheduled summer domestic",
+                          registration_show_schedule_path(:reg_or_sched => 'registered', :type => 'summer_domestic')%></li>
+                  <li><%= link_to "Show the schedule - scheduled other programs",
+                          registration_show_schedule_path(:reg_or_sched => 'scheduled', :type => 'other')%></li>
+                  <li><%= link_to "Show the schedule - unscheduled other programs",
+                          registration_show_schedule_path(:reg_or_sched => 'registered', :type => 'other')%></li>
+                </ul>
+
+            </li>
             <li><%= link_to "Admin Center", admin_path %></li>
             <li><%= link_to "Food/Tabatha", food_path %></li>
             <li><%= link_to "Construction", construction_path %></li>
         <% end %>
         <li><%= link_to "Help" %></li>
         <% if signed_in? %>
-            <li><%= link_to "Sign out", signout_path, :method => :delete  %></li>
+            <li><%= link_to "Sign out", "/admin/logout", :method => :get  %></li>
         <% else %>
             <li><%= link_to "Sign in", new_admin_user_session_path %></li>
         <% end %>

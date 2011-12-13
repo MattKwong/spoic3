@@ -4,7 +4,8 @@
             <a href="/registration">Manage Groups</a>
             <span class="breadcrumb_sep">/</span>
           </span>
-          <h2 id="page_title"><%= params[:type].gsub!('_', ' ').capitalize + ': ' + params[:reg_or_sched].capitalize %></h2>
+          <%  if params[:reg_or_sched] == 'registered' then @table_name = "Unscheduled" else @table_name = "Scheduled"  end%>
+          <h2 id="page_title"><%= params[:type].gsub!('_', ' ').capitalize + ': ' + @table_name %></h2>
         </div>
 </div>
 
