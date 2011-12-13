@@ -13,7 +13,8 @@ class ScheduledGroupsController < ApplicationController
   def confirmation       # before the confirmation screen
     @title = "Group Confirmation"
     @registration = Registration.find(params[:reg])
-    if ScheduledGroup.find_all_by_registration_id(:reg).count == 0
+    logger.debug ScheduledGroup.find_all_by_registration_id(params[:reg]).inspect
+    if ScheduledGroup.find_all_by_registration_id(params[:reg]).count == 0
       @scheduled_group = ScheduledGroup.new(:church_id => @registration.church_id,
                         :name => @registration.name, :registration_id => @registration.id,
                         :current_youth => @registration.requested_youth,
@@ -21,8 +22,8 @@ class ScheduledGroupsController < ApplicationController
                         :current_total => @registration.requested_total,
                         :liaison_id => @registration.liaison_id, :session_id => params[:id],
                         :scheduled_priority => params[:priority])
-    else if ScheduledGroup.find_all_by_registration_id(:reg).count == 1
-      @scheduled_group = ScheduledGroup.find_all_by_registration_id(:reg)
+    else if ScheduledGroup.find_all_by_registration_id(params[:reg]).count == 1
+      @scheduled_group = ScheduledGroup.find_by_registration_id(params[:reg])
          else
           flash[:error] = "Duplicate schedules exist for this registration. Contact support."
          end
