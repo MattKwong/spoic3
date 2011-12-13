@@ -160,7 +160,7 @@ class RegistrationController < ApplicationController
       @site_names = Site.order(:listing_priority).find_all_by_active_and_summer_domestic(true, true).map { |s| s.name}
 #      @site_names = Site.order(:listing_priority).find_all.map { |s| s.name}
       @period_names = Period.order(:start_date).find_all_by_active_and_summer_domestic(true, true).map { |p| p.name}
-      @period_names = Period.order(:start_date).find_all.map { |p| p.name}
+#      @period_names = Period.order(:start_date).find_all.map { |p| p.name}
       @title = "Domestic Summer Schedule"
     else
       @site_names = Site.order(:listing_priority).find_all_by_active_and_summer_domestic(true, false).map { |s| s.name}
