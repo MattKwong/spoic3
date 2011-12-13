@@ -3,7 +3,7 @@ class Site < ActiveRecord::Base
   scope :active, where(:active => 't')
 
   attr_accessible :id, :address1, :address2, :city, :name, :phone, :state,
-                  :zip, :listing_priority, :active,  :summer_domestic
+                  :zip, :listing_priority, :active, :summer_domestic
 
   validates :name, :address1, :city, :state, :zip, :listing_priority, :presence => true
 
