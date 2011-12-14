@@ -1,8 +1,10 @@
 class Church < ActiveRecord::Base
   has_many :liaisons
   has_many :registrations
+  has_many :scheduled_groups
   accepts_nested_attributes_for :liaisons
   accepts_nested_attributes_for :registrations
+  accepts_nested_attributes_for :scheduled_groups
 
   belongs_to :church_type
   scope :inactive, where(:active => 'f')

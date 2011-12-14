@@ -1,6 +1,8 @@
 ActiveAdmin.register Period do
   menu :parent => "Configuration"
 #TODO: create current_fiscal_year parameter in new Other_Parameters table
+ show :title => :name
+
  form do |f|
     f.inputs "Period Details" do
       f.input :name

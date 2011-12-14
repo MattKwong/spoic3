@@ -2,6 +2,9 @@ class Site < ActiveRecord::Base
   scope :inactive, where(:active => 'f')
   scope :active, where(:active => 't')
 
+  has_many :sessions
+  accepts_nested_attributes_for :sessions
+
   attr_accessible :id, :address1, :address2, :city, :name, :phone, :state,
                   :zip, :listing_priority, :active, :summer_domestic
 

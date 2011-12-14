@@ -1,5 +1,5 @@
 ActiveAdmin.register AdminUser do
-
+    menu :priority => 7
   after_create { |admin| admin.send_reset_password_instructions }
 
   index do

@@ -6,6 +6,8 @@ class ScheduledGroup < ActiveRecord::Base
   has_many :payments
   has_many :scheduled_histories
   belongs_to :church
+  belongs_to :liaison
+  belongs_to :session
 
 #TODO: Validate referential integrity of liaison, session, churches and registration ids
   validates :name, :liaison_id, :session_id, :church_id, :registration_id, :presence => true

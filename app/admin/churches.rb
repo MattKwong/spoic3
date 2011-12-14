@@ -1,5 +1,5 @@
 ActiveAdmin.register Church do
-  menu :priority => 2
+  menu :priority => 4
   scope :inactive
   scope :unregistered
   scope :active
@@ -45,7 +45,7 @@ ActiveAdmin.register Church do
   sidebar "Liaisons", :only => :show do
     table_for church.liaisons do
        column :name do |liaison|
-         link_to liaison.name, admin_liaison_path(liaison)
+         link_to liaison.name, [:admin, liaison]
        end
        column :liaison_type
     end

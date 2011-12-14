@@ -7,6 +7,8 @@ class Liaison < ActiveRecord::Base
  #TODO Change the :churches belongs_to relation to has_many and test
   belongs_to :church
   belongs_to :liaison_type
+  has_many :scheduled_groups
+  accepts_nested_attributes_for :scheduled_groups
 
   attr_accessible :active, :address1, :address2, :city, :state, :zip, :first_name,
         :last_name, :name, :email1, :email2, :cell_phone, :home_phone, :work_phone,

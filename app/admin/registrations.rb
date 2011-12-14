@@ -1,5 +1,5 @@
 ActiveAdmin.register Registration do
-  menu :priority => 2, :label => "Requests"
+  menu :priority => 2, :label => "Requests", :parent => "Groups"
   scope :high_school_unscheduled, :label => "HS Unscheduled"
   scope :scheduled
   scope :unscheduled, :default => true

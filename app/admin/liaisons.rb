@@ -4,7 +4,7 @@ ActiveAdmin.register Liaison do
   scope :both
   scope :for_registered_groups
 
-  menu :priority => 3
+  menu :priority => 5
 
   show :title => :name do
     panel "Liaison Details" do
@@ -83,7 +83,7 @@ ActiveAdmin.register Liaison do
      column :liaison_type
      column :city
      column :state
-    default_actions
+     default_actions
    end
 end
 

@@ -1,5 +1,7 @@
 class Period < ActiveRecord::Base
   attr_accessible :name, :start_date, :end_date, :active, :summer_domestic
+  has_many :sessions
+  accepts_nested_attributes_for :sessions
 
   validates :name, :start_date, :end_date, :presence => true
   validate :start_date_before_end_date
