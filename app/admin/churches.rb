@@ -59,6 +59,7 @@ form do |f|
       f.input :city
       f.input :state
       f.input :zip
+      f.input :church_type
       f.input :email1
       f.input :office_phone
       f.input :fax
