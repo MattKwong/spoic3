@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="Correct error in church new">
-      <change type="DELETED" beforePath="C:\Users\Rick\railsprojects\spoic3\db\migrate\20111214053055_remove_field_from_scheduled_histories.rb" afterPath="" />
+    <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/churches.rb" afterPath="$PROJECT_DIR$/app/admin/churches.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/liaisons.rb" afterPath="$PROJECT_DIR$/app/admin/liaisons.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/church.rb" afterPath="$PROJECT_DIR$/app/models/church.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/liaison.rb" afterPath="$PROJECT_DIR$/app/models/liaison.rb" />
     </list>
     <ignored path="spoic3.iws" />
@@ -46,25 +43,25 @@
       <file leaf-file-name="liaisons.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/admin/liaisons.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="44" selection-start="2173" selection-end="2173" vertical-scroll-proportion="0.0">
+            <state line="4" column="0" selection-start="98" selection-end="98" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="church.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="church.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/church.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="2" selection-start="1552" selection-end="1552" vertical-scroll-proportion="1.163498">
+            <state line="36" column="2" selection-start="1552" selection-end="1552" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="liaison.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="liaison.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/liaison.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="0" selection-start="1393" selection-end="1393" vertical-scroll-proportion="0.0">
+            <state line="4" column="0" selection-start="191" selection-end="191" vertical-scroll-proportion="0.12927757">
               <folding />
             </state>
           </provider>
@@ -114,10 +111,10 @@
         <option value="$PROJECT_DIR$/app/admin/periods.rb" />
         <option value="$PROJECT_DIR$/app/models/period.rb" />
         <option value="$PROJECT_DIR$/app/admin/scheduled_groups.rb" />
-        <option value="$PROJECT_DIR$/app/models/liaison.rb" />
         <option value="$PROJECT_DIR$/app/models/church.rb" />
         <option value="$PROJECT_DIR$/app/admin/churches.rb" />
         <option value="$PROJECT_DIR$/app/admin/liaisons.rb" />
+        <option value="$PROJECT_DIR$/app/models/liaison.rb" />
       </list>
     </option>
   </component>
@@ -1497,13 +1494,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/liaison.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="1393" selection-end="1393" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/admin/sessions.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="0" selection-start="66" selection-end="88" vertical-scroll-proportion="0.05345912">
@@ -1546,16 +1536,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/liaisons.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/church.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="44" selection-start="2173" selection-end="2173" vertical-scroll-proportion="0.0">
+        <state line="36" column="2" selection-start="1552" selection-end="1552" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/church.rb">
+    <entry file="file://$PROJECT_DIR$/app/admin/liaisons.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="2" selection-start="1552" selection-end="1552" vertical-scroll-proportion="1.163498">
+        <state line="4" column="0" selection-start="98" selection-end="98" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/liaison.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="191" selection-end="191" vertical-scroll-proportion="0.12927757">
           <folding />
         </state>
       </provider>

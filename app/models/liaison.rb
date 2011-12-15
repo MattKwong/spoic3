@@ -1,8 +1,7 @@
 class Liaison < ActiveRecord::Base
-  scope :senior_high_only, where(:liaison_type_id => 1)
-  scope :junior_high_only, where(:liaison_type_id => 2)
-  scope :both, where(:liaison_type_id => 3)
-  scope :for_registered_groups, where(:liaison_type_id => '')
+  scope :senior_high_only, where(:liaison_type_id => 2)
+  scope :junior_high_only, where(:liaison_type_id => 3)
+  scope :both, where(:liaison_type_id => 1)
 
  #TODO Change the :churches belongs_to relation to has_many and test
   belongs_to :church

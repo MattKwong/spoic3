@@ -2,7 +2,6 @@ ActiveAdmin.register Liaison do
   scope :senior_high_only
   scope :junior_high_only
   scope :both
-  scope :for_registered_groups
 
   menu :priority => 5
 
