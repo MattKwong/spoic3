@@ -32,7 +32,10 @@ class Church < ActiveRecord::Base
             :message => 'Email appears to be invalid.', :allow_blank => true
 
   validates_format_of :office_phone, :fax, :with => /\A[0-9]{3}-[0-9]{3}-[0-9]{4}/,
-                      :message => 'Please enter phone numbers in the 123-456-7890 format.'
+                      :message => 'Please enter phone numbers in the 123-456-7890 format.',
+                      :allow_blank => true
+
   validates :liaison_id, :presence => true
+  validates :church_type_id, :presence => true
 
 end

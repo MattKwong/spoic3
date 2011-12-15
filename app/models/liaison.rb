@@ -33,7 +33,8 @@ class Liaison < ActiveRecord::Base
             :message => 'Email appears to be invalid.', :allow_blank => true
 
   validates_format_of :work_phone, :home_phone, :cell_phone, :fax, :with => /\A[0-9]{3}-[0-9]{3}-[0-9]{4}/,
-                      :message => 'Please enter phone numbers in the 123-456-7890 format.'
+                      :message => 'Please enter phone numbers in the 123-456-7890 format.',
+                      :allow_blank => true
 private
 
   def create_name

@@ -76,13 +76,15 @@ ActiveAdmin.register Liaison do
   end
 
    index do
-     column :name do |liaison|
+     column :name, :sortable => :last_name do |liaison|
        link_to liaison.name, admin_liaison_path(liaison)
      end
-     column :church
-     column :liaison_type
-     column :city
-     column :state
+     column :church_id do |church|
+       church.church.name
+     end
+     column :liaison_type, :sortable => :liaison_type_id
+     column :city, :sortable => :city
+     column :state, :sortable => :state
      default_actions
    end
 end

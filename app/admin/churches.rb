@@ -66,21 +66,17 @@ form do |f|
       f.input :active
       f.input :registered
     end
-    f.inputs :name => "Liaisons", :for => :liaison_id do |liaison|
-      liaison.input :name
-      liaison.input :work_phone
-    end
     f.buttons
   end
 
   index do
-    column :name do |church|
+    column :name, :sortable => :name do |church|
       link_to church.name, admin_church_path(church)
     end
     column :city
     column :state
     column :zip
-    column :church_type_id do |church_type|
+    column :church_type_id, :sortable => :church_type_id do |church_type|
       church_type.church_type.name
     end
 
