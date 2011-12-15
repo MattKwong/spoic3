@@ -3,7 +3,6 @@ class Liaison < ActiveRecord::Base
   scope :junior_high_only, where(:liaison_type_id => 3)
   scope :both, where(:liaison_type_id => 1)
 
- #TODO Change the :churches belongs_to relation to has_many and test
   belongs_to :church
   belongs_to :liaison_type
   has_many :scheduled_groups

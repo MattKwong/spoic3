@@ -15,22 +15,45 @@ ActiveAdmin.register Church do
         row("City") {church.city}
         row("State") {church.state}
         row("Zip code") {church.zip}
+        row("Is active church?") { church.active }
       end
     end
 #TODO: Change this to schedule information when the scheduling function has been written
-    panel "Registration Information" do
-      attributes_table_for church do
-        row("Is active church?") { church.active } #:as => radio
-        row("Is registered church?") { church.registered } # :as => radio
-      end
+    panel "Original Request Information" do
       table_for church.registrations do
         column :name
         column "Youth", :requested_youth
         column "Counselors", :requested_counselors
-
+        column "Total", :requested_counselors
+        column "Date submitted", :created_at
       end
     end
 
+    panel "Current Schedule Group Information" do
+      table_for church.scheduled_groups do
+        column :name
+        column "Youth", :current_youth
+        column "Counselors", :current_counselors
+        column "Total", :current_total
+        column "Total", :current_total
+        column "Session", :session_id do |session|
+          session.session.name
+        end
+        column "Site", :session_id do |session|
+          session.session.site.name
+        end
+        column "Period", :session_id do |session|
+          session.session.period.name
+        end
+#TODO The last two aren't working
+        column "Start", :session_id do |period|
+          period.session.period.start_date
+        end
+        column "End", :session_id do |session|
+          session.session.period.end_date
+        end
+      end
+    end
     active_admin_comments
   end
 
