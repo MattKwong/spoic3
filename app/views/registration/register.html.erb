@@ -1,37 +1,56 @@
- <div id="title_bar">
-    <div id="titlebar_left">
-        <h2>Group Registration Wizard</h2>
+<div id="title_bar">
+        <div id="titlebar_left">
+          <span class="breadcrumb">
+            <a href="/">Group Manager</a>
+            <span class="breadcrumb_sep">/</span>
+          </span>
+          <h2 id="page_title">Group Registration Wizard</h2>
+        </div>
     </div>
  </div>
 
 <%= form_for(@registration) do |r| %>
       <%= render 'shared/error_messages_registration' %>
-<p>This wizard will allow you to register your group and accept your deposit payment.</p><br/>
-<h4>Step 1: Verify Information and Begin Registration</h4>
-<div>
-  Select liaison:
-  <%= r.select :liaison_id, options_for_select(@liaisons) %><br/><br/>
-</div>
-<div>
-  Select group type:
-  <%= r.select :group_type_id, options_for_select(@group_types) %><br/><br/>
-</div>
-<b>Enter the number of spots you are requesting:</b><br/><br/>
-    <div class="field">
-      <%= r.label "Counselors" %>
-      <%= r.number_field :requested_counselors %>
-  </div><br/>
-  <div class="field">
-    <%= r.label "Youth" %>
-    <%= r.number_field :requested_youth %>
-  </div><br/>
-  <b>Enter a name that you can use to identify this group (optional):</b><br/><br/>
-  <div class="field">
-     <%= r.label "Optional Group Name" %>
-     <%= r.number_field :name %>
-  </div><br/>
-  <input type = "hidden" name="registration[registration_step]" value='Step 1' />
-  <div class="actions">
-    <%= r.submit "Continue" %>
-  </div>
+         <div id="active_admin_content"  class="with_sidebar">
+            <div id="main_content_wrapper">
+              <div id="main_content">
+                  <div class="panel">
+                  <div class="panel_contents">
+                    <div class="attributes_table liaison" id="attributes_table_liaison_3">
+                        <table border="0" cellspacing="0" cellpadding="0" >
+                            <h4>This wizard will allow you to register your group and accept your deposit payment.</h4>
+                            <h4>Step 1: Verify Information and Begin Registration</h4>
+                            <tr>
+                                <td><%= r.label "Select liaison" %></td>
+                                <td><%= r.select :liaison_id, options_for_select(@liaisons) %></td>
+                            </tr>
+                            <tr>
+                                <td><%= r.label "Select group type" %></td>
+                                <td><%= r.select :group_type_id, options_for_select(@group_types) %></td>
+                            </tr>
+                            <tr>
+                                <td><%= r.label "Counselors" %></td>
+                                <td><%= r.number_field :requested_counselors %></td>
+                            </tr>
+                            <tr>
+                                <td><%= r.label "Youth" %></td>
+                                <td><%= r.number_field :requested_youth %></td>
+                            </tr>
+                            <tr>
+                                <td><%= r.label "Group Name" %></td>
+                                <td><%= r.number_field :name %></td>
+                                <td>Please enter a name to use to identify this group</td>
+                            </tr>
+                            <input type = "hidden" name="registration[registration_step]" value='Step 1' />
+                            </table>
+                            <div class="actions">
+                                <%= r.submit "Continue" %>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
 <% end %>

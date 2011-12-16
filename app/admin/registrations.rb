@@ -1,10 +1,12 @@
 ActiveAdmin.register Registration do
   menu :priority => 2, :label => "Requests", :parent => "Groups"
-  scope :high_school_unscheduled, :label => "HS Unscheduled"
-  scope :scheduled
-  scope :unscheduled, :default => true
+#  scope :high_school_unscheduled, :label => "High School Unscheduled"
+#  scope :junior_high_unscheduled, :label => "Junior High Unscheduled"
+#  scope :other_unscheduled, :label => "Other Unscheduled"
+#  scope :scheduled
+  scope :unscheduled, :default => true #, :label => "All Unscheduled"
 
- index do
+ index :title => "Registration Requests" do
     column :name do |r|
       link_to r.name, schedule_request_path(:id => r.id)
     end
@@ -19,7 +21,9 @@ ActiveAdmin.register Registration do
     column :requested_youth, :label => "Youth"
     column :requested_counselors, :label => "Counselors"
     column :requested_total, :label => "Total"
-    column :scheduled
+    column :group_type_id, :sortable => :group_type_id do |group_type|
+      group_type.session_type.name
+    end
     default_actions
  end
 

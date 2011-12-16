@@ -1,18 +1,22 @@
 class Registration < ActiveRecord::Base
   belongs_to :church
   belongs_to :liaison
+  has_many :payments
+  belongs_to :session_type, :foreign_key => :group_type_id
+  accepts_nested_attributes_for :session_type
 
   scope :scheduled, where(:scheduled => 't')
   scope :unscheduled, where(:scheduled => 'f')
-  scope :high_school_unscheduled, where(:group_type_id => 1)
-
+  scope :high_school_unscheduled, where((:group_type_id == 2) && (:scheduled == 'f'))
+  scope :junior_high_unscheduled, where(:group_type_id => 3)
+  scope :other_unscheduled, where((:group_type_id == 1) || (:group_type_id == 4))
 
   attr_accessible :name,:comments, :liaison_id, :request1, :request2, :request3,
                   :request4, :request5, :request6,:request7, :request8, :request9,
                   :request10, :requested_counselors, :requested_youth,
                   :requested_total, :scheduled,  :amount_due, :amount_paid, :payment_method,
                   :payment_notes, :group_type_id, :church_id, :registration_step, :id
-    has_many :payments
+
 
    validates :name, :requested_youth, :requested_counselors, :presence => true
    validates_numericality_of :requested_youth, :requested_counselors,

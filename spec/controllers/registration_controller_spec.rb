@@ -15,12 +15,12 @@ describe RegistrationController do
 
   describe "Get 'Group Manager'" do
     it "should be successful" do
-      get 'index'
+      get 'index_bak'
       response.should be_success
     end
 
     it "should have the right title" do
-      get 'index'
+      get 'index_bak'
       response.should have_selector("title", :content => @base_title + " | Manage Groups")
     end
   end

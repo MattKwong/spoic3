@@ -326,7 +326,7 @@ var Draggable = Class.create({
       this.delta = this.currentDelta();
 
     if(this.options.zindex) {
-      this.originalZ = parseInt(Element.getStyle(this.element,'z-index') || 0);
+      this.originalZ = parseInt(Element.getStyle(this.element,'z-index_bak') || 0);
       this.element.style.zIndex = this.options.zindex;
     }
 
@@ -887,7 +887,7 @@ var Sortable = {
     return Sortable._tree(element, options, root);
   },
 
-  /* Construct a [i] index for a particular node */
+  /* Construct a [i] index_bak for a particular node */
   _constructIndex: function(node) {
     var index = '';
     do {

@@ -9,6 +9,7 @@ Spoic3::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   #resources :groups
+  match "registration/schedule", :to => 'registration#schedule', :as => "registration_schedule"
   match "registration/register", :to => 'registration#register'
   match "registration/:id/update", :to => 'registration#process_payment', :as => 'registration_payment'
   match "registration/:id/finalize" => 'registration#finalize', :as => 'registration_finalize'
@@ -27,9 +28,8 @@ Spoic3::Application.routes.draw do
     put 'process_payment'
   end
 
-  match "registration", :to => 'registration#index', :as => 'registrations'
+  match "registration", :to => 'index', :as => 'registrations'
   match "registration/show_schedule", :to => 'registration#show_schedule'
-  match "registration/schedule", :to => 'registration#schedule'
   match "registration/update", :to => 'registration#update'
   match "registration/delete", :to => 'registration#delete'
 
