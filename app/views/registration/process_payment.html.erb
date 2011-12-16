@@ -1,26 +1,67 @@
-<h1>Group Registration Wizard</h1>
-<%= form_for(@registration) do |r| %>
-    <%= form_tag(:method => "put") %>
-    <h4>Step 3: Verify and Accept Payment</h4>
-    <p>Group name: <%= @registration.name %></p><br/>
-    <p>Group size: <%= @registration.requested_counselors %> counselors and <%= @registration.requested_youth %> youth.<p/><br/>
-    <p>Amount due: <%= @registration.amount_due %><p/><br/>
-    <div>
-      <%= r.label "Select payment type:" %>
-      <%= r.select(:payment_method, options_for_select(@payment_types)) %><br/><br/>
+<div id = "title_bar">
+        <div id="titlebar_left">
+          <span class="breadcrumb">
+            <a href="/">Group Manager</a>
+            <span class="breadcrumb_sep">/</span>
+          </span>
+          <h2 id="page_title">Group Registration Wizard</h2>
+        </div>
     </div>
-    <div class="field">
-      <%= r.label "Payment Notes" %>
-      <%= r.text_field :payment_notes %>
-    </div>
-    <div class="field">
-      <%= r.label "Amount Received:" %>
-      <%= r.number_field :amount_paid %>
-    </div>
-<b/>
-    <input type = "hidden" name="registration[registration_step]" value='Step 3' />
-    <div class="actions">
-      <%= submit_tag 'Submit'%>
-    </div>
+ </div>
 
+<%= form_for(@registration) do |r| %>
+      <%= render 'shared/error_messages_registration' %>
+         <div id="active_admin_content"  class="with_sidebar">
+            <div id="main_content_wrapper">
+              <div id="main_content">
+                  <div class="panel">
+                  <div class="panel_contents">
+                    <div class="attributes_table liaison" id="attributes_table_liaison_3">
+                        <table border="0" cellspacing="0" cellpadding="0" >
+                            <h4>Step 3: Verify and Accept Payment</h4>
+                            <tr>
+                                <td>Group Name</td>
+                                <td><%= @registration.name %></td>
+                            </tr>
+                            <tr>
+                                <td>Youth</td>
+                                <td><%= @registration.requested_youth %></td>
+                            </tr>
+                            <tr>
+                                <td>Counselors</td>
+                                <td><%= @registration.requested_counselors %></td>
+                            </tr>
+                           <tr>
+                                <td>Total</td>
+                                <td><%= @registration.requested_total %></td>
+                            </tr>
+                          <tr>
+                                <td>Amount Due</td>
+                                <td><%= number_to_currency(@registration.amount_due) %></td>
+                            </tr>
+                            <tr>
+                                <td><%= r.label "Select payment type" %></td>
+                                <td><%= r.select(:payment_method, options_for_select(@payment_types)) %></td>
+                            </tr>
+                            <tr>
+                                <td><%= r.label "Payment Notes" %></td>
+                                <td><%= r.text_field :payment_notes %></td>
+                            </tr>
+                            <tr>
+                                <td><%= r.label "Amount Received (please omit dollar sign)" %></td>
+                                <td><%= r.number_field :amount_paid, :as => :number %></td>
+                            </tr>
+                            <input type = "hidden" name="registration[registration_step]" value='Step 3' />
+                            </table>
+                            <div class="actions">
+                                <%= r.submit "Continue" %>
+                                <%= submit_tag 'Cancel', :name => 'cancel' %>
+                            </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
 <% end %>
+

@@ -25,4 +25,30 @@ ActiveAdmin.register ScheduledGroup do
      end
    end
  end
+
+ index do
+      column :name, :sortable => :name do |group|
+        link_to group.name, admin_scheduled_group_path(group.id)
+      end
+      column "Youth", :current_youth
+      column "Counselors", :current_counselors
+      column "Total", :current_total
+      column "Total", :current_total
+      column "Session", :session_id do |session|
+        link_to session.session.name, sched_program_session_path(session.session.id)
+      end
+      column "Site", :session_id do |session|
+        session.session.site.name
+      end
+      column "Period", :session_id do |session|
+        session.session.period.name
+      end
+      column "Start", :session_id do |period|
+        period.session.period.start_date.strftime("%m/%d/%y")
+      end
+      column "End", :session_id do |session|
+        session.session.period.end_date.strftime("%m/%d/%y")
+      end
+      default_actions
+ end
 end

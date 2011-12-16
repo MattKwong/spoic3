@@ -34,7 +34,7 @@ class RegistrationController < ApplicationController
     @group_type = SessionType.find(@registration.group_type_id)
     @temp = Array.new()
     @temp << "None" << 0
-    @sessions = Session.all.map  { |s| [s.name, s.id ]}
+    @sessions = Session.find_all_by_session_type_id(@registration.group_type_id).map { |s| [s.name, s.id ]}
     @sessions.insert(0, @temp)
     @title = "Registration Step 2"
   end

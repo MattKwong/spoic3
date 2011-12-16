@@ -21,7 +21,7 @@ ActiveAdmin.register Church do
 #TODO: Change this to schedule information when the scheduling function has been written
     panel "Original Request Information" do
       table_for church.registrations do
-        column :name
+        column "Group Name", :name
         column "Youth", :requested_youth
         column "Counselors", :requested_counselors
         column "Total", :requested_counselors
@@ -31,13 +31,15 @@ ActiveAdmin.register Church do
 
     panel "Current Schedule Group Information" do
       table_for church.scheduled_groups do
-        column :name
+        column "Group Name" do |group|
+          link_to group.name, admin_scheduled_group_path(group.id)
+        end
         column "Youth", :current_youth
         column "Counselors", :current_counselors
         column "Total", :current_total
         column "Total", :current_total
         column "Session", :session_id do |session|
-          session.session.name
+          link_to session.session.name, sched_program_session_path(session.session.id)
         end
         column "Site", :session_id do |session|
           session.session.site.name
@@ -47,10 +49,10 @@ ActiveAdmin.register Church do
         end
 #TODO The last two aren't working
         column "Start", :session_id do |period|
-          period.session.period.start_date
+          period.session.period.start_date.strftime("%m/%d/%y")
         end
         column "End", :session_id do |session|
-          session.session.period.end_date
+          session.session.period.end_date.strftime("%m/%d/%y")
         end
       end
     end

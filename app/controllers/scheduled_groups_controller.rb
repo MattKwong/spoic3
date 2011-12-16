@@ -6,8 +6,6 @@ class ScheduledGroupsController < ApplicationController
     session = Session.find(params[:id])
     @session_week = Period.find(session.period.id).name
     @session_site = Site.find(session.site_id).name
-
-
   end
 
   def confirmation       # before the confirmation screen

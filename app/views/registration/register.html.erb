@@ -26,7 +26,7 @@
                             </tr>
                             <tr>
                                 <td><%= r.label "Select group type" %></td>
-                                <td><%= r.select :group_type_id, options_for_select(@group_types) %></td>
+                                <td><%= r.select :group_type_id, options_for_select(@group_types), :default => 2 %></td>
                             </tr>
                             <tr>
                                 <td><%= r.label "Counselors" %></td>
@@ -38,7 +38,7 @@
                             </tr>
                             <tr>
                                 <td><%= r.label "Group Name" %></td>
-                                <td><%= r.number_field :name %></td>
+                                <td><%= r.text_field :name, %></td>
                                 <td>Please enter a name to use to identify this group</td>
                             </tr>
                             <input type = "hidden" name="registration[registration_step]" value='Step 1' />

@@ -1,37 +1,81 @@
-<h1>Group Registration Wizard</h1>
+<div id = "title_bar">
+      <div id="titlebar_left">
+          <span class="breadcrumb">
+            <a href="/">Group Manager</a>
+            <span class="breadcrumb_sep">/</span>
+          </span>
+          <h2 id="page_title">Group Registration Wizard</h2>
+      </div>
+</div>
 <%= form_for(@registration) do |r| %>
-    <%= render 'shared/error_messages_registration' %>
-    <%= form_tag(:method => "put") %>
-    <h4>Step 2: Make Your Requests</h4>
-    <p>Group name:   <%= @registration.name %></p><br/>
-    <p>Liaison name: <%= @liaison.name %></p><br/>
-    <p>Church name:  <%= @church.name %></p><br/>
-    <p>Group type:   <%= @group_type.name %></p><br/>
-
-<p>Please select a session (week and site) for your group. You may provide up to 5 choices in priority sequence.</p><br/>
-    <div class="field">
-      <%= r.label "Choice #1" %>
-      <%= r.select :request1, @sessions %>
-    </div>
-    <div class="field">
-      <%= r.label "Choice #2" %>
-      <%= r.select :request2, @sessions %>
-    </div>
-    <div class="field">
-      <%= r.label "Choice #3" %>
-      <%= r.select :request3, @sessions %>
-    </div>
-    <div class="field">
-      <%= r.label "Choice #4" %>
-      <%= r.select :request4, @sessions %>
-    </div>
-    <div class="field">
-      <%= r.label "Choice #5" %>
-      <%= r.select :request5, @sessions %>
-    </div>
-    <input type = "hidden" name="registration[registration_step]" value='Step 2' />
-    <div class="actions">
-      <%= r.submit 'Continue' %>
-    </div>
-
+      <%= render 'shared/error_messages_registration' %>
+         <div id="active_admin_content"  class="with_sidebar">
+            <div id="main_content_wrapper">
+              <div id="main_content">
+                  <div class="panel">
+                  <div class="panel_contents">
+                    <div class="attributes_table liaison" id="attributes_table_liaison_3">
+                        <table border="0" cellspacing="0" cellpadding="0" >
+                            <h4>Step 2: Make Your Requests</h4>
+                            <tr>
+                                <td>Group Name</td>
+                                <td><%= @registration.name %></td>
+                            </tr>
+                            <tr>
+                                <td>Church Name</td>
+                                <td><%= @church.name %></td>
+                            </tr>
+                            <tr>
+                                <td>Liaison Name</td>
+                                <td><%= @liaison.name %></td>
+                            </tr>
+                            <tr>
+                                <td>Group Type</td>
+                                <td><%= @group_type.name %></td>
+                            </tr>
+                            <tr>
+                                <td>Youth</td>
+                                <td><%= @registration.requested_youth %></td>
+                            </tr>
+                            <tr>
+                                <td>Counselors</td>
+                                <td><%= @registration.requested_counselors %></td>
+                            </tr>
+                           <tr>
+                                <td>Total</td>
+                                <td><%= @registration.requested_total %></td>
+                            </tr>
+                            <tr>
+                                <td><%= r.label "Choice #1" %></td>
+                                <td><%= r.select :request1, @sessions %></td>
+                            </tr>
+                           <tr>
+                                <td><%= r.label "Choice #2" %></td>
+                                <td><%= r.select :request2, @sessions %></td>
+                            </tr>
+                           <tr>
+                                <td><%= r.label "Choice #3" %></td>
+                                <td><%= r.select :request3, @sessions %></td>
+                            </tr>
+                           <tr>
+                                <td><%= r.label "Choice #4" %></td>
+                                <td><%= r.select :request4, @sessions %></td>
+                            </tr>
+                           <tr>
+                                <td><%= r.label "Choice #5" %></td>
+                                <td><%= r.select :request5, @sessions %></td>
+                            </tr>
+                             <input type = "hidden" name="registration[registration_step]" value='Step 2'>
+                            </table>
+                            <div class="actions">
+                                <%= r.submit "Continue" %>
+                                <%= submit_tag 'Cancel', :name => 'cancel' %>
+                            </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
 <% end %>
+

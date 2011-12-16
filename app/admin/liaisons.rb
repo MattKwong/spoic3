@@ -79,8 +79,9 @@ ActiveAdmin.register Liaison do
        link_to liaison.name, admin_liaison_path(liaison)
      end
      column :church_id do |church|
-       church.church.name
+       link_to church.church.name, admin_church_path(church.church_id)
      end
+
      column :liaison_type, :sortable => :liaison_type_id
      column :city, :sortable => :city
      column :state, :sortable => :state

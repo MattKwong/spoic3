@@ -1,23 +1,73 @@
-<h1>Group Registration Wizard</h1>
-
+<div id = "title_bar">
+        <div id="titlebar_left">
+          <span class="breadcrumb">
+            <a href="/">Group Manager</a>
+            <span class="breadcrumb_sep">/</span>
+          </span>
+          <h2 id="page_title">Group Registration Wizard</h2>
+        </div>
+    </div>
+ </div>
 <%= form_for(@registration) do |r| %>
-    <h4>Congratulations! You have successfully registered your group.</h4>
-    <p>Group name:  <%= @registration.name %></p><br/>
-    <p>Church name:  <%= @church.name %></p><br/>
-    <p>Liaison name:  <%= @liaison.name %></p><br/>
-    <p>Group size:  <%= @registration.requested_counselors %> counselors and <%= @registration.requested_youth %> youth<p/><br/>
-    <p>Session:     <%= @session.name %><p/><br/>
-    <p>Amount paid: <%= @registration.amount_paid %><p/><br/>
-
-    <p>You will shortly receive an email confirmation of your registration.
+      <%= render 'shared/error_messages_registration' %>
+         <div id="active_admin_content"  class="with_sidebar">
+            <div id="main_content_wrapper">
+              <div id="main_content">
+                  <div class="panel">
+                  <div class="panel_contents">
+                    <div class="attributes_table liaison" id="attributes_table_liaison_3">
+                        <table border="0" cellspacing="0" cellpadding="0" >
+                          <h4>Congratulations! You have successfully registered your group.</h4>
+                          <tr>
+                              <td>Group Name</td>
+                              <td><%= @registration.name %></td>
+                          </tr>
+                          <tr>
+                              <td>Church Name</td>
+                              <td><%= @church.name %></td>
+                          </tr>
+                          <tr>
+                              <td>Liaison Name</td>
+                              <td><%= @liaison.name %></td>
+                          </tr>
+                          <tr>
+                              <td>Group Type</td>
+                              <td><%= SessionType.find(@registration.group_type_id).name %></td>
+                          </tr>
+                          <tr>
+                              <td>Youth</td>
+                              <td><%= @registration.requested_youth %></td>
+                          </tr>
+                          <tr>
+                              <td>Counselors</td>
+                              <td><%= @registration.requested_counselors %></td>
+                          </tr>
+                          <tr>
+                              <td>Total</td>
+                              <td><%= @registration.requested_total %></td>
+                          </tr>
+                          <tr>
+                              <td>Requested Session (first choice)</td>
+                              <td><%= @registration.request1 %></td>
+                          </tr>
+                          <tr>
+                              <td>Amount paid</td>
+                              <td><%= number_to_currency(@registration.amount_paid) %></td>
+                          </tr>
+                          </table>
+                              <p>You will shortly receive an email confirmation of your registration.
       Please be sure to add the email address registrar@sierraserviceproject.org
       to your list of permissible senders. If you have any questions, don't hesitate
       to call or email us.</p><br/>
-
-    <div class="actions">
-
-      <%= link_to "Register another group", registration_register_path %>
-      <%= link_to 'Logout', root_path %>
-    </div>
-
+                          <div class="actions">
+                            <%= link_to "Register another group", :path => registration_register_path %>
+                            <%= link_to 'Logout', :path => "/admin/logout", :method => :get %>
+                          </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
 <% end %>
+
