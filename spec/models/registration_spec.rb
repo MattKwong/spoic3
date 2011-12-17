@@ -34,7 +34,7 @@ describe "Registration" do
 
     describe "request priority logic tests" do
       it "should require a request1" do
-        item = Registration.new(@attr.merge(:request1 => nil))
+        item = Registration.new(@attr.merge(:request1 => nil, :registration_step => :step2 ))
         item.should_not be_valid
       end
 

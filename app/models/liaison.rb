@@ -33,9 +33,18 @@ class Liaison < ActiveRecord::Base
   validates_format_of :work_phone, :home_phone, :cell_phone, :fax, :with => /\A[0-9]{3}-[0-9]{3}-[0-9]{4}/,
                       :message => 'Please enter phone numbers in the 123-456-7890 format.',
                       :allow_blank => true
-private
+#This validation is not working
+  validate :require_at_least_one_phone
+
+  private
 
   def create_name
     self.name = self.first_name + ' ' + self.last_name
+  end
+
+  def require_at_least_one_phone
+    if self.cell_phone == "" && self.home_phone == "" && self.work_phone == "" then
+      errors.add(:cell_phone, 'At least one phone number is required.' )
+    end
   end
 end

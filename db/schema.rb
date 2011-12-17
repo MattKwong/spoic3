@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111214180852) do
+ActiveRecord::Schema.define(:version => 20111217052413) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -54,6 +54,22 @@ ActiveRecord::Schema.define(:version => 20111214180852) do
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
+
+  create_table "budget_item_types", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "seq_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "budget_items", :force => true do |t|
+    t.integer  "site_id"
+    t.integer  "item_id"
+    t.decimal  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "church_types", :force => true do |t|
     t.datetime "created_at"

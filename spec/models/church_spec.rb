@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe Church do
   before (:each) do
-    @attr = { :name => "First Church", :address1 => "4410 S. Budlong Avenue", :city => "Los Angeles", :state => "CA", :zip => "90037", :email1 => "info@example.com",
-    :office_phone => "123-456-7890", :fax => "123-456-7890", :liaison_id => 1}
+    @attr = { :name => "First Church", :address1 => "4410 S. Budlong Avenue", :city => "Los Angeles", :state => "CA",
+              :zip => "90037", :email1 => "info@example.com", :registered => false,
+    :office_phone => "123-456-7890", :fax => "123-456-7890", :liaison_id => 1, :active => true, }
   end
 
   describe "Church name tests" do

@@ -2,10 +2,14 @@ require 'spec_helper'
 
 describe Liaison do
   before (:each) do
-    @attr = { :name => "John Smith", :address1 => "4410 S. Budlong Avenue", :city => "Los Angeles", :state => "CA", :zip => "90037",
-              :email1 => "info@example.com", :cell_phone => "123-456-7890", :fax => "123-456-7890",
-              :church_id => 1, :first_name => "John", :last_name => "Smith", :work_phone => "123-456-8901",
-              :home_phone => "123-456-7890", :title => "Senior Pastor"}
+    @attr = { :last_name => "Smith", :first_name => "John", :name => "John Smith",
+              :address1 => "4410 S. Budlong Avenue",
+              :city => "Los Angeles", :state => "CA", :zip => "90037",
+              :email1 => "info@example.com", :cell_phone => "123-456-7890",
+              :fax => "123-456-7890", :church_id => 1, :first_name => "John",
+              :last_name => "Smith", :work_phone => "123-456-8901",
+              :home_phone => "123-456-7890", :title => "Senior Pastor",
+              :liaison_type_id => 2}
   end
 
   describe "Liaison name tests" do
@@ -19,9 +23,9 @@ describe Liaison do
       no_name.should_not be_valid
     end
 
-    it "should accept a name" do
-      church = Liaison.new(@attr)
-      church.should be_valid
+    it "should create a liaison" do
+      liaison = Liaison.create!(@attr)
+      liaison.should be_valid
     end
   end
 
@@ -47,11 +51,6 @@ describe Liaison do
     it "should be in a valid states abbreviation" do
       invalid_state = Liaison.new(@attr.merge(:state => "XX"))
       invalid_state.should_not be_valid
-    end
-
-    it "should accept a valid state abbreviation" do
-      good_state = Liaison.new(@attr)
-      good_state.should be_valid
     end
   end
 
@@ -107,30 +106,24 @@ describe Liaison do
     end
   end
 
-  describe "Work, Home, Cell and Fax tests"
-    it "should have an work phone" do
-      no_phone = Liaison.new(@attr.merge(:work_phone => ""))
-      no_phone.should_not be_valid
+  describe "Work, Home, Cell and Fax tests" do
+    it "should have at least one phone" do
+      no_phones = Liaison.new(@attr.merge(:home_phone => "", :work_phone => "", :cell_phone => ""))
+      no_phones.should_not be_valid
     end
 
     it "should reject an invalid work phone" do
       bad_phone = Liaison.new(@attr.merge(:work_phone => "123-4567"))
       bad_phone.should_not be_valid
     end
-
-    it "should require a cell phone" do
-      no_phone = Liaison.new(@attr.merge(:cell_phone => ""))
-      no_phone.should_not be_valid
+    it "should reject an invalid home phone" do
+      bad_phone = Liaison.new(@attr.merge(:home_phone => "123-4567"))
+      bad_phone.should_not be_valid
     end
 
     it "should reject an invalid cell phone" do
       bad_phone = Liaison.new(@attr.merge(:cell_phone => "123-4567"))
       bad_phone.should_not be_valid
-    end
-
-    it "should require a fax phone" do
-      no_phone = Liaison.new(@attr.merge(:fax => ""))
-      no_phone.should_not be_valid
     end
 
     it "should reject an invalid fax phone" do
@@ -149,4 +142,5 @@ describe Liaison do
       no_title.should_not be_valid
     end
   end
-end
+  end
+  end
