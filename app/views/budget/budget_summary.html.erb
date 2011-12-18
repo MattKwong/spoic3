@@ -49,7 +49,7 @@
                  <% end %>
                  <tr>
                       <td><%= @budget[:item_names][row_count] %></td>
-                      <% for j in 0..row_count do %>
+                      <% for j in 0..column_count do %>
                           <td><%= (@budget[:budget_matrix][@budget[:item_count]][j]).to_s %></td>
                       <% end %>
                  </tr>
