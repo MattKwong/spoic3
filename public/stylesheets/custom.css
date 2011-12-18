@@ -26,6 +26,9 @@ section h1 {
     font-size: 200%
 }
  */
+.money {
+  text-align :right; }
+
 a {
     color: #09c;
     text-decoration: none;

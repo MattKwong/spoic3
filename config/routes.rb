@@ -22,6 +22,7 @@ Spoic3::Application.routes.draw do
   match "scheduled_groups/:id/schedule" => 'scheduled_groups#confirmation', :as => "scheduled_groups_schedule"
   match "scheduled_groups/:id/success" => 'scheduled_groups#success', :as => "scheduled_group_confirmation"
 
+  match "budget/budget_summary" => 'budget#budget_summary', :as => "budget_show"
   resources :registration do
     post 'create'
     put :edit

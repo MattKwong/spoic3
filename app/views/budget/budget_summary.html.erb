@@ -1,0 +1,62 @@
+<div id = "title_bar">
+        <div id="titlebar_left">
+          <span class="breadcrumb">
+            <a href="/">Home</a>
+            <span class="breadcrumb_sep">/</span>
+          </span>
+          <h2 id="page_title">Budget Summary</h2>
+        </div>
+    </div>
+ </div>
+<div id="active_admin_content"  class="with_sidebar">
+   <div id="main_content_wrapper">
+      <div id="main_content">
+        <div class="panel">
+           <div class="panel_contents">
+             <span class="scopes">
+               <span class = scope><%= link_to "Domestic Summer",
+                         budget_show_path(:type => 'summer_domestic') %>
+               </span>
+               <span class = "scope"><%= link_to "Other Programs",
+                         budget_show_path(:type => 'other') %>
+               </span>
+             </span>
+           </div>
+        </div>
+       </div>
+       <div class="panel">
+         <div class = "panel contents">
+           <div class="attributes_table liaison" id="attributes_table_liaison_3">
+               <table border="0" cellspacing="0" cellpadding="0">
+                 <thead>
+                 <tr>
+                     <td></td>
+                     <% for i in 0..@budget[:site_count] do %>
+                         <td><%= @budget[:site_names][i]%></td>
+                     <% end %>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <% row_count = @budget[:item_count].to_s.to_i %>
+                 <% for i in 0..row_count - 1 do %>
+                 <tr>
+                     <td><%= @budget[:item_names][i] %></td>
+                     <% column_count = @budget[:site_count].to_s.to_i %>
+                     <% for j in 0..column_count do %>
+                         <td><%= @budget[:budget_matrix][i][j] %></td>
+                     <% end %>
+                 </tr>
+                 <% end %>
+                 <tr>
+                      <td><%= @budget[:item_names][row_count] %></td>
+                      <% for j in 0..row_count do %>
+                          <td><%= (@budget[:budget_matrix][@budget[:item_count]][j]).to_s %></td>
+                      <% end %>
+                 </tr>
+                 </tbody>
+                </table>
+           </div>
+         </div>
+       </div>
+   </div>
+</div>
