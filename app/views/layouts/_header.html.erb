@@ -21,7 +21,7 @@
             </li>
             <li><a href="#">Budgets</a>
                 <ul>
-                  <li><%= link_to "Budget Summary Reports", budget_show_path%></li>
+                  <li><%= link_to "Budget Summary Reports", budget_show_path(:type =>'summer_domestic') %></li>
                   <li><%= link_to "Add, Update or Delete Line Items", admin_budget_items_path%></li>
                   <li><%= link_to "Maintain Line Item Types", admin_budget_item_types_path%></li>
                 </ul>
