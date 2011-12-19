@@ -5,9 +5,10 @@ class BudgetItem < ActiveRecord::Base
 
   validates :item_id, :amount, :site_id, :presence => true
   validates_numericality_of :amount, :greater_than_or_equal_to => 0, :decimal => true
-#  validate :site_and_item_unique
+
   validate :site_valid
   validate :item_valid
+  validate :site_and_item_unique
 
   def site_valid
     errors.add(:site_id, "Must enter a valid site.") unless Site.find(site_id)
@@ -17,8 +18,8 @@ class BudgetItem < ActiveRecord::Base
   end
 
   def site_and_item_unique
-    if BudgetItem.find(:conditions => ["item_id = ? AND site_id = ?", :item_id, :site_id]) then
-      errors.add(:site_id, "A budget already exists for this site and item.")
+    if Proc.new {BudgetItem.find(:conditions => ["item_id = ? AND site_id = ?", a.item_id, a.site_id])} then
+      errors.add(:site_id, "A budget line item already exists for this site and item.")
     end
   end
 end
