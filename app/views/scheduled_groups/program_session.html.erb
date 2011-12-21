@@ -31,12 +31,12 @@
                             <% @groups.each do |r| %>
                                         <tr>
                                             <td><%= r.name %></td>
-                                            <td><%= Liaison.find(r.liaison_id).name %></td>
-                                            <td><%= Church.find(r.church_id).name %></td>
+                                            <td><%= link_to Liaison.find(r.liaison_id).name, admin_liaison_path(r.liaison_id) %></td>
+                                            <td><%= link_to Church.find(r.church_id).name, admin_church_path(r.church.id)%></td>
                                             <td><%= r.current_youth %></td>
                                             <td><%= r.current_counselors %></td>
                                             <td><%= r.current_total %></td>
-                                            <td><%= link_to "Change this group", schedule_request_path(:id => r.id) %></td>
+                                            <td><%= link_to "Move this group", admin_scheduled_group_path(:id => r.id) %></td>
                                         </tr>
                                     <% end %>
                         </tbody>

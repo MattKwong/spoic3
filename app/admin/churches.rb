@@ -47,7 +47,6 @@ ActiveAdmin.register Church do
         column "Period", :session_id do |session|
           session.session.period.name
         end
-
         column "Start", :session_id do |period|
           period.session.period.start_date.strftime("%m/%d/%y")
         end

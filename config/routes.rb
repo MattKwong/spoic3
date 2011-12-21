@@ -8,7 +8,6 @@ Spoic3::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  #resources :groups
   match "registration/schedule", :to => 'registration#schedule', :as => "registration_schedule"
   match "registration/register", :to => 'registration#register'
   match "registration/:id/update", :to => 'registration#process_payment', :as => 'registration_payment'
@@ -33,8 +32,6 @@ Spoic3::Application.routes.draw do
   match "registration/show_schedule", :to => 'registration#show_schedule'
   match "registration/update", :to => 'registration#update'
   match "registration/delete", :to => 'registration#delete'
-
- # match "groups/register_group", :to => 'groups#create', :as => 'liaison'
 
     match '/admin', :to => 'admin#index'
     match '/food', :to => 'pages#food'
