@@ -29,6 +29,9 @@ Spoic3::Application.routes.draw do
     put 'process_payment'
   end
 
+  match "churches/main/:id", :to => 'churches#main', :as => "myssp"
+  match "churches/main/:id", :to => 'churches#main', :as => "liaison"
+
   match "registration", :to => 'index', :as => 'registrations'
   match "registration/show_schedule", :to => 'registration#show_schedule'
   match "registration/update", :to => 'registration#update'

@@ -1,0 +1,170 @@
+ <div id="title_bar">
+        <div id="titlebar_left">
+          <span class="breadcrumb">
+            <a><%= @liaison.name %></a>
+            <span class="breadcrumb_sep">/</span>
+          </span>
+          <h2 id="page_title">My SSP Information Portal</h2>
+        </div>
+</div>
+ <%= form_for(@liaison) do |r| %>
+          <div id="active_admin_content"  class="with_sidebar">
+             <div id="main_content_wrapper">
+               <div id="main_content">
+                   <div class="panel">
+                   <h3>Church Details</h3>
+                   <div class="panel_contents">
+                     <div class="attributes_table church" id="church_info_table">
+                         <table id = "church_info" border="0" cellspacing="0" cellpadding="0" >
+                           <tr><td>Church Name</td><td><%= @church_information[:church_info].name %></td></tr>
+                           <tr><td>Address</td><td><%= @church_information[:church_info].address1 %></td></tr>
+                           <tr><td>City</td><td><%= @church_information[:church_info].city %></td></tr>
+                           <tr><td>State</td><td><%= @church_information[:church_info].state %></td></tr>
+                           <tr><td>Zip</td><td><%= @church_information[:church_info].zip %></td></tr>
+                           <tr><td>Church Phone</td><td><%= @church_information[:church_info].office_phone %></td></tr>
+                           <tr><td>
+                           <%= link_to "Edit Church Information",
+                                        edit_admin_church_path(:id => @liaison.church_id) %></td>
+                         <td></td></tr>
+                         </table>
+                     </div>
+                   </div>
+                   </div>
+<!--Original Request Section -->
+                 <div class="panel">
+                      <h3>Original Request Information</h3>
+                      <div class="panel_contents">
+                         <table border="0" cellspacing="0" cellpadding="0">
+                           <thead>
+                             <tr>
+                               <th>Group Name</th>
+                               <th>Youth</th>
+                               <th>Counselors</th>
+                               <th>Total</th>
+                               <th>Date submitted</th>
+                             </tr>
+                           </thead>
+                           <tbody><% @church_information[:registration_info].each do |g| %>
+                             <tr>
+                               <td><%= g.name %></td>
+                               <td><%= g.requested_youth %></td>
+                               <td><%= g.requested_counselors %></td>
+                               <td><%= g.requested_total %></td>
+                               <td><%= g.created_at.strftime("%m/%d/%y") %></td>
+                             </tr>
+                           <% end %>
+                           </tbody>
+                         </table>
+                       </div>
+                     </div>
+<!--Current Schedule Section -->
+                     <div class="panel">
+                       <h3>Current Schedule Group Information</h3>
+                       <div class="panel_contents">
+                         <table border="0" cellspacing="0" cellpadding="0">
+                           <thead>
+                             <tr>
+                               <th>Group Name</th>
+                               <th>Youth</th>
+                               <th>Counselors</th>
+                               <th>Total</th>
+                               <th>Site</th>
+                               <th>Start</th>
+                               <th>End</th>
+                               <th>Participant Info</th>
+                               <th>Balance</th>
+                             </tr>
+                           </thead>
+                           <tbody><% @church_information[:group_info].each do |g| %>
+                             <tr>
+                               <td><%= g.name %></td>
+                               <td><%= g.current_youth %></td>
+                               <td><%= g.current_counselors %></td>
+                               <td><%= g.current_total %></td>
+                               <td><% s = Session.find(g.session_id)%><%= Site.find(s.site_id).name %></td>
+                               <td><%= Period.find(s.period_id).start_date.strftime("%m/%d/%y") %></td>
+                               <td><%= Period.find(s.period_id).end_date.strftime("%m/%d/%y") %></td>
+                               <% if @church_information[:roster].nil? %><td><%=link_to "Create Roster", "#" %></td>
+                                   <% else %><td><%=link_to "Create Roster", "#" %></td>
+                                   <% end %>
+                               <td>0</td>
+                             </tr>
+                           <% end %></tbody>
+                         </table>
+                       </div>
+                     </div>
+<!--Downloads Section -->
+                    <div class="panel">
+                       <h3>Download Documents</h3>
+                       <div class="panel_contents">
+                         <table border="0" cellspacing="0" cellpadding="0">
+                           <tbody>
+                           </tbody>
+                         </table>
+                       </div>
+                     </div>
+<!--Checklist Section -->
+                     <div class="panel">
+                       <h3>Checklist</h3>
+                       <div class="panel_contents">
+                         <table border="0" cellspacing="0" cellpadding="0">
+                           <thead>
+                              <tr>
+                                <th>Item</th>
+                                <% @church_information[:group_info].each do |g| %>
+                                    <th><%= link_to g.name, admin_scheduled_group_path(g.id) %></th>
+                                <% end %>
+                                <th>Due Date</th>
+                                <th>Notes</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                           <% @church_information[:checklist].each do |c| %>
+                             <tr>
+                                <td><%= c.name %></td>
+                                <% @church_information[:group_info].each do |g| %>
+                                    <td>Status</td>
+                                <% end %>
+                                <td><%= c.due_date.strftime("%m/%d/%y") %></td>
+                                <td><%= c.notes %></td>
+                             </tr>
+                            <% end %>
+                           </tbody>
+                         </table>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+<!--Liaison Sidebar Section -->
+                 <div id="sidebar">
+                    <div class="sidebar_section panel" id="liaison information_sidebar_section">
+                    <h3>Liaison Information</h3>
+                        <div class="panel_contents">
+                            <div class="attributes_table liaison" id="attributes_table_liaison">
+                                <table border="0" cellspacing="0" cellpadding="0">
+                                    <tr><td>Name</td><td><%= @liaison.name %></td></tr>
+                                    <tr><td><%= link_to "Edit Liaison Information",
+                                        edit_admin_liaison_path(:id => @liaison.id) %></td></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+<!--Notes and Reminders Sidebar Section -->
+                    <div class="sidebar_section panel" id="notes information_sidebar_section">
+                    <h3>Notes and Reminders</h3>
+                        <div class="panel_contents">
+                            <div class="attributes_table liaison" id="attributes_table_notes">
+                                <table border="0" cellspacing="0" cellpadding="0">
+                                  <% @church_information[:notes_and_reminders].each do |n| %>
+                                    <tr class="reminder_line_one"><td><%= n.first_line %></td></tr>
+                                    <tr class="reminder_line_two"><td><%= n.second_line %></td></tr>
+                                  <% end %>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+
+                 </div>
+             </div>
+ <% end %>

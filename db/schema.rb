@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111217052413) do
+ActiveRecord::Schema.define(:version => 20111223233903) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -71,6 +71,16 @@ ActiveRecord::Schema.define(:version => 20111217052413) do
     t.datetime "updated_at"
   end
 
+  create_table "checklist_items", :force => true do |t|
+    t.string   "name"
+    t.date     "due_date"
+    t.string   "notes"
+    t.integer  "seq_number"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "church_types", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -108,6 +118,16 @@ ActiveRecord::Schema.define(:version => 20111217052413) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "downloadable_documents", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.string   "description"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "doc_type"
   end
 
   create_table "liaison_types", :force => true do |t|
@@ -218,6 +238,16 @@ ActiveRecord::Schema.define(:version => 20111217052413) do
     t.integer  "group_type_id"
     t.integer  "church_id"
     t.string   "registration_step"
+  end
+
+  create_table "reminders", :force => true do |t|
+    t.string   "name"
+    t.integer  "seq_number"
+    t.string   "first_line"
+    t.string   "second_line"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "scheduled_groups", :force => true do |t|

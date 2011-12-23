@@ -26,8 +26,17 @@ section h1 {
     font-size: 200%
 }
  */
+.reminder_line_one {
+    text-decoration: underline;
+}
+.reminder_line_two {
+    text-decoration: none;
+    font-style: italic;
+}
+
 .money {
-  text-align :right; }
+  text-align :right;
+    }
 
 a {
     color: #09c;

@@ -37,7 +37,6 @@ ActiveAdmin.register Church do
         column "Youth", :current_youth
         column "Counselors", :current_counselors
         column "Total", :current_total
-        column "Total", :current_total
         column "Session", :session_id do |session|
           link_to session.session.name, sched_program_session_path(session.session.id)
         end
