@@ -78,23 +78,40 @@
                                             <td><%= Period.find(Session.find(choice).period_id).end_date.to_formatted_s(:long) %></td>
                                             <td><%= ScheduledGroup.sum(:current_total, :conditions => ['session_id = ?', choice]) %></td>
                                             <td><%= link_to "Schedule this choice",
-                                                            scheduled_groups_schedule_path(:priority => i, :id => choice, :reg => @registration.id) %></td>
+                                               scheduled_groups_schedule_path(:priority => i, :id => choice, :reg => @registration.id) %></td>
                                         </tr>
                                     <% end %>
                           </tbody>
                       </table>
-                   #TODO: This isn't working. The url resulting from the link_to statement doesn't include the literal value of the
-                     #choice that has been selected.
                       <h3>Or pick from the list below: </h3><br>
-                      <div class="field">
-                        <%= r.label "Session" %>
-                        <%= collection_select("Registration", "Session", Session.all, :site_id, :name, {:prompt => false}) %>
-                        <%= link_to "Schedule this session", scheduled_groups_schedule_path(:priority => 0,:id => 'value', :reg => @registration.id) %>
-                      </div>
+                      <div class="attributes_table liaison" id="attributes_table_liaison_4">
+                         <table border="0" cellspacing="0" cellpadding="0" >
+                            <tr>
+                                <td><%= r.label "Select Alternative Session" %></td>
+                                <td id = "session_select"><%= select_tag("session", options_for_select(@alt_sessions),
+                                                      :onchange => 'get_session_id()' ) %></td>
+                                <td id="alt_schedule_link">
+                                    <%= link_to "Schedule this choice",
+                                        scheduled_groups_schedule_path(:priority => 10, :id => "alt_text",
+                                                                  :reg => @registration.id), :hidden => true %></td>
+                            </tr>
+                         </table>
+                        </div>
                    </div>
                 </div>
               </div>
           </div>
      </div>
     <% end %>
-  </div>
+<script>
+  function get_session_id() {
+      var e = document.getElementById("session");
+      var id = e.options[e.selectedIndex].value;
+      var $old_link = document.getElementById("alt_schedule_link").innerHTML;
+      var $new_link = $old_link.replace(/alt_text/, id);
+      var $new_link = $new_link.replace(/hidden="hidden"/, '');
+      document.getElementById("alt_schedule_link").innerHTML = $new_link;
+      alert($new_link);
+      }
+</script>
+

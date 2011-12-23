@@ -16,6 +16,7 @@ Spoic3::Application.routes.draw do
   match "registration/show_schedule" => 'registration#show_schedule'
   match "registration/:id/schedule" => 'registration#schedule', :as => 'schedule_request'
   match "registration/:id/program_session" => 'registration#program_session', :as => 'reg_program_session'
+  match "registration/alt_schedule" => 'registration#alt_schedule', :as => 'alt_schedule_group'
   match "scheduled_groups/:id/program_session" => 'scheduled_groups#program_session', :as => 'sched_program_session'
   resources :scheduled_groups
   match "scheduled_groups/:id/schedule" => 'scheduled_groups#confirmation', :as => "scheduled_groups_schedule"

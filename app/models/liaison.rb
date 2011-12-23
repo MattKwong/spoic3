@@ -1,4 +1,5 @@
 class Liaison < ActiveRecord::Base
+  default_scope :order => 'name'
   scope :senior_high_only, where(:liaison_type_id => 2)
   scope :junior_high_only, where(:liaison_type_id => 3)
   scope :both, where(:liaison_type_id => 1)
@@ -29,10 +30,15 @@ class Liaison < ActiveRecord::Base
   validates_format_of :email2,
             :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i,
             :message => 'Email appears to be invalid.', :allow_blank => true
-
-  validates_format_of :work_phone, :home_phone, :cell_phone, :fax, :with => /\A[0-9]{3}-[0-9]{3}-[0-9]{4}/,
-                      :message => 'Please enter phone numbers in the 123-456-7890 format.',
-                      :allow_blank => true
+#TODO: talk with Meghan about format of phone numbers.
+ # validates_numericality_of :work_phone, :home_phone, :cell_phone, :fax,
+ #                     :message => 'Please enter 10 digit phone number without dashes or spaces.',
+ #                     :allow_blank => true
+ #
+ # validates_length_of :work_phone, :home_phone, :cell_phone, :fax,
+ #                     :is => 10,
+ #                     :message => 'Please enter 10 digit phone number without dashes or spaces.',
+ #                     :allow_blank => true
 #This validation is not working
   validate :require_at_least_one_phone
 

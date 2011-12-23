@@ -1,4 +1,5 @@
 class Church < ActiveRecord::Base
+  default_scope :order => 'name'
   has_many :liaisons
   has_many :registrations
   has_many :scheduled_groups
@@ -17,7 +18,7 @@ class Church < ActiveRecord::Base
                     :registered
 
   validates :name,  :presence => true,
-                    :length => { :within => 6..40},
+                    :length => { :within => 6..45},
                     :uniqueness => true
   validates :address1, :presence => true
   validates :city, :presence => true

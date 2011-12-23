@@ -1,4 +1,5 @@
 ActiveAdmin.register Liaison do
+
   scope :senior_high_only
   scope :junior_high_only
   scope :both
@@ -54,9 +55,9 @@ ActiveAdmin.register Liaison do
     f.inputs "Liaison Details" do
       f.input :first_name
       f.input :last_name
-      f.input :church
-      f.input :title
-      f.input :liaison_type
+      f.input :church, :include_blank => false, :order => :name
+      f.input :title, :hint => "Enter the person's title"
+      f.input :liaison_type, :include_blank => false
       f.input :address1
       f.input :address2
       f.input :city
@@ -78,7 +79,7 @@ ActiveAdmin.register Liaison do
      column :name, :sortable => :last_name do |liaison|
        link_to liaison.name, admin_liaison_path(liaison)
      end
-     column :church_id do |church|
+     column :church_id, :sortable => :name do |church|
        link_to church.church.name, admin_church_path(church.church_id)
      end
 

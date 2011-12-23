@@ -43,7 +43,7 @@
                             </tr>
                            <tr>
                                 <td>Total</td>
-                                <td><%= @registration.requested_total %></td>
+                                <td><%= (@registration.requested_youth + @registration.requested_counselors) %></td>
                             </tr>
                             <tr>
                                 <td><%= r.label "Choice #1" %></td>
@@ -69,7 +69,7 @@
                             </table>
                             <div class="actions">
                                 <%= r.submit "Continue" %>
-                                <%= submit_tag 'Cancel', :name => 'cancel' %>
+                                <%= cancel_link %>
                             </div>
                     </div>
                 </div>
