@@ -4,6 +4,8 @@ class ChurchesController < ApplicationController
     church = Church.find(@liaison.church_id)
     registrations = Registration.find_all_by_liaison_id(@liaison.id)
     groups = ScheduledGroup.find_all_by_liaison_id(@liaison.id)
+#TODO: create 'invoices' data structure consisting of one 'invoice' structure for each group.
+#It should include all the information needed to construct the invoice and show the total amount due
     invoices = calculate_invoices(groups)
     notes_and_reminders = Reminder.find_all_by_active(true, :order => 'seq_number')
     checklist = ChecklistItem.find(:all, :order => 'seq_number')

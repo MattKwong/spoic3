@@ -98,7 +98,17 @@
                        <h3>Download Documents</h3>
                        <div class="panel_contents">
                          <table border="0" cellspacing="0" cellpadding="0">
+                           <tr>
+                             <th>Document name - click to download</th>
+                             <th>Description</th>
+                             <th>Document Type</th>
+                           </tr>
                            <tbody>
+                             <% @church_information[:documents].each do |d| %>
+                                <td><%= link_to d.name, d.url%></td>
+                                <td><%= d.description %></td>
+                                <td><%= d.doc_type %></td>
+                             <% end %>
                            </tbody>
                          </table>
                        </div>
@@ -155,10 +165,12 @@
                         <div class="panel_contents">
                             <div class="attributes_table liaison" id="attributes_table_notes">
                                 <table border="0" cellspacing="0" cellpadding="0">
+                                  <tbody>
                                   <% @church_information[:notes_and_reminders].each do |n| %>
                                     <tr class="reminder_line_one"><td><%= n.first_line %></td></tr>
                                     <tr class="reminder_line_two"><td><%= n.second_line %></td></tr>
                                   <% end %>
+                                  </tbody>
                                 </table>
                             </div>
                         </div>
