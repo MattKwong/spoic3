@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111228005752) do
+ActiveRecord::Schema.define(:version => 20111228195939) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -99,6 +99,15 @@ ActiveRecord::Schema.define(:version => 20111228005752) do
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "old_site"
+    t.string   "new_site"
+    t.string   "old_week"
+    t.string   "new_week"
+    t.string   "old_session"
+    t.string   "new_session"
+    t.boolean  "site_change"
+    t.boolean  "week_change"
+    t.boolean  "count_change"
   end
 
   create_table "checklist_items", :force => true do |t|
@@ -321,6 +330,7 @@ ActiveRecord::Schema.define(:version => 20111228005752) do
     t.integer  "scheduled_priority"
     t.integer  "liaison_id"
     t.integer  "roster_id"
+    t.integer  "group_type_id"
   end
 
   create_table "scheduled_histories", :force => true do |t|

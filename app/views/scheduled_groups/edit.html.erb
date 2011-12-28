@@ -1,0 +1,40 @@
+<div id="title_bar">
+  <div id="titlebar_left">
+     <span class="breadcrumb">
+        <a href="/admin">Admin</a>
+            <span class="breadcrumb_sep">/</span>
+     </span>
+     <h2 id="page_title"><%= @title %></h2>
+  </div>
+</div>
+<%= form_for(@scheduled_group) do |r| %>
+  <div id="active_admin_content"  class="with_sidebar">
+     <div id="main_content_wrapper">
+        <div id="main_content">
+           <div class="panel">
+              <div class="panel_contents">
+                 <div class="attributes_table liaison" id="attributes_table_liaison_3">
+                 <%= render 'layouts/scheduled_group_table' %>
+                 <h3>Make changes to scheduled group information below.</h3>
+                 <tr>
+                    <td><%= r.label "New Youth" %></td>
+                    <td><%= r.number_field :current_youth, :as => :integer %></td>
+                 </tr>
+                 <tr>
+                    <td><%= r.label "New Counselors" %></td>
+                    <td><%= r.number_field :current_counselors, :as => :integer %></td>
+                 </tr>
+                 <tr>
+                   <td><%= r.label "New Session" %></td>
+                   <td><%= r.select :session_id, @sessions %></td>
+                 </tr>
+                 <div class="actions">
+                    <%= submit_tag 'Submit Changes', { :confirm => "Are you sure you want to make these changes?", :id => @scheduled_group.id } %>
+                 </div>
+                 <% end %>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>

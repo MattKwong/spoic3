@@ -112,7 +112,6 @@ class RegistrationController < ApplicationController
     @church = Church.find(@registration.church_id)
     @liaison = Liaison.find(@registration.liaison_id)
     @session = Session.find(@registration.request1)
-
   end
 
   def schedule
@@ -141,12 +140,6 @@ class RegistrationController < ApplicationController
     @session_id = params[:id]
     @registration = params[:reg]
     redirect_to scheduled_groups_schedule_path(:priority => @priority, :reg => @registration, :id => @session_id)
-  end
-
-  def delete
-  end
-
-  def show
   end
 
   def show_schedule

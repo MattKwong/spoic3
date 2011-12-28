@@ -23,6 +23,7 @@ Spoic3::Application.routes.draw do
   resources :scheduled_groups
   match "scheduled_groups/:id/schedule" => 'scheduled_groups#confirmation', :as => "scheduled_groups_schedule"
   match "scheduled_groups/:id/success" => 'scheduled_groups#success', :as => "scheduled_group_confirmation"
+  match "scheduled_groups/:id/change_success" => 'scheduled_groups#change_success', :as => "change_confirmation"
 
   match "scheduled_groups/:id/invoice" => 'churches#invoice', :as => "invoice"
 
