@@ -1,4 +1,5 @@
 class RegistrationController < ApplicationController
+
   def index
     @title = "Manage Groups"
   end

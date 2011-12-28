@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111223233903) do
+ActiveRecord::Schema.define(:version => 20111228005752) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -26,6 +26,23 @@ ActiveRecord::Schema.define(:version => 20111223233903) do
   add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+
+  create_table "adjustment_codes", :force => true do |t|
+    t.string   "short_name"
+    t.string   "long_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "adjustments", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "updated_by"
+    t.decimal  "amount"
+    t.integer  "reason_code"
+    t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "admin_notes", :force => true do |t|
     t.integer  "resource_id",     :null => false
@@ -67,6 +84,19 @@ ActiveRecord::Schema.define(:version => 20111223233903) do
     t.integer  "site_id"
     t.integer  "item_id"
     t.decimal  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "change_histories", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "old_youth"
+    t.integer  "new_youth"
+    t.integer  "old_counselors"
+    t.integer  "new_counselors"
+    t.integer  "old_total"
+    t.integer  "new_total"
+    t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -250,6 +280,32 @@ ActiveRecord::Schema.define(:version => 20111223233903) do
     t.datetime "updated_at"
   end
 
+  create_table "roster_items", :force => true do |t|
+    t.integer  "group_id"
+    t.boolean  "youth"
+    t.boolean  "male"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "email"
+    t.string   "shirt_size"
+    t.string   "grade_in_fall"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "roster_id"
+  end
+
+  create_table "rosters", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "group_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "scheduled_groups", :force => true do |t|
     t.integer  "current_youth"
     t.integer  "current_counselors"
@@ -264,6 +320,7 @@ ActiveRecord::Schema.define(:version => 20111223233903) do
     t.integer  "registration_id"
     t.integer  "scheduled_priority"
     t.integer  "liaison_id"
+    t.integer  "roster_id"
   end
 
   create_table "scheduled_histories", :force => true do |t|

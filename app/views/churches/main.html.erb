@@ -1,11 +1,11 @@
- <div id="title_bar">
-        <div id="titlebar_left">
-          <span class="breadcrumb">
-            <a><%= @liaison.name %></a>
-            <span class="breadcrumb_sep">/</span>
-          </span>
-          <h2 id="page_title">My SSP Information Portal</h2>
-        </div>
+<div id="title_bar">
+   <div id="titlebar_left">
+      <span class="breadcrumb">
+         <a><%= @liaison.name %></a>
+         <span class="breadcrumb_sep">/</span>
+      </span>
+      <h2 id="page_title">My SSP Information Portal</h2>
+   </div>
 </div>
  <%= form_for(@liaison) do |r| %>
           <div id="active_admin_content"  class="with_sidebar">
@@ -74,7 +74,7 @@
                                <th>Participant Info</th>
                                <th>Balance</th>
                              </tr>
-                           </thead>
+                           </thead><% i = 0 %>
                            <tbody><% @church_information[:group_info].each do |g| %>
                              <tr>
                                <td><%= g.name %></td>
@@ -84,10 +84,9 @@
                                <td><% s = Session.find(g.session_id)%><%= Site.find(s.site_id).name %></td>
                                <td><%= Period.find(s.period_id).start_date.strftime("%m/%d/%y") %></td>
                                <td><%= Period.find(s.period_id).end_date.strftime("%m/%d/%y") %></td>
-                               <% if @church_information[:roster].nil? %><td><%=link_to "Create Roster", "#" %></td>
-                                   <% else %><td><%=link_to "Create Roster", "#" %></td>
-                                   <% end %>
-                               <td>0</td>
+                               <td><%= link_to "Update Roster", show_roster_path(:roster_id => g.roster_id) %></td>
+                               <td><%= link_to number_to_currency(@church_information[:invoice_info][i][:current_balance]), invoice_path(g.id) %></td>
+                               <% i += 1 %>
                              </tr>
                            <% end %></tbody>
                          </table>

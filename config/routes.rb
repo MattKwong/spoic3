@@ -1,5 +1,7 @@
 Spoic3::Application.routes.draw do
 
+  get "roster_item/update"
+
   get "scheduled_group/new"
 
   get "scheduled_group/confirmation"
@@ -22,7 +24,22 @@ Spoic3::Application.routes.draw do
   match "scheduled_groups/:id/schedule" => 'scheduled_groups#confirmation', :as => "scheduled_groups_schedule"
   match "scheduled_groups/:id/success" => 'scheduled_groups#success', :as => "scheduled_group_confirmation"
 
+  match "scheduled_groups/:id/invoice" => 'churches#invoice', :as => "invoice"
+
   match "budget/budget_summary" => 'budget#budget_summary', :as => "budget_show"
+
+  match "roster_item/new" => 'roster_item#new', :as => 'new_roster_item'
+  match "roster_items" => 'roster_item#create', :as => 'roster_items'
+  match "roster_items/:id" => 'roster_item#edit', :as => 'edit_roster_item'
+  match "roster_items/:id/delete" => 'roster_item#delete', :as => 'delete_roster_item'
+  match "roster/:id" => 'roster#show', :as => "show_roster"
+#  match "roster/:id" => 'roster#update', :as => "update_roster_items"
+
+  resources :roster_item do
+#    show 'show'
+     post 'update'
+   end
+
   resources :registration do
     post 'create'
     put :edit
@@ -37,16 +54,16 @@ Spoic3::Application.routes.draw do
   match "registration/update", :to => 'registration#update'
   match "registration/delete", :to => 'registration#delete'
 
-    match '/admin', :to => 'admin#index'
-    match '/food', :to => 'pages#food'
-    match 'RegistrationController', :to => 'pages#groups'
-    match '/construction', :to => 'pages#construction'
-    match '/help', :to => 'pages#help'
-    match '/contact', :to => 'pages#contact'
-    match '/about', :to => 'pages#about'
-    match '/signin', :to => 'pages#home'
-    match '/signout', :to => 'pages#home'
-    root :to => 'pages#home'
+  match '/admin', :to => 'admin#index'
+  match '/food', :to => 'pages#food'
+  match 'RegistrationController', :to => 'pages#groups'
+  match '/construction', :to => 'pages#construction'
+  match '/help', :to => 'pages#help'
+  match '/contact', :to => 'pages#contact'
+  match '/about', :to => 'pages#about'
+  match '/signin', :to => 'pages#home'
+  match '/signout', :to => 'pages#home'
+  root :to => 'pages#home'
 
   get "churches/new"
 

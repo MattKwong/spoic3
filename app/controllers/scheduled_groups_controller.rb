@@ -11,7 +11,7 @@ class ScheduledGroupsController < ApplicationController
   def confirmation       # before the confirmation screen
     @title = "Group Confirmation"
     @registration = Registration.find(params[:reg])
-    logger.debug ScheduledGroup.find_all_by_registration_id(params[:reg]).inspect
+#    logger.debug ScheduledGroup.find_all_by_registration_id(params[:reg]).inspect
     if ScheduledGroup.find_all_by_registration_id(params[:reg]).count == 0
       @scheduled_group = ScheduledGroup.new(:church_id => @registration.church_id,
                         :name => @registration.name, :registration_id => @registration.id,
@@ -27,11 +27,13 @@ class ScheduledGroupsController < ApplicationController
          end
     end
     @scheduled_group.save!
+    roster = Roster.create!(:group_id => @scheduled_group.id,
+      :group_type => SessionType.find(Session.find(@scheduled_group.session_id).session_type_id).id)
+    @scheduled_group.update_attribute('roster_id', roster.id)
     @session = Session.find(params[:id])
   end
 
   def update
-
     if params[:commit] == 'Cancel'
 #      logger.debug "Groups Controller cancel: #{params.inspect}"
       ScheduledGroup.delete(params[:id])
@@ -72,9 +74,8 @@ class ScheduledGroupsController < ApplicationController
     @current_youth = @scheduled_group.current_youth
     @current_counselors = @scheduled_group.current_counselors
     @current_counselors = @scheduled_group.current_total
-
     message = ERB.new(body, 0, "%<>")
     @email_body = message.result(binding)
-
   end
+
 end

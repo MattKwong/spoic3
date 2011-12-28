@@ -1,0 +1,85 @@
+<div id="title_bar">
+  <div id="titlebar_left">
+     <span class="breadcrumb">
+        <%= link_to "Return to Roster", :back %>
+        <span class="breadcrumb_sep">/</span>
+     </span>
+     <h2 id="page_title"><%= @title %></h2>
+  </div>
+</div>
+<%= form_for(@roster_item) do |r| %>
+  <%= render 'shared/error_messages_roster_item' %>
+     <div id="active_admin_content">
+        <div id="main_content_wrapper">
+          <div id="main_content">
+                          <div class="panel">
+                            <h3>Enter Participant Information</h3>
+                            <div class="panel_contents">
+                              <table border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                  <td><%= r.label :youth, "Youth" %></td>
+                                  <td><%= r.radio_button :youth?, 't', :checked => true %></td>
+                                  <td><%= r.label :youth, 'Counselor' %></td>
+                                  <td><%= r.radio_button :youth?, 'f' %></td>
+                                </tr>
+                                <tr>
+                                  <td><%= r.label :male, "Male" %></td>
+                                  <td><%= r.radio_button :male?, 't' %></td>
+                                  <td><%= r.label :male, 'Female' %></td>
+                                  <td><%= r.radio_button :male?, 'f', :checked => true %></td>
+                                </tr>
+                                <tr>
+                                  <td><%= r.label "First Name" %></td>
+                                  <td><%= r.text_field :first_name %></td>
+                                </tr>
+                                <tr>
+                                  <td><%= r.label "Last Name" %></td>
+                                  <td><%= r.text_field :last_name %></td>
+                                </tr>
+                                <tr>
+                                  <td><%= r.label "Address 1" %></td>
+                                  <td><%= r.text_field :address1 %></td>
+                                </tr>
+                                <tr>
+                                  <td><%= r.label "Address 2" %></td>
+                                  <td><%= r.text_field :address2 %></td>
+                                </tr>
+                                <tr>
+                                  <td><%= r.label "City" %></td>
+                                  <td><%= r.text_field :city %></td>
+                                </tr>
+                                <tr>
+                                  <td><%= r.label "State" %></td>
+                                  <td><%= r.text_field :state %></td>
+                                </tr>
+                                <tr>
+                                  <td><%= r.label "Zip" %></td>
+                                  <td><%= r.text_field :zip %></td>
+                                </tr>
+                                <tr>
+                                  <td><%= r.label "Email" %></td>
+                                  <td><%= r.text_field :email %></td>
+                                </tr>
+                                <tr>
+                                  <td><%= r.label "Grade in Fall" %></td>
+                                  <td><%= r.select :grade_in_fall, options_for_select(@grade_list) %></td>
+                                </tr>
+                                <tr>
+                                  <td><%= r.label "Shirt Size" %></td>
+                                  <td><%= r.select :shirt_size, options_for_select(@size_list) %></td>
+                                </tr>
+                        <input type = "hidden" name="roster_item[roster_id]" value= <%= @roster_item.roster_id %> />
+                        <input type = "hidden" name="roster_item[group_id]" value= <%= @roster_item.group_id %> />
+                      </table>
+                            <div class="actions">
+                                <%= r.submit "Submit" %>
+                                <%= submit_tag 'Cancel', :name => 'cancel' %>
+                             </div>
+                </div>
+              </div>
+          </div>
+        <% end %>
+        </div>
+        </div>
+
+
