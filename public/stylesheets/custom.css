@@ -37,10 +37,13 @@ section h1 {
 #column1 {float: left; width: 125px; padding-left: 10px; }
 #column2 {float: left; width: 125px; padding-left: 10px; }
 
+.attributes_table table th {
+    width: 60px;
+}
+
 .table_data {
     font-style: italic;
-    font-variant: small-caps;
-    text-decoration: underline;
+    text-decoration: none;
 }
 .money {
   text-align :right;

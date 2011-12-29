@@ -1,0 +1,21 @@
+<div class="panel">
+   <h3>Current Information</h3>
+   <div class="panel_contents">
+       <div class="attributes_table" >
+         <table border="0" cellspacing="0" cellpadding="0">
+         <tr>
+           <th>Youth</th><td class='table_data'><%= @screen_info[:scheduled_group].current_youth %></td>
+           <th>Counselors</th><td class='table_data'><%= @screen_info[:scheduled_group].current_counselors %></td>
+           <th>Total</th><td class='table_data'><%= @screen_info[:scheduled_group].current_total %></td>
+           <th>Type</th><td class='table_data'><%= @screen_info[:session_type] %></td>
+         </tr>
+         <tr>
+           <th>Site</th><td class='table_data'><%= @screen_info[:site_name] %></td>
+           <th>Week</th><td class='table_data'><%= @screen_info[:period_name] %></td>
+           <th>Start Date</th><td class='table_data'><%= @screen_info[:start_date].strftime("%m/%d/%y") %></td>
+           <th>End Date</th><td class='table_data'><%= @screen_info[:end_date].strftime("%m/%d/%y") %></td>
+         </tr>
+     </table>
+   </div>
+   </div>
+ </div>

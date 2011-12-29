@@ -36,14 +36,22 @@ class ScheduledGroupsController < ApplicationController
   end
 
   def update
-           current_reg = Registration.find(ScheduledGroup.find(params[:id]).registration_id)
-           current_reg.scheduled = true
-           if current_reg.update_attributes(current_reg)
-              redirect_to scheduled_group_confirmation_path(params[:id])
-           else
-              flash[:error] = "Update of registration record failed for unknown reason."
-           end
+    ## The final scheduling step is to set the scheduled flag on the registered record
+    ## and to update the scheduled id in the payment records
+    current_reg = Registration.find(ScheduledGroup.find(params[:id]).registration_id)
+    current_reg.scheduled = true
+    if current_reg.update_attributes(current_reg)
+      redirect_to scheduled_group_confirmation_path(params[:id])
+    else
+      flash[:error] = "Update of registration record failed for unknown reason."
+    end
+
+    payments = Payment.find_all_by_registration_id(current_reg.id)
+    payments.each do |p|
+      p.update_attribute('scheduled_group_id', params[:id])
+    end
   end
+
 
   def success
     require 'erb'
@@ -143,7 +151,28 @@ class ScheduledGroupsController < ApplicationController
   def change_success
     @scheduled_group = ScheduledGroup.find(params[:id])
     @session = Session.find(@scheduled_group.session_id)
-    @email_body = "Test Message"
+    @site = Site.find(@session.site_id).name
+    period = Period.find(@session.period_id)
+    liaison = Liaison.find(@scheduled_group.liaison_id)
+    @current_date = Time.now.strftime("%a, %b %d, %Y")
+    @first_name = liaison.first_name
+    @week = period.name
+    @start_date = period.start_date.strftime("%a, %b %d, %Y")
+    @end_date = period.end_date.strftime("%a, %b %d, %Y")
+    @group_name = @scheduled_group.name
+    @church_name = Church.find(@scheduled_group.church_id).name
+    @liaison_name = liaison.name
+    @current_youth = @scheduled_group.current_youth
+    @current_counselors = @scheduled_group.current_counselors
+    @current_counselors = @scheduled_group.current_total
+
+
+    filename = File.join('app', 'views', 'email_templates', 'schedule_confirmation.text.erb')
+    f = File.open(filename)
+    body = f.read.gsub(/^  /, '')
+
+    message = ERB.new(body, 0, "%<>")
+    @email_body = message.result(binding)
     @title = "Change Success"
   end
 end

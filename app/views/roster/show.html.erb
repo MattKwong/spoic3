@@ -1,43 +1,11 @@
-<div id="title_bar">
-  <div id="titlebar_left">
-     <span class="breadcrumb">
-       <a><%= @roster_info[:liaison_name] %></a>
-       <span class="breadcrumb_sep">/</span>
-       <%= link_to "Your Groups",  myssp_path(:id => @roster_info[:scheduled_group].liaison_id)%>
-     </span>
-     <h2 id="page_title"><%= @title %></h2>
-  </div>
-</div>
-     <div id="active_admin_content">
-        <div id="main_content_wrapper">
-          <div id="main_content">
-                  <div class="panel">
-                    <h3>Current Information</h3>
-                    <div class="panel_contents">
-                      <table border="0" cellspacing="0" cellpadding="0">
-                        <tbody>
-                          <tr>
-                            <td>Youth:</td><td class='table_data'><%= @roster_info[:scheduled_group].current_youth %></td>
-                            <td>Counselors:</td><td class='table_data'><%= @roster_info[:scheduled_group].current_counselors %></td>
-                            <td>Total:</td><td class='table_data'><%= @roster_info[:scheduled_group].current_total %></td>
-                            <td>Type:</td><td class='table_data'><%= @roster_info[:session_type] %></td>
-                          </tr>
-                          <tr>
-                            <td>Site:</td><td class='table_data'><%= @roster_info[:site_name] %></td>
-                            <td>Week:</td><td class='table_data'><%= @roster_info[:period_name] %></td>
-                            <td>Start Date:</td><td class='table_data'><%= @roster_info[:start_date].strftime("%m/%d/%y") %></td>
-                            <td>End Date:</td><td class='table_data'><%= @roster_info[:end_date].strftime("%m/%d/%y") %></td>
-                          </tr>
-                          <tr>
-                            <td>Roster status:</td><td class='table_data'><%= @roster_info[:roster_status] %></td>
-                            <td>Left to enter:</td><td class='table_data'><%= @roster_info[:left_to_enter] %></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                  <div class="panel">
-                    <h3>Current Information</h3>
+<%= render 'layouts/myssp_header' %>
+
+<div id="active_admin_content">
+  <div id="main_content_wrapper">
+     <div id="main_content">
+        <%= render 'layouts/myssp_group_data' %>
+        <div class="panel">
+                    <h3>Roster Status:  <%= @screen_info[:roster_status] %>   |   Left to Enter: <%= @screen_info[:left_to_enter] %> </h3>
                     <div class="panel_contents">
                       <table border="0" cellspacing="0" cellpadding="0">
                         <thead>
@@ -56,7 +24,7 @@
                              <th>Size</th>
                            </tr>
                          </thead>
-                         <tbody><% @roster_info[:items].each do |r| %>
+                         <tbody><% @screen_info[:items].each do |r| %>
                            <tr>
                              <td><%= if r.youth then 'Youth' else 'Counselor' end %></td>
                              <td><%= if r.male then 'Male' else 'Female' end %></td>
@@ -71,7 +39,7 @@
                              <td><%= r.grade_in_fall%></td>
                              <td><%= r.shirt_size %></td>
                              <td><%= link_to "Change", edit_roster_item_path(r.id)%>
-                                 <%= link_to "Delete", delete_roster_item_path(r.id), :group_id => @roster_info[:scheduled_group].id,
+                                 <%= link_to "Delete", delete_roster_item_path(r.id), :group_id => @screen_info[:scheduled_group].id,
                                     :action => :delete, :confirm => "Are you sure you want to delete this?" %></td>
                            </tr>
                          <% end %>
@@ -80,9 +48,9 @@
                       </table>
                       <div class="action_items">
                          <div id = "column1"><span class="action_item"><%= link_to "Add New Participant",
-                            new_roster_item_path(:roster_id => @roster_info[:roster].id)%></span></div>
+                            new_roster_item_path(:roster_id => @screen_info[:roster].id)%></span></div>
                          <div id = "column2"></div> <span class="action_item"><%= link_to "Return to MySPP Page",
-                            myssp_path(:id => @roster_info[:scheduled_group].liaison_id) %></span></div>
+                            myssp_path(:id => @screen_info[:scheduled_group].liaison_id) %></span></div>
                        </div>
 
                     </div>

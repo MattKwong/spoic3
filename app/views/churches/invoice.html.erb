@@ -1,49 +1,19 @@
-<div id="title_bar">
-  <div id="titlebar_left">
-     <span class="breadcrumb">
-       <a><%= @invoice_info[:liaison_name] %></a>
-       <span class="breadcrumb_sep">/</span>
-       <%= link_to "Your Groups",  myssp_path(:id => @invoice_info[:scheduled_group].liaison_id)%>
-     </span>
-     <h2 id="page_title"><%= @title %></h2>
-  </div>
-</div>
+<%= render 'layouts/myssp_header' %>
 <div id="active_admin_content">
   <div id="main_content_wrapper">
      <div id="main_content">
-        <div class="panel">
-           <h3>Current Information</h3>
-              <div class="panel_contents">
-                 <table border="0" cellspacing="0" cellpadding="0">
-                    <tbody>
-                       <tr>
-                          <td>Youth:</td><td class='table_data'><%= @invoice_info[:scheduled_group].current_youth %></td>
-                          <td>Counselors:</td><td class='table_data'><%= @invoice_info[:scheduled_group].current_counselors %></td>
-                          <td>Total:</td><td class='table_data'><%= @invoice_info[:scheduled_group].current_total %></td>
-                          <td>Type:</td><td class='table_data'><%= @invoice_info[:session_type] %></td>
-                       </tr>
-                       <tr>
-                          <td>Site:</td><td class='table_data'><%= @invoice_info[:site_name] %></td>
-                          <td>Week:</td><td class='table_data'><%= @invoice_info[:period_name] %></td>
-                          <td>Start Date:</td><td class='table_data'><%= @invoice_info[:start_date].strftime("%m/%d/%y") %></td>
-                          <td>End Date:</td><td class='table_data'><%= @invoice_info[:end_date].strftime("%m/%d/%y") %></td>
-                       </tr>
-                    </tbody>
-                 </table>
-              </div>
-           </div>
-        </div>
+        <%= render 'layouts/myssp_group_data' %>
         <div class="panel">
            <h3>Invoice Information</h3>
               <div class="panel_contents">
                  <table border="0" cellspacing="0" cellpadding="0">
                     <tbody>
                        <tr>
-                          <td>Balance Due:</td><td class='table_data'><%= @invoice_info[:invoice_data][:current_balance] %></td>
+                          <td>Balance Due:</td><td class='table_data'><%= @screen_info[:invoice_data][:current_balance] %></td>
                        </tr>
                           <td>Payments</td>
                           <th>Date</th><th>Method</th><th>Amount</th><th>Notes</th>
-                          <% @invoice_info[:invoice_data][:payments].each do |p| %>
+                          <% @screen_info[:invoice_data][:payments].each do |p| %>
                              <tr>
                                <td><%= p.created_at.strftime("%m/%d/%y") %></td>
                                <td><%= p.payment_method %></td>
@@ -54,7 +24,7 @@
                           <tr></tr>
                           <td>Schedule Changes</td>
                           <th>Date</th><th>Youth Change</th><th>Counselor Change</th><th>Total Change</th><th>Changed By</th>
-                          <% @invoice_info[:invoice_data][:changes].each do |c| %>
+                          <% @screen_info[:invoice_data][:changes].each do |c| %>
                              <tr>
                                <td><%= c.created_at.strftime("%m/%d/%y") %></td>
                                <td><%= c.old_youth - c.new_youth %></td>
@@ -66,7 +36,7 @@
                           <tr></tr>
                           <td>Adjustments</td>
                           <th>Date</th><th>Amount</th><th>Reason Code</th><th>Notes</th><th>Changed By</th>
-                          <% @invoice_info[:invoice_data][:changes].each do |a| %>
+                          <% @screen_info[:invoice_data][:changes].each do |a| %>
                              <tr>
                                <td><%= a.created_at.strftime("%m/%d/%y") %></td>
                                <td><%= a.amount %></td>
@@ -81,4 +51,5 @@
            </div>
         </div>
      </div>
+ </div>
 

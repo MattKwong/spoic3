@@ -1,0 +1,10 @@
+<div id="title_bar">
+  <div id="titlebar_left">
+     <span class="breadcrumb">
+       <a><%= @screen_info[:liaison_name] %></a>
+       <span class="breadcrumb_sep">/</span>
+       <%= link_to "Your Groups",  myssp_path(:id => @screen_info[:scheduled_group].liaison_id)%>
+     </span>
+     <h2 id="page_title"><%= @title %></h2>
+  </div>
+</div>

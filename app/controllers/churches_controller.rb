@@ -23,7 +23,7 @@ class ChurchesController < ApplicationController
     end_date = Period.find(Session.find(scheduled_group.session_id).period_id).end_date
     session_type = SessionType.find(Session.find(scheduled_group.session_id).session_type_id).name
     invoice = assemble_invoice(params[:id])
-    @invoice_info = {:scheduled_group => scheduled_group,
+    @screen_info = {:scheduled_group => scheduled_group,
       :site_name => site_name, :period_name => period_name, :start_date => start_date,
       :end_date => end_date,  :session_type => session_type, :invoice_data => invoice,
       :liaison_name => liaison_name}

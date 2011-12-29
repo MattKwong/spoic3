@@ -13,7 +13,7 @@ class RosterItemController < ApplicationController
   def create
 
     @roster_item = RosterItem.new(params[:roster_item])
-    @liaison_id = ScheduledGroup.find_by_roster_id(@roster_item.id).liaison_id
+    @liaison_id = ScheduledGroup.find(@roster_item.group_id).liaison_id
 
     if @roster_item.valid?
       @roster_item.save!
