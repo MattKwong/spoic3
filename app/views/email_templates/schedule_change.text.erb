@@ -1,28 +1,30 @@
 <%= @current_date %>
 
-
 Dear <%= @first_name %>
 
-Greetings from Sierra Service Project!  This email confirms changes that were recently made to your group's registration.
+Greetings from Sierra Service Project!  This email confirms changes that were recently made to your group's registration:
 
-Your group has been scheduled as follows:
+<%= @change_line1 %>
+<%= @change_line2 %>
+<%= @change_line3 %>
 
-    Site:       <%= @site %>
-    Week:       <%= @week %>
-    Start Date  <%= @start_date %>
-    End Date:   <%= @end_date %>
 
-The following is the information we have in our records about your group:
+The following is the current information we have in our records about your group:
 
-    Group name:                 <%=	 @group_name %>
-    Church:                     <%=	 @church_name %>
-    Liaison:                    <%= @liaison_name %>
-    Number of youth:            <%= @current_youth %>
+    Group name:           <%=@group_name %>
+    Church:                     <%=@church_name %>
+    Liaison:                     <%=@liaison_name %>
+
+    Number of youth:               <%= @current_youth %>
     Number of counselors:       <%= @current_counselors %>
-    Total:                      <%= @current_counselors %>
+    Total:                                <%= @current_total %>
 
-I am looking forward to working with you to make this a fantastic experience for your group. Please
-give me a call at 916-488-6441 if you have any questions or concerns.
+    Site:                           <%= @site %>
+    Week:                        <%= @week %>
+    Start Date:                 <%= @start_date %>
+    End Date:                   <%= @end_date %>
+
+Please contact me right away if this information is not correct or if you have any questions.
 
 Blessings,
 

@@ -32,7 +32,7 @@ ActiveAdmin.register Church do
     panel "Current Schedule Group Information" do
       table_for church.scheduled_groups do
         column "Group Name" do |group|
-          link_to group.name, admin_scheduled_group_path(group.id)
+          link_to group.name, myssp_path(group.liaison_id)
         end
         column "Youth", :current_youth
         column "Counselors", :current_counselors

@@ -74,7 +74,7 @@ class ScheduledGroupsController < ApplicationController
     @liaison_name = liaison.name
     @current_youth = @scheduled_group.current_youth
     @current_counselors = @scheduled_group.current_counselors
-    @current_counselors = @scheduled_group.current_total
+    @current_total = @scheduled_group.current_total
     message = ERB.new(body, 0, "%<>")
     @email_body = message.result(binding)
   end
@@ -124,11 +124,12 @@ class ScheduledGroupsController < ApplicationController
         :site_change => site_change,
         :week_change => week_change,
         :count_change => count_change)
-      logger.debug change_record.inspect
+
       unless change_record.save! then
         flash[:error] = "Update of change record failed for unknown reason."
         render "edit"
       end
+
 #Update ScheduledGroup
       if count_change then
         group.current_counselors = new_values[:current_counselors]
@@ -141,7 +142,7 @@ class ScheduledGroupsController < ApplicationController
       end
 
       if group.update_attributes(group) then
-        redirect_to change_confirmation_path(group_id)
+        redirect_to change_confirmation_path(group_id, :change_id => change_record.id)
       else
           flash[:error] = "Update of scheduled group record failed for unknown reason."
       end
@@ -150,6 +151,7 @@ class ScheduledGroupsController < ApplicationController
 
   def change_success
     @scheduled_group = ScheduledGroup.find(params[:id])
+    current_change = ChangeHistory.find(params[:change_id])
     @session = Session.find(@scheduled_group.session_id)
     @site = Site.find(@session.site_id).name
     period = Period.find(@session.period_id)
@@ -164,10 +166,22 @@ class ScheduledGroupsController < ApplicationController
     @liaison_name = liaison.name
     @current_youth = @scheduled_group.current_youth
     @current_counselors = @scheduled_group.current_counselors
-    @current_counselors = @scheduled_group.current_total
+    @current_total = @scheduled_group.current_total
+    @old_youth = current_change.old_youth
+    @old_counselors = current_change.old_counselors
+    @old_session = current_change.old_session
+    @change_line1 = @change_line2 = @change_line3 = ''
+    if current_change.site_change?
+        @change_line1 = 'The site was changed from ' + current_change.old_site + ' to ' + @site + '.'
+    end
+    if current_change.week_change?
+        @change_line2 = 'The week was changed from ' + current_change.old_week + ' to ' + @week + '.'
+    end
+    if current_change.count_change?
+        @change_line3 = 'Total registration was changed from ' + current_change.old_total.to_s + ' to ' + @current_total.to_s + '.'
+    end
 
-
-    filename = File.join('app', 'views', 'email_templates', 'schedule_confirmation.text.erb')
+    filename = File.join('app', 'views', 'email_templates', 'schedule_change.text.erb')
     f = File.open(filename)
     body = f.read.gsub(/^  /, '')
 

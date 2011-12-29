@@ -12,7 +12,7 @@ ActiveAdmin.register Liaison do
         row("Name") { liaison.name }
         row("Title") { liaison.title }
         row("Liaison to") { liaison.church do |church|
-          link_to liaison.church, admin_church_path(church)
+          link_to liaison.church, [:admin, church]
         end }
         row("Liaison Type") { liaison.liaison_type}
         row("Address") { liaison.address1 }
