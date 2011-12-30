@@ -52,7 +52,6 @@ class ScheduledGroupsController < ApplicationController
     end
   end
 
-
   def success
     require 'erb'
     @title = "Scheduling Complete"
@@ -86,6 +85,67 @@ class ScheduledGroupsController < ApplicationController
     @liaison = Liaison.find(@scheduled_group.liaison_id)
     @title = "Change Schedule"
   end
+
+
+  def change_success
+    @scheduled_group = ScheduledGroup.find(params[:id])
+    current_change = ChangeHistory.find(params[:change_id])
+    @session = Session.find(@scheduled_group.session_id)
+    @site = Site.find(@session.site_id).name
+    period = Period.find(@session.period_id)
+    liaison = Liaison.find(@scheduled_group.liaison_id)
+    @current_date = Time.now.strftime("%a, %b %d, %Y")
+    @first_name = liaison.first_name
+    @week = period.name
+    @start_date = period.start_date.strftime("%a, %b %d, %Y")
+    @end_date = period.end_date.strftime("%a, %b %d, %Y")
+    @group_name = @scheduled_group.name
+    @church_name = Church.find(@scheduled_group.church_id).name
+    @liaison_name = liaison.name
+    @current_youth = @scheduled_group.current_youth
+    @current_counselors = @scheduled_group.current_counselors
+    @current_total = @scheduled_group.current_total
+    @old_youth = current_change.old_youth
+    @old_counselors = current_change.old_counselors
+    @old_session = current_change.old_session
+    @change_line1 = @change_line2 = @change_line3 = ''
+    if current_change.site_change?
+        @change_line1 = 'The site was changed from ' + current_change.old_site + ' to ' + @site + '.'
+    end
+    if current_change.week_change?
+        @change_line2 = 'The week was changed from ' + current_change.old_week + ' to ' + @week + '.'
+    end
+    if current_change.count_change?
+        @change_line3 = 'Total registration was changed from ' + current_change.old_total.to_s + ' to ' + @current_total.to_s + '.'
+    end
+
+    filename = File.join('app', 'views', 'email_templates', 'schedule_change.text.erb')
+    f = File.open(filename)
+    body = f.read.gsub(/^  /, '')
+
+    message = ERB.new(body, 0, "%<>")
+    @email_body = message.result(binding)
+    @title = "Change Success"
+  end
+
+  def make_adjustment
+
+    scheduled_group = ScheduledGroup.find(params[:id])
+    liaison_name = Liaison.find(scheduled_group.liaison_id).name
+    site_name = Site.find(Session.find(scheduled_group.session_id).site_id).name
+    period_name = Period.find(Session.find(scheduled_group.session_id).period_id).name
+    start_date = Period.find(Session.find(scheduled_group.session_id).period_id).start_date
+    end_date = Period.find(Session.find(scheduled_group.session_id).period_id).end_date
+    session_type = SessionType.find(Session.find(scheduled_group.session_id).session_type_id).name
+
+    @screen_info = {:scheduled_group => scheduled_group,
+      :site_name => site_name, :period_name => period_name, :start_date => start_date,
+      :end_date => end_date,  :session_type => session_type,:adjustment => adjustment,
+      :liaison_name => liaison_name}
+    @title = "Make adjustment for: #{scheduled_group.name}"
+  end
+
+private
 
   def check_for_cancel
     if params[:commit] == 'Cancel'
@@ -150,44 +210,4 @@ class ScheduledGroupsController < ApplicationController
     end
   end
 
-  def change_success
-    @scheduled_group = ScheduledGroup.find(params[:id])
-    current_change = ChangeHistory.find(params[:change_id])
-    @session = Session.find(@scheduled_group.session_id)
-    @site = Site.find(@session.site_id).name
-    period = Period.find(@session.period_id)
-    liaison = Liaison.find(@scheduled_group.liaison_id)
-    @current_date = Time.now.strftime("%a, %b %d, %Y")
-    @first_name = liaison.first_name
-    @week = period.name
-    @start_date = period.start_date.strftime("%a, %b %d, %Y")
-    @end_date = period.end_date.strftime("%a, %b %d, %Y")
-    @group_name = @scheduled_group.name
-    @church_name = Church.find(@scheduled_group.church_id).name
-    @liaison_name = liaison.name
-    @current_youth = @scheduled_group.current_youth
-    @current_counselors = @scheduled_group.current_counselors
-    @current_total = @scheduled_group.current_total
-    @old_youth = current_change.old_youth
-    @old_counselors = current_change.old_counselors
-    @old_session = current_change.old_session
-    @change_line1 = @change_line2 = @change_line3 = ''
-    if current_change.site_change?
-        @change_line1 = 'The site was changed from ' + current_change.old_site + ' to ' + @site + '.'
-    end
-    if current_change.week_change?
-        @change_line2 = 'The week was changed from ' + current_change.old_week + ' to ' + @week + '.'
-    end
-    if current_change.count_change?
-        @change_line3 = 'Total registration was changed from ' + current_change.old_total.to_s + ' to ' + @current_total.to_s + '.'
-    end
-
-    filename = File.join('app', 'views', 'email_templates', 'schedule_change.text.erb')
-    f = File.open(filename)
-    body = f.read.gsub(/^  /, '')
-
-    message = ERB.new(body, 0, "%<>")
-    @email_body = message.result(binding)
-    @title = "Change Success"
-  end
 end

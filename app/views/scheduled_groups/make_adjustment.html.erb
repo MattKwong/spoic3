@@ -1,0 +1,38 @@
+<%= render 'layouts/myssp_header' %>
+<div id="active_admin_content">
+  <div id="main_content_wrapper">
+     <div id="main_content">
+        <%= render 'layouts/myssp_group_data' %>
+        <%= form_for(@screen_info[:adjustment]) do |a| %>
+           <div class="panel">
+              <div class="panel_contents">
+                 <div class="attributes_table liaison" id="attributes_table_liaison_3">
+                 <%= render 'layouts/scheduled_group_table' %>
+                    <table border="0" cellspacing="0" cellpadding="0" >
+                        <h3>Enter the payment details below.</h3>
+                        <tr>
+                           <td><%= r.label "Select payment type" %></td>
+                           <td><%= r.select(:payment_method, options_for_select(@screen_info[:payment_types])) %></td>
+                        </tr>
+                        <tr>
+                           <td><%= r.label "Payment Notes" %></td>
+                           <td><%= r.text_field :payment_notes %></td>
+                        </tr>
+                        <tr>
+                           <td><%= r.label "Amount Received (please omit dollar sign)" %></td>
+                           <td><%= r.number_field :amount_paid, :as => :number %></td>
+                        </tr>
+                        <div id = "group_change_button" class="actions">
+                            <%= submit_tag 'Submit Payment', { :confirm => "Are you sure you want to record this payment?",
+                                                           :id => @screen_info[:scheduled_group].id } %>
+                        </div>
+                    </table>
+                 </div>
+              </div>
+           </div>
+        <% end %>
+     </div>
+  </div>
+</div>
+
+

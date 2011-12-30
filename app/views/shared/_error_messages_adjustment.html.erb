@@ -1,0 +1,12 @@
+<% if @screen_info[:adjustment].errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@screen_info[:adjustment].errors.count, "error") %>
+        prohibited this item from being saved:</h2>
+      <p>There were problems with the following fields:</p>
+      <ul>
+        <% @screen_info[:adjustment].errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+       </ul>
+    </div>
+<% end %>

@@ -5,4 +5,7 @@ class Payment < ActiveRecord::Base
   belongs_to :registration
   belongs_to :scheduled_group
 
+  validates :payment_date, :payment_amount, :payment_method, :presence => true
+  validates_numericality_of :payment_amount
+
 end

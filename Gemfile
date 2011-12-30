@@ -7,6 +7,8 @@ gem 'rails', '3.0.1'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
+gem 'jquery-rails'
+
 gem 'rake', '0.8.7'
 #gem 'will_paginate', '~> 3.0.beta'
 gem 'haml'

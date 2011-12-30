@@ -25,10 +25,13 @@ Spoic3::Application.routes.draw do
   match "scheduled_groups/:id/success" => 'scheduled_groups#success', :as => "scheduled_group_confirmation"
   match "scheduled_groups/:id/change_success" => 'scheduled_groups#change_success', :as => "change_confirmation"
 
+  match "payment/:group_id/new" => 'payment#new', :as => "record_payment"
+  match "payments" => 'payment#create', :as => 'payments'
+  match "adjustment/:group_id/new" => 'adjustment#new', :as => "make_adjustment"
+  match "adjustments" => 'adjustment#create', :as => 'adjustments'
+
   match "scheduled_groups/:id/invoice" => 'churches#invoice', :as => "invoice"
-
   match "budget/budget_summary" => 'budget#budget_summary', :as => "budget_show"
-
   match "roster_item/new" => 'roster_item#new', :as => 'new_roster_item'
   match "roster_items" => 'roster_item#create', :as => 'roster_items'
   match "roster_items/:id" => 'roster_item#edit', :as => 'edit_roster_item'

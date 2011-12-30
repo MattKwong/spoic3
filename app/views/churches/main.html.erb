@@ -63,13 +63,14 @@
                             <tr>
                                 <th>Group Name</th>
                                 <th>Youth</th>
-                                <th>Counselors</th>
+                                <th>Couns</th>
                                 <th>Total</th>
                                 <th>Site</th>
-                                <th>Start</th>
-                                <th>End</th>
+                                <th>Week</th>
                                 <th>Participant Info</th>
                                 <th>Balance</th>
+                                <th>Adjust</th>
+                                <th>Payment</th>
                             </tr>
                         </thead><% i = 0 %>
                         <tbody><% @church_information[:group_info].each do |g| %>
@@ -80,24 +81,19 @@
                                 <td><%= g.current_counselors %></td>
                                 <td><%= g.current_total %></td>
                                 <td><% s = Session.find(g.session_id)%><%= Site.find(s.site_id).name %></td>
-                                <td><%= Period.find(s.period_id).start_date.strftime("%m/%d/%y") %></td>
-                                <td><%= Period.find(s.period_id).end_date.strftime("%m/%d/%y") %></td>
+                                <td><%= link_to Period.find(s.period_id).name, "#",
+                                                :title => "Starts on #{Period.find(s.period_id).start_date.strftime("%m/%d/%y")
+                                                } and ends on #{Period.find(s.period_id).end_date.strftime("%m/%d/%y")}" %></td>
                                 <td><%= link_to "Update Roster", show_roster_path(:roster_id => g.roster_id) %></td>
                                 <td><%= link_to number_to_currency(@church_information[:invoice_info][i][:current_balance]), invoice_path(g.id) %></td>
+                                <td><%= link_to "Adjustment", make_adjustment_path(g.id),
+                                                :title => "Click to make an adjustment (new church discount, scholarship, etc)." %></td>
+                                <td><%= link_to "Record Payment", record_payment_path(:group_id => g.id),
+                                                :title => "Click to record payment. Eventually to be replaced by payment gateway." %></td>
                                 <% i += 1 %>
                             </tr>
-                            <tr>
-
-                            </tr>
                         <% end %></tbody>
-
                     </table>
-                    <div class="action_items">
-                         <div id = "column1"><span class="action_item"><%= link_to "Make Invoice Adjustment",
-                            "#" %></span></div>
-                         <div id = "column2"></div> <span class="action_item"><%= link_to "Record Payment",
-                            "#" %></span></div>
-                    </div>
                 </div>
             </div>
 <!--Downloads Section -->
