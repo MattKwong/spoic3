@@ -1,31 +1,5 @@
-/*body {
-    background:  white;
-    font-size: 75%;
-    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-} */
-/*
-header {
-    padding-top: 20px;
+.test_class {
 }
-
-header img {
-    padding: 1em;
-    background: #fff;
-}
-nav {
-    float: right;
-}
-section {
-    margin-top: 1em;
-    font-size: 120%;
-    padding: 20px;
-    background: #fff;
-}
-
-section h1 {
-    font-size: 200%
-}
- */
 .reminder_line_one {
     text-decoration: underline;
 }

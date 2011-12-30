@@ -74,7 +74,8 @@
                         </thead><% i = 0 %>
                         <tbody><% @church_information[:group_info].each do |g| %>
                             <tr>
-                                <td><%= link_to g.name, edit_scheduled_group_path(g.id) %></td>
+                                <td><%= link_to g.name, edit_scheduled_group_path(g.id),
+                                    :title => 'Click to make changes to this group'%></td>
                                 <td><%= g.current_youth %></td>
                                 <td><%= g.current_counselors %></td>
                                 <td><%= g.current_total %></td>
