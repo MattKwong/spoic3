@@ -7,6 +7,9 @@ class Liaison < ActiveRecord::Base
   belongs_to :church
   belongs_to :liaison_type
   has_many :scheduled_groups
+  has_many :registrations
+
+  accepts_nested_attributes_for :registrations
   accepts_nested_attributes_for :scheduled_groups
 
   attr_accessible :active, :address1, :address2, :city, :state, :zip, :first_name,

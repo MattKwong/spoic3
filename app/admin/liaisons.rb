@@ -24,12 +24,41 @@ ActiveAdmin.register Liaison do
       end
     end
 
-    panel "Registration Information" do
-      attributes_table_for liaison do
-        row("Name") { liaison.name }
+    panel "Original Request Information" do
+      table_for liaison.registrations do
+        column "Group Name", :name
+        column "Youth", :requested_youth
+        column "Counselors", :requested_counselors
+        column "Total", :requested_counselors
+        column "Date submitted", :created_at
       end
     end
 
+    panel "Current Schedule Group Information" do
+      table_for liaison.scheduled_groups do
+        column "Group Name" do |group|
+          link_to group.name, myssp_path(group.liaison_id)
+        end
+        column "Youth", :current_youth
+        column "Counselors", :current_counselors
+        column "Total", :current_total
+        column "Session", :session_id do |session|
+          link_to session.session.name, sched_program_session_path(session.session.id)
+        end
+        column "Site", :session_id do |session|
+          session.session.site.name
+        end
+        column "Period", :session_id do |session|
+          session.session.period.name
+        end
+        column "Start", :session_id do |period|
+          period.session.period.start_date.strftime("%m/%d/%y")
+        end
+        column "End", :session_id do |session|
+          session.session.period.end_date.strftime("%m/%d/%y")
+        end
+      end
+    end
     active_admin_comments
   end
 

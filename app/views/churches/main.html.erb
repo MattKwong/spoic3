@@ -8,177 +8,187 @@
    </div>
 </div>
  <%= form_for(@liaison) do |r| %>
-          <div id="active_admin_content"  class="with_sidebar">
-             <div id="main_content_wrapper">
-               <div id="main_content">
-                   <div class="panel">
-                   <h3>Church Details</h3>
-                   <div class="panel_contents">
-                     <div class="attributes_table church" id="church_info_table">
-                         <table id = "church_info" border="0" cellspacing="0" cellpadding="0" >
-                           <tr><th>Church Name</th><td><%= link_to @church_information[:church_info].name,
+    <div id="active_admin_content"  class="with_sidebar">
+        <div id="main_content_wrapper">
+            <div id="main_content">
+                <div class="panel">
+                    <h3>Church Details</h3>
+                    <div class="panel_contents">
+                        <div class="attributes_table church" id="church_info_table">
+                            <table id = "church_info" border="0" cellspacing="0" cellpadding="0" >
+                                <tr><th>Church Name</th><td><%= link_to @church_information[:church_info].name,
                                                  edit_admin_church_path(:id => @liaison.church_id) %></td></tr>
-                           <tr><th>Address</th><td><%= @church_information[:church_info].address1 %></td></tr>
-                           <tr><th>City</th><td><%= @church_information[:church_info].city %></td></tr>
-                           <tr><th>State</th><td><%= @church_information[:church_info].state %></td></tr>
-                           <tr><th>Zip</th><td><%= @church_information[:church_info].zip %></td></tr>
-                           <tr><th>Church Phone</th><td><%= @church_information[:church_info].office_phone %></td></tr>
-                         </table>
-                     </div>
-                   </div>
-                   </div>
+                                <tr><th>Address</th><td><%= @church_information[:church_info].address1 %></td></tr>
+                                <tr><th>City</th><td><%= @church_information[:church_info].city %></td></tr>
+                                <tr><th>State</th><td><%= @church_information[:church_info].state %></td></tr>
+                                <tr><th>Zip</th><td><%= @church_information[:church_info].zip %></td></tr>
+                                <tr><th>Church Phone</th><td><%= @church_information[:church_info].office_phone %></td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 <!--Original Request Section -->
-                 <div class="panel">
-                      <h3>Original Request Information</h3>
-                      <div class="panel_contents">
-                         <table border="0" cellspacing="0" cellpadding="0">
-                           <thead>
-                             <tr>
-                               <th>Group Name</th>
-                               <th>Youth</th>
-                               <th>Counselors</th>
-                               <th>Total</th>
-                               <th>Date submitted</th>
-                             </tr>
-                           </thead>
-                           <tbody><% @church_information[:registration_info].each do |g| %>
-                             <tr>
-                               <td><%= g.name %></td>
-                               <td><%= g.requested_youth %></td>
-                               <td><%= g.requested_counselors %></td>
-                               <td><%= g.requested_total %></td>
-                               <td><%= g.created_at.strftime("%m/%d/%y") %></td>
-                             </tr>
-                           <% end %>
-                           </tbody>
-                         </table>
-                       </div>
-                     </div>
+            <div class="panel">
+                <h3>Original Request Information</h3>
+                <div class="panel_contents">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <thead>
+                            <tr>
+                                <th>Group Name</th>
+                                <th>Youth</th>
+                                <th>Counselors</th>
+                                <th>Total</th>
+                                <th>Date submitted</th>
+                            </tr>
+                        </thead>
+                        <tbody><% @church_information[:registration_info].each do |g| %>
+                            <tr>
+                                <td><%= g.name %></td>
+                                <td><%= g.requested_youth %></td>
+                                <td><%= g.requested_counselors %></td>
+                                <td><%= g.requested_total %></td>
+                                <td><%= g.created_at.strftime("%m/%d/%y") %></td>
+                            </tr>
+                        <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 <!--Current Schedule Section -->
-                     <div class="panel">
-                       <h3>Current Schedule Group Information</h3>
-                       <div class="panel_contents">
-                         <table border="0" cellspacing="0" cellpadding="0">
-                           <thead>
-                             <tr>
-                               <th>Group Name</th>
-                               <th>Youth</th>
-                               <th>Counselors</th>
-                               <th>Total</th>
-                               <th>Site</th>
-                               <th>Start</th>
-                               <th>End</th>
-                               <th>Participant Info</th>
-                               <th>Balance</th>
-                             </tr>
-                           </thead><% i = 0 %>
-                           <tbody><% @church_information[:group_info].each do |g| %>
-                             <tr>
-                               <td><%= link_to g.name, edit_scheduled_group_path(g.id) %></td>
-                               <td><%= g.current_youth %></td>
-                               <td><%= g.current_counselors %></td>
-                               <td><%= g.current_total %></td>
-                               <td><% s = Session.find(g.session_id)%><%= Site.find(s.site_id).name %></td>
-                               <td><%= Period.find(s.period_id).start_date.strftime("%m/%d/%y") %></td>
-                               <td><%= Period.find(s.period_id).end_date.strftime("%m/%d/%y") %></td>
-                               <td><%= link_to "Update Roster", show_roster_path(:roster_id => g.roster_id) %></td>
-                               <td><%= link_to number_to_currency(@church_information[:invoice_info][i][:current_balance]), invoice_path(g.id) %></td>
-                               <% i += 1 %>
-                             </tr>
-                           <% end %></tbody>
-                         </table>
-                       </div>
-                     </div>
+            <div class="panel">
+                <h3>Current Schedule Group Information</h3>
+                <div class="panel_contents">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <thead>
+                            <tr>
+                                <th>Group Name</th>
+                                <th>Youth</th>
+                                <th>Counselors</th>
+                                <th>Total</th>
+                                <th>Site</th>
+                                <th>Start</th>
+                                <th>End</th>
+                                <th>Participant Info</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead><% i = 0 %>
+                        <tbody><% @church_information[:group_info].each do |g| %>
+                            <tr>
+                                <td><%= link_to g.name, edit_scheduled_group_path(g.id) %></td>
+                                <td><%= g.current_youth %></td>
+                                <td><%= g.current_counselors %></td>
+                                <td><%= g.current_total %></td>
+                                <td><% s = Session.find(g.session_id)%><%= Site.find(s.site_id).name %></td>
+                                <td><%= Period.find(s.period_id).start_date.strftime("%m/%d/%y") %></td>
+                                <td><%= Period.find(s.period_id).end_date.strftime("%m/%d/%y") %></td>
+                                <td><%= link_to "Update Roster", show_roster_path(:roster_id => g.roster_id) %></td>
+                                <td><%= link_to number_to_currency(@church_information[:invoice_info][i][:current_balance]), invoice_path(g.id) %></td>
+                                <% i += 1 %>
+                            </tr>
+                            <tr>
+
+                            </tr>
+                        <% end %></tbody>
+
+                    </table>
+                    <div class="action_items">
+                         <div id = "column1"><span class="action_item"><%= link_to "Make Invoice Adjustment",
+                            "#" %></span></div>
+                         <div id = "column2"></div> <span class="action_item"><%= link_to "Record Payment",
+                            "#" %></span></div>
+                    </div>
+                </div>
+            </div>
 <!--Downloads Section -->
-                    <div class="panel">
-                       <h3>Download Documents</h3>
-                       <div class="panel_contents">
-                         <table border="0" cellspacing="0" cellpadding="0">
-                           <tr>
-                             <th>Document name - click to download</th>
-                             <th>Description</th>
-                             <th>Document Type</th>
-                           </tr>
-                           <tbody>
-                             <% @church_information[:documents].each do |d| %>
+            <div class="panel">
+                <h3>Download Documents</h3>
+                <div class="panel_contents">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <th>Document name - click to download</th>
+                            <th>Description</th>
+                            <th>Document Type</th>
+                        </tr>
+                        <tbody>
+                            <% @church_information[:documents].each do |d| %>
                                 <td><%= link_to d.name, d.url%></td>
                                 <td><%= d.description %></td>
                                 <td><%= d.doc_type %></td>
-                             <% end %>
-                           </tbody>
-                         </table>
-                       </div>
-                     </div>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 <!--Checklist Section -->
-                     <div class="panel">
-                       <h3>Checklist</h3>
-                       <div class="panel_contents">
-                         <table border="0" cellspacing="0" cellpadding="0">
-                           <thead>
-                              <tr>
+            <div class="panel">
+                <h3>Checklist</h3>
+                <div class="panel_contents">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <thead>
+                            <tr>
                                 <th>Item</th>
                                 <% @church_information[:group_info].each do |g| %>
                                     <th><%= link_to g.name, admin_scheduled_group_path(g.id) %></th>
                                 <% end %>
                                 <th>Due Date</th>
                                 <th>Notes</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                           <% @church_information[:checklist].each do |c| %>
-                             <tr>
-                                <td><%= c.name %></td>
-                                <% @church_information[:group_info].each do |g| %>
-                                    <td>Status</td>
-                                <% end %>
-                                <td><%= c.due_date.strftime("%m/%d/%y") %></td>
-                                <td><%= c.notes %></td>
-                             </tr>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @church_information[:checklist].each do |c| %>
+                                <tr>
+                                    <td><%= c.name %></td>
+                                    <% @church_information[:group_info].each do |g| %>
+                                        <td>Status</td>
+                                    <% end %>
+                                    <td><%= c.due_date.strftime("%m/%d/%y") %></td>
+                                    <td><%= c.notes %></td>
+                                </tr>
                             <% end %>
-                           </tbody>
-                         </table>
-                       </div>
-                     </div>
-                   </div>
-                 </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 <!--Liaison Sidebar Section -->
-                 <div id="sidebar">
-                    <div class="sidebar_section panel" id="liaison information_sidebar_section">
-                    <h3>Liaison Information</h3>
-                        <div class="panel_contents">
-                            <div class="attributes_table liaison" id="attributes_table_liaison">
-                                <table border="0" cellspacing="0" cellpadding="0">
-                                    <tr><th>Name</th><td><%= @liaison.name %></td></tr>
-                                    <tr>
-                                      <td><%= link_to "Edit Liaison Information",
+    <div id="sidebar">
+        <div class="sidebar_section panel" id="liaison information_sidebar_section">
+            <h3>Liaison Information</h3>
+                <div class="panel_contents">
+                    <div class="attributes_table liaison" id="attributes_table_liaison">
+                        <table border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <th>Name</th>
+                                <td><%= @liaison.name %></td>
+                            </tr>
+                            <tr>
+                                <td><%= link_to "Edit Liaison Information",
                                         edit_admin_liaison_path(:id => @liaison.id) %></td>
-                                      <td><%= mail_to @liaison.email1, "Email #{@liaison.first_name}",
+                                <td><%= mail_to @liaison.email1, "Email #{@liaison.first_name}",
                                                         :subject => "SSP Information"
                                                          %></td>
-
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
+                            </tr>
+                        </table>
                     </div>
+                </div>
+            </div>
 <!--Notes and Reminders Sidebar Section -->
-                    <div class="sidebar_section panel" id="notes information_sidebar_section">
-                    <h3>Notes and Reminders</h3>
-                        <div class="panel_contents">
-                            <div class="attributes_table liaison" id="attributes_table_notes">
-                                <table border="0" cellspacing="0" cellpadding="0">
-                                  <tbody>
-                                  <% @church_information[:notes_and_reminders].each do |n| %>
+        <div class="sidebar_section panel" id="notes information_sidebar_section">
+            <h3>Notes and Reminders</h3>
+                <div class="panel_contents">
+                    <div class="attributes_table liaison" id="attributes_table_notes">
+                        <table border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <% @church_information[:notes_and_reminders].each do |n| %>
                                     <tr class="reminder_line_one"><td><%= n.first_line %></td></tr>
                                     <tr class="reminder_line_two"><td><%= n.second_line %></td></tr>
-                                  <% end %>
-                                  </tbody>
-                                </table>
-                            </div>
-                        </div>
+                                <% end %>
+                            </tbody>
+                        </table>
                     </div>
-                 </div>
-
-                 </div>
-             </div>
+                </div>
+            </div>
+        </div>
+    </div>
  <% end %>

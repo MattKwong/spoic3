@@ -12,6 +12,7 @@ class ChurchesController < ApplicationController
     @church_information = {:church_info => church, :registration_info => registrations,
       :group_info => groups, :invoice_info => @invoices, :notes_and_reminders => notes_and_reminders,
       :checklist => checklist, :documents => documents,:roster_info => @rosters }
+
   end
 
   def invoice
@@ -38,19 +39,21 @@ class ChurchesController < ApplicationController
       @invoices << calculate_balance(g.id)
       @rosters << Roster.find_by_group_id(g.id)
     end
+
   end
 
   def calculate_balance(group_id)
     group = ScheduledGroup.find(group_id)
     original_reg = Registration.find(group.registration_id)
     payment_schedule = PaymentSchedule.find(Session.find(group.session_id).payment_schedule_id)
-    if (group.current_total == original_reg.requested_total) then  #this is the most straightforward case
+#TODO: logic needs to be added to calculate the correct current_balance number. What is below is not correct.
+#    if (group.current_total == original_reg.requested_total) then  #this is the most straightforward case
       total_due = group.current_total * payment_schedule.total_payment
       amount_paid = Payment.sum(:payment_amount, :conditions => ['registration_id = ?', group.registration_id])
       current_balance = total_due - amount_paid
       invoice = {:group_id => group_id,:current_balance => current_balance }
       return invoice
-    end
+#    end
   end
 
   def assemble_invoice(group_id)
@@ -61,14 +64,15 @@ class ChurchesController < ApplicationController
     adjustments = Adjustment.find_all_by_group_id(group_id)
     changes = ChangeHistory.find_all_by_group_id(group_id)
 
-    if (group.current_total == original_reg.requested_total) then  #this is the most straightforward case
+#    if (group.current_total == original_reg.requested_total) then  #this is the most straightforward case
       total_due = group.current_total * payment_schedule.total_payment
       amount_paid = Payment.sum(:payment_amount, :conditions => ['registration_id = ?', group.registration_id])
       current_balance = total_due - amount_paid
-    end
+#    end
 
     invoice = {:group_id => group_id,:current_balance => current_balance, :payments => payments,
       :adjustments => adjustments, :changes => changes}
+
     return invoice
   end
 end

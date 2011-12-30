@@ -1,8 +1,9 @@
 <div id="title_bar">
   <div id="titlebar_left">
      <span class="breadcrumb">
-        <a href="/admin">Admin</a>
-            <span class="breadcrumb_sep">/</span>
+       <a><%= @liaison.name %></a>
+       <span class="breadcrumb_sep">/</span>
+       <%= link_to "Your Groups",  myssp_path(:id => @scheduled_group.liaison_id)%>
      </span>
      <h2 id="page_title"><%= @title %></h2>
   </div>

@@ -18,7 +18,7 @@ ActiveAdmin.register Church do
         row("Is active church?") { church.active }
       end
     end
-#TODO: Change this to schedule information when the scheduling function has been written
+
     panel "Original Request Information" do
       table_for church.registrations do
         column "Group Name", :name

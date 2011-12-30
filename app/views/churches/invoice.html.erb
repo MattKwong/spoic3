@@ -36,7 +36,7 @@
                           <tr></tr>
                           <td>Adjustments</td>
                           <th>Date</th><th>Amount</th><th>Reason Code</th><th>Notes</th><th>Changed By</th>
-                          <% @screen_info[:invoice_data][:changes].each do |a| %>
+                          <% @screen_info[:invoice_data][:adjustments].each do |a| %>
                              <tr>
                                <td><%= a.created_at.strftime("%m/%d/%y") %></td>
                                <td><%= a.amount %></td>
