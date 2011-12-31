@@ -32,7 +32,8 @@
                         </tr>
                     </table>
                     <div id = "group_change_button" class="actions">
-                        <%= submit_tag 'Submit Changes', { :disabled => true, :confirm => "Are you sure you want to make these changes?", :id => @scheduled_group.id } %>
+                        <%= submit_tag 'Submit Changes', { :disabled => true, :confirm => "Are you sure you want to make these changes?",
+                                                           :class => "group-change-button", :id => @scheduled_group.id } %>
                     </div>
                  </div>
               </div>

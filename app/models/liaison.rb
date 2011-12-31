@@ -16,7 +16,29 @@ class Liaison < ActiveRecord::Base
         :last_name, :name, :email1, :email2, :cell_phone, :home_phone, :work_phone,
         :fax, :liaison_type, :title, :church_id, :liaison_type_id, :id
 
+  before_validation do
+    if self.cell_phone[0..1] == '1-'
+      self.cell_phone[0..1] = ''
+    end
+    if self.home_phone[0..1] == '1-'
+      self.home_phone[0..1] = ''
+    end
+    if self.work_phone[0..1] == '1-'
+      self.work_phone[0..1] = ''
+    end
+    if self.fax[0..1] == '1-'
+      self.fax[0..1] = ''
+    end
+
+    self.cell_phone = self.cell_phone.gsub(/\D/,'')
+    self.home_phone = self.home_phone.gsub(/\D/,'')
+    self.work_phone = self.work_phone.gsub(/\D/,'')
+    self.fax = self.fax.gsub(/\D/,'')
+
+  end
+
   before_save :create_name
+  before_save :format_phone_numbers
 
   validates :title, :last_name, :first_name, :address1, :city, :church_id, :presence => true
 
@@ -34,14 +56,14 @@ class Liaison < ActiveRecord::Base
             :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i,
             :message => 'Email appears to be invalid.', :allow_blank => true
 #TODO: talk with Meghan about format of phone numbers.
- # validates_numericality_of :work_phone, :home_phone, :cell_phone, :fax,
- #                     :message => 'Please enter 10 digit phone number without dashes or spaces.',
- #                     :allow_blank => true
- #
- # validates_length_of :work_phone, :home_phone, :cell_phone, :fax,
- #                     :is => 10,
- #                     :message => 'Please enter 10 digit phone number without dashes or spaces.',
- #                     :allow_blank => true
+  validates_numericality_of :work_phone, :home_phone, :cell_phone, :fax,
+                      :message => 'Phone number must be 10 digits plus optional separators.',
+                      :allow_blank => true
+
+  validates_length_of :work_phone, :home_phone, :cell_phone, :fax,
+                      :is => 10,
+                      :message => 'Phone number must be 10 digits plus optional separators.',
+                      :allow_blank => true
 #This validation is not working
   validate :require_at_least_one_phone
 
@@ -55,5 +77,24 @@ class Liaison < ActiveRecord::Base
     if self.cell_phone == "" && self.home_phone == "" && self.work_phone == "" then
       errors.add(:cell_phone, 'At least one phone number is required.' )
     end
+  end
+
+  def format_phone_numbers
+     unless self.cell_phone == ""
+       self.cell_phone = self.cell_phone.insert 6, '-'
+       self.cell_phone = self.cell_phone.insert 3, '-'
+     end
+     unless self.home_phone == ""
+       self.home_phone = self.home_phone.insert 6, '-'
+       self.home_phone = self.home_phone.insert 3, '-'
+     end
+     unless self.work_phone == ""
+       self.work_phone = self.work_phone.insert 6, '-'
+       self.work_phone = self.work_phone.insert 3, '-'
+     end
+     unless self.fax == ""
+       self.fax = self.fax.insert 6, '-'
+       self.fax = self.fax.insert 3, '-'
+     end
   end
 end

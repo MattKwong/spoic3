@@ -37,7 +37,8 @@ ActiveAdmin.register Liaison do
     panel "Current Schedule Group Information" do
       table_for liaison.scheduled_groups do
         column "Group Name" do |group|
-          link_to group.name, myssp_path(group.liaison_id)
+          link_to group.name, myssp_path(group.liaison_id),
+          :title => 'Click to go to MySSP page for this liaison.'
         end
         column "Youth", :current_youth
         column "Counselors", :current_counselors
