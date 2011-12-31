@@ -12,6 +12,10 @@
                     <table border="0" cellspacing="0" cellpadding="0" >
                         <h3>Enter the payment details below.</h3>
                         <tr>
+                           <td><%= r.label "Select payment date" %></td>
+                           <td><%= r.date_select(:payment_date, :default => Date.today) %></td>
+                        </tr>
+                        <tr>
                            <td><%= r.label "Select payment type" %></td>
                            <td><%= r.select(:payment_method, options_for_select(@screen_info[:payment_types])) %></td>
                         </tr>

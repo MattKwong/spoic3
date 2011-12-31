@@ -60,7 +60,7 @@ class ChurchesController < ApplicationController
     group = ScheduledGroup.find(group_id)
     original_reg = Registration.find(group.registration_id)
     payment_schedule = PaymentSchedule.find(Session.find(group.session_id).payment_schedule_id)
-    payments = Payment.find_all_by_scheduled_group_id(group_id)
+    payments = Payment.find_all_by_scheduled_group_id(group_id, :order => 'payment_date')
     adjustments = Adjustment.find_all_by_group_id(group_id)
     changes = ChangeHistory.find_all_by_group_id(group_id)
 

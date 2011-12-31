@@ -16,7 +16,7 @@
                           <% @screen_info[:invoice_data][:payments].each do |p| %>
                              <tr>
                                <td></td>
-                               <td><%= p.created_at.strftime("%m/%d/%y") %></td>
+                               <td><%= p.payment_date.strftime("%m/%d/%y") %></td>
                                <td><%= p.payment_method %></td>
                                <td><%= p.payment_amount %></td>
                                <td><%= p.payment_notes %></td>
