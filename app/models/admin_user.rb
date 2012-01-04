@@ -10,9 +10,9 @@ class AdminUser < ActiveRecord::Base
   attr_accessible :email, :name, :user_role, :first_name, :last_name,
                   :liaison_id, :password, :password_confirmation, :remember_me
 
-  validates :email, :uniqueness => true
-  validates :first_name, :last_name, :user_role, :presence => true
-  validates_inclusion_of :user_role, :in => UserRole.all.map {|i| i.role_name}
+#  validates :email, :uniqueness => true
+#  validates :first_name, :last_name, :user_role, :presence => true
+#  validates_inclusion_of :user_role, :in => UserRole.all.map {|i| i.role_name}
 
   before_save :create_name
 
