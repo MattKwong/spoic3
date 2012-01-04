@@ -117,10 +117,8 @@
       <file leaf-file-name="admin_user.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/admin_user.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="2" selection-start="1128" selection-end="1128" vertical-scroll-proportion="1.1745454">
-              <folding>
-                <marker date="1325715890604" expanded="true" signature="1058:1113" placeholder=" ... end" />
-              </folding>
+            <state line="43" column="1" selection-start="1193" selection-end="1193" vertical-scroll-proportion="0.9381818">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1600,7 +1598,7 @@
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Various fixes and migration of admin user table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Admin user workaround" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1613,7 +1611,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Correct error in church new" />
     <MESSAGE value="Continued to refine scheduling and registration views." />
     <MESSAGE value="Many small changes to group manager screens." />
     <MESSAGE value="Created budget models. Created budget item type tests. Corrected liaison tests." />
@@ -1638,6 +1635,7 @@
     <MESSAGE value="Added sort and payment date input to payment and invoice screens." />
     <MESSAGE value="Various fixes" />
     <MESSAGE value="Various fixes and migration of admin user table" />
+    <MESSAGE value="Admin user workaround" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1748,10 +1746,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/admin_user.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="2" selection-start="1128" selection-end="1128" vertical-scroll-proportion="1.1745454">
-          <folding>
-            <marker date="1325715890604" expanded="true" signature="1058:1113" placeholder=" ... end" />
-          </folding>
+        <state line="43" column="1" selection-start="1193" selection-end="1193" vertical-scroll-proportion="0.9381818">
+          <folding />
         </state>
       </provider>
     </entry>
