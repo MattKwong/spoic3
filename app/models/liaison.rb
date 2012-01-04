@@ -1,5 +1,5 @@
 class Liaison < ActiveRecord::Base
-  default_scope :order => 'name'
+ # default_scope :order => 'last_name'
   scope :senior_high_only, where(:liaison_type_id => 2)
   scope :junior_high_only, where(:liaison_type_id => 3)
   scope :both, where(:liaison_type_id => 1)

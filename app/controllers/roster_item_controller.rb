@@ -1,6 +1,7 @@
 class RosterItemController < ApplicationController
   before_filter :check_for_cancel, :only => [:create, :update]
 
+
   def new
     @roster_item = RosterItem.new
     @roster_item.roster_id=params[:roster_id]
@@ -8,11 +9,13 @@ class RosterItemController < ApplicationController
     @title = "Add Participant Information"
     @grade_list = ['9th', '10th', '11th', '12th', 'Graduate', 'Adult']
     @size_list = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
+    @youth_list = [["Youth", true], ["Counselor", false]]
    end
 
   def create
 
     @roster_item = RosterItem.new(params[:roster_item])
+    @roster_item.state.upcase!
     @liaison_id = ScheduledGroup.find(@roster_item.group_id).liaison_id
 
     if @roster_item.valid?
@@ -21,17 +24,18 @@ class RosterItemController < ApplicationController
       redirect_to show_roster_path(:id => @liaison_id,:roster_id => @roster_item.roster_id)
     else
       @title = "Add Participant Information"
-      @grade_list = ['9th', '10th', '11th', '12th', 'Graduate']
+      @grade_list = ['9th', '10th', '11th', '12th', 'Graduate', 'Adult']
       @size_list = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
+      @youth_list = [["Youth", true], ["Counselor", false]]
       render "roster_item/new"
     end
   end
 
   def check_for_cancel
   unless params[:cancel].blank?
-    @roster_item = RosterItem.new(params[:roster_item])
-    @liaison_id = ScheduledGroup.find_by_roster_id(@roster_item.id).liaison_id
-    redirect_to show_roster_path(:id => @liaison_id,:roster_id => @roster_item.roster_id)
+    roster_item = RosterItem.new(params[:roster_item])
+    liaison_id = ScheduledGroup.find(roster_item.group_id).liaison_id
+    redirect_to show_roster_path(:id => liaison_id,:roster_id => roster_item.roster_id)
     end
   end
 
@@ -40,6 +44,7 @@ class RosterItemController < ApplicationController
     @title = "Edit Participant Information"
     @grade_list = ['9th', '10th', '11th', '12th', 'Graduate', 'Adult']
     @size_list = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
+    @youth_list = [["Youth", true], ["Counselor", false]]
   end
 
   def update

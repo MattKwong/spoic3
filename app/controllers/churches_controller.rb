@@ -1,18 +1,23 @@
 class ChurchesController < ApplicationController
+
+  before_filter :authenticate_admin_user!
+#  load_and_authorize_resource
+
   def main
-    @liaison = Liaison.find(params[:id])
-    church = Church.find(@liaison.church_id)
-    registrations = Registration.find_all_by_liaison_id(@liaison.id)
-    groups = ScheduledGroup.find_all_by_liaison_id(@liaison.id)
+    liaison = Liaison.find(params[:id])
+    logger.debug liaison.inspect
+    church = Church.find(liaison.church_id)
+    registrations = Registration.find_all_by_liaison_id(liaison.id) || []
+    groups = ScheduledGroup.find_all_by_liaison_id(liaison.id)
     calculate_invoices_and_rosters(groups)
     notes_and_reminders = Reminder.find_all_by_active(true, :order => 'seq_number')
     checklist = ChecklistItem.find(:all, :order => 'seq_number')
     documents = DownloadableDocument.find_all_by_active(true, :order => 'name')
 
-    @church_information = {:church_info => church, :registration_info => registrations,
+    @screen_info = {:church_info => church, :registration_info => registrations,
       :group_info => groups, :invoice_info => @invoices, :notes_and_reminders => notes_and_reminders,
-      :checklist => checklist, :documents => documents,:roster_info => @rosters }
-
+      :checklist => checklist, :documents => documents,:roster_info => @rosters, :liaison => liaison }
+    logger.debug @screen_info.inspect
   end
 
   def invoice

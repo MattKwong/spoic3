@@ -1,8 +1,11 @@
 class Site < ActiveRecord::Base
+  default_scope :order => 'listing_priority'
   scope :inactive, where(:active => 'f')
   scope :active, where(:active => 't')
 
   has_many :sessions
+  has_many :admin_users
+
   accepts_nested_attributes_for :sessions
 
   attr_accessible :id, :address1, :address2, :city, :name, :phone, :state,

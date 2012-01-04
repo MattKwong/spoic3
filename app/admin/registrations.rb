@@ -8,7 +8,8 @@ ActiveAdmin.register Registration do
 
  index :title => "Registration Requests" do
     column :name do |r|
-      link_to r.name, schedule_request_path(:id => r.id)
+      link_to r.name, schedule_request_path(:id => r.id),
+        :title => "Click to schedule this group"
     end
 
     column :liaison_id do |liaison|

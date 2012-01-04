@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111228195939) do
+ActiveRecord::Schema.define(:version => 20120103035542) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -67,6 +67,13 @@ ActiveRecord::Schema.define(:version => 20111228195939) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "site"
+    t.boolean  "admin"
+    t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "user_role"
+    t.integer  "liaison_id"
   end
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
@@ -373,6 +380,13 @@ ActiveRecord::Schema.define(:version => 20111228195939) do
     t.integer  "listing_priority"
     t.boolean  "active"
     t.boolean  "summer_domestic"
+  end
+
+  create_table "user_roles", :force => true do |t|
+    t.string   "role_name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

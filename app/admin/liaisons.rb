@@ -29,7 +29,7 @@ ActiveAdmin.register Liaison do
         column "Group Name", :name
         column "Youth", :requested_youth
         column "Counselors", :requested_counselors
-        column "Total", :requested_counselors
+        column "Total", :requested_total
         column "Date submitted", :created_at
       end
     end
@@ -109,7 +109,7 @@ ActiveAdmin.register Liaison do
      column :name, :sortable => :last_name do |liaison|
        link_to liaison.name, admin_liaison_path(liaison)
      end
-     column :church_id, :sortable => :name do |church|
+     column :church_id, :sortable => false do |church|
        link_to church.church.name, admin_church_path(church.church_id)
      end
 

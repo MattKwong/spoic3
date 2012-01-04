@@ -1,13 +1,13 @@
-<div id="title_bar">
+   <div id="title_bar">
    <div id="titlebar_left">
       <span class="breadcrumb">
-         <a><%= @liaison.name %></a>
+         <a><%= @screen_info[:liaison].name %></a>
          <span class="breadcrumb_sep">/</span>
       </span>
       <h2 id="page_title">My SSP Information Portal</h2>
    </div>
 </div>
- <%= form_for(@liaison) do |r| %>
+ <%= form_for(@screen_info[:liaison]) do |r| %>
     <div id="active_admin_content"  class="with_sidebar">
         <div id="main_content_wrapper">
             <div id="main_content">
@@ -16,13 +16,13 @@
                     <div class="panel_contents">
                         <div class="attributes_table church" id="church_info_table">
                             <table id = "church_info" border="0" cellspacing="0" cellpadding="0" >
-                                <tr><th>Church Name</th><td><%= link_to @church_information[:church_info].name,
-                                                 edit_admin_church_path(:id => @liaison.church_id) %></td></tr>
-                                <tr><th>Address</th><td><%= @church_information[:church_info].address1 %></td></tr>
-                                <tr><th>City</th><td><%= @church_information[:church_info].city %></td></tr>
-                                <tr><th>State</th><td><%= @church_information[:church_info].state %></td></tr>
-                                <tr><th>Zip</th><td><%= @church_information[:church_info].zip %></td></tr>
-                                <tr><th>Church Phone</th><td><%= @church_information[:church_info].office_phone %></td></tr>
+                                <tr><th>Church Name</th><td><%= link_to @screen_info[:church_info].name,
+                                                 edit_admin_church_path(:id => @screen_info[:liaison].church_id) %></td></tr>
+                                <tr><th>Address</th><td><%= @screen_info[:church_info].address1 %></td></tr>
+                                <tr><th>City</th><td><%= @screen_info[:church_info].city %></td></tr>
+                                <tr><th>State</th><td><%= @screen_info[:church_info].state %></td></tr>
+                                <tr><th>Zip</th><td><%= @screen_info[:church_info].zip %></td></tr>
+                                <tr><th>Church Phone</th><td><%= @screen_info[:church_info].office_phone %></td></tr>
                             </table>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                                 <th>Date submitted</th>
                             </tr>
                         </thead>
-                        <tbody><% @church_information[:registration_info].each do |g| %>
+                        <tbody><% @screen_info[:registration_info].each do |g| %>
                             <tr>
                                 <td><%= g.name %></td>
                                 <td><%= g.requested_youth %></td>
@@ -73,7 +73,7 @@
                                 <th>Payment</th>
                             </tr>
                         </thead><% i = 0 %>
-                        <tbody><% @church_information[:group_info].each do |g| %>
+                        <tbody><% @screen_info[:group_info].each do |g| %>
                             <tr>
                                 <td><%= link_to g.name, edit_scheduled_group_path(g.id),
                                     :title => 'Click to make changes to this group'%></td>
@@ -85,7 +85,7 @@
                                                 :title => "Starts on #{Period.find(s.period_id).start_date.strftime("%m/%d/%y")
                                                 } and ends on #{Period.find(s.period_id).end_date.strftime("%m/%d/%y")}" %></td>
                                 <td><%= link_to "Update Roster", show_roster_path(:roster_id => g.roster_id) %></td>
-                                <td><%= link_to number_to_currency(@church_information[:invoice_info][i][:current_balance]), invoice_path(g.id) %></td>
+                                <td><%= link_to number_to_currency(@screen_info[:invoice_info][i][:current_balance]), invoice_path(g.id) %></td>
                                 <td><%= link_to "Adjustment", make_adjustment_path(g.id),
                                                 :title => "Click to make an adjustment (new church discount, scholarship, etc)." %></td>
                                 <td><%= link_to "Record Payment", record_payment_path(:group_id => g.id),
@@ -107,7 +107,7 @@
                             <th>Document Type</th>
                         </tr>
                         <tbody>
-                            <% @church_information[:documents].each do |d| %>
+                            <% @screen_info[:documents].each do |d| %>
                                 <td><%= link_to d.name, d.url%></td>
                                 <td><%= d.description %></td>
                                 <td><%= d.doc_type %></td>
@@ -124,7 +124,7 @@
                         <thead>
                             <tr>
                                 <th>Item</th>
-                                <% @church_information[:group_info].each do |g| %>
+                                <% @screen_info[:group_info].each do |g| %>
                                     <th><%= link_to g.name, admin_scheduled_group_path(g.id) %></th>
                                 <% end %>
                                 <th>Due Date</th>
@@ -132,10 +132,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% @church_information[:checklist].each do |c| %>
+                            <% @screen_info[:checklist].each do |c| %>
                                 <tr>
                                     <td><%= c.name %></td>
-                                    <% @church_information[:group_info].each do |g| %>
+                                    <% @screen_info[:group_info].each do |g| %>
                                         <td>Status</td>
                                     <% end %>
                                     <td><%= c.due_date.strftime("%m/%d/%y") %></td>
@@ -157,12 +157,12 @@
                         <table border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <th>Name</th>
-                                <td><%= @liaison.name %></td>
+                                <td><%= @screen_info[:liaison].name %></td>
                             </tr>
                             <tr>
                                 <td><%= link_to "Edit Liaison Information",
-                                        edit_admin_liaison_path(:id => @liaison.id) %></td>
-                                <td><%= mail_to @liaison.email1, "Email #{@liaison.first_name}",
+                                        edit_admin_liaison_path(:id => @screen_info[:liaison].id) %></td>
+                                <td><%= mail_to @screen_info[:liaison].email1, "Email #{@screen_info[:liaison].first_name}",
                                                         :subject => "SSP Information"
                                                          %></td>
                             </tr>
@@ -177,7 +177,7 @@
                     <div class="attributes_table liaison" id="attributes_table_notes">
                         <table border="0" cellspacing="0" cellpadding="0">
                             <tbody>
-                                <% @church_information[:notes_and_reminders].each do |n| %>
+                                <% @screen_info[:notes_and_reminders].each do |n| %>
                                     <tr class="reminder_line_one"><td><%= n.first_line %></td></tr>
                                     <tr class="reminder_line_two"><td><%= n.second_line %></td></tr>
                                 <% end %>
@@ -189,3 +189,4 @@
         </div>
     </div>
  <% end %>
+

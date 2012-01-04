@@ -48,7 +48,7 @@
                           </tr>
                           <tr>
                               <td>Requested Session (first choice)</td>
-                              <td><%= @registration.request1 %></td>
+                              <td><%= Session.find(@registration.request1).name %></td>
                           </tr>
                           <tr>
                               <td>Amount paid</td>

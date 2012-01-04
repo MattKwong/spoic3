@@ -17,16 +17,12 @@
                             <div class="panel_contents">
                               <table border="0" cellspacing="0" cellpadding="0">
                                 <tr>
-                                  <td><%= r.label :youth, "Youth" %></td>
-                                  <td><%= r.radio_button :youth?, 't', :checked => true %></td>
-                                  <td><%= r.label :youth, 'Counselor' %></td>
-                                  <td><%= r.radio_button :youth?, 'f' %></td>
+                                  <td><%= r.label "Youth or Counselor?" %></td>
+                                  <td><%= r.select :youth, [["Youth", true], ["Counselor", false]] %></td>
                                 </tr>
                                 <tr>
-                                  <td><%= r.label :male, "Male" %></td>
-                                  <td><%= r.radio_button :male?, 't' %></td>
-                                  <td><%= r.label :male, 'Female' %></td>
-                                  <td><%= r.radio_button :male?, 'f', :checked => true %></td>
+                                    <td><%= r.label "Gender" %></td>
+                                    <td><%= r.select :male, [["Female", false], ["Male", true]] %></td>
                                 </tr>
                                 <tr>
                                   <td><%= r.label "First Name" %></td>
