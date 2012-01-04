@@ -12,7 +12,7 @@ class AdminUser < ActiveRecord::Base
 
   validates :email, :uniqueness => true
   validates :first_name, :last_name, :user_role, :presence => true
-  validates_inclusion_of :user_role, :in => UserRole.all.map {|i| i.role_name}
+#  validates_inclusion_of :user_role, :in => UserRole.all.map {|i| i.role_name}
 
   before_save :create_name
 
@@ -37,7 +37,7 @@ class AdminUser < ActiveRecord::Base
   private
 
   def create_name
-    self.name = self.first_name + ' ' + self.last_name
+#    self.name = self.first_name + ' ' + self.last_name
   end
 
 end
