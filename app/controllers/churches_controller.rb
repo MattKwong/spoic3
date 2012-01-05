@@ -9,14 +9,16 @@ class ChurchesController < ApplicationController
     church = Church.find(liaison.church_id)
     registrations = Registration.find_all_by_liaison_id(liaison.id) || []
     groups = ScheduledGroup.find_all_by_liaison_id(liaison.id)
-    calculate_invoices_and_rosters(groups)
+    rosters = assemble_rosters(groups)
+    invoices = grab_invoice_balances(groups)
     notes_and_reminders = Reminder.find_all_by_active(true, :order => 'seq_number')
     checklist = ChecklistItem.find(:all, :order => 'seq_number')
+
     documents = DownloadableDocument.find_all_by_active(true, :order => 'name')
 
     @screen_info = {:church_info => church, :registration_info => registrations,
-      :group_info => groups, :invoice_info => @invoices, :notes_and_reminders => notes_and_reminders,
-      :checklist => checklist, :documents => documents,:roster_info => @rosters, :liaison => liaison }
+      :group_info => groups, :invoice_info => invoices, :notes_and_reminders => notes_and_reminders,
+      :checklist => checklist, :documents => documents,:roster_info => rosters, :liaison => liaison }
     logger.debug @screen_info.inspect
   end
 
@@ -28,7 +30,7 @@ class ChurchesController < ApplicationController
     start_date = Period.find(Session.find(scheduled_group.session_id).period_id).start_date
     end_date = Period.find(Session.find(scheduled_group.session_id).period_id).end_date
     session_type = SessionType.find(Session.find(scheduled_group.session_id).session_type_id).name
-    invoice = assemble_invoice(params[:id])
+    invoice = calculate_invoice_data(params[:id])
     @screen_info = {:scheduled_group => scheduled_group,
       :site_name => site_name, :period_name => period_name, :start_date => start_date,
       :end_date => end_date,  :session_type => session_type, :invoice_data => invoice,
@@ -37,38 +39,34 @@ class ChurchesController < ApplicationController
   end
 
   private
-  def calculate_invoices_and_rosters(groups)
-    @invoices = []
-    @rosters = []
-    groups.each do |g|
-      @invoices << calculate_balance(g.id)
-      @rosters << Roster.find_by_group_id(g.id)
-    end
-
+  def assemble_rosters(groups)
+     rosters = []
+     groups.each do |g|
+       rosters << Roster.find_by_group_id(g.id)
+     end
+    rosters
   end
 
-  def calculate_balance(group_id)
-    group = ScheduledGroup.find(group_id)
-    original_reg = Registration.find(group.registration_id)
-    payment_schedule = PaymentSchedule.find(Session.find(group.session_id).payment_schedule_id)
-#TODO: logic needs to be added to calculate the correct current_balance number. What is below is not correct.
-#    if (group.current_total == original_reg.requested_total) then  #this is the most straightforward case
-      total_due = group.current_total * payment_schedule.total_payment
-      amount_paid = Payment.sum(:payment_amount, :conditions => ['registration_id = ?', group.registration_id])
-      current_balance = total_due - amount_paid
-      invoice = {:group_id => group_id,:current_balance => current_balance }
-      return invoice
-#    end
+  def grab_invoice_balances(groups)
+     invoices = []
+     groups.each do |g|
+       full_invoice = calculate_invoice_data(g.id)
+       invoices << {:group_id => g.id, :current_balance => full_invoice[:current_balance] }
+     end
+    invoices
   end
 
-  def assemble_invoice(group_id)
+  def calculate_invoice_data(group_id)
     group = ScheduledGroup.find(group_id)
+    logger.debug group.inspect
     original_reg = Registration.find(group.registration_id)
     payment_schedule = PaymentSchedule.find(Session.find(group.session_id).payment_schedule_id)
     payments = Payment.find_all_by_scheduled_group_id(group_id, :order => 'payment_date')
     adjustments = Adjustment.find_all_by_group_id(group_id)
     changes = ChangeHistory.find_all_by_group_id(group_id)
 
+#TODO invoice calculation logic goes here and data is returned in 'invoice' hash. should include the following
+    #for deposits, 2nd payments and final payments: number owed, amount for each, total due
 #    if (group.current_total == original_reg.requested_total) then  #this is the most straightforward case
       total_due = group.current_total * payment_schedule.total_payment
       amount_paid = Payment.sum(:payment_amount, :conditions => ['registration_id = ?', group.registration_id])
@@ -77,8 +75,6 @@ class ChurchesController < ApplicationController
 
     invoice = {:group_id => group_id,:current_balance => current_balance, :payments => payments,
       :adjustments => adjustments, :changes => changes}
-
-    return invoice
   end
 end
 
