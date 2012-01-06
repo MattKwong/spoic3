@@ -58,23 +58,104 @@ class ChurchesController < ApplicationController
 
   def calculate_invoice_data(group_id)
     group = ScheduledGroup.find(group_id)
-    logger.debug group.inspect
     original_reg = Registration.find(group.registration_id)
     payment_schedule = PaymentSchedule.find(Session.find(group.session_id).payment_schedule_id)
     payments = Payment.find_all_by_scheduled_group_id(group_id, :order => 'payment_date')
-    adjustments = Adjustment.find_all_by_group_id(group_id)
+    adjustments = Adjustment.find_all_by_group_id(group.id)
+    adjustment_total = Adjustment.sum(:amount, :conditions => ['group_id = ?', group.id])
     changes = ChangeHistory.find_all_by_group_id(group_id)
 
-#TODO invoice calculation logic goes here and data is returned in 'invoice' hash. should include the following
-    #for deposits, 2nd payments and final payments: number owed, amount for each, total due
-#    if (group.current_total == original_reg.requested_total) then  #this is the most straightforward case
-      total_due = group.current_total * payment_schedule.total_payment
-      amount_paid = Payment.sum(:payment_amount, :conditions => ['registration_id = ?', group.registration_id])
-      current_balance = total_due - amount_paid
-#    end
+#Find the overall high-water total.
+    totals = changes.map { |i| i.new_total }
+    totals << original_reg.requested_total << group.second_payment_total << group.current_total
+    overall_high_water = totals.max
+
+#Find the high-water total since the 2nd payment
+    unless group.second_payment_date.nil?
+      totals = changes.map { |i| if i.created_at > group.second_payment_date
+        i.new_total end }
+      totals << group.second_payment_total << group.current_total
+      second_half_high_water = totals.max
+    end
+
+# Find the number of deposits owed:
+    deposit_amount = overall_high_water * payment_schedule.deposit
+
+#Find the number of second payments owed:
+    second_pay_amount = second_half_high_water * payment_schedule.second_payment
+
+#Find the number of final payments owed:
+     final_pay_amount = group.current_total * payment_schedule.final_payment
+
+     total_due = deposit_amount + second_pay_amount + final_pay_amount - adjustment_total
+     amount_paid = Payment.sum(:payment_amount, :conditions => ['registration_id = ?', group.registration_id])
+     current_balance = total_due - amount_paid
+
+#Assemble event list
+    event_list = Array.new
+
+    adjustments.each do |a|
+      event = {:date => a.created_at.to_date, :name => "Adjustment Code #{a.reason_code} (#{AdjustmentCode.find(a.reason_code).short_name})",
+          :amount_due => number_to_currency(-a.amount) }
+      event_list << event
+    end
+
+    payments.each do |p|
+      event = { :date => p.payment_date.to_date, :name => "Payment Received",
+                :amount_received => number_to_currency(p.payment_amount) }
+      event_list << event
+    end
+
+    changes.each do |c|
+      if c.count_change?
+        event = { :date => c.updated_at.to_date, :name => "Enrollment change: #{c.new_total - c.old_total}"}
+        event_list << event
+      end
+    end
+
+    event = { :date => original_reg.created_at.to_date,
+              :name => "Original registration. Deposit of #{number_to_currency(payment_schedule.deposit)} for #{original_reg.requested_total} persons",
+              :amount_due => "#{number_to_currency(payment_schedule.deposit * original_reg.requested_total)}" }
+    event_list << event
+
+    if group.second_payment_date.nil?
+      event = { :date => payment_schedule.second_payment_date,
+            :name => "2nd payment of #{number_to_currency(payment_schedule.second_payment)} each for #{group.current_total} persons",
+            :amount_due => "#{number_to_currency(payment_schedule.second_payment * group.current_total)}" }
+    else
+      event = { :date => group.second_payment_date,
+            :name => "2nd payment of #{number_to_currency(payment_schedule.second_payment)} per person for #{group.second_payment_total} persons",
+            :amount_due => "#{number_to_currency(payment_schedule.second_payment * group.second_payment_total)}" }
+    end
+    event_list << event
+
+    event = { :date => payment_schedule.final_payment_date,
+          :name => "Final payment of #{number_to_currency(payment_schedule.final_payment)} each for #{group.current_total} persons",
+          :amount_due => "#{number_to_currency(payment_schedule.final_payment * group.current_total)}" }
+    event_list << event
+
+    event_list = event_list.sort_by { |item| item[:date] }
+
+logger.debug overall_high_water
+logger.debug second_half_high_water
+    logger.debug group.current_total
+    logger.debug total_due
+logger.debug amount_paid
+logger.debug deposit_amount
+logger.debug second_pay_amount
+logger.debug final_pay_amount
+logger.debug current_balance
+logger.debug event_list.inspect
+
 
     invoice = {:group_id => group_id,:current_balance => current_balance, :payments => payments,
-      :adjustments => adjustments, :changes => changes}
+      :adjustments => adjustments, :adjustment_total => adjustment_total, :changes => changes,
+      :event_list => event_list, :total_due => total_due, :current_balance => current_balance,
+      :amount_paid => amount_paid}
+  end
+
+  def number_to_currency(number)
+    "$" + sprintf('%.2f', number)
   end
 end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120103035542) do
+ActiveRecord::Schema.define(:version => 20120105191535) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -227,6 +227,8 @@ ActiveRecord::Schema.define(:version => 20120103035542) do
     t.datetime "updated_at"
     t.date     "second_payment_date"
     t.date     "final_payment_date"
+    t.date     "second_payment_late_date"
+    t.date     "final_payment_late_date"
   end
 
   create_table "payments", :force => true do |t|
@@ -338,6 +340,8 @@ ActiveRecord::Schema.define(:version => 20120103035542) do
     t.integer  "liaison_id"
     t.integer  "roster_id"
     t.integer  "group_type_id"
+    t.integer  "second_payment_total"
+    t.date     "second_payment_date"
   end
 
   create_table "scheduled_histories", :force => true do |t|

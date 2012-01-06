@@ -1,9 +1,11 @@
 ActiveAdmin.register PaymentSchedule do
   menu :parent => "Configuration"
 
+
    show show :title => :name do
     attributes_table :name, :deposit, :second_payment, :second_payment_date, :final_payment,
-                     :final_payment_date, :total_payment
+                     :final_payment_date, :total_payment, :second_payment_late_date,
+                      :final_payment_late_date
    end
 
   index do
@@ -20,5 +22,8 @@ ActiveAdmin.register PaymentSchedule do
     column "Total Fee" do |a|
       number_to_currency a.total_payment
     end
+    column "2nd Payment Late Date", :second_payment_late_date
+    column "Final Payment Late Date", :final_payment_late_date
+    default_actions
   end
 end

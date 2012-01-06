@@ -20,8 +20,10 @@ ActiveAdmin.register ScheduledGroup do
           link_to scheduled_group.session.period, admin_session_path(period) end }
        row("Start Date") { scheduled_group.session.period.start_date }
        row("End Date") { scheduled_group.session.period.end_date }
-#       row("Period") { scheduled_group.session.period do |period|
-#          link_to scheduled_group.session.period, admin_session_path(period) end }
+       row("2nd Payment Count") { scheduled_group.second_payment_total }
+       row("2nd Payment Date") { scheduled_group.second_payment_date }
+       #do |d|
+       #   d.second_payment_date.strftime("%m/%d/%y") end }
      end
    end
  end
@@ -49,6 +51,8 @@ ActiveAdmin.register ScheduledGroup do
       column "End", :session_id do |session|
         session.session.period.end_date.strftime("%m/%d/%y")
       end
-      default_actions
+      column "2nd Payment Count", :second_payment_total
+      column "2nd Payment Date", :second_payment_date
+    default_actions
  end
 end

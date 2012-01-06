@@ -2,7 +2,9 @@ class ScheduledGroup < ActiveRecord::Base
 
   attr_accessible :name,:comments, :current_counselors, :current_youth,
                   :current_total, :liaison_id, :scheduled_priority,
-                  :session_id, :church_id, :registration_id, :group_type_id
+                  :session_id, :church_id, :registration_id, :group_type_id, :second_payment_date,
+                  :second_payment_total
+
   has_many :payments
   has_many :change_histories
   has_many :adjustments
@@ -13,7 +15,8 @@ class ScheduledGroup < ActiveRecord::Base
 
 #TODO: Validate referential integrity of liaison, session, churches and registration ids
   validates :name, :liaison_id, :session_id, :church_id, :registration_id, :group_type_id, :presence => true
-  validates_numericality_of :liaison_id, :session_id, :church_id, :registration_id, :group_type_id, :only_integer => true
+  validates_numericality_of :liaison_id, :session_id, :church_id, :registration_id, :group_type_id,
+                            :second_payment_total, :only_integer => true
   validates_numericality_of :scheduled_priority, :greater_than => 0,
                             :less_than_or_equal_to => 10,
                             :only_integer => true

@@ -51,6 +51,44 @@
                     </tbody>
                  </table>
               </div>
+              </div>
+        <div class="panel">
+           <h3>Current Statement</h3>
+              <div class="panel_contents">
+                 <table border="0" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <th>Date</th>
+                        <th >Description</th>
+                        <th>Amount Due</th>
+                        <th>Amount Received</th>
+                    </thead>
+                    <tbody>
+                        <% @screen_info[:invoice_data][:event_list].each do |e| %>
+                            <tr>
+                              <td><%= e[:date].strftime("%m/%d/%y") %></td>
+                              <td><%= e[:name] %></td>
+                              <td><% unless e[:amount_due].nil? %>
+                                    <%= e[:amount_due] %><% end %>
+                              </td>
+                              <td><% unless e[:amount_received].nil? %>
+                                    <%= e[:amount_received] %><% end %>
+                              </td>
+                            </tr>
+                        <% end %>
+                        <tr>
+                            <td></td>
+                            <td>Totals</td>
+                            <td><%= number_to_currency(@screen_info[:invoice_data][:total_due]) %></td>
+                            <td><%= number_to_currency(@screen_info[:invoice_data][:amount_paid]) %></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Balance Due</td>
+                            <td><%= number_to_currency(@screen_info[:invoice_data][:current_balance]) %></td>
+                         </tr>
+                    </tbody>
+                 </table>
+              </div>
            </div>
         </div>
      </div>
