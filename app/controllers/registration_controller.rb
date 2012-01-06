@@ -127,7 +127,14 @@ class RegistrationController < ApplicationController
         @registration.request7, @registration.request8, @registration.request9,
         @registration.request10]
     first_nil = @requests.index(nil)
+    if first_nil.nil
+      first_nil = 10
+    end
+
     first_zero = @requests.index(0)
+    if first_zero.nil
+      first_zero = 10
+    end
     @requests_size = (first_nil < first_zero ? first_nil : first_zero)
     @requests.slice!(@requests_size, @requests.size - @requests_size)
     @sessions = Session.all
