@@ -10,6 +10,8 @@
 #column1 {float: left; width: 125px; padding-left: 10px; }
 #column2 {float: left; width: 125px; padding-left: 10px; }
 
+
+
 .attributes_table table th {
     width: 60px;
 }
@@ -18,7 +20,7 @@
     font-style: italic;
     text-decoration: none;
 }
-.money {
+td.money {
   text-align :right;
     }
 

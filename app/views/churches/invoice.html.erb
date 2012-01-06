@@ -3,99 +3,10 @@
   <div id="main_content_wrapper">
      <div id="main_content">
         <%= render 'layouts/myssp_group_data' %>
-        <div class="panel">
-           <h3>Invoice Information</h3>
-              <div class="panel_contents">
-                 <table border="0" cellspacing="0" cellpadding="0">
-                    <tbody>
-                       <tr>
-                          <td>Balance Due:</td><td class='table_data'><%= number_to_currency(@screen_info[:invoice_data][:current_balance]) %></td>
-                       </tr>
-                          <td>Payments</td>
-                          <th>Date</th><th>Method</th><th>Amount</th><th>Notes</th>
-                          <% @screen_info[:invoice_data][:payments].each do |p| %>
-                             <tr>
-                               <td></td>
-                               <td><%= p.payment_date.strftime("%m/%d/%y") %></td>
-                               <td><%= p.payment_method %></td>
-                               <td><%= number_to_currency(p.payment_amount) %></td>
-                               <td><%= p.payment_notes %></td>
-                             </tr>
-                          <% end %>
-                          <tr></tr>
-                          <td>Schedule Changes</td>
-                          <th>Date</th><th>Youth Change</th><th>Counselor Change</th><th>Total Change</th><th>Changed By</th>
-                          <% @screen_info[:invoice_data][:changes].each do |c| %>
-                             <tr>
-                               <td></td>
-                               <td><%= c.created_at.strftime("%m/%d/%y") %></td>
-                               <td><%= c.old_youth - c.new_youth %></td>
-                               <td><%= c.old_counselors - c.new_counselors %></td>
-                               <td><%= c.old_total - c.new_total %></td>
-                               <td><%= c.updated_by %></td>
-                             </tr>
-                          <% end %>
-                          <tr></tr>
-                          <td>Adjustments</td>
-                          <th>Date</th><th>Amount</th><th>Reason Code</th><th>Notes</th><th>Changed By</th>
-                          <% @screen_info[:invoice_data][:adjustments].each do |a| %>
-                             <tr>
-                               <td></td>
-                               <td><%= a.created_at.strftime("%m/%d/%y") %></td>
-                               <td><%= number_to_currency(a.amount) %></td>
-                               <td><%= a.reason_code %></td>
-                               <td><%= a.note %></td>
-                               <td><%= a.updated_by %></td>
-                             </tr>
-                          <% end %>
-                    </tbody>
-                 </table>
-              </div>
-              </div>
-        <div class="panel">
-           <h3>Current Statement</h3>
-              <div class="panel_contents">
-                 <table border="0" cellspacing="0" cellpadding="0">
-                    <thead>
-                        <th>Date</th>
-                        <th >Description</th>
-                        <th>Amount Due</th>
-                        <th>Amount Received</th>
-                    </thead>
-                    <tbody>
-                        <% @screen_info[:invoice_data][:event_list].each do |e| %>
-                            <tr>
-                              <td><%= e[:date].strftime("%m/%d/%y") %></td>
-                              <td><%= e[:name] %></td>
-                              <td><% unless e[:amount_due].nil? %>
-                                    <%= e[:amount_due] %><% end %>
-                              </td>
-                              <td><% unless e[:amount_received].nil? %>
-                                    <%= e[:amount_received] %><% end %>
-                              </td>
-                            </tr>
-                        <% end %>
-                        <tr>
-                            <td></td>
-                            <td>Totals</td>
-                            <td><%= number_to_currency(@screen_info[:invoice_data][:total_due]) %></td>
-                            <td><%= number_to_currency(@screen_info[:invoice_data][:amount_paid]) %></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Balance Due</td>
-                            <td><%= number_to_currency(@screen_info[:invoice_data][:current_balance]) %></td>
-                         </tr>
-                    </tbody>
-                 </table>
-                <p><%= link_to_function("Print this statement", "javascript:print()") %></p>
-              </div>
-           </div>
-        </div>
-        <div class="panel">
+       <div class="panel">
         <% if @screen_info[:invoice_data][:second_payment_due?] %>
               <h3><%= "
-              Current Invoice:: Due date: #{@screen_info[:invoice_data][:payment_schedule].second_payment_date.strftime("%m/%d/%y")}"%></h3>
+              Current Invoice:: Due date: #{@screen_info[:invoice_data][:payment_schedule].second_payment_date.strftime("%m/%d/%Y")}"%></h3>
               <div class="panel_contents">
                 <table border="0" cellspacing="0" cellpadding="0">
                    <thead>
@@ -107,12 +18,12 @@
                    <tbody>
                        <% @screen_info[:invoice_data][:event_list].each do |e| %>
                            <tr>
-                             <td><%= e[:date].strftime("%m/%d/%y") %></td>
+                             <td><%= e[:date].strftime("%m/%d/%Y") %></td>
                              <td><%= e[:name] %></td>
-                             <td><% unless e[:amount_due].nil? %>
+                             <td class= "money"><% unless e[:amount_due].nil? %>
                                    <%= e[:amount_due] %><% end %>
                              </td>
-                             <td><% unless e[:amount_received].nil? %>
+                             <td class= "money"><% unless e[:amount_received].nil? %>
                                    <%= e[:amount_received] %><% end %>
                              </td>
                            </tr>
@@ -129,10 +40,9 @@
                         </tr>
                    </tbody>
                 </table>
-               <p><%= link_to_function("Print this statement", "javascript:print()") %></p>
              </div>
              <% else %>
-              <h3><%= "Current Invoice:: Due date: #{@screen_info[:invoice_data][:payment_schedule].final_payment_date.strftime("%m/%d/%y")}"%></h3>
+              <h3><%= "Current Invoice:: Due date: #{@screen_info[:invoice_data][:payment_schedule].final_payment_date.strftime("%m/%d/%Y")}"%></h3>
               <div class="panel_contents">
                 <table border="0" cellspacing="0" cellpadding="0">
                    <thead>
@@ -203,12 +113,58 @@
                            <td><%= number_to_currency(@screen_info[:invoice_data][:current_balance]) %></td>
                         </tr>
                    </tbody>
-                </table>
-               <p><%= link_to_function("Print this invoice", "javascript:print()") %></p>
-             </div>
-          <% end %>
+                <% end %>
+              <div>Instructions for updating and paying this invoice.<br><br>
+              1. If necessary, update your enrollment numbers. To increase them, call the office at 916-488-6441.
+              To decrease, <%= link_to "click here", edit_scheduled_group_path(@screen_info[:scheduled_group].id) %>.<br><br>
+              2. To pay by credit card, <%= link_to "click here", record_payment_path(:group_id => @screen_info[:scheduled_group].id),
+              :title => "Click to record payment. Eventually to be replaced by payment gateway."%>. To pay by check,
+              <%= link_to_function("print this statement", "javascript:print()") %> and mail it with a check to the SSP office.</div>
+         </table>
+               </div>
+        </div>
+        <div class="panel">
+           <h3>Current Statement</h3>
+              <div class="panel_contents">
+                 <table border="0" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <th>Date</th>
+                        <th >Description</th>
+                        <th>Amount Due</th>
+                        <th>Amount Received</th>
+                    </thead>
+                    <tbody>
+                        <% @screen_info[:invoice_data][:event_list].each do |e| %>
+                            <tr>
+                              <td><%= e[:date].strftime("%m/%d/%y") %></td>
+                              <td><%= e[:name] %></td>
+                              <td><% unless e[:amount_due].nil? %>
+                                    <%= e[:amount_due] %><% end %>
+                              </td>
+                              <td><% unless e[:amount_received].nil? %>
+                                    <%= e[:amount_received] %><% end %>
+                              </td>
+                            </tr>
+                        <% end %>
+                        <tr>
+                            <td></td>
+                            <td>Totals</td>
+                            <td><%= number_to_currency(@screen_info[:invoice_data][:total_due]) %></td>
+                            <td><%= number_to_currency(@screen_info[:invoice_data][:amount_paid]) %></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Balance Due</td>
+                            <td><%= number_to_currency(@screen_info[:invoice_data][:current_balance]) %></td>
+                         </tr>
+                    </tbody>
+                 </table>
+              <div>This statement shows the entire cost of your SSP trip and does not necessary show what you currently owe.
+              To determine your current (or next) payment to SSP, refer to the invoice section above. To print a copy of this
+              statement for your records, <%= link_to_function("click here", "javascript:print()") %>.</div>
+              </div>
+           </div>
         </div>
      </div>
-      </div>
  </div>
 

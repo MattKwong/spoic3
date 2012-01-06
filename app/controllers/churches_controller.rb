@@ -76,6 +76,7 @@ class ChurchesController < ApplicationController
       totals = changes.map { |i| if i.created_at > group.second_payment_date
         i.new_total end }
       totals << group.second_payment_total << group.current_total
+      logger.debug totals.inspect
       second_half_high_water = totals.max
     end
 
