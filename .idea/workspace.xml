@@ -7,6 +7,8 @@
     <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/registration_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/registration_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/registration/schedule.html.erb" afterPath="$PROJECT_DIR$/app/views/registration/schedule.html.erb" />
     </list>
     <ignored path="spoic3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,7 +38,16 @@
       <file leaf-file-name="schedule.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/registration/schedule.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+            <state line="23" column="80" selection-start="916" selection-end="916" vertical-scroll-proportion="45.76923">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scheduled_groups_controller.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="77" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.32762313">
               <folding />
             </state>
           </provider>
@@ -51,10 +62,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="registration_controller.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="registration_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/registration_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="128" column="86" selection-start="5041" selection-end="5041" vertical-scroll-proportion="0.29122055">
+            <state line="156" column="71" selection-start="5966" selection-end="5966" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -94,15 +105,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/payment/new.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="66" selection-start="1949" selection-end="1949" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ability.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/ability.rb">
           <provider selected="true" editor-type-id="text-editor">
@@ -132,11 +134,13 @@
     <option name="CHECKOUT_INCLUDE_TAGS" value="false" />
     <option name="UPDATE_CHANGES_POLICY" value="STASH" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Rails console: spoic3" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Rails console: spoic3" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/db/schema.rb" />
-        <option value="$PROJECT_DIR$/app/models/admin_user.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20120105191408_add_fields_to_payment_schedule_2.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20120105191535_add_fields_to_scheduled_groups_2.rb" />
         <option value="$PROJECT_DIR$/app/models/payment_schedule.rb" />
@@ -151,6 +155,8 @@
         <option value="$PROJECT_DIR$/app/views/payment/new.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/churches_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/registration_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/registration/schedule.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" />
       </list>
     </option>
   </component>
@@ -1503,11 +1509,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/admin/payment_schedules.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="844" selection-end="844" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="0" selection-start="254" selection-end="254" vertical-scroll-proportion="0.27309236" />
@@ -1547,31 +1548,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/admin_user.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="77" selection-start="740" selection-end="740" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/payment/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="66" selection-start="1949" selection-end="1949" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/ability.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="0" selection-start="207" selection-end="207" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/_header.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/registration/schedule.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
@@ -1592,7 +1574,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/registration_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="128" column="86" selection-start="5041" selection-end="5041" vertical-scroll-proportion="0.29122055">
+        <state line="156" column="71" selection-start="5966" selection-end="5966" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/payment/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="67" selection-start="2569" selection-end="2569" vertical-scroll-proportion="0.76870745">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/admin_user.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="77" selection-start="740" selection-end="740" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/registration/schedule.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="80" selection-start="916" selection-end="916" vertical-scroll-proportion="45.76923">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="77" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.32762313">
           <folding />
         </state>
       </provider>

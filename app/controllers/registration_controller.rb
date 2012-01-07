@@ -141,6 +141,9 @@ class RegistrationController < ApplicationController
     @sessions = Session.all
     @selection = 0
     @alt_sessions = Session.find_all_by_session_type_id(@registration.group_type_id).map  { |s| [s.name, s.id]}
+    @requests.each { |i| @alt_sessions.delete_if { |j| j[1] == i }}
+    logger.debug @alt_sessions
+    logger.debug @requests
   end
 
   def alt_schedule

@@ -21,7 +21,8 @@ class ScheduledGroupsController < ApplicationController
                         :current_total => @registration.requested_total,
                         :liaison_id => @registration.liaison_id, :session_id => params[:id],
                         :group_type_id => @registration.group_type_id,
-                        :scheduled_priority => params[:priority])
+                        :scheduled_priority => params[:priority],
+                        :second_payment_total => 0)
     else if ScheduledGroup.find_all_by_registration_id(params[:reg]).count == 1
       @scheduled_group = ScheduledGroup.find_by_registration_id(params[:reg])
          else
