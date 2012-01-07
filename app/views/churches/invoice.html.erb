@@ -119,7 +119,7 @@
               To decrease, <%= link_to "click here", edit_scheduled_group_path(@screen_info[:scheduled_group].id) %>.<br><br>
               2. To pay by credit card, <%= link_to "click here", record_payment_path(:group_id => @screen_info[:scheduled_group].id),
               :title => "Click to record payment. Eventually to be replaced by payment gateway."%>. To pay by check,
-              <%= link_to_function("print this statement", "javascript:print()") %> and mail it with a check to the SSP office.</div>
+              <%= link_to "print this statement", invoice_path(:group_id => @screen_info[:scheduled_group].id, :format => "pdf") %> and mail it with a check to the SSP office.</div>
          </table>
                </div>
         </div>

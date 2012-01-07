@@ -16,6 +16,7 @@ gem 'formtastic'
 gem 'activeadmin'
 gem 'validates_timeliness'
 gem 'cancan'
+gem 'prawn_rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'

@@ -19,7 +19,7 @@ class ChurchesController < ApplicationController
     @screen_info = {:church_info => church, :registration_info => registrations,
       :group_info => groups, :invoice_info => invoices, :notes_and_reminders => notes_and_reminders,
       :checklist => checklist, :documents => documents,:roster_info => rosters, :liaison => liaison }
-    logger.debug @screen_info.inspect
+
   end
 
   def invoice
@@ -31,14 +31,76 @@ class ChurchesController < ApplicationController
     end_date = Period.find(Session.find(scheduled_group.session_id).period_id).end_date
     session_type = SessionType.find(Session.find(scheduled_group.session_id).session_type_id).name
     invoice = calculate_invoice_data(params[:id])
-    @screen_info = {:scheduled_group => scheduled_group,
+    church = Church.find(scheduled_group.church_id)
+
+#Create invoice_items array
+    invoice_items = Array[]
+    item = ["Deposits", invoice[:deposits_due_count],
+      number_to_currency(invoice[:payment_schedule].deposit),
+      number_to_currency(invoice[:deposit_amount])]
+    invoice_items << item
+
+    item = ["2nd Payments", invoice[:second_payments_due_count],
+      number_to_currency(invoice[:payment_schedule].second_payment),
+      number_to_currency(invoice[:second_payment_amount])]
+    invoice_items << item
+
+    item = ["Final Payments", scheduled_group.current_total,
+      number_to_currency(invoice[:payment_schedule].final_payment),
+      number_to_currency(invoice[:final_payment_amount])]
+    invoice_items << item
+ #
+ #    <td>Total</td>
+ #    <td></td>
+ #    <td></td>
+ #    <td><%= number_to_currency(@screen_info[:invoice_data][:deposit_amount] +
+ #                                       @screen_info[:invoice_data][:second_payment_amount] +
+ #                                     @screen_info[:invoice_data][:final_payment_amount]) %></td>
+ #</tr>
+ #<tr>
+ #    <td>Paid to date</td>
+ #    <td></td>
+ #    <td></td>
+ #    <td><%= number_to_currency(@screen_info[:invoice_data][:amount_paid]) %></td>
+ #</tr>
+ #<% if @screen_info[:invoice_data][:second_late_payment_required?]%>
+ #  <tr>
+ #    <td>Second Payment Late Charge</td>
+ #    <td></td>
+ #    <td></td>
+ #    <td><%= number_to_currency(@screen_info[:invoice_data][:second_late_payment_amount]) %></td>
+ #  </tr>
+ #<% end %>
+ #<% if @screen_info[:invoice_data][:final_late_payment_required?]%>
+ #  <tr>
+ #    <td>Second Payment Late Charge</td>
+ #    <td></td>
+ #    <td></td>
+ #    <td><%= number_to_currency(@screen_info[:invoice_data][:final_late_payment_amount]) %></td>
+ #  </tr>
+ #<% end %>
+ #<tr>
+ #    <td>Less Adjustments</td>
+ #    <td></td>
+ #    <td></td>
+ #    <td><%= number_to_currency(@screen_info[:invoice_data][:adjustment_total]) %></td>
+ #</tr>
+ #<tr>
+ #    <td>Balance Due</td>
+ #    <td></td>
+ #    <td></td>
+ #    <td><%= number_to_currency(@screen_info[:invoice_data][:current_balance]) %></td>
+ #
+
+    @screen_info = {:scheduled_group => scheduled_group, :invoice_items => invoice_items,
       :site_name => site_name, :period_name => period_name, :start_date => start_date,
       :end_date => end_date,  :session_type => session_type, :invoice_data => invoice,
-      :liaison_name => liaison_name}
+      :liaison_name => liaison_name, :church_info => church}
     @title = "Invoice for: #{scheduled_group.name}"
   end
 
-  private
+private
+
   def assemble_rosters(groups)
      rosters = []
      groups.each do |g|
