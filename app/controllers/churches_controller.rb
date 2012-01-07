@@ -69,7 +69,7 @@ class ChurchesController < ApplicationController
 #Find the overall high-water total.
     totals = changes.map { |i| i.new_total }
     totals << original_reg.requested_total << group.second_payment_total << group.current_total
-    overall_high_water = totals.max
+    overall_high_water = totals.compact.max
 
 #Find the high-water total since the 2nd payment
     unless group.second_payment_date.nil?

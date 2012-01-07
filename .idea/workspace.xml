@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/registration_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/registration_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/registration/schedule.html.erb" afterPath="$PROJECT_DIR$/app/views/registration/schedule.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/churches_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/churches_controller.rb" />
     </list>
     <ignored path="spoic3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,19 +42,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scheduled_groups_controller.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="scheduled_groups_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="77" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.32762313">
+            <state line="21" column="77" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="churches_controller.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="churches_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/churches_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="88" selection-start="3273" selection-end="3273" vertical-scroll-proportion="0.0">
+            <state line="65" column="38" selection-start="2916" selection-end="2916" vertical-scroll-proportion="0.14989293">
               <folding />
             </state>
           </provider>
@@ -153,10 +151,10 @@
         <option value="$PROJECT_DIR$/app/views/churches/invoice.html.erb" />
         <option value="$PROJECT_DIR$/app/models/ability.rb" />
         <option value="$PROJECT_DIR$/app/views/payment/new.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/churches_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/registration_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/registration/schedule.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/churches_controller.rb" />
       </list>
     </option>
   </component>
@@ -1466,7 +1464,7 @@
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix to scheduling logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Other minor changes" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1479,7 +1477,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Corrected error with church add." />
     <MESSAGE value="Fine tuned registration presentation. Still unresolved is phone number formats" />
     <MESSAGE value="Still to fix: phone number format." />
     <MESSAGE value="Lots of work on MySSP" />
@@ -1504,6 +1501,7 @@
     <MESSAGE value="Lots of work on invoice calculations and presentation" />
     <MESSAGE value="More work on invoicing presentation and logic" />
     <MESSAGE value="Fix to scheduling logic" />
+    <MESSAGE value="Other minor changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1565,13 +1563,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/churches_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="88" selection-start="3273" selection-end="3273" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/registration_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="156" column="71" selection-start="5966" selection-end="5966" vertical-scroll-proportion="0.0">
@@ -1600,7 +1591,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="77" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.32762313">
+        <state line="21" column="77" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/churches_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="38" selection-start="2916" selection-end="2916" vertical-scroll-proportion="0.14989293">
           <folding />
         </state>
       </provider>
