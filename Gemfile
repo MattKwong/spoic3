@@ -16,7 +16,9 @@ gem 'formtastic'
 gem 'activeadmin'
 gem 'validates_timeliness'
 gem 'cancan'
-gem 'prawn_rails'
+#gem 'prawn', '0.11.1.pre'
+#gem 'prawn', :git => "git://github.com/sandal/prawn.git", :tag => '0.11.1.pre', :submodules => true
+gem 'prawn', :tag => '0.11.1.pre', :submodules => true
 
 # Use unicorn as the web server
 # gem 'unicorn'

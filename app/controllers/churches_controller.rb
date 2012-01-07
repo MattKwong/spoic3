@@ -35,6 +35,9 @@ class ChurchesController < ApplicationController
 
 #Create invoice_items array
     invoice_items = Array[]
+    item = ["Description", "Number of Persons", "Amount per Person", "Total"]
+    invoice_items << item
+
     item = ["Deposits", invoice[:deposits_due_count],
       number_to_currency(invoice[:payment_schedule].deposit),
       number_to_currency(invoice[:deposit_amount])]
@@ -49,48 +52,29 @@ class ChurchesController < ApplicationController
       number_to_currency(invoice[:payment_schedule].final_payment),
       number_to_currency(invoice[:final_payment_amount])]
     invoice_items << item
- #
- #    <td>Total</td>
- #    <td></td>
- #    <td></td>
- #    <td><%= number_to_currency(@screen_info[:invoice_data][:deposit_amount] +
- #                                       @screen_info[:invoice_data][:second_payment_amount] +
- #                                     @screen_info[:invoice_data][:final_payment_amount]) %></td>
- #</tr>
- #<tr>
- #    <td>Paid to date</td>
- #    <td></td>
- #    <td></td>
- #    <td><%= number_to_currency(@screen_info[:invoice_data][:amount_paid]) %></td>
- #</tr>
- #<% if @screen_info[:invoice_data][:second_late_payment_required?]%>
- #  <tr>
- #    <td>Second Payment Late Charge</td>
- #    <td></td>
- #    <td></td>
- #    <td><%= number_to_currency(@screen_info[:invoice_data][:second_late_payment_amount]) %></td>
- #  </tr>
- #<% end %>
- #<% if @screen_info[:invoice_data][:final_late_payment_required?]%>
- #  <tr>
- #    <td>Second Payment Late Charge</td>
- #    <td></td>
- #    <td></td>
- #    <td><%= number_to_currency(@screen_info[:invoice_data][:final_late_payment_amount]) %></td>
- #  </tr>
- #<% end %>
- #<tr>
- #    <td>Less Adjustments</td>
- #    <td></td>
- #    <td></td>
- #    <td><%= number_to_currency(@screen_info[:invoice_data][:adjustment_total]) %></td>
- #</tr>
- #<tr>
- #    <td>Balance Due</td>
- #    <td></td>
- #    <td></td>
- #    <td><%= number_to_currency(@screen_info[:invoice_data][:current_balance]) %></td>
- #
+
+    item = ["Total", "", "", number_to_currency(invoice[:deposit_amount] + invoice[:second_payment_amount] +
+      invoice[:final_payment_amount])]
+    invoice_items << item
+
+    item = ["Paid to date", "", "", number_to_currency(invoice[:amount_paid])]
+    invoice_items << item
+
+    if invoice[:second_late_payment_required?]
+      item = ["Second Payment Late Charge", "", "", number_to_currency(invoice[:second_late_payment_amount])]
+      invoice_items << item
+    end
+
+    if invoice[:final_late_payment_required?]
+      item = ["Second Payment Late Charge", "", "", number_to_currency(invoice[:final_late_payment_amount])]
+      invoice_items << item
+    end
+
+    item = ["Less Adjustments", "", "", number_to_currency(invoice[:adjustment_total])]
+    invoice_items << item
+
+    item = ["Balance Due", "", "", number_to_currency(invoice[:current_balance])]
+    invoice_items << item
 
     @screen_info = {:scheduled_group => scheduled_group, :invoice_items => invoice_items,
       :site_name => site_name, :period_name => period_name, :start_date => start_date,
