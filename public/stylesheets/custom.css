@@ -10,7 +10,9 @@
 #column1 {float: left; width: 125px; padding-left: 10px; }
 #column2 {float: left; width: 125px; padding-left: 10px; }
 
-
+#group_content {
+    margin-right: 0
+}
 
 .attributes_table table th {
     width: 60px;

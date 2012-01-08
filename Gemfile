@@ -10,15 +10,16 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'jquery-rails'
 
 gem 'rake', '0.8.7'
-#gem 'will_paginate', '~> 3.0.beta'
 gem 'haml'
 gem 'formtastic'
 gem 'activeadmin'
 gem 'validates_timeliness'
 gem 'cancan'
+gem 'prawn_rails'
+
 #gem 'prawn', '0.11.1.pre'
 #gem 'prawn', :git => "git://github.com/sandal/prawn.git", :tag => '0.11.1.pre', :submodules => true
-gem 'prawn', :tag => '0.11.1.pre', :submodules => true
+#gem 'prawn-rails', :tag => '0.11.1.pre', :submodules => true
 
 # Use unicorn as the web server
 # gem 'unicorn'
