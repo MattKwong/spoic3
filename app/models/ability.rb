@@ -5,7 +5,14 @@ class Ability
 
     if admin_user.liaison?
       liaison = Liaison.find_by_email1(admin_user.email)
-      can :read, Liaison, :id => liaison.id
+      can :update, Liaison, :id => liaison.id
+      can :read, ScheduledGroup, :liaison_id => liaison.id
+      can :update, Church, :liaison_id => liaison.id
+      cannot :move, ScheduledGroup
+    end
+#move is defined as being able to move a scheduled group and to increase their numbers
+    if admin_user.admin?
+      can :manage, :all
     end
 
     # Define abilities for the passed in user here. For example:

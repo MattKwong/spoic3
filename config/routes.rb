@@ -31,6 +31,7 @@ Spoic3::Application.routes.draw do
   match "adjustments" => 'adjustment#create', :as => 'adjustments'
 
   match "scheduled_groups/:id/invoice" => 'churches#invoice', :as => "invoice"
+  match "scheduled_groups/:id/statement" => 'churches#statement', :as => "statement"
   match "budget/budget_summary" => 'budget#budget_summary', :as => "budget_show"
   match "roster_item/new" => 'roster_item#new', :as => 'new_roster_item'
   match "roster_items" => 'roster_item#create', :as => 'roster_items'

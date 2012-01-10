@@ -19,4 +19,13 @@ class ApplicationController < ActionController::Base
       #       end
       #
  end
+
+  def current_ability
+    @current_ability ||= Ability.new(current_admin_user)
+  end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "Error: You are not authorized to perform this action"
+    redirect_to '/'
+  end
 end

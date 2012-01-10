@@ -1,5 +1,5 @@
 ActiveAdmin::Dashboards.build do
-
+#  if @current_admin_user.can? :read
   # Define your dashboard sections here. Each block will be
   # rendered on the dashboard in the context of the view. So just
   # return the content which you would like to display.
@@ -34,5 +34,5 @@ ActiveAdmin::Dashboards.build do
   #   section "Recent User", :priority => 1
   #
   # Will render the "Recent Users" then the "Recent Posts" sections on the dashboard.
-
+#  end
 end

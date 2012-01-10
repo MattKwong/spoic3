@@ -5,19 +5,19 @@ class RegistrationController < ApplicationController
   end
 
   def register                #prior to display of register view
+      @registration = Registration.new
+      authorize! :create, @registration
       @liaisons = Liaison.all.map { |l| [l.name, l.id ]}
       @group_types = SessionType.all.map { |s| [s.name, s.id ]}
-      @registration = Registration.new
       @title = "Register A Group"
       render "register"
   end
 
   def create       #triggered by register view
     @registration = Registration.new(params[:registration])
-#    logger.debug "Test info Step create: #{@registration.attributes.inspect}"
+    authorize! :create, @registration
     if (@registration.valid?)
       @registration.save!
-#      logger.debug "successful save"
       flash[:notice] = "Successful completion of Step 1!"
       redirect_to edit_registration_path(:id => @registration.id)
     else
@@ -30,6 +30,7 @@ class RegistrationController < ApplicationController
 
   def edit              #prior to /:id/edit view
     @registration = Registration.find(params[:id])
+    authorize! :edit, @registration
     @liaison = Liaison.find(@registration.liaison_id)
     @church = Church.find(@liaison.church_id)
     @group_type = SessionType.find(@registration.group_type_id)
@@ -50,6 +51,7 @@ class RegistrationController < ApplicationController
 
   def update          #follows posting of edit and process_payment forms
     @registration = Registration.find(params[:id])
+    authorize! :update, @registration
     @liaison = Liaison.find(@registration.liaison_id)
     @group_type = SessionType.find(@registration.group_type_id)
     @registration.church_id = @liaison.church_id
@@ -59,7 +61,7 @@ class RegistrationController < ApplicationController
     @church = Church.find(@liaison.church_id)
     @registration.update_attributes(params[:registration])
     @payment_types = 'Check', 'Credit Card', 'Cash'
- #   logger.debug "Test info 1: #{@registration.registration_step}"
+
 
     if (step2?) then
       if @registration.update_attributes(params[:registration])
@@ -73,9 +75,7 @@ class RegistrationController < ApplicationController
       end
     end
 
- #   logger.debug "Test info 3: #{@registration.attributes.inspect}"
     if (step3?)
- #      logger.debug "Test info 3: #{params}"
       if @registration.update_attributes(params[:registration]) then
         @payment = Payment.new
         @payment.registration_id = @registration.id
@@ -96,6 +96,7 @@ class RegistrationController < ApplicationController
 
   def process_payment   #prior to rendering process_payment step 3
     @registration = Registration.find(params[:id])
+    authorize! :update, @registration
     @liaison = Liaison.find(@registration.liaison_id)
     @church = Church.find(@liaison.church_id)
     @group_type = SessionType.find(@registration.group_type_id)
@@ -117,6 +118,7 @@ class RegistrationController < ApplicationController
   def schedule
     @title = "Schedule a Group"
     @registration = Registration.find(params[:id])
+    authorize! :update, @registration
     @church = Church.find(@registration.church_id)
     @liaison = Liaison.find(@registration.liaison_id)
     @session = Session.find(@registration.request1)
@@ -142,8 +144,6 @@ class RegistrationController < ApplicationController
     @selection = 0
     @alt_sessions = Session.find_all_by_session_type_id(@registration.group_type_id).map  { |s| [s.name, s.id]}
     @requests.each { |i| @alt_sessions.delete_if { |j| j[1] == i }}
-    logger.debug @alt_sessions
-    logger.debug @requests
   end
 
   def alt_schedule

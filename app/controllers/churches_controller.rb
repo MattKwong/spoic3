@@ -1,14 +1,14 @@
 class ChurchesController < ApplicationController
 
   before_filter :authenticate_admin_user!
-#  load_and_authorize_resource
 
   def main
     liaison = Liaison.find(params[:id])
-    logger.debug liaison.inspect
     church = Church.find(liaison.church_id)
+    authorize! :update, liaison
     registrations = Registration.find_all_by_liaison_id(liaison.id) || []
     groups = ScheduledGroup.find_all_by_liaison_id(liaison.id)
+#    authorize! :read, groups
     rosters = assemble_rosters(groups)
     invoices = grab_invoice_balances(groups)
     notes_and_reminders = Reminder.find_all_by_active(true, :order => 'seq_number')
@@ -23,17 +23,56 @@ class ChurchesController < ApplicationController
   end
 
   def invoice
-    scheduled_group = ScheduledGroup.find(params[:id])
-    liaison_name = Liaison.find(scheduled_group.liaison_id).name
-    site_name = Site.find(Session.find(scheduled_group.session_id).site_id).name
-    period_name = Period.find(Session.find(scheduled_group.session_id).period_id).name
-    start_date = Period.find(Session.find(scheduled_group.session_id).period_id).start_date
-    end_date = Period.find(Session.find(scheduled_group.session_id).period_id).end_date
-    session_type = SessionType.find(Session.find(scheduled_group.session_id).session_type_id).name
+    @scheduled_group = ScheduledGroup.find(params[:id])
+    liaison_name = Liaison.find(@scheduled_group.liaison_id).name
+    site_name = Site.find(Session.find(@scheduled_group.session_id).site_id).name
+    period_name = Period.find(Session.find(@scheduled_group.session_id).period_id).name
+    start_date = Period.find(Session.find(@scheduled_group.session_id).period_id).start_date
+    end_date = Period.find(Session.find(@scheduled_group.session_id).period_id).end_date
+    session_type = SessionType.find(Session.find(@scheduled_group.session_id).session_type_id).name
     invoice = calculate_invoice_data(params[:id])
-    church = Church.find(scheduled_group.church_id)
+    church = Church.find(@scheduled_group.church_id)
+    invoice_items = create_invoice_items(invoice)
 
-#Create invoice_items array
+    @screen_info = {:scheduled_group => @scheduled_group, :invoice_items => invoice_items,
+      :site_name => site_name, :period_name => period_name, :start_date => start_date,
+      :end_date => end_date,  :session_type => session_type, :invoice_data => invoice,
+      :liaison_name => liaison_name, :church_info => church}
+    @title = "Invoice for: #{@scheduled_group.name}"
+  end
+
+  def statement
+    @scheduled_group = ScheduledGroup.find(params[:id])
+    invoice = calculate_invoice_data(params[:id])
+    @event_list = invoice[:event_list]
+
+#Add header and footers to event_list for statement
+    @event_list.insert(0, ["Date", "Item", "Amount Due", "Amount Received"])
+    footer = ["", "Totals", number_to_currency(invoice[:total_due]), number_to_currency(invoice[:amount_paid])]
+    @event_list << footer
+    footer = ["", "Totals", number_to_currency(invoice[:current_balance]), ""]
+    @event_list << footer
+#Convert date column to formatted dates
+    logger.debug @event_list.inspect
+    for i in 0..@event_list.size - 1
+      if @event_list[i][0].instance_of?(Date)
+        @event_list[i][0] = @event_list[i][0].strftime("%m/%d/%Y")
+      end
+    end
+
+    @liaison_name = Liaison.find(@scheduled_group.liaison_id).name
+    @site_name = Site.find(Session.find(@scheduled_group.session_id).site_id).name
+    @period_name = Period.find(Session.find(@scheduled_group.session_id).period_id).name
+    @start_date = Period.find(Session.find(@scheduled_group.session_id).period_id).start_date
+    @end_date = Period.find(Session.find(@scheduled_group.session_id).period_id).end_date
+    @church = Church.find(@scheduled_group.church_id)
+
+  end
+
+private
+  def create_invoice_items(invoice)
+
+    #Create invoice_items array
     invoice_items = Array[]
     item = ["Description", "Number of Persons", "Amount per Person", "Total"]
     invoice_items << item
@@ -48,7 +87,7 @@ class ChurchesController < ApplicationController
       number_to_currency(invoice[:second_payment_amount])]
     invoice_items << item
 
-    item = ["Final Payments", scheduled_group.current_total,
+    item = ["Final Payments", @scheduled_group.current_total,
       number_to_currency(invoice[:payment_schedule].final_payment),
       number_to_currency(invoice[:final_payment_amount])]
     invoice_items << item
@@ -76,14 +115,7 @@ class ChurchesController < ApplicationController
     item = ["Balance Due", "", "", number_to_currency(invoice[:current_balance])]
     invoice_items << item
 
-    @screen_info = {:scheduled_group => scheduled_group, :invoice_items => invoice_items,
-      :site_name => site_name, :period_name => period_name, :start_date => start_date,
-      :end_date => end_date,  :session_type => session_type, :invoice_data => invoice,
-      :liaison_name => liaison_name, :church_info => church}
-    @title = "Invoice for: #{scheduled_group.name}"
   end
-
-private
 
   def assemble_rosters(groups)
      rosters = []
@@ -151,47 +183,42 @@ private
     event_list = Array.new
 
     adjustments.each do |a|
-      event = {:date => a.created_at.to_date, :name => "Adjustment Code #{a.reason_code} (#{AdjustmentCode.find(a.reason_code).short_name})",
-          :amount_due => number_to_currency(-a.amount) }
+      event = [a.created_at.to_date, "Adjustment Code #{a.reason_code} (#{AdjustmentCode.find(a.reason_code).short_name})",
+          number_to_currency(-a.amount), ""]
       event_list << event
     end
 
     payments.each do |p|
-      event = { :date => p.payment_date.to_date, :name => "Payment Received",
-                :amount_received => number_to_currency(p.payment_amount) }
+      event = [p.payment_date.to_date, "Payment Received", "", number_to_currency(p.payment_amount)]
       event_list << event
     end
 
     changes.each do |c|
       if c.count_change?
-        event = { :date => c.updated_at.to_date, :name => "Enrollment change: #{c.new_total - c.old_total}"}
+        event = [c.updated_at.to_date, "Enrollment change: #{c.new_total - c.old_total}", "", ""]
         event_list << event
       end
     end
 
-    event = { :date => original_reg.created_at.to_date,
-              :name => "Original registration. Deposit of #{number_to_currency(payment_schedule.deposit)} for #{original_reg.requested_total} persons",
-              :amount_due => "#{number_to_currency(payment_schedule.deposit * original_reg.requested_total)}" }
+    event = [original_reg.created_at.to_date, "Original registration. Deposit of #{number_to_currency(payment_schedule.deposit)} for #{original_reg.requested_total} persons",
+              "#{number_to_currency(payment_schedule.deposit * original_reg.requested_total)}", ""]
     event_list << event
 
     if group.second_payment_date.nil?
       second_payment_due = true
-      event = { :date => payment_schedule.second_payment_date,
-            :name => "2nd payment of #{number_to_currency(payment_schedule.second_payment)} each for #{group.current_total} persons",
-            :amount_due => "#{number_to_currency(payment_schedule.second_payment * group.current_total)}" }
+      event = [payment_schedule.second_payment_date,"2nd payment of #{number_to_currency(payment_schedule.second_payment)} each for #{group.current_total} persons",
+            "#{number_to_currency(payment_schedule.second_payment * group.current_total)}", ""]
     else
-      event = { :date => group.second_payment_date,
-            :name => "2nd payment of #{number_to_currency(payment_schedule.second_payment)} per person for #{group.second_payment_total} persons",
-            :amount_due => "#{number_to_currency(payment_schedule.second_payment * group.second_payment_total)}" }
+      event = [group.second_payment_date, "2nd payment of #{number_to_currency(payment_schedule.second_payment)} per person for #{group.second_payment_total} persons",
+            "#{number_to_currency(payment_schedule.second_payment * group.second_payment_total)}", ""]
     end
     event_list << event
 
-    event = { :date => payment_schedule.final_payment_date,
-          :name => "Final payment of #{number_to_currency(payment_schedule.final_payment)} each for #{group.current_total} persons",
-          :amount_due => "#{number_to_currency(payment_schedule.final_payment * group.current_total)}" }
+    event = [payment_schedule.final_payment_date, "Final payment of #{number_to_currency(payment_schedule.final_payment)} each for #{group.current_total} persons",
+          "#{number_to_currency(payment_schedule.final_payment * group.current_total)}", ""]
     event_list << event
 
-    event_list = event_list.sort_by { |item| item[:date] }
+    event_list = event_list.sort_by { |item| item[0] }
 
     invoice = {:group_id => group_id,:current_balance => current_balance, :payments => payments,
       :adjustments => adjustments, :adjustment_total => adjustment_total, :changes => changes,

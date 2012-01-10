@@ -69,8 +69,8 @@
                                 <th>Week</th>
                                 <th>Participant Info</th>
                                 <th>Balance</th>
-                                <th>Adjust</th>
                                 <th>Payment</th>
+                                <% if can? :create, Adjustment %><th>Adjust</th><% end %>
                             </tr>
                         </thead><% i = 0 %>
                         <tbody><% @screen_info[:group_info].each do |g| %>
@@ -84,12 +84,18 @@
                                 <td><%= link_to Period.find(s.period_id).name, "#",
                                                 :title => "Starts on #{Period.find(s.period_id).start_date.strftime("%m/%d/%y")
                                                 } and ends on #{Period.find(s.period_id).end_date.strftime("%m/%d/%y")}" %></td>
-                                <td><%= link_to "Update Roster", show_roster_path(:roster_id => g.roster_id) %></td>
-                                <td><%= link_to number_to_currency(@screen_info[:invoice_info][i][:current_balance]), invoice_path(g.id) %></td>
-                                <td><%= link_to "Adjustment", make_adjustment_path(g.id),
-                                                :title => "Click to make an adjustment (new church discount, scholarship, etc)." %></td>
-                                <td><%= link_to "Record Payment", record_payment_path(:group_id => g.id),
+                                <td><%= link_to "Update Roster", show_roster_path(:roster_id => g.roster_id),
+                                                :title => "Click to update the participant roster." %></td>
+                                <td><%= link_to number_to_currency(@screen_info[:invoice_info][i][:current_balance]),
+                                                invoice_path(g.id) %></td>
+                                <td><%= link_to "Make Payment", record_payment_path(:group_id => g.id),
                                                 :title => "Click to record payment. Eventually to be replaced by payment gateway." %></td>
+                                <% if can? :create, Adjustment %>
+                                    <td><%= link_to "Adjustment", make_adjustment_path(g.id),
+                                              :title => "Click to make an adjustment (new church discount, scholarship, etc)." %></td>
+                                <% else %>
+                                    <td></td>
+                                <% end %>
                                 <% i += 1 %>
                             </tr>
                         <% end %></tbody>

@@ -119,7 +119,7 @@
               To decrease, <%= link_to "click here", edit_scheduled_group_path(@screen_info[:scheduled_group].id) %>.<br><br>
               2. To pay by credit card, <%= link_to "click here", record_payment_path(:group_id => @screen_info[:scheduled_group].id),
               :title => "Click to record payment. Eventually to be replaced by payment gateway."%>. To pay by check,
-              <%= link_to "print this statement", invoice_path(:group_id => @screen_info[:scheduled_group].id, :format => "pdf") %> and mail it with a check to the SSP office.</div>
+              <%= link_to "print this invoice", invoice_path(:group_id => @screen_info[:scheduled_group].id, :format => "pdf") %> and mail it with a check to the SSP office.</div>
          </table>
                </div>
         </div>
@@ -136,13 +136,13 @@
                     <tbody>
                         <% @screen_info[:invoice_data][:event_list].each do |e| %>
                             <tr>
-                              <td><%= e[:date].strftime("%m/%d/%y") %></td>
-                              <td><%= e[:name] %></td>
-                              <td><% unless e[:amount_due].nil? %>
-                                    <%= e[:amount_due] %><% end %>
+                              <td><%= e[0].strftime("%m/%d/%y") %></td>
+                              <td><%= e[1] %></td>
+                              <td><% unless e[2].nil? %>
+                                    <%= e[2] %><% end %>
                               </td>
-                              <td><% unless e[:amount_received].nil? %>
-                                    <%= e[:amount_received] %><% end %>
+                              <td><% unless e[3].nil? %>
+                                    <%= e[3] %><% end %>
                               </td>
                             </tr>
                         <% end %>
@@ -161,7 +161,8 @@
                  </table>
               <div>This statement shows the entire cost of your SSP trip and does not necessary show what you currently owe.
               To determine your current (or next) payment to SSP, refer to the invoice section above. To print a copy of this
-              statement for your records, <%= link_to_function("click here", "javascript:print()") %>.</div>
+              statement for your records,
+                <%= link_to " click here.", statement_path(:group_id => @screen_info[:scheduled_group].id, :format => "pdf") %></div>
               </div>
            </div>
         </div>

@@ -26,10 +26,12 @@
                             <td><%= r.label "New Counselors" %></td>
                             <td><%= r.number_field :current_counselors, :as => :integer %></td>
                         </tr>
-                        <tr>
+                        <% if can? :move, r %>
+                          <tr>
                             <td><%= r.label "New Session" %></td>
                             <td><%= r.select :session_id, @sessions %></td>
-                        </tr>
+                          </tr>
+                        <% end %>
                     </table>
                     <div id = "group_change_button" class="actions">
                         <%= submit_tag 'Submit Changes', { :disabled => true, :confirm => "Are you sure you want to make these changes?",
