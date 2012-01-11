@@ -13,11 +13,11 @@ class ApplicationController < ActionController::Base
     end
  end
 
- def after_sign_out_path_for(resource_name)
+# def after_sign_out_path_for(resource_name)
    #logger.debug params.inspect # = :admin_user How do I access this? TODO
    #log_activity(Time.now, "Logout", "Logged off of system", 1, @current_admin_user.name, "Role")
-   super
- end
+#   super
+# end
 
   def current_ability
     @current_ability ||= Ability.new(current_admin_user)
