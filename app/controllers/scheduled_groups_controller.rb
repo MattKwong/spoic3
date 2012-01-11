@@ -13,6 +13,7 @@ class ScheduledGroupsController < ApplicationController
   def confirmation       # before the confirmation screen
     @title = "Group Confirmation"
     @registration = Registration.find(params[:reg])
+    church_name = Church.find(@registration.church_id)
     if ScheduledGroup.find_all_by_registration_id(params[:reg]).count == 0
       @scheduled_group = ScheduledGroup.new(:church_id => @registration.church_id,
                         :name => @registration.name, :registration_id => @registration.id,
@@ -33,6 +34,7 @@ class ScheduledGroupsController < ApplicationController
     roster = Roster.create!(:group_id => @scheduled_group.id,
       :group_type => SessionType.find(Session.find(@scheduled_group.session_id).session_type_id).id)
     @scheduled_group.update_attribute('roster_id', roster.id)
+    log_activity("Group scheduled", "#{@scheduled_group.name} from #{church_name} for #{@registration.requested_total} participants")
     @session = Session.find(params[:id])
   end
 
@@ -169,8 +171,8 @@ class ScheduledGroupsController < ApplicationController
       old_week_name = Period.find(Session.find(@group.session_id).period_id).name
       new_site_name = Site.find(Session.find(new_values[:session_id]).site_id).name
       old_site_name = Site.find(Session.find(@group.session_id).site_id).name
-      if new_week_name != old_week_name then week_change = false end
-      if new_site_name != old_site_name then site_change = false end
+      if new_week_name != old_week_name then week_change = true end
+      if new_site_name != old_site_name then site_change = true end
 
       new_total = new_values[:current_youth].to_i  + new_values[:current_counselors].to_i
 
@@ -181,7 +183,7 @@ class ScheduledGroupsController < ApplicationController
       change_record = ChangeHistory.new(:group_id => @group_id,
          :new_counselors => new_values[:current_counselors],:old_counselors => @group.current_counselors,
          :new_youth => new_values[:current_youth],:old_youth => @group.current_youth,
-         :updated_by => 1,
+         :updated_by => @current_admin_user.id,
          :new_total => (new_values[:current_counselors].to_i + new_values[:current_youth].to_i),:old_total => @group.current_total,
          :new_site => new_site_name,:old_site => old_site_name,
          :new_week => new_week_name,:old_week => old_week_name,
@@ -206,9 +208,10 @@ class ScheduledGroupsController < ApplicationController
       end
 
       if @group.update_attributes(@group) then
+        log_activity("Group Update", "Count change: #{count_change} Session change: #{site_change || week_change}")
         redirect_to change_confirmation_path(@group_id, :change_id => change_record.id)
       else
-          flash[:error] = "Update of scheduled group record failed for unknown reason."
+          flash[:error] = "Update of scheduled group record failed for unknown reason (1)."
       end
   end
 
@@ -256,7 +259,7 @@ class ScheduledGroupsController < ApplicationController
           log_activity("Group Update", "Count changed to #{@group.current_total}")
           redirect_to change_confirmation_path(@group_id, :change_id => change_record.id)
         else
-          flash[:error] = "Update of scheduled group record failed for unknown reason."
+          flash[:error] = "Update of scheduled group record failed for unknown reason (2)."
           render "edit"
         end
     end

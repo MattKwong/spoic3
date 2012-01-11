@@ -24,7 +24,7 @@ Spoic3::Application.routes.draw do
   match "scheduled_groups/:id/schedule" => 'scheduled_groups#confirmation', :as => "scheduled_groups_schedule"
   match "scheduled_groups/:id/success" => 'scheduled_groups#success', :as => "scheduled_group_confirmation"
   match "scheduled_groups/:id/change_success" => 'scheduled_groups#change_success', :as => "change_confirmation"
-
+  match "liaisons/:id/create_user" => 'liaisons#create_user', :as => 'create_user'
   match "payment/:group_id/new" => 'payment#new', :as => "record_payment"
   match "payments" => 'payment#create', :as => 'payments'
   match "adjustment/:group_id/new" => 'adjustment#new', :as => "make_adjustment"

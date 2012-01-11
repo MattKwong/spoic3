@@ -1,5 +1,5 @@
 class AdjustmentController < ApplicationController
-
+  before_filter :authenticate_admin_user!
   before_filter :check_for_cancel, :only => [:create]
 
   def new
@@ -28,6 +28,7 @@ class AdjustmentController < ApplicationController
 
     if adjustment.valid?
       adjustment.save!
+      log_activity("Adjustment", "$#{sprintf('%.2f', adjustment.amount)} for #{scheduled_group.name}")
       flash[:notice] = "Successful entry of new adjustment"
       redirect_to myssp_path(:id => scheduled_group.liaison_id)
     else
@@ -51,6 +52,19 @@ class AdjustmentController < ApplicationController
   end
 
 private
+  def log_activity(activity_type, activity_details)
+    a = Activity.new
+    a.activity_date = Time.now
+    a.activity_type = activity_type
+    a.activity_details = activity_details
+    a.user_id = 1 #@current_admin_user.id
+    a.user_name = "Name" #@current_admin_user.name
+    a.user_role = "Liaison" #@current_admin_user.user_role
+    unless a.save!
+      flash[:error] = "Unknown problem occurred logging a transaction."
+    end
+  end
+
   def check_for_cancel
    unless params[:cancel].blank?
      liaison_id = ScheduledGroup.find(params[:adjustment][:group_id]).liaison_id

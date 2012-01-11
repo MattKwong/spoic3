@@ -1,5 +1,5 @@
 class PaymentController < ApplicationController
-
+  before_filter :authenticate_admin_user!
   before_filter :check_for_cancel, :only => [:create]
 
   def new
@@ -28,6 +28,7 @@ class PaymentController < ApplicationController
 
     if payment.valid?
       payment.save!
+      log_activity("Payment", "$#{sprintf('%.2f', payment.payment_amount)} paid for #{scheduled_group.name}")
       flash[:notice] = "Successful entry of new participant"
       redirect_to myssp_path(:id => scheduled_group.liaison_id)
     else
@@ -51,6 +52,20 @@ class PaymentController < ApplicationController
   end
 
 private
+  def log_activity(activity_type, activity_details)
+    logger.debug @current_admin_user.inspect
+    a = Activity.new
+    a.activity_date = Time.now
+    a.activity_type = activity_type
+    a.activity_details = activity_details
+    a.user_id = 1 #@current_admin_user.id
+    a.user_name = "Name" #@current_admin_user.name
+    a.user_role = "Liaison" #@current_admin_user.user_role
+    unless a.save!
+      flash[:error] = "Unknown problem occurred logging a transaction."
+    end
+  end
+
   def check_for_cancel
   unless params[:cancel].blank?
 logger.debug params.inspect

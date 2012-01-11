@@ -5,7 +5,6 @@ ActiveAdmin.register Church do
   scope :active
   scope :registered
 
-
   show :title => :name do
     panel "Church Details " do
       attributes_table_for church do

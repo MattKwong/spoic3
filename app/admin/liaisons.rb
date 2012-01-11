@@ -78,6 +78,16 @@ ActiveAdmin.register Liaison do
     attributes_table_for liaison.church do
       row("Primary email") { mail_to liaison.church.email1, liaison.church.email1,
       :subject => "SSP", :body => "Dear " }
+      row("Address") {liaison.church.address1}
+      row("City") {liaison.church.city}
+      row("State") {liaison.church.state}
+      row("Zip") {liaison.church.zip}
+    end
+  end
+
+  sidebar "Liaison Logon Information", :only => :show do
+    attributes_table_for liaison do
+      row("Status") { liaison.id == 0 ? "Created" : (link_to "Create User", create_user_path(liaison.id)) }
     end
   end
 
