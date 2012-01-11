@@ -53,7 +53,6 @@ class ChurchesController < ApplicationController
     footer = ["", "Totals", number_to_currency(invoice[:current_balance]), ""]
     @event_list << footer
 #Convert date column to formatted dates
-    logger.debug @event_list.inspect
     for i in 0..@event_list.size - 1
       if @event_list[i][0].instance_of?(Date)
         @event_list[i][0] = @event_list[i][0].strftime("%m/%d/%Y")

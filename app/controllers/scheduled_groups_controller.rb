@@ -253,6 +253,7 @@ class ScheduledGroupsController < ApplicationController
         end
 
         if @group.update_attributes(@group) then
+          log_activity("Group Update", "Count changed to #{@group.current_total}")
           redirect_to change_confirmation_path(@group_id, :change_id => change_record.id)
         else
           flash[:error] = "Update of scheduled group record failed for unknown reason."
@@ -272,5 +273,19 @@ class ScheduledGroupsController < ApplicationController
       ScheduledGroup.delete(params[:id])
       redirect_to admin_registrations_path
      end
+  end
+
+  def log_activity(activity_type, activity_details)
+
+    a = Activity.new
+    a.activity_date = Time.now
+    a.activity_type = activity_type
+    a.activity_details = activity_details
+    a.user_id = @current_admin_user.id
+    a.user_name = @current_admin_user.name
+    a.user_role = @current_admin_user.user_role
+    unless a.save!
+      flash[:error] = "Unknown problem occurred logging a transaction."
+    end
   end
 end
