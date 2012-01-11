@@ -207,6 +207,10 @@ class ScheduledGroupsController < ApplicationController
         @group.session_id = new_values[:session_id]
       end
 
+      if @group.second_payment_total.nil? then
+        @group.second_payment_total= 0
+      end
+
       if @group.update_attributes(@group) then
         log_activity("Group Update", "Count change: #{count_change} Session change: #{site_change || week_change}")
         redirect_to change_confirmation_path(@group_id, :change_id => change_record.id)
