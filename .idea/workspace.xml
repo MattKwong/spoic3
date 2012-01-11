@@ -4,22 +4,10 @@
     <bookmark url="file://$PROJECT_DIR$/app/controllers/payment_controller.rb" line="43" mnemonic="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="Logging">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20120110173914_create_activities.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20120111165656_add_field_to_liaisons.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/spoic3.iml" afterPath="$PROJECT_DIR$/.idea/spoic3.iml" />
+    <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/admin/activities.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/churches.rb" afterPath="$PROJECT_DIR$/app/admin/churches.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/dashboards.rb" afterPath="$PROJECT_DIR$/app/admin/dashboards.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/liaisons.rb" afterPath="$PROJECT_DIR$/app/admin/liaisons.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/adjustment_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/adjustment_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/churches_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/churches_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/liaisons_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/liaisons_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/payment_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/payment_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
     </list>
     <ignored path="spoic3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,7 +37,7 @@
       <file leaf-file-name="scheduled_groups_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="213" column="89" selection-start="9768" selection-end="9768" vertical-scroll-proportion="0.4950495">
+            <state line="228" column="7" selection-start="10077" selection-end="10079" vertical-scroll-proportion="1.2356435">
               <folding />
             </state>
           </provider>
@@ -645,6 +633,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spoic3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spoic3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1283,10 +1289,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="348" y="0" width="1380" height="1010" extended-state="0" />
+    <frame x="209" y="0" width="1380" height="1010" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22779043" sideWeight="0.6186152" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32637075" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13059984" sideWeight="0.6186152" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998884" sideWeight="0.0" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32565284" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33947206" sideWeight="0.19732441" order="1" side_tool="true" content_ui="tabs" />
@@ -1301,7 +1308,6 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31219512" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="CSS Styles" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3277592" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32637075" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1332,7 +1338,7 @@
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create dashboard of system activity and started logging" />
+    <option name="LAST_COMMIT_MESSAGE" value="Logging and user creation db changes" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1345,7 +1351,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Modified schedule change links and email message." />
     <MESSAGE value="Added untracked files to git" />
     <MESSAGE value="Changes/corrections to myssp views and logic" />
     <MESSAGE value="Added hover field." />
@@ -1370,6 +1375,7 @@
     <MESSAGE value="Updates to prawn configuration" />
     <MESSAGE value="Finished statement pdf and made other changes" />
     <MESSAGE value="Create dashboard of system activity and started logging" />
+    <MESSAGE value="Logging and user creation db changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1458,7 +1464,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="213" column="89" selection-start="9768" selection-end="9768" vertical-scroll-proportion="0.4950495">
+        <state line="228" column="7" selection-start="10077" selection-end="10079" vertical-scroll-proportion="1.2356435">
           <folding />
         </state>
       </provider>

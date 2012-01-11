@@ -226,7 +226,7 @@ class ScheduledGroupsController < ApplicationController
        count_change = false
      end
 
-    if new_total > @group.current_total
+     if new_total > @group.current_total
         flash[:error] = "To increase your enrollment, you must contact the office."
         @scheduled_group = ScheduledGroup.find(params[:id])
         authorize! :read, @scheduled_group
@@ -236,17 +236,17 @@ class ScheduledGroupsController < ApplicationController
         @title = "Change Schedule"
         params[:id => @group.id]
         render "edit"
-    else
-       change_record = ChangeHistory.new(:group_id => @group_id,
+     else
+        change_record = ChangeHistory.new(:group_id => @group_id,
          :new_counselors => new_values[:current_counselors],:old_counselors => @group.current_counselors,
          :new_youth => new_values[:current_youth],:old_youth => @group.current_youth,
          :updated_by => 1,
          :new_total => new_total,:old_total => @group.current_total,
          :count_change => count_change)
-       unless change_record.save! then
+        unless change_record.save! then
           flash[:error] = "Update of change record failed for unknown reason."
           render "edit"
-       end
+        end
 
 #Update ScheduledGroup
         if count_change then
@@ -262,7 +262,7 @@ class ScheduledGroupsController < ApplicationController
           flash[:error] = "Update of scheduled group record failed for unknown reason (2)."
           render "edit"
         end
-    end
+     end
   end
 
   def check_for_submit_changes
@@ -275,7 +275,7 @@ class ScheduledGroupsController < ApplicationController
     if params[:commit] == 'Cancel'
       ScheduledGroup.delete(params[:id])
       redirect_to admin_registrations_path
-     end
+    end
   end
 
   def log_activity(activity_type, activity_details)
