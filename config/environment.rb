@@ -8,7 +8,6 @@ Spoic3::Application.initialize!
 #  config.gem "cancan"
 #end
 
-#ActionMailer::Base.default_url_options[:host] = "sierraserviceproject.org"
 ActionMailer::Base.delivery_method = :smtp
 
 ActionMailer::Base.smtp_settings = {
@@ -17,7 +16,7 @@ ActionMailer::Base.smtp_settings = {
   :domain               => "sierraserviceproject.org",
   :user_name            => "director",
   :password             => "norge1",
-#  :authentication       => 'login',
+  :authentication       => 'none',
   :enable_starttls_auto => true
 }
 
