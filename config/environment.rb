@@ -16,7 +16,7 @@ ActionMailer::Base.smtp_settings = {
 #  :domain               => "sierraserviceproject.org",
   :user_name            => "director",
   :password             => "norge1",
-  :authentication       => :plain,
+  :authentication       => :login,
   :enable_starttls_auto => true
 }
 
