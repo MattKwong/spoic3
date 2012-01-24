@@ -86,7 +86,7 @@ private
       number_to_currency(invoice[:second_payment_amount])]
     invoice_items << item
 #Only include the final payments if teh second payment has been made
-    unless group.second_payment_date.nil?
+    unless @scheduled_group.second_payment_date.nil?
       item = ["Final Payments", @scheduled_group.current_total,
         number_to_currency(invoice[:payment_schedule].final_payment),
         number_to_currency(invoice[:final_payment_amount])]

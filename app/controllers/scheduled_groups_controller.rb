@@ -26,10 +26,14 @@ class ScheduledGroupsController < ApplicationController
                         :second_payment_total => 0)
     else if ScheduledGroup.find_all_by_registration_id(params[:reg]).count == 1
       @scheduled_group = ScheduledGroup.find_by_registration_id(params[:reg])
+      if @scheduled_group.second_payment_total.nil?
+        @scheduled_group.second_payment_total= 0
+      end
          else
           flash[:error] = "Duplicate schedules exist for this registration. Contact support."
          end
     end
+
     @scheduled_group.save!
     roster = Roster.create!(:group_id => @scheduled_group.id,
       :group_type => SessionType.find(Session.find(@scheduled_group.session_id).session_type_id).id)

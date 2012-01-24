@@ -32,6 +32,7 @@ ActiveAdmin.register ScheduledGroup do
       column :name, :sortable => :name do |group|
         link_to group.name, myssp_path(group.liaison_id)
       end
+      column "Church Name", :church_id do |group| group.church.name end
       column "Youth", :current_youth
       column "Counselors", :current_counselors
       column "Total", :current_total
