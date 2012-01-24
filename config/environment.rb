@@ -12,11 +12,10 @@ ActionMailer::Base.delivery_method = :smtp
 
 ActionMailer::Base.smtp_settings = {
   :address              => "smtp.sierraserviceproject.org",
-  :port                 => '25',
-#  :domain               => "sierraserviceproject.org",
+  :port                 => 25,
   :user_name            => "director@sierraserviceproject.org",
   :password             => "norge1",
-#  :authentication       => :login,
+  :authentication       => :login,
   :enable_starttls_auto => true
 }
 
