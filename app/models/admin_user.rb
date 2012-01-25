@@ -37,7 +37,7 @@ class AdminUser < ActiveRecord::Base
   private
 
   def create_name
-#    self.name = self.first_name + ' ' + self.last_name
+    self.name = self.first_name + ' ' + self.last_name
   end
 
 end
