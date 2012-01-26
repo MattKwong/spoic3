@@ -13,13 +13,22 @@ class ChurchesController < ApplicationController
     invoices = grab_invoice_balances(groups)
     notes_and_reminders = Reminder.find_all_by_active(true, :order => 'seq_number')
 
-    checklist = ChecklistItem.find(:all, :order => 'seq_number')
-  #iterate through checklist, find each GroupChecklistStatus item and update checklist.status
+    checklists = []
+    for j in 0..groups.size - 1
+      checklist = ChecklistItem.find(:all, :order => 'seq_number')
+      checklist_item = []
+      for i in 0..checklist.length - 1
+        checklist_item[i] = {:name => checklist[i].name, :due_date => checklist[i].due_date,
+        :notes => checklist[i].notes, :status => get_checklist_status(groups[j])}
+      end
+      checklists[j] = checklist_item
+    end
+
     documents = DownloadableDocument.find_all_by_active(true, :order => 'name')
 
     @screen_info = {:church_info => church, :registration_info => registrations,
       :group_info => groups, :invoice_info => invoices, :notes_and_reminders => notes_and_reminders,
-      :checklist => checklist, :documents => documents,:roster_info => rosters, :liaison => liaison }
+      :checklist => checklists, :documents => documents,:roster_info => rosters, :liaison => liaison }
 
   end
 
@@ -70,6 +79,9 @@ class ChurchesController < ApplicationController
   end
 
 private
+  def get_checklist_status(group)
+    group.name
+  end
   def create_invoice_items(invoice)
 
     #Create invoice_items array

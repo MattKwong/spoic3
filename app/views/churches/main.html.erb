@@ -139,14 +139,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% @screen_info[:checklist].each do |c| %>
+                            <% for i in 0..@screen_info[:checklist][0].size - 1 %>
                                 <tr>
-                                    <td><%= c.name %></td>
-                                    <% @screen_info[:group_info].each do |g| %>
-                                        <td><%= "Status: #{c.default_status}" %></td>
+                                    <td><%= @screen_info[:checklist][0][i][:name] %></td>
+                                    <% for j in 0..@screen_info[:group_info].size - 1 %>
+                                        <td><%= "Status: #{@screen_info[:checklist][j][i][:status]}" %></td>
                                     <% end %>
-                                    <td><%= c.due_date.strftime("%m/%d/%y") %></td>
-                                    <td><%= c.notes %></td>
+                                    <td><%= @screen_info[:checklist][0][i][:due_date].strftime("%m/%d/%y") %></td>
+                                    <td><%= @screen_info[:checklist][0][i][:notes] %></td>
                                 </tr>
                             <% end %>
                         </tbody>
