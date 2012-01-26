@@ -1,8 +1,7 @@
 <div id= "header">
-    <h1 id="site_title"><a href="/">Sierra Service Project Manager</a></h1>
     <ul class="tabbed_navigation" id="tabs">
-
         <% if signed_in? && current_admin_user.admin? %>
+             <h1 id="site_title">Sierra Service Project Manager</h1>
              <li><%= link_to "Home", root_path, %></li>
              <li><a href="#">Group Manager</a>
                 <ul>
@@ -37,17 +36,18 @@
             <% if signed_in? && current_admin_user.construction_admin? %>
               <li><%= link_to "Construction", construction_path %></li>
             <% end %>
-            <% if signed_in? && current_admin_user.liaison? %>
-              <li><%= link_to "MySSP", myssp_path(@screen_info[:liaison].id ) %></li>
-            <% end %>
         <% end %>
-        <li><%= link_to "Help" %></li>
+        <% if signed_in? && current_admin_user.liaison? %>
+            <li><%= link_to "MySSP", myssp_path(current_admin_user.liaison_id) %></li>
+        <li><%= link_to "Help", help_path %></li>
+        <% end %>
+    </ul>
         <% if signed_in? %>
             <div><p id="utility_nav"><span class="current_user"><%= current_admin_user.name %></span>
               <a href="/admin/logout" data-method="get">Logout</a></p></div>
         <% else %>
             <li><%= link_to "Sign in", new_admin_user_session_path %></li>
         <% end %>
-    </ul>
-    </div>
+
+</div>
 

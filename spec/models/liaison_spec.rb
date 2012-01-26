@@ -92,10 +92,17 @@ describe Liaison do
       good_email = Liaison.new(@attr)
       good_email.should be_valid
     end
+
+    it "should reject a duplicate email" do
+      first_email = Liaison.new(@attr)
+      first_email.save!
+      second_email = Liaison.new(@attr)
+      second_email.should_not be_valid
+    end
   end
 
   describe "email2 tests" do
-    it "should  allow a blank email2" do        #email2 is not required for liaisons
+    it "should allow a blank email2" do        #email2 is not required for liaisons
       no_email = Liaison.new(@attr.merge(:email2 => ""))
       no_email.should be_valid
     end

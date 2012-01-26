@@ -7,8 +7,8 @@ Spoic3::Application.routes.draw do
   get "scheduled_group/confirmation"
 
   ActiveAdmin.routes(self)
-
   devise_for :admin_users, ActiveAdmin::Devise.config
+  match "admin/confirmation/new", :to => 'active_admin/devise/confirmations#new', :as => 'new_admin_user_confirmation'
 
   match "registration/schedule", :to => 'registration#schedule', :as => "registration_schedule"
   match "registration/register", :to => 'registration#register'
@@ -63,7 +63,7 @@ Spoic3::Application.routes.draw do
   match '/food', :to => 'pages#food'
   match 'RegistrationController', :to => 'pages#groups'
   match '/construction', :to => 'pages#construction'
-  match '/help', :to => 'pages#help'
+  match '/help', :to => 'pages#help', :as => 'help'
   match '/contact', :to => 'pages#contact'
   match '/about', :to => 'pages#about'
   match '/signin', :to => 'pages#home'

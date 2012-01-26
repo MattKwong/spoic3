@@ -40,7 +40,9 @@ class Liaison < ActiveRecord::Base
   before_save :create_name
   before_save :format_phone_numbers
 
-  validates :title, :last_name, :first_name, :address1, :city, :church_id, :presence => true
+  validates :title, :last_name, :first_name, :address1, :city, :church_id, :email1, :presence => true
+  validates :email1, :uniqueness => true
+  validates :email2, :uniqueness => true, :allow_blank => true
 
   validates :state, :presence => true,
                     :length => { :is => 2}
@@ -50,12 +52,12 @@ class Liaison < ActiveRecord::Base
                     :numericality => true
   validates_format_of :email1,
             :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i,
-            :message => 'Email appears to be invalid.', :allow_blank => false
+            :message => 'Email appears to be invalid.'
 
   validates_format_of :email2,
             :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i,
             :message => 'Email appears to be invalid.', :allow_blank => true
-#TODO: talk with Meghan about format of phone numbers.
+
   validates_numericality_of :work_phone, :home_phone, :cell_phone, :fax,
                       :message => 'Phone number must be 10 digits plus optional separators.',
                       :allow_blank => true
@@ -64,7 +66,7 @@ class Liaison < ActiveRecord::Base
                       :is => 10,
                       :message => 'Phone number must be 10 digits plus optional separators.',
                       :allow_blank => true
-#This validation is not working
+
   validate :require_at_least_one_phone
 
   private

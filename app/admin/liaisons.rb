@@ -87,7 +87,7 @@ ActiveAdmin.register Liaison do
 
   sidebar "Liaison Logon Information", :only => :show do
     attributes_table_for liaison do
-      row("Status") { liaison.id == 0 ? "Created" : (link_to "Create User", create_user_path(liaison.id)) }
+      row("Status") { liaison.user_created? ? "Created" : (link_to "Create User", create_user_path(liaison.id)) }
     end
   end
 

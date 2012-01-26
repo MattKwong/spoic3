@@ -7,7 +7,6 @@
         <h2 id="page_title">Groups Scheduled for <%= @session_week %> <%= @session_site %></h2>
     </div>
 </div>
-
     <div id="active_admin_content"  class="with_sidebar">
         <div id="main_content_wrapper">
             <div id="main_content">
@@ -21,13 +20,14 @@
                                             <th>Name</th>
                                             <th>Liaison</th>
                                             <th>Church</th>
-                                            <th>Requested Youth</th>
-                                            <th>Requested Adults</th>
-                                            <th>Requested Total</th>
+                                            <th>Youth</th>
+                                            <th>Adults</th>
+                                            <th>Total</th>
                                             <th></th>
                                         </tr>
                         </thead>
-                        <tbody>
+                        <% if signed_in? && current_admin_user.admin? %>
+                            <tbody>
                             <% @groups.each do |r| %>
                                         <tr>
                                             <td><%= r.name %></td>
@@ -38,7 +38,20 @@
                                             <td><%= r.current_total %></td>
                                             <td><%= link_to "Move this group", admin_scheduled_group_path(:id => r.id) %></td>
                                         </tr>
-                                    <% end %>
+                            <% end %>
+                        <% else %>
+                            <% @groups.each do |r| %>
+                                        <tr>
+                                            <td><%= r.name %></td>
+                                            <td><%= Liaison.find(r.liaison_id).name %></td>
+                                            <td><%= Church.find(r.church_id).name %></td>
+                                            <td><%= r.current_youth %></td>
+                                            <td><%= r.current_counselors %></td>
+                                            <td><%= r.current_total %></td>
+                                        </tr>
+                            <% end %>
+
+                        <% end %>
                         </tbody>
                       </table>
                    </div>

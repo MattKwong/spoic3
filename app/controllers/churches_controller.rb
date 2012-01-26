@@ -12,8 +12,9 @@ class ChurchesController < ApplicationController
     rosters = assemble_rosters(groups)
     invoices = grab_invoice_balances(groups)
     notes_and_reminders = Reminder.find_all_by_active(true, :order => 'seq_number')
-    checklist = ChecklistItem.find(:all, :order => 'seq_number')
 
+    checklist = ChecklistItem.find(:all, :order => 'seq_number')
+  #iterate through checklist, find each GroupChecklistStatus item and update checklist.status
     documents = DownloadableDocument.find_all_by_active(true, :order => 'name')
 
     @screen_info = {:church_info => church, :registration_info => registrations,

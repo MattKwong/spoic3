@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120112002607) do
+ActiveRecord::Schema.define(:version => 20120126020003) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -139,6 +139,8 @@ ActiveRecord::Schema.define(:version => 20120112002607) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active"
+    t.string   "default_status"
   end
 
   create_table "church_types", :force => true do |t|
@@ -188,6 +190,15 @@ ActiveRecord::Schema.define(:version => 20120112002607) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "doc_type"
+  end
+
+  create_table "group_checklist_statuses", :force => true do |t|
+    t.string   "group_id"
+    t.string   "checklist_item_id"
+    t.string   "status"
+    t.string   "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "liaison_types", :force => true do |t|

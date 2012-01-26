@@ -11,10 +11,15 @@ class LiaisonsController < ApplicationController
     user.user_role = "Liaison"
     user.password = "password"
 
-    if user.save!
-      redirect_to admin_liaison_path(liaison.id)
-    else
+    unless user.save!
       flash[:error] = "A problem occurred in create a logon for this liaison."
+    else
+      liaison.user_created = true
+      unless liaison.save!
+        flash[:error] = "A problem occurred in updating logon information for this liaison."
+      else
+        redirect_to admin_liaison_path(liaison.id)
+      end
     end
   end
 
