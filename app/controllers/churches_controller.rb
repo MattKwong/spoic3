@@ -19,7 +19,8 @@ class ChurchesController < ApplicationController
       checklist_item = []
       for i in 0..checklist.length - 1
         checklist_item[i] = {:name => checklist[i].name, :due_date => checklist[i].due_date,
-        :notes => checklist[i].notes, :status => get_checklist_status(groups[j])}
+        :notes => checklist[i].notes, :default_status => checklist[i].default_status,
+        :status => get_checklist_status(groups[j], checklist[i], invoices[j])}
       end
       checklists[j] = checklist_item
     end
@@ -29,7 +30,7 @@ class ChurchesController < ApplicationController
     @screen_info = {:church_info => church, :registration_info => registrations,
       :group_info => groups, :invoice_info => invoices, :notes_and_reminders => notes_and_reminders,
       :checklist => checklists, :documents => documents,:roster_info => rosters, :liaison => liaison }
-
+    logger.debug @screen_info.inspect
   end
 
   def invoice
@@ -79,12 +80,88 @@ class ChurchesController < ApplicationController
   end
 
 private
-  def get_checklist_status(group)
+
+  def get_checklist_status(group, checklist, invoice)
 # Find a checklist status item corresponding to the group and the checklist item. If none exists,
 # return the default value except in those cases where we have defined specific logic.
-#If one exists, return it.
-    group.name
+# If one exists, return it.
+
+    status = case checklist.name
+      when "Deposit Paid"
+         non_default_status = GroupChecklistStatus.find_by_group_id_and_checklist_item_id(group.id, checklist.id)
+         if non_default_status.nil?
+           calculate_deposit_status(group, checklist, invoice)
+         else
+           non_default_status.status
+         end
+      when "March Invoice Paid"
+         non_default_status = GroupChecklistStatus.find_by_group_id_and_checklist_item_id(group.id, checklist.id)
+         if non_default_status.nil?
+           calculate_2nd_payment_status(group, checklist, invoice)
+         else
+           non_default_status.status
+         end
+      when "Rosters Completed"
+         non_default_status = GroupChecklistStatus.find_by_group_id_and_checklist_item_id(group.id, checklist.id)
+         if non_default_status.nil?
+           calculate_roster_status(group)
+         else
+           non_default_status.status
+         end
+      when "Counselor Checks Completed"
+         non_default_status = GroupChecklistStatus.find_by_group_id_and_checklist_item_id(group.id, checklist.id)
+         if non_default_status.nil?
+           checklist.default_status
+         else
+           non_default_status.status
+         end
+
+      else ""
+    end
+    return status
   end
+
+  def calculate_deposit_status(group, checklist, invoice)
+    if invoice[:amount_paid] >= invoice[:deposit_amount]
+      "Paid"
+    else
+      "#{number_to_currency(invoice[:deposit_amount] - invoice[:amount_paid])} due"
+    end
+  end
+
+  def calculate_2nd_payment_status(group, checklist, invoice)
+    due = invoice[:deposit_amount] = invoice[:second_payment_amount]
+    if invoice[:amount_paid] >= due
+      "Paid"
+    else
+      if Date.today < invoice[:second_payment_due_date]
+        "Not due yet"
+      else
+        "Past due"
+      end
+    end
+  end
+
+  def calculate_roster_status(group)
+# find count of roster items and current group size
+    items = RosterItem.find_all_by_group_id(group.id).length
+    group_size = group.current_total
+
+    if items == group_size
+      "Completed"
+    else
+      if items == 0
+        "Not started"
+      else
+        if items < group_size
+          "Incomplete: missing #{group_size - items}"
+        else
+          "Roster exceeds current enrollment!"
+        end
+      end
+    end
+  end
+
   def create_invoice_items(invoice)
 
     #Create invoice_items array
@@ -101,7 +178,7 @@ private
       number_to_currency(invoice[:payment_schedule].second_payment),
       number_to_currency(invoice[:second_payment_amount])]
     invoice_items << item
-#Only include the final payments if teh second payment has been made
+#Only include the final payments if the second payment has been made
     unless @scheduled_group.second_payment_date.nil?
       item = ["Final Payments", @scheduled_group.current_total,
         number_to_currency(invoice[:payment_schedule].final_payment),
@@ -146,9 +223,12 @@ private
      invoices = []
      groups.each do |g|
        full_invoice = calculate_invoice_data(g.id)
-       invoices << {:group_id => g.id, :current_balance => full_invoice[:current_balance] }
+       invoices << {:group_id => g.id, :current_balance => full_invoice[:current_balance],
+                    :amount_paid => full_invoice[:amount_paid], :deposit_amount => full_invoice[:deposit_amount],
+                    :second_payment_amount => full_invoice[:second_payment_amount],
+                    :second_payment_due_date => full_invoice[:second_payment_due_date] }
      end
-    invoices
+     invoices
   end
 
   def calculate_invoice_data(group_id)
@@ -242,6 +322,7 @@ private
       :event_list => event_list, :total_due => total_due, :current_balance => current_balance,
       :amount_paid => amount_paid, :payment_schedule => payment_schedule, :second_payment_due => second_payment_due,
       :deposits_due_count => overall_high_water, :deposit_amount => deposit_amount,
+      :second_payment_due_date => payment_schedule.second_payment_date,
       :second_payments_due_count => second_half_high_water, :second_payment_amount => second_pay_amount,
       :final_payment_amount => final_pay_amount, :second_late_payment_required => second_payment_late_due,
       :second_payment_late_amount => second_payment_late_amount, :final_late_payment_required => final_late_payment_due,

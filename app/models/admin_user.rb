@@ -38,6 +38,8 @@ class AdminUser < ActiveRecord::Base
 
   def create_name
     self.name = self.first_name + ' ' + self.last_name
+#   self.password = random_pronouncable_password
+#   logger.debug self.password
   end
 
 end

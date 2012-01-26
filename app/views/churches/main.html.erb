@@ -124,7 +124,8 @@
                 </div>
             </div>
 <!--Checklist Section -->
-            <div class="panel">
+              <% if @screen_info[:group_info].size > 0 %>
+              <div class="panel">
                 <h3>Checklist</h3>
                 <div class="panel_contents">
                     <table border="0" cellspacing="0" cellpadding="0">
@@ -153,6 +154,7 @@
                     </table>
                 </div>
             </div>
+            <% end %>
         </div>
     </div>
 <!--Liaison Sidebar Section -->
