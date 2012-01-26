@@ -80,6 +80,9 @@ class ChurchesController < ApplicationController
 
 private
   def get_checklist_status(group)
+# Find a checklist status item corresponding to the group and the checklist item. If none exists,
+# return the default value except in those cases where we have defined specific logic.
+#If one exists, return it.
     group.name
   end
   def create_invoice_items(invoice)
