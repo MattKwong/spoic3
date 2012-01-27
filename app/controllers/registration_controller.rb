@@ -167,7 +167,6 @@ class RegistrationController < ApplicationController
   private
 
   def build_schedule(reg_or_sched, type)
-#    logger.debug type.inspect
 
     @schedule = {}
     if type == "summer_domestic" then
@@ -263,7 +262,7 @@ class RegistrationController < ApplicationController
                   :site_names => @site_names, :period_names => @period_names,
                   :registration_matrix => @registration_matrix, :scheduled_matrix => @scheduled_matrix,
                   :session_id_matrix => @session_id_matrix, :reg_or_sched => reg_or_sched, :type => type}
-#      logger.debug @schedule.inspect
+    logger.debug @schedule.inspect
   end
  end
 

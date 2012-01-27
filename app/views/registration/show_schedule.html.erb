@@ -54,14 +54,14 @@
                                                 reg_program_session_path(:id => @schedule[:session_id_matrix][i][j]) %></td>
                                           <% else %>
                                             <td><%= @schedule[:registration_matrix][i][j].to_s %></td>
-                                          <% end %>
+                                    <% end %>
                                 <% else %>
                                      <% if @schedule[:scheduled_matrix][i][j] > 0 then %>
                                           <td><%= link_to (@schedule[:scheduled_matrix][i][j]).to_s,
                                                 sched_program_session_path(:id => @schedule[:session_id_matrix][i][j])  %></td>
                                           <% else %>
-                                            <td><%= @schedule[:registration_matrix][i][j].to_s %></td>
-                                          <% end %>
+                                            <td><%= @schedule[:scheduled_matrix][i][j].to_s %></td>
+                                     <% end %>
                                 <% end %>
                             <% end %>
                             <% if params[:reg_or_sched] == "registered" then %>
@@ -90,5 +90,5 @@
             </div>
         </div>
      </div>
-</div>
+
 

@@ -1,0 +1,61 @@
+<div id="title_bar">
+        <div id="titlebar_left">
+          <span class="breadcrumb">
+            <a href="/registration">Manage Groups</a>
+            <span class="breadcrumb_sep">/</span>
+          </span>
+          <h2 id="page_title"><%= @title %></h2>
+        </div>
+</div>
+<div class="panel">
+    <h3><%= link_to "Download Report to Excel", invoice_report_csv_path %></h3>
+    <div class="panel_contents">
+        <table border="0" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th>Church Name</th>
+                    <th>Group Name</th>
+                    <th>Youth</th>
+                    <th>Couns</th>
+                    <th>Deposits Due</th>
+                    <th>Dep Paid</th>
+                    <th>Dep Outstanding</th>
+                    <th>2nd Payments Due</th>
+                    <th>2nd Payment Paid</th>
+                    <th>2nd Payment Outstanding</th>
+                    <th>Final Payments Due</th>
+                    <th>Final Paid</th>
+                    <th>Final Outstanding</th>
+                    <th>Adjustments</th>
+                    <th>Total Due</th>
+                    <th>Current Balance Due</th>
+                </tr>
+            </thead>
+            <tbody><% @invoices.each do |g| %>
+                <tr>
+                    <td><%= link_to g[:church_name], admin_church_path(g[:church_id]) %></td>
+                    <td><%= link_to g[:group_name], invoice_path(g[:group_id]),
+                                    :title => "Click to review and print the current invoice." %></td>
+                    <td><%= g[:youth] %></td>
+                    <td><%= g[:counselors] %></td>
+                    <td><%= g[:deposits_due] %></td>
+                    <td><%= number_to_currency(g[:deposits_paid]) %></td>
+                    <td><%= number_to_currency(g[:deposits_outstanding]) %></td>
+                    <td><%= g[:second_payments_due] %></td>
+                    <td><%= number_to_currency(g[:second_payments_paid]) %></td>
+                    <td><%= number_to_currency(g[:second_payments_outstanding]) %></td>
+                    <td><%= g[:final_payments_due] %></td>
+                    <td><%= number_to_currency(g[:final_payments_paid]) %></td>
+                    <td><%= number_to_currency(g[:final_payments_outstanding]) %></td>
+                    <td><%= number_to_currency(g[:adjustments]) %></td>
+                    <td><%= number_to_currency(g[:total_due]) %></td>
+                    <td><%= number_to_currency(g[:current_balance]) %></td>
+                </tr>
+            <% end %>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+

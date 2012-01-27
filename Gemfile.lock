@@ -43,6 +43,9 @@ GEM
     bcrypt-ruby (3.0.1-x86-mingw32)
     builder (2.1.2)
     cancan (1.6.7)
+    comma (0.4.3)
+      activesupport (>= 2.2.2)
+      fastercsv
     devise (1.5.1)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -161,6 +164,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin
   cancan
+  comma
   factory_girl_rails (= 1.0)
   faker (= 0.3.1)
   formtastic

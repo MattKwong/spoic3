@@ -76,10 +76,90 @@ class ChurchesController < ApplicationController
     @start_date = Period.find(Session.find(@scheduled_group.session_id).period_id).start_date
     @end_date = Period.find(Session.find(@scheduled_group.session_id).period_id).end_date
     @church = Church.find(@scheduled_group.church_id)
-
   end
 
+  def invoice_report
+    @invoices = build_invoice_report
+    respond_to do |format|
+      format.csv { @invoices.to_comma(:filename => 'invoices.csv') }
+      format.html { @title = 'Invoice Report'}
+    end
+  end
+
+
 private
+
+  def build_invoice_report
+
+    invoices = []
+
+    ScheduledGroup.all.each do |group|
+      church = Church.find(group.church_id)
+      full_invoice = calculate_invoice_data(group.id)
+
+    if full_invoice[:amount_paid] > full_invoice[:deposit_amount]
+      dep_paid = full_invoice[:deposit_amount]
+      dep_outstanding = 0
+      remaining_balance = full_invoice[:amount_paid] - dep_paid
+    else
+      dep_paid = full_invoice[:amount_paid]
+      dep_outstanding = full_invoice[:deposit_amount ] - dep_paid
+      remaining_balance = 0
+    end
+
+    if remaining_balance > full_invoice[:second_payment_amount]     #second payment is covered
+      sec_paid = full_invoice[:second_payment_amount]
+      sec_outstanding = 0
+      remaining_balance = remaining_balance - sec_paid
+    else
+      if remaining_balance > 0                                      #partially paid second payments
+        sec_paid = remaining_balance
+        sec_outstanding = full_invoice[:second_payment_amount] - sec_paid
+        remaining_balance = 0
+      else                                                          #zero remaining balance after second
+        sec_paid = 0
+        sec_outstanding = full_invoice[:second_payment_amount]
+      end
+    end
+
+    if remaining_balance > full_invoice[:final_payment_amount]     #final payment is covered
+      final_paid = full_invoice[:final_payment_amount]
+      final_outstanding = 0
+      remaining_balance = remaining_balance - final_paid
+    else
+      if remaining_balance > 0                                      #partially paid final payments
+        final_paid = remaining_balance
+        final_outstanding = full_invoice[:final_payment_amount] - final_paid
+        remaining_balance = 0
+      else                                                          #zero remaining balance after final
+        final_paid = 0
+        final_outstanding = full_invoice[:final_payment_amount]
+      end
+    end
+
+
+    invoice = {:church_name => church.name, :group_name => group.name, :youth => group.current_youth,
+                    :counselors => group.current_counselors,
+                    :group_id => group.id,
+                    :church_id => church.id,
+                    :deposits_due => full_invoice[:deposits_due_count],
+                    :deposits_paid => dep_paid,
+                    :deposits_outstanding => dep_outstanding,
+                    :second_payments_due => full_invoice[:second_payments_due_count],
+                    :second_payments_paid => sec_paid,
+                    :second_payments_outstanding => sec_outstanding,
+                    :final_payments_due => group.current_total,
+                    :final_payments_paid => final_paid,
+                    :final_payments_outstanding => final_outstanding,
+                    :adjustments => full_invoice[:adjustment_total],
+                    :current_balance => full_invoice[:current_balance],
+                    :total_due => full_invoice[:total_due] }
+
+
+      invoices << invoice
+    end
+    invoices
+  end
 
   def get_checklist_status(group, checklist, invoice)
 # Find a checklist status item corresponding to the group and the checklist item. If none exists,

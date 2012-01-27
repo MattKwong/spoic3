@@ -16,6 +16,7 @@ Spoic3::Application.routes.draw do
   match "registration/:id/finalize" => 'registration#finalize', :as => 'registration_finalize'
   match "registration/:id/successful" => 'registration#successful', :as => 'registration_success'
   match "registration/show_schedule" => 'registration#show_schedule'
+
   match "registration/:id/schedule" => 'registration#schedule', :as => 'schedule_request'
   match "registration/:id/program_session" => 'registration#program_session', :as => 'reg_program_session'
   match "registration/alt_schedule" => 'registration#alt_schedule', :as => 'alt_schedule_group'
@@ -24,7 +25,7 @@ Spoic3::Application.routes.draw do
   match "scheduled_groups/:id/schedule" => 'scheduled_groups#confirmation', :as => "scheduled_groups_schedule"
   match "scheduled_groups/:id/success" => 'scheduled_groups#success', :as => "scheduled_group_confirmation"
   match "scheduled_groups/:id/change_success" => 'scheduled_groups#change_success', :as => "change_confirmation"
-  match "liaisons/:id/create_user" => 'liaisons#create_user', :as => 'create_user'
+    match "liaisons/:id/create_user" => 'liaisons#create_user', :as => 'create_user'
   match "payment/:group_id/new" => 'payment#new', :as => "record_payment"
   match "payments" => 'payment#create', :as => 'payments'
   match "adjustment/:group_id/new" => 'adjustment#new', :as => "make_adjustment"
@@ -53,7 +54,8 @@ Spoic3::Application.routes.draw do
 
   match "churches/main/:id", :to => 'churches#main', :as => "myssp"
   match "churches/main/:id", :to => 'churches#main', :as => "liaison"
-
+  match "churches/invoice_report" => 'churches#invoice_report', :as => 'invoice_report'
+  match "churches/invoice_report.csv" => 'churches#invoice_report', :as => 'invoice_report_csv'
   match "registration", :to => 'index', :as => 'registrations'
   match "registration/show_schedule", :to => 'registration#show_schedule'
   match "registration/update", :to => 'registration#update'
