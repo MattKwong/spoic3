@@ -88,14 +88,19 @@ class ChurchesController < ApplicationController
 
 
 private
-  # @param filename [Object]
-  def create_csv(filename = nil)
-      filename ||= params[:action]
-      filename += '.csv'
 
-      if File.exists? (filename)
-        begin
-          File.delete(filename)
+  def create_csv(name = nil)
+      name ||= params[:action]
+      name += '.csv'
+      dir = "\\documents\\"
+      path = ENV['USERPROFILE']
+      filename = path + dir + name
+      logger.debug filename
+
+  begin
+      if File.exists?(filename)
+        File.delete(filename)
+      end
 
       if request.env['HTTP_USER_AGENT'] =~ /msie/i
         headers['Pragma'] = 'public'
@@ -129,15 +134,13 @@ private
         row << i[:current_balance] << i[:total_due]
         csv << row
       end
-
-
-    flash[:notice] = "#{filename} has been successfully created."
+      flash[:notice] = "#{name} has been successfully created in #{path + dir}."
     end
         rescue => e
           flash[:notice] = "#{filename} could not be created. Check if a file by that name is open."
       end
-    end
-    redirect_to invoice_report_path
+
+    redirect_to invoice_report_path :as => :html
 
   end
 
