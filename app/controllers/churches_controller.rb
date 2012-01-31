@@ -30,7 +30,6 @@ class ChurchesController < ApplicationController
     @screen_info = {:church_info => church, :registration_info => registrations,
       :group_info => groups, :invoice_info => invoices, :notes_and_reminders => notes_and_reminders,
       :checklist => checklists, :documents => documents,:roster_info => rosters, :liaison => liaison }
-    logger.debug @screen_info.inspect
   end
 
   def invoice
@@ -80,14 +79,67 @@ class ChurchesController < ApplicationController
 
   def invoice_report
     @invoices = build_invoice_report
+
     respond_to do |format|
-      format.csv { @invoices.to_comma(:filename => 'invoices.csv') }
+      format.csv { create_csv("invoice-#{Time.now.strftime("%Y%m%d")}") }
       format.html { @title = 'Invoice Report'}
     end
   end
 
 
 private
+  # @param filename [Object]
+  def create_csv(filename = nil)
+      filename ||= params[:action]
+      filename += '.csv'
+
+      if File.exists? (filename)
+        begin
+          File.delete(filename)
+
+      if request.env['HTTP_USER_AGENT'] =~ /msie/i
+        headers['Pragma'] = 'public'
+        headers["Content-type"] = "text/plain"
+        headers['Cache-Control'] = 'no-cache, must-revalidate, post-check=0, pre-check=0'
+        headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
+        headers['Expires'] = "0"
+      else
+        headers["Content-Type"] ||= 'text/csv'
+        headers["Content-Disposition"] = "attachment; filename=\"#{filename}\""
+      end
+
+#      render :layout => false
+# if filename exists, delete it
+# if filename cannot be deleted, throw error, ask if filename is open?
+
+    FasterCSV.open(filename, 'w') do |csv|
+      header = []
+      header << 'Church Name' << 'Group Name' << 'Number Youth' << 'Number Counselors' << 'Total Number'
+      header << 'Deposits Due' << 'Deposit $ Paid' << 'Deposit $ Outstanding' << 'Sec Payments Due'
+      header << 'Sec Payment $ Paid' << 'Sec Payment $ Outstanding' << 'Final Payments Due'<< 'Final Payment $ Due'
+      header << 'Final Payment $ Outstanding' << 'Adjustment' << 'Current Balance' << 'Total Due'
+      csv << header
+
+      @invoices.each do |i|
+        row = []
+        row << i[:church_name] << i[:group_name] << i[:youth] << i[:counselors] << (i[:youth] + i[:counselors])
+        row << i[:deposits_due] << i[:deposits_paid] << i[:deposits_outstanding] << i[:second_payments_due]
+        row << i[:second_payments_paid] << i[:second_payments_outstanding] << i[:final_payments_due]
+        row << i[:final_payments_paid] << i[:final_payments_outstanding] << i[:adjustments]
+        row << i[:current_balance] << i[:total_due]
+        csv << row
+      end
+
+
+    flash[:notice] = "#{filename} has been successfully created."
+    end
+        rescue => e
+          flash[:notice] = "#{filename} could not be created. Check if a file by that name is open."
+      end
+    end
+    redirect_to invoice_report_path
+
+  end
 
   def build_invoice_report
 
@@ -137,7 +189,6 @@ private
       end
     end
 
-
     invoice = {:church_name => church.name, :group_name => group.name, :youth => group.current_youth,
                     :counselors => group.current_counselors,
                     :group_id => group.id,
@@ -155,8 +206,7 @@ private
                     :current_balance => full_invoice[:current_balance],
                     :total_due => full_invoice[:total_due] }
 
-
-      invoices << invoice
+          invoices << invoice
     end
     invoices
   end
