@@ -36,15 +36,6 @@ private
         @site = Site.find(r.site_id)
         @column_position = @site_ordinal.index(@site.name)
         @row_position = @item_ordinal.index(BudgetItemType.find(r.item_id).name)
-#        logger.debug @site.inspect
-#        logger.debug @site_names
-#        logger.debug @item_names
-#        logger.debug @item_ordinal.inspect
-#        logger.debug @site_ordinal.inspect
-#        logger.debug @column_position.inspect
-#        logger.debug @row_position.inspect
-#        logger.debug r.inspect
-
 
         @budget_matrix[@row_position][@column_position] += r.amount.to_i
           unless (@column_position.nil? || @row_position.nil?)

@@ -68,7 +68,6 @@ private
 
   def check_for_cancel
   unless params[:cancel].blank?
-logger.debug params.inspect
     liaison_id = ScheduledGroup.find(params[:payment][:scheduled_group_id]).liaison_id
     redirect_to myssp_path(liaison_id)
     end

@@ -1,3 +1,5 @@
+# require 'CSV'
+
 class ChurchesController < ApplicationController
 
   before_filter :authenticate_admin_user!
@@ -95,9 +97,8 @@ private
       dir = "\\documents\\"
       path = ENV['USERPROFILE']
       filename = path + dir + name
-      logger.debug filename
 
-  begin
+    begin
       if File.exists?(filename)
         File.delete(filename)
       end
@@ -114,33 +115,32 @@ private
       end
 
 #      render :layout => false
-# if filename exists, delete it
-# if filename cannot be deleted, throw error, ask if filename is open?
 
-    FasterCSV.open(filename, 'w') do |csv|
-      header = []
-      header << 'Church Name' << 'Group Name' << 'Number Youth' << 'Number Counselors' << 'Total Number'
-      header << 'Deposits Due' << 'Deposit $ Paid' << 'Deposit $ Outstanding' << 'Sec Payments Due'
-      header << 'Sec Payment $ Paid' << 'Sec Payment $ Outstanding' << 'Final Payments Due'<< 'Final Payment $ Due'
-      header << 'Final Payment $ Outstanding' << 'Adjustment' << 'Current Balance' << 'Total Due'
-      csv << header
+      CSV.open(filename, 'w') do |csv|
+        header = []
+        header << 'Church Name' << 'Group Name' << 'Number Youth' << 'Number Counselors' << 'Total Number'
+        header << 'Deposits Due' << 'Deposit $ Paid' << 'Deposit $ Outstanding' << 'Sec Payments Due'
+        header << 'Sec Payment $ Paid' << 'Sec Payment $ Outstanding' << 'Final Payments Due'<< 'Final Payment $ Due'
+        header << 'Final Payment $ Outstanding' << 'Adjustment' << 'Current Balance' << 'Total Due'
+        csv << header
 
-      @invoices.each do |i|
+        @invoices.each do |i|
         row = []
-        row << i[:church_name] << i[:group_name] << i[:youth] << i[:counselors] << (i[:youth] + i[:counselors])
-        row << i[:deposits_due] << i[:deposits_paid] << i[:deposits_outstanding] << i[:second_payments_due]
-        row << i[:second_payments_paid] << i[:second_payments_outstanding] << i[:final_payments_due]
-        row << i[:final_payments_paid] << i[:final_payments_outstanding] << i[:adjustments]
-        row << i[:current_balance] << i[:total_due]
-        csv << row
-      end
+          row << i[:church_name] << i[:group_name] << i[:youth] << i[:counselors] << (i[:youth] + i[:counselors])
+          row << i[:deposits_due] << i[:deposits_paid] << i[:deposits_outstanding] << i[:second_payments_due]
+          row << i[:second_payments_paid] << i[:second_payments_outstanding] << i[:final_payments_due]
+          row << i[:final_payments_paid] << i[:final_payments_outstanding] << i[:adjustments]
+          row << i[:current_balance] << i[:total_due]
+          csv << row
+        end
       flash[:notice] = "#{name} has been successfully created in #{path + dir}."
     end
-        rescue => e
-          flash[:notice] = "#{filename} could not be created. Check if a file by that name is open."
-      end
+#    rescue => e
+#      logger.debug filename
+#          flash[:notice] = "#{filename} could not be created. Check if a file by that name is open."
+  end
 
-    redirect_to invoice_report_path :as => :html
+  redirect_to invoice_report_path :as => :html
 
   end
 

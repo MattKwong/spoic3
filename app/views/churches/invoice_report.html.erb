@@ -32,7 +32,6 @@
                 </tr>
             </thead>
             <tbody><% @invoices.each do |g| %>
-                <tr><% logger.debug g.inspect %>
                     <td><%= link_to g[:church_name], admin_church_path(g[:church_id]) %></td>
                     <td><%= link_to g[:group_name], invoice_path(g[:group_id]),
                                     :title => "Click to review and print the current invoice." %></td>
