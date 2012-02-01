@@ -67,6 +67,5 @@ private
     @budget = { :site_count => @site_names.size - 1, :item_count => @item_names.size - 1,
                   :site_names => @site_names, :item_names => @item_names,
                   :budget_matrix => @budget_matrix, :type => type}
-    logger.debug @budget.inspect
   end
 end

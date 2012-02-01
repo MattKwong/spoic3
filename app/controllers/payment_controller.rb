@@ -53,7 +53,6 @@ class PaymentController < ApplicationController
 
 private
   def log_activity(activity_type, activity_details)
-    logger.debug @current_admin_user.inspect
     a = Activity.new
     a.activity_date = Time.now
     a.activity_type = activity_type

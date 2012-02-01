@@ -55,7 +55,6 @@ class RosterItemController < ApplicationController
 
   def delete
     @roster_item = RosterItem.find(params[:id])
-    logger.debug @roster_item.inspect
     @liaison_id = ScheduledGroup.find(@roster_item.group_id).liaison_id
 
     if @roster_item.delete
