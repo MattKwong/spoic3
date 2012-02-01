@@ -1,5 +1,3 @@
-require 'CSV'
-
 class ChurchesController < ApplicationController
 
   before_filter :authenticate_admin_user!
@@ -116,7 +114,7 @@ private
 
 #      render :layout => false
 
-      CSV.open(filename, 'w') do |csv|
+      FasterCSV.open(filename, 'w') do |csv|
         header = []
         header << 'Church Name' << 'Group Name' << 'Number Youth' << 'Number Counselors' << 'Total Number'
         header << 'Deposits Due' << 'Deposit $ Paid' << 'Deposit $ Outstanding' << 'Sec Payments Due'

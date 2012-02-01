@@ -4,9 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/app/controllers/payment_controller.rb" line="43" mnemonic="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="Troubleshooting bcrypt problem on heroku - removed Gemfile.lock">
+    <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/churches_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/churches_controller.rb" />
     </list>
     <ignored path="spoic3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,10 +33,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="churches_controller.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="churches_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/churches_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="60" selection-start="202" selection-end="202" vertical-scroll-proportion="0.0">
+            <state line="114" column="38" selection-start="4791" selection-end="4791" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -51,10 +51,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="64" selection-start="563" selection-end="563" vertical-scroll-proportion="0.35727787">
+            <state line="29" column="65" selection-start="646" selection-end="646" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -149,10 +149,10 @@
         <option value="$PROJECT_DIR$/app/controllers/budget_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/payment_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/roster_item_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/churches_controller.rb" />
         <option value="$PROJECT_DIR$/public/robots.txt" />
         <option value="$PROJECT_DIR$/public/stylesheets/sass/_bourbon.scss" />
         <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/app/controllers/churches_controller.rb" />
       </list>
     </option>
   </component>
@@ -1477,11 +1477,6 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/churches_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="60" selection-start="202" selection-end="202" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/active_admin_custom.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="56" selection-start="591" selection-end="591" vertical-scroll-proportion="0.0" />
@@ -1526,7 +1521,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="64" selection-start="563" selection-end="563" vertical-scroll-proportion="0.35727787">
+        <state line="29" column="65" selection-start="646" selection-end="646" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/churches_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="114" column="38" selection-start="4791" selection-end="4791" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
