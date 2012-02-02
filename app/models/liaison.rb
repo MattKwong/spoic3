@@ -1,8 +1,7 @@
 class Liaison < ActiveRecord::Base
- # default_scope :order => 'last_name'
-  scope :senior_high_only, where(:liaison_type_id => 2)
-  scope :junior_high_only, where(:liaison_type_id => 3)
-  scope :both, where(:liaison_type_id => 1)
+
+  scope :scheduled, where(:scheduled => 't')
+  scope :unscheduled, where(:scheduled => 'f')
 
   belongs_to :church
   belongs_to :liaison_type
@@ -14,7 +13,7 @@ class Liaison < ActiveRecord::Base
 
   attr_accessible :active, :address1, :address2, :city, :state, :zip, :first_name,
         :last_name, :name, :email1, :email2, :cell_phone, :home_phone, :work_phone,
-        :fax, :liaison_type, :title, :church_id, :liaison_type_id, :id
+        :fax, :liaison_type, :title, :church_id, :liaison_type_id, :id, :registered, :scheduled
 
   before_validation do
     if self.cell_phone[0..1] == '1-'

@@ -17,6 +17,16 @@
                   <li><%= link_to "Show the schedule - unscheduled other programs",
                           registration_show_schedule_path(:reg_or_sched => 'registered', :type => 'other')%></li>
                 </ul>
+             </li>
+             <li><a href="#">Reports</a>
+                <ul>
+                  <li><%= link_to "Invoice report", invoice_report_path%></li>
+                  <li><%= link_to "Churches and Liaisons: CSV", church_and_liaison_csv_path%></li>
+                  <li><%= link_to "Show the schedule - scheduled summer domestic",
+                          registration_show_schedule_path(:reg_or_sched => 'scheduled', :type => 'summer_domestic')%></li>
+                  <li><%= link_to "Show the schedule - unscheduled summer domestic",
+                          registration_show_schedule_path(:reg_or_sched => 'registered', :type => 'summer_domestic')%></li>
+                </ul>
             </li>
             <li><a href="#">Budgets</a>
                 <ul>
@@ -43,12 +53,12 @@
         <li><%= link_to "Help", help_path %></li>
         <% end %>
     </ul>
-        <% if signed_in? %>
-            <div><p id="utility_nav"><span class="current_user"><%= current_admin_user.name %></span>
-              <a href="/admin/logout" data-method="get">Logout</a></p></div>
-        <% else %>
-            <li><%= link_to "Sign in", new_admin_user_session_path %></li>
-        <% end %>
+    <p class="header-item" id="utility_nav"><span class="current_user">
+    <% if signed_in? %><%= current_admin_user.name %></span>
+        <a href="/admin/logout" data-method="get">Logout</a>
+    <% else %>
+        <%= link_to "Sign in", new_admin_user_session_path %></p>
+    <% end %>
 
 </div>
 

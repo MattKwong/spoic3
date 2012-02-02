@@ -1,3 +1,5 @@
+require 'csv'
+
 class ChurchesController < ApplicationController
 
   before_filter :authenticate_admin_user!
@@ -114,7 +116,7 @@ private
 
 #      render :layout => false
 
-      FasterCSV.open(filename, 'w') do |csv|
+      CSV.open(filename, 'w') do |csv|
         header = []
         header << 'Church Name' << 'Group Name' << 'Number Youth' << 'Number Counselors' << 'Total Number'
         header << 'Deposits Due' << 'Deposit $ Paid' << 'Deposit $ Outstanding' << 'Sec Payments Due'
@@ -133,9 +135,9 @@ private
         end
       flash[:notice] = "#{name} has been successfully created in #{path + dir}."
     end
-#    rescue => e
-#      logger.debug filename
-#          flash[:notice] = "#{filename} could not be created. Check if a file by that name is open."
+    rescue => e
+      logger.debug filename
+          flash[:notice] = "#{filename} could not be created. Check if a file by that name is open."
   end
 
   redirect_to invoice_report_path :as => :html

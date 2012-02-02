@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120126214650) do
+ActiveRecord::Schema.define(:version => 20120202190351) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -229,6 +229,8 @@ ActiveRecord::Schema.define(:version => 20120126214650) do
     t.string   "name"
     t.integer  "liaison_type_id"
     t.boolean  "user_created"
+    t.boolean  "scheduled"
+    t.boolean  "registered"
   end
 
   create_table "organizations", :force => true do |t|

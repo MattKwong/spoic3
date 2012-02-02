@@ -1,9 +1,7 @@
 ActiveAdmin.register Liaison do
 
-  scope :senior_high_only
-  scope :junior_high_only
-  scope :both
-
+  scope :scheduled
+  scope :unscheduled
   menu :priority => 5
 
   show :title => :name do
@@ -21,6 +19,8 @@ ActiveAdmin.register Liaison do
         row("State") {liaison.state }
         row("Zip code") {liaison.zip }
         row("Last update") { liaison.updated_at }
+        row("Has registered group?") { liaison.registered }
+        row("Has scheduled group?") { liaison.scheduled }
       end
     end
 
@@ -109,8 +109,8 @@ ActiveAdmin.register Liaison do
       f.input :work_phone
       f.input :home_phone
       f.input :fax
-#      f.input :updated_at
-#      f.input :created_at
+      f.input :scheduled
+      f.input :registered
     end
     f.buttons
   end
@@ -122,7 +122,9 @@ ActiveAdmin.register Liaison do
      column :church_id, :sortable => false do |church|
        link_to church.church.name, admin_church_path(church.church_id)
      end
-
+     column :email1 do |liaison|
+         mail_to liaison.email1, liaison.email1, :subject => "SSP", :body => "Dear #{liaison.first_name},"
+     end
      column :liaison_type, :sortable => :liaison_type_id
      column :city, :sortable => :city
      column :state, :sortable => :state

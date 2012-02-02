@@ -5,9 +5,9 @@ Spoic3::Application.routes.draw do
   get "scheduled_group/new"
 
   get "scheduled_group/confirmation"
-
   ActiveAdmin.routes(self)
   devise_for :admin_users, ActiveAdmin::Devise.config
+
   match "admin/confirmation/new", :to => 'active_admin/devise/confirmations#new', :as => 'new_admin_user_confirmation'
 
   match "registration/schedule", :to => 'registration#schedule', :as => "registration_schedule"
@@ -56,6 +56,7 @@ Spoic3::Application.routes.draw do
   match "churches/main/:id", :to => 'churches#main', :as => "liaison"
   match "churches/invoice_report" => 'churches#invoice_report', :as => 'invoice_report'
   match "churches/invoice_report.csv" => 'churches#invoice_report', :as => 'invoice_report_csv'
+  match "churches/church_and_liaison_report.csv" => 'reports#church_and_liaison', :as => 'church_and_liaison_csv'
   match "registration", :to => 'index', :as => 'registrations'
   match "registration/show_schedule", :to => 'registration#show_schedule'
   match "registration/update", :to => 'registration#update'

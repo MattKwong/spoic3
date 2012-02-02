@@ -38,7 +38,7 @@ class ScheduledGroupsController < ApplicationController
     roster = Roster.create!(:group_id => @scheduled_group.id,
       :group_type => SessionType.find(Session.find(@scheduled_group.session_id).session_type_id).id)
     @scheduled_group.update_attribute('roster_id', roster.id)
-    log_activity("Group scheduled", "#{@scheduled_group.name} from #{church_name} for #{@registration.requested_total} participants")
+ #   log_activity("Group scheduled", "#{@scheduled_group.name} from #{church_name} for #{@registration.requested_total} participants")
     @session = Session.find(params[:id])
   end
 
@@ -47,10 +47,12 @@ class ScheduledGroupsController < ApplicationController
     ## and to update the scheduled id in the payment records
     current_reg = Registration.find(ScheduledGroup.find(params[:id]).registration_id)
     current_reg.scheduled = true
-    if current_reg.update_attributes(current_reg)
+    current_liaison = Liaison.find(current_reg.liaison_id)
+    current_liaison.scheduled = current_liaison.registered = true
+    if current_reg.update_attributes(current_reg) && current_liaison.update_attributes(current_liaison)
       redirect_to scheduled_group_confirmation_path(params[:id])
     else
-      flash[:error] = "Update of registration record failed for unknown reason."
+      flash[:error] = "Update of registration/scheduled group record failed for unknown reason."
     end
 
     payments = Payment.find_all_by_registration_id(current_reg.id)
@@ -287,7 +289,6 @@ class ScheduledGroupsController < ApplicationController
   end
 
   def log_activity(activity_type, activity_details)
-
     a = Activity.new
     a.activity_date = Time.now
     a.activity_type = activity_type
