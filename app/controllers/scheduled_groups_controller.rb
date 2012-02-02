@@ -13,7 +13,7 @@ class ScheduledGroupsController < ApplicationController
   def confirmation       # before the confirmation screen
     @title = "Group Confirmation"
     @registration = Registration.find(params[:reg])
-    church_name = Church.find(@registration.church_id)
+    church_name = Church.find(@registration.church_id).name
     if ScheduledGroup.find_all_by_registration_id(params[:reg]).count == 0
       @scheduled_group = ScheduledGroup.new(:church_id => @registration.church_id,
                         :name => @registration.name, :registration_id => @registration.id,
@@ -38,7 +38,7 @@ class ScheduledGroupsController < ApplicationController
     roster = Roster.create!(:group_id => @scheduled_group.id,
       :group_type => SessionType.find(Session.find(@scheduled_group.session_id).session_type_id).id)
     @scheduled_group.update_attribute('roster_id', roster.id)
- #   log_activity("Group scheduled", "#{@scheduled_group.name} from #{church_name} for #{@registration.requested_total} participants")
+    log_activity("Group scheduled", "#{@scheduled_group.name} from #{church_name} for #{@registration.requested_total} participants")
     @session = Session.find(params[:id])
   end
 
@@ -289,13 +289,14 @@ class ScheduledGroupsController < ApplicationController
   end
 
   def log_activity(activity_type, activity_details)
+    logger.debug current_admin_user.inspect
     a = Activity.new
     a.activity_date = Time.now
     a.activity_type = activity_type
     a.activity_details = activity_details
-    a.user_id = @current_admin_user.id
-    a.user_name = @current_admin_user.name
-    a.user_role = @current_admin_user.user_role
+    a.user_id = current_admin_user.id
+    a.user_name = current_admin_user.name
+    a.user_role = current_admin_user.user_role
     unless a.save!
       flash[:error] = "Unknown problem occurred logging a transaction."
     end

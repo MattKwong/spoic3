@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120202190351) do
+ActiveRecord::Schema.define(:version => 20120202205659) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(:version => 20120202190351) do
     t.string   "activity_type"
     t.string   "activity_details"
     t.integer  "user_id"
-    t.integer  "user_role"
     t.string   "user_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "user_role"
   end
 
   create_table "adjustment_codes", :force => true do |t|
