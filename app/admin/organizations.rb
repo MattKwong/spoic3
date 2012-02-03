@@ -1,4 +1,6 @@
 ActiveAdmin.register Organization do
-  menu :parent => "Configuration"
+  controller.authorize_resource
+  menu :if => proc{ can?(:read, Organization) }, :parent => "Configuration"
+
   show :title => :name
 end

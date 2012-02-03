@@ -1,4 +1,6 @@
 ActiveAdmin.register Conference do
-  menu :parent => "Configuration"
+  controller.authorize_resource
+  menu :if => proc{ can?(:read, Conference) }, :parent => "Configuration"
+
   show :title => :name
 end

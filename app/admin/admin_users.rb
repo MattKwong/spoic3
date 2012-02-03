@@ -1,4 +1,6 @@
 ActiveAdmin.register AdminUser do
+   controller.authorize_resource
+   menu :if => proc{ can?(:read, AdminUser) },:parent => "Users and Logs"
     show :title => :name
 #    after_create { |admin| admin.send_reset_password_instructions }
 
@@ -6,6 +8,8 @@ ActiveAdmin.register AdminUser do
     column :email
     column :name
     column :user_role
+    column :site
+    column :liaison_id
     column :password
     column :current_sign_in_at
     column :last_sign_in_at
@@ -20,6 +24,8 @@ ActiveAdmin.register AdminUser do
       f.input :last_name
       f.input :password
       f.input :user_role
+      f.input :site
+      f.input :liaison_id
 
     end
     f.buttons

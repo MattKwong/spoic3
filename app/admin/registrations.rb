@@ -1,9 +1,8 @@
 ActiveAdmin.register Registration do
-  menu :priority => 2, :label => "Requests", :parent => "Groups"
-#  scope :high_school_unscheduled, :label => "High School Unscheduled"
-#  scope :junior_high_unscheduled, :label => "Junior High Unscheduled"
-#  scope :other_unscheduled, :label => "Other Unscheduled"
-#  scope :scheduled
+  # The authorization is done using the AdminAbility class
+  controller.authorize_resource
+  menu :if => proc{ can?(:read, Registration) }, :label => "Requests", :parent => "Groups"
+
   scope :unscheduled, :default => true #, :label => "All Unscheduled"
 
  index :title => "Registration Requests" do

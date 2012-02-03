@@ -101,3 +101,16 @@ ActiveAdmin.setup do |config|
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
 end
+
+# Below the ActiveAdmin.setup block, I've opened up the ActiveAdmin::ResourceController
+# and modified the current_ability method to use a special AdminAbility class.
+# Technically you can put this code almost anywere, but I've added it here because
+# I think it belongs together with the other Active Admin initializer code.
+
+ActiveAdmin::ResourceController.class_eval do
+  protected
+
+  def current_ability
+    @current_ability ||= AdminAbility.new(current_admin_user)
+  end
+end

@@ -1,4 +1,5 @@
 ActiveAdmin.register BudgetItemType do
-  menu :parent => "Budgets"
+  controller.authorize_resource
+  menu :if => proc{ can?(:read, BudgetItemType) }, :parent => "Budgets"
   show :title => :name
 end

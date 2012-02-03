@@ -4,7 +4,7 @@
          <a><%= @screen_info[:liaison].name %></a>
          <span class="breadcrumb_sep">/</span>
       </span>
-      <h2 id="page_title">My SSP Information Portal</h2>
+      <h2 id="page_title">My SSP Information Portal. Welcome, <%= @screen_info[:liaison].first_name %>!</h2>
    </div>
 </div>
  <%= form_for(@screen_info[:liaison]) do |r| %>
@@ -80,12 +80,12 @@
                                 <td><%= g.current_youth %></td>
                                 <td><%= g.current_counselors %></td>
                                 <td><%= g.current_total %></td>
-                                <td><% s = Session.find(g.session_id)%><%= link_to Site.find(s.site_id).name, sched_program_session_path(s),
+                                <td><% s = Session.find(g.session_id)%><%= link_to Site.find(s.site_id).name, sched_program_session_path(g.session_id),
                                 :title => "Click to see what other groups are coming to this site at this week." %></td>
                                 <td><%= link_to Period.find(s.period_id).name, "#",
                                                 :title => "Starts on #{Period.find(s.period_id).start_date.strftime("%m/%d/%y")
                                                 } and ends on #{Period.find(s.period_id).end_date.strftime("%m/%d/%y")}" %></td>
-                                <td><%= link_to "Update Roster", show_roster_path(:roster_id => g.roster_id),
+                                <td><%= link_to "Update Roster", show_roster_path(g.roster_id),
                                                 :title => "Click to update the participant roster." %></td>
                                 <td><%= link_to number_to_currency(@screen_info[:invoice_info][i][:current_balance]),
                                                 invoice_path(g.id), :title => "Click to review and print your current invoice." %></td>

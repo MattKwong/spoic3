@@ -1,9 +1,12 @@
 class ScheduledGroupsController < ApplicationController
+#  load_and_authorize_resource
   require 'erb'
-    before_filter :check_for_cancel, :only => [:update]
-    before_filter :check_for_submit_changes, :only => [:update]
+  before_filter :check_for_cancel, :only => [:update]
+  before_filter :check_for_submit_changes, :only => [:update]
 
   def program_session
+# TODO: There is an error here...can't find scheduled group with id = :id, but I'm baffled
+    logger.debug "Where am I? #{params.inspect}"
     @groups = ScheduledGroup.find_all_by_session_id(params[:id])
     session = Session.find(params[:id])
     @session_week = Period.find(session.period.id).name
@@ -89,7 +92,6 @@ class ScheduledGroupsController < ApplicationController
 
   def edit
     @scheduled_group = ScheduledGroup.find(params[:id])
-    authorize! :read, @scheduled_group
     @session = Session.find(@scheduled_group.session_id)
     @sessions = Session.find_all_by_session_type_id(@scheduled_group.group_type_id).map { |s| [s.name, s.id ]}
     @liaison = Liaison.find(@scheduled_group.liaison_id)

@@ -1,4 +1,6 @@
 ActiveAdmin.register Denomination do
-  menu :parent => "Configuration"
+  controller.authorize_resource
+  menu :if => proc{ can?(:read, Denomination) }, :parent => "Configuration"
+
   show :title => :name
 end

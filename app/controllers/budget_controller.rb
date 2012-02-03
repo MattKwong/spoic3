@@ -1,4 +1,5 @@
 class BudgetController < ApplicationController
+  load_and_authorize_resource
 
   def budget_summary
     @title = "Budget Summary"

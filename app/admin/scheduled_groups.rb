@@ -1,5 +1,7 @@
 ActiveAdmin.register ScheduledGroup do
- menu :priority => 2, :label => "Scheduled Groups", :parent => "Groups"
+  # The authorization is done using the AdminAbility class
+ controller.authorize_resource
+ menu :if => proc{ can?(:read, ScheduledGroup) },  :priority => 2, :label => "Scheduled Groups", :parent => "Groups"
 
  show :title => :name do
    panel "Group Details " do

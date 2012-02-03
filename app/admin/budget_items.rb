@@ -1,5 +1,7 @@
 ActiveAdmin.register BudgetItem do
-  menu :parent => "Budgets"
+
+  controller.authorize_resource
+  menu :if => proc{ can?(:read, BudgetItem) }, :parent => "Budgets"
 
   index do
     column :site_id, :sortable => :site_id do |site|

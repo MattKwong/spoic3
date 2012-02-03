@@ -1,4 +1,4 @@
 ActiveAdmin.register Payment do
-  menu :priority => 2, :label => "Payments", :parent => "Groups"
-
+  controller.authorize_resource
+  menu :if => proc{ can?(:read, Payment) }, :priority => 2, :label => "Payments", :parent => "Groups"
 end

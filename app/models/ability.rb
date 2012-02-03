@@ -1,19 +1,25 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(admin_user)
+  def initialize(user)
+    if user.liaison?
+#Needs to change to take into account more than one group per liaison
 
-    if admin_user.liaison?
-      liaison = Liaison.find_by_email1(admin_user.email)
-      can :update, Liaison, :id => liaison.id
-      can :read, ScheduledGroup, :liaison_id => liaison.id
-      can :update, Church, :liaison_id => liaison.id
-      cannot :move, ScheduledGroup
+      group = ScheduledGroup.find_by_liaison_id(user.liaison_id)
+      roster = Roster.find_by_group_id(group.id)
+
+      can :manage, Liaison, :id => user.liaison_id
+      can [:program_session, :update], ScheduledGroup, :liaison_id => user.liaison_id
+      can [:invoice,:main], Church, :liaison_id => user.liaison_id
+      can :manage, RosterController, :group_id => group.id
+  #move is defined as being able to move a scheduled group and to increase their numbers
+ #     cannot :move, ScheduledGroup
+ #     cannot :manage, [Activity, BudgetItemType, BudgetItem] #add other resources
     end
-#move is defined as being able to move a scheduled group and to increase their numbers
-    if admin_user.admin?
-      can :manage, :all
-    end
+
+   if user.admin?
+     can :manage, :all
+   end
 
     # Define abilities for the passed in user here. For example:
     #

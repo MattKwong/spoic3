@@ -52,8 +52,8 @@ Spoic3::Application.routes.draw do
     put 'process_payment'
   end
 
-  match "churches/main/:id", :to => 'churches#main', :as => "myssp"
-  match "churches/main/:id", :to => 'churches#main', :as => "liaison"
+  match "churches/main/:id", :to => 'liaisons#show', :as => "myssp"
+  match "churches/main/:id", :to => 'liaisons#show', :as => "liaison"
   match "churches/invoice_report" => 'churches#invoice_report', :as => 'invoice_report'
   match "churches/invoice_report.csv" => 'churches#invoice_report', :as => 'invoice_report_csv'
   match "churches/church_and_liaison_report.csv" => 'reports#church_and_liaison', :as => 'church_and_liaison_csv'

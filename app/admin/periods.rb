@@ -1,5 +1,8 @@
 ActiveAdmin.register Period do
-  menu :parent => "Configuration"
+  # The authorization is done using the AdminAbility class
+  controller.authorize_resource
+  menu :if => proc{ can?(:read, Period) }, :parent => "Configuration"
+
 #TODO: create current_fiscal_year parameter in new Other_Parameters table
  show :title => :name
 

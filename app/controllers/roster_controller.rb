@@ -1,6 +1,8 @@
 class RosterController < ApplicationController
+  load_and_authorize_resource
+
   def show
-    roster = Roster.find(params[:roster_id])
+    roster = Roster.find(params[:id])
     scheduled_group = ScheduledGroup.find(roster.group_id)
     liaison_name = Liaison.find(scheduled_group.liaison_id).name
     items = RosterItem.find_all_by_roster_id(roster.id)

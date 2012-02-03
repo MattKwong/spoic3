@@ -1,4 +1,6 @@
 ActiveAdmin.register LiaisonType do
-  menu :parent => "Configuration"
+  controller.authorize_resource
+  menu :if => proc{ can?(:read, LiaisonType) }, :parent => "Configuration"
+
   show :title => :name
 end

@@ -1,5 +1,6 @@
 ActiveAdmin.register DownloadableDocument do
-  menu :parent => "Configuration"
+  controller.authorize_resource
+  menu :if => proc{ can?(:read, DownloadableDocument) }, :parent => "Configuration"
   show :title => :name
 
   form do |f|

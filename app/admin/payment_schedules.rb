@@ -1,6 +1,6 @@
 ActiveAdmin.register PaymentSchedule do
-  menu :parent => "Configuration"
-
+  controller.authorize_resource
+  menu :if => proc{ can?(:read, PaymentSchedule) }, :parent => "Configuration"
 
    show show :title => :name do
     attributes_table :name, :deposit, :second_payment, :second_payment_date, :final_payment,

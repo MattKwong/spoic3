@@ -1,4 +1,5 @@
 class RegistrationController < ApplicationController
+  load_and_authorize_resource
 
   def index
     @title = "Manage Groups"
@@ -83,7 +84,8 @@ class RegistrationController < ApplicationController
         @payment.payment_amount=@registration.amount_paid
         @payment.payment_date=Date.today
         @payment.payment_notes=@registration.payment_notes
-        if @payment.save then
+        @church.registered=true
+        if @payment.save && @church.save then
           flash[:success] = "Successful completion of step 3"
           redirect_to registration_success_path(:id => @registration.id)
         else

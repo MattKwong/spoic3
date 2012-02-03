@@ -1,4 +1,5 @@
 ActiveAdmin.register ChecklistItem do
-  menu :parent => "Configuration"
+  controller.authorize_resource
+  menu :if => proc{ can?(:read, ChecklistItem) }, :parent => "Configuration"
   show :title => :name
 end

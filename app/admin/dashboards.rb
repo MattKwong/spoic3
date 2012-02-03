@@ -1,8 +1,8 @@
 ActiveAdmin::Dashboards.build do
 
-#  scope :liaison_only
+  # The authorization is done using the AdminAbility class
 
-#  if @current_admin_user.can? :read
+  if proc{ can?(:read, Activity) } #@current_admin_user.can? :read
      section "Recent System Activity" do
       table_for Activity.order("activity_date desc" ) do
         column :activity_date, :format => :long
@@ -12,5 +12,5 @@ ActiveAdmin::Dashboards.build do
       end
       strong { link_to "View All Activity", admin_activities_path }
     end
-#  end
+  end
 end

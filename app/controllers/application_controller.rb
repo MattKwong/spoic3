@@ -3,11 +3,19 @@ class ApplicationController < ActionController::Base
 
  def after_sign_in_path_for(resource)
  #this overrides the default method in the devise library
-    log_activity(Time.now, "Login", "Logged on to system", resource.id, resource.name, resource.user_role)
+
     if resource.liaison?
-      liaison = Liaison.find_by_email1(resource.email)
-      myssp_path(liaison.id)
+       liaison = Liaison.find(resource.liaison_id)
+       church = Church.find(liaison.church_id)
+       if church.nil? #the liaison is unassigned to a church, so he/she can't do anything
+         log_activity(Time.now, "Invaild Login", "Unassigned to church - logged off", resource.id, resource.name, resource.user_role)     #redirect_to :back
+         destroy_admin_user_session_path #log out
+       else
+        log_activity(Time.now, "Liaison Login", "Logged on to system", resource.id, resource.name, resource.user_role)
+        myssp_path(liaison.id)
+      end
     else if resource.admin?
+      log_activity(Time.now, "Admin Login", "Logged on to system", resource.id, resource.name, resource.user_role)
       '/admin'
       end
     end
@@ -32,7 +40,13 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:error] = "Error: You are not authorized to perform this action"
-    redirect_to '/'
+    resource ||= @current_admin_user
+    flash[:error] = "Error: You are not authorized to perform this action (CanCan::AccessDenied: app controller)"
+    if resource.liaison?
+      redirect_to myssp_path(resource.liaison_id)
+    else if resource.admin?
+      redirect_to '/admin'
+         end
+    end
   end
 end

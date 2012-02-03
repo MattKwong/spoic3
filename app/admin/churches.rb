@@ -1,4 +1,6 @@
 ActiveAdmin.register Church do
+  controller.authorize_resource
+
   menu :priority => 4
   scope :inactive
   scope :unregistered

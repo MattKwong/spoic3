@@ -1,4 +1,5 @@
 ActiveAdmin.register AdjustmentCode do
-   menu :parent => "Configuration"
+   controller.authorize_resource
+   menu :if => proc{ can?(:read, AdjustmentCode) },:parent => "Configuration"
    show :title => :short_name
 end

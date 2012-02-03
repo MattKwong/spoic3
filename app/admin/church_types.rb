@@ -1,4 +1,5 @@
 ActiveAdmin.register ChurchType do
-  menu :parent => "Configuration"
+  controller.authorize_resource
+  menu :if => proc{ can?(:read, ChurchType) }, :parent => "Configuration"
   show :title => :name
 end

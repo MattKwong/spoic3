@@ -1,12 +1,12 @@
 require 'csv'
 
 class ReportsController < ApplicationController
+  load_and_authorize_resource :liaison, :parent => false
 
   def church_and_liaison(scope = nil)
   # Find all liaisons and associated churches. Will contain duplicate church info if more than one liaison is
   # assigned to a church
     begin
-      logger.debug request.fullpath
       report_file = setup_csv("liaisons_and_churches-#{Time.now.strftime("%Y%m%d")}")
       liaisons = Liaison.all
       CSV.open(report_file, 'w') do |csv|
@@ -35,7 +35,7 @@ class ReportsController < ApplicationController
     rescue => e
       flash[:notice] = "#{report_file} could not be created. Check if a file by that name is open."
     end
-    redirect_to root_path
+    redirect_to :back
   end
 
 private

@@ -1,4 +1,7 @@
 ActiveAdmin.register UserRole do
-   menu :parent => "Configuration"
+  # The authorization is done using the AdminAbility class
+  controller.authorize_resource
+  menu :if => proc{ can?(:read, UserRole) }, :parent => "Configuration"
+
    show :title => :role_name
 end
