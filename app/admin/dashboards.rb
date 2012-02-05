@@ -2,7 +2,7 @@ ActiveAdmin::Dashboards.build do
 
   # The authorization is done using the AdminAbility class
 
-  if proc{ can?(:read, Activity) } #@current_admin_user.can? :read
+  if proc{ @current_admin_user.admin? } #@current_admin_user.can? :read
      section "Recent System Activity" do
       table_for Activity.order("activity_date desc" ) do
         column :activity_date, :format => :long

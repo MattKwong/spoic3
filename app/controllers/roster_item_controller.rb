@@ -22,7 +22,7 @@ class RosterItemController < ApplicationController
     if @roster_item.valid?
       @roster_item.save!
       flash[:notice] = "Successful entry of new participant"
-      redirect_to show_roster_path(:id => @liaison_id,:roster_id => @roster_item.roster_id)
+      redirect_to show_roster_path(@roster_item.roster_id)
     else
       @title = "Add Participant Information"
       @grade_list = ['9th', '10th', '11th', '12th', 'Graduate', 'Adult']
@@ -36,7 +36,7 @@ class RosterItemController < ApplicationController
   unless params[:cancel].blank?
     roster_item = RosterItem.new(params[:roster_item])
     liaison_id = ScheduledGroup.find(roster_item.group_id).liaison_id
-    redirect_to show_roster_path(:id => liaison_id,:roster_id => roster_item.roster_id)
+    redirect_to show_roster_path(roster_item.roster_id)
     end
   end
 
@@ -51,7 +51,7 @@ class RosterItemController < ApplicationController
   def update
     @roster_item = RosterItem.find(params[:id])
     @roster_item.update_attributes(params[:roster_item])
-    redirect_to show_roster_path(:roster_id => @roster_item.roster_id)
+    redirect_to show_roster_path(@roster_item.roster_id)
   end
 
   def delete
@@ -59,7 +59,7 @@ class RosterItemController < ApplicationController
     @liaison_id = ScheduledGroup.find(@roster_item.group_id).liaison_id
 
     if @roster_item.delete
-      redirect_to show_roster_path(:id => @liaison_id,:roster_id => @roster_item.roster_id)
+      redirect_to show_roster_path(@roster_item.roster_id)
     else
       flash[:notice] = "Unexpected problem occurred deleting this entry"
     end

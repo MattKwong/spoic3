@@ -9,9 +9,9 @@ class Ability
       roster = Roster.find_by_group_id(group.id)
 
       can :manage, Liaison, :id => user.liaison_id
-      can [:program_session, :update], ScheduledGroup, :liaison_id => user.liaison_id
-      can [:invoice,:main], Church, :liaison_id => user.liaison_id
-      can :manage, RosterController, :group_id => group.id
+      can [:manage], ScheduledGroup, :liaison_id => user.liaison_id
+ #     can [:invoice,:main], Church, :liaison_id => user.liaison_id
+      can :manage, Roster, :id => group.roster_id
   #move is defined as being able to move a scheduled group and to increase their numbers
  #     cannot :move, ScheduledGroup
  #     cannot :manage, [Activity, BudgetItemType, BudgetItem] #add other resources

@@ -1,4 +1,4 @@
-class RosterController < ApplicationController
+class RostersController < ApplicationController
   load_and_authorize_resource
 
   def show
@@ -25,7 +25,7 @@ class RosterController < ApplicationController
            end
         end
     end
-    @screen_info = {:roster => roster, :scheduled_group => scheduled_group, :items => items,
+    @screen_info = {:rosters => roster, :scheduled_group => scheduled_group, :items => items,
       :site_name => site_name, :period_name => period_name, :start_date => start_date,
       :end_date => end_date,  :session_type => session_type, :roster_status => roster_status,
       :left_to_enter => left_to_enter, :liaison_name => liaison_name}

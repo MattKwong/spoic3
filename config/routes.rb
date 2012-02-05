@@ -31,15 +31,15 @@ Spoic3::Application.routes.draw do
   match "adjustment/:group_id/new" => 'adjustment#new', :as => "make_adjustment"
   match "adjustments" => 'adjustment#create', :as => 'adjustments'
 
-  match "scheduled_groups/:id/invoice" => 'churches#invoice', :as => "invoice"
-  match "scheduled_groups/:id/statement" => 'churches#statement', :as => "statement"
+  match "scheduled_groups/:id/invoice" => 'scheduled_groups#invoice', :as => "invoice"
+  match "scheduled_groups/:id/statement" => 'scheduled_groups#statement', :as => "statement"
   match "budget/budget_summary" => 'budget#budget_summary', :as => "budget_show"
   match "roster_item/new" => 'roster_item#new', :as => 'new_roster_item'
   match "roster_items" => 'roster_item#create', :as => 'roster_items'
   match "roster_items/:id" => 'roster_item#edit', :as => 'edit_roster_item'
   match "roster_items/:id/delete" => 'roster_item#delete', :as => 'delete_roster_item'
-  match "roster/:id" => 'roster#show', :as => "show_roster"
-#  match "roster/:id" => 'roster#update', :as => "update_roster_items"
+  match "rosters/:id" => 'rosters#show', :as => "show_roster"
+#  match "rosters/:id" => 'rosters#update', :as => "update_roster_items"
 
   resources :roster_item do
 #    show 'show'

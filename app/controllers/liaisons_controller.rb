@@ -3,7 +3,6 @@ class LiaisonsController < ApplicationController
 
   def show
     liaison = Liaison.find(params[:id])
-    logger.debug liaison.inspect
     church = Church.find(liaison.church_id)
     registrations = Registration.find_all_by_liaison_id(liaison.id) || []
     groups = ScheduledGroup.find_all_by_liaison_id(liaison.id)
@@ -255,7 +254,7 @@ class LiaisonsController < ApplicationController
   end
 
   def calculate_roster_status(group)
-# find count of roster items and current group size
+# find count of rosters items and current group size
     items = RosterItem.find_all_by_group_id(group.id).length
     group_size = group.current_total
 

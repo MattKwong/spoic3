@@ -1,7 +1,7 @@
 ActiveAdmin.register Church do
   controller.authorize_resource
+  menu :if => proc{ can?(:index, Church) }, :priority => 5
 
-  menu :priority => 4
   scope :inactive
   scope :unregistered
   scope :active
