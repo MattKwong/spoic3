@@ -10,7 +10,8 @@ Spoic3::Application.routes.draw do
   as :admin_user do
     match '/admin_user/confirmation' => 'confirmations#update', :via => :put, :as => :update_admin_user_confirmation
   end
-  devise_for :admin_users, :controllers => { :confirmations => "confirmations", :sessions => "sessions" }
+  devise_for :admin_users, :controllers => { :passwords => "passwords",
+            :confirmations => "confirmations", :sessions => "sessions" }
 
 #  match "admin/confirmation/new", :to => 'active_admin/devise/confirmations#new', :as => 'new_admin_user_confirmation'
 
@@ -55,7 +56,7 @@ Spoic3::Application.routes.draw do
     put :edit
     put 'process_payment'
   end
-
+  match "churches/edit/:id", :to => 'churches#edit', :as => 'edit_church'
   match "churches/main/:id", :to => 'liaisons#show', :as => "myssp"
   match "churches/main/:id", :to => 'liaisons#show', :as => "liaison"
   match "churches/invoice_report" => 'churches#invoice_report', :as => 'invoice_report'

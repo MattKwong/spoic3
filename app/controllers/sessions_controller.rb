@@ -6,7 +6,7 @@ class SessionsController < Devise::SessionsController
   layout 'admin_layout'
   # GET /resource/sign_in
   def new
-    @page_title = "Please Sign In"
+    @page_title = "Welcome to the SSP Information Center. Please Sign In"
     resource = build_resource
     clean_up_passwords(resource)
     respond_with_navigational(resource, stub_options(resource)){ render_with_scope :new }

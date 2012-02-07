@@ -1,12 +1,14 @@
 class LiaisonsController < ApplicationController
   load_and_authorize_resource
+  layout 'admin_layout'
 
   def show
     liaison = Liaison.find(params[:id])
+    @page_title = "My SSP Information Portal. Welcome, #{liaison.first_name}!"
     church = Church.find(liaison.church_id)
     registrations = Registration.find_all_by_liaison_id(liaison.id) || []
     groups = ScheduledGroup.find_all_by_liaison_id(liaison.id)
-#    authorize! :read, groups
+#   authorize! :read, groups
     rosters = assemble_rosters(groups)
     invoices = grab_invoice_balances(groups)
     notes_and_reminders = Reminder.find_all_by_active(true, :order => 'seq_number')

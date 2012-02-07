@@ -1,23 +1,10 @@
-<div id="title_bar">
-   <div id="titlebar_left">
-      <span class="breadcrumb">
-         <a><%= @screen_info[:liaison].name %></a>
-         <span class="breadcrumb_sep">/</span>
-      </span>
-      <h2 id="page_title">My SSP Information Portal. Welcome, <%= @screen_info[:liaison].first_name %>!</h2>
-   </div>
-</div>
  <%= form_for(@screen_info[:liaison]) do |r| %>
-    <div id="active_admin_content"  class="with_sidebar">
-        <div id="main_content_wrapper">
-            <div id="main_content">
-                <div class="panel">
                     <h3>Church Details</h3>
-                    <div class="panel_contents">
+
                         <div class="attributes_table church" id="church_info_table">
                             <table id = "church_info" border="0" cellspacing="0" cellpadding="0" >
                                 <tr><th>Church Name</th><td><%= link_to @screen_info[:church_info].name,
-                                                 edit_admin_church_path(:id => @screen_info[:liaison].church_id) %></td></tr>
+                                                 edit_church_path(:id => @screen_info[:liaison].church_id) %></td></tr>
                                 <tr><th>Address</th><td><%= @screen_info[:church_info].address1 %></td></tr>
                                 <tr><th>City</th><td><%= @screen_info[:church_info].city %></td></tr>
                                 <tr><th>State</th><td><%= @screen_info[:church_info].state %></td></tr>
@@ -26,7 +13,8 @@
                             </table>
                         </div>
                     </div>
-                </div>
+                 </div>
+
 <!--Original Request Section -->
             <div class="panel">
                 <h3>Original Request Information</h3>
@@ -200,6 +188,5 @@
                 </div>
             </div>
         </div>
-    </div>
  <% end %>
 

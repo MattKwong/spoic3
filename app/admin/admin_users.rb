@@ -25,8 +25,6 @@ ActiveAdmin.register AdminUser do
       f.input :password
       f.input :user_role
       f.input :site
-      f.input :liaison_id
-
     end
     f.buttons
     end
