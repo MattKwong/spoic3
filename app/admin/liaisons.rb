@@ -30,7 +30,9 @@ ActiveAdmin.register Liaison do
         column "Youth", :requested_youth
         column "Counselors", :requested_counselors
         column "Total", :requested_total
-        column "Date submitted", :created_at
+        column "Date submitted", :created_at do |reg|
+           reg.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%b %d, %Y %l:%M %p")
+           end
       end
     end
 
@@ -91,7 +93,7 @@ ActiveAdmin.register Liaison do
     end
   end
 
-  form do |f|
+  form :title => :name do |f|
     f.inputs "Liaison Details" do
       f.input :first_name
       f.input :last_name

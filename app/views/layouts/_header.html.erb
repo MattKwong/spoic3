@@ -55,9 +55,9 @@
     </ul>
     <p class="header-item" id="utility_nav"><span class="current_user">
     <% if signed_in? %><%= current_admin_user.name %></span>
-        <a href="/admin/logout" data-method="get">Logout</a>
+        <%= link_to "Sign out", destroy_admin_user_session_path, :method => :delete  %>
     <% else %>
-        <%= link_to "Sign in", new_admin_user_session_path %></p>
+        <%= link_to "Sign in", new_admin_user_session_path%></p>
     <% end %>
 
 </div>

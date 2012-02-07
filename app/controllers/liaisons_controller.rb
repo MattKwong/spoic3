@@ -40,7 +40,8 @@ class LiaisonsController < ApplicationController
     user.liaison_id = liaison.id
     user.name = liaison.name
     user.user_role = "Liaison"
-    user.password = user.reset_password_token = random_pronouncable_password
+#    user.reset_password_token = AdminUser.reset_password_token
+#    user.password = random_pronouncable_password(8)
 
     unless user.save!
       flash[:error] = "A problem occurred in create a logon for this liaison."

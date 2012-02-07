@@ -76,7 +76,7 @@ ActiveAdmin.register Church do
     end
   end
 
-form do |f|
+form :title => :name do |f|
     f.inputs "Church Details" do
       f.input :name
       f.input :address1

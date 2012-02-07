@@ -6,9 +6,13 @@ Spoic3::Application.routes.draw do
 
   get "scheduled_group/confirmation"
   ActiveAdmin.routes(self)
-  devise_for :admin_users, ActiveAdmin::Devise.config
+#  devise_for :admin_users, ActiveAdmin::Devise.config
+  as :admin_user do
+    match '/admin_user/confirmation' => 'confirmations#update', :via => :put, :as => :update_admin_user_confirmation
+  end
+  devise_for :admin_users, :controllers => { :confirmations => "confirmations", :sessions => "sessions" }
 
-  match "admin/confirmation/new", :to => 'active_admin/devise/confirmations#new', :as => 'new_admin_user_confirmation'
+#  match "admin/confirmation/new", :to => 'active_admin/devise/confirmations#new', :as => 'new_admin_user_confirmation'
 
   match "registration/schedule", :to => 'registration#schedule', :as => "registration_schedule"
   match "registration/register", :to => 'registration#register'
