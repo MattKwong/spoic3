@@ -1,7 +1,44 @@
- <div id="title_bar">
-    <div id="titlebar_left">
-        <h2>Edit church #{params[:id]}</h2>
-        <br>
-        <p><%= @page_title %></p>
-    </div>
- </div>
+ <%= form_for(@church) do |r| %>
+     <table border="0" cellspacing="0" cellpadding="0" >
+       <tr>
+         <td><%= r.label "Church Name" %></td>
+         <td><%= r.text_field :name, %></td>
+       </tr>
+       <tr>
+         <td><%= r.label "Church Address 1" %></td>
+         <td><%= r.text_field :address1, %></td>
+       </tr>
+       <tr>
+         <td><%= r.label "Church Address 2" %></td>
+         <td><%= r.text_field :address2, %></td>
+       </tr>
+       <tr>
+         <td><%= r.label "Church City" %></td>
+         <td><%= r.text_field :city, %></td>
+       </tr>
+       <tr>
+         <td><%= r.label "Church State" %></td>
+         <td><%= r.text_field :state, %></td>
+       </tr>
+       <tr>
+         <td><%= r.label "Zip" %></td>
+         <td><%= r.text_field :zip, %></td>
+       </tr>
+       <tr>
+         <td><%= r.label "Church Email" %></td>
+         <td><%= r.text_field :email1, %></td>
+       </tr>
+       <tr>
+         <td><%= r.label "Office Phone" %></td>
+         <td><%= r.text_field :office_phone, %></td>
+       </tr>
+       <tr>
+         <td><%= r.label "Office Fax" %></td>
+         <td><%= r.text_field :fax, %></td>
+       </tr>
+     </table>
+     <div class="actions">
+       <%= r.submit "Submit Changes" %>
+       <%= cancel_link %>
+     </div>
+ <% end %>

@@ -2,6 +2,20 @@ class LiaisonsController < ApplicationController
   load_and_authorize_resource
   layout 'admin_layout'
 
+  def edit
+    @page_title = "Edit Liaison Information: #{@liaison.name}"
+  end
+
+  def update
+    logger.debug "Liaison update #{@liaison}"
+    if @liaison.update_attributes(params[:liaison])
+      flash[:success] = "Successful update of liaison information"
+    else
+      flash[:error] = "Update of liaison information failed."
+    end
+    redirect_to myssp_path(current_admin_user.liaison_id)
+  end
+
   def show
     liaison = Liaison.find(params[:id])
     @page_title = "My SSP Information Portal. Welcome, #{liaison.first_name}!"

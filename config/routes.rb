@@ -30,7 +30,7 @@ Spoic3::Application.routes.draw do
   match "scheduled_groups/:id/schedule" => 'scheduled_groups#confirmation', :as => "scheduled_groups_schedule"
   match "scheduled_groups/:id/success" => 'scheduled_groups#success', :as => "scheduled_group_confirmation"
   match "scheduled_groups/:id/change_success" => 'scheduled_groups#change_success', :as => "change_confirmation"
-    match "liaisons/:id/create_user" => 'liaisons#create_user', :as => 'create_user'
+  match "liaisons/:id/create_user" => 'liaisons#create_user', :as => 'create_user'
   match "payment/:group_id/new" => 'payment#new', :as => "record_payment"
   match "payments" => 'payment#create', :as => 'payments'
   match "adjustment/:group_id/new" => 'adjustment#new', :as => "make_adjustment"
@@ -56,7 +56,12 @@ Spoic3::Application.routes.draw do
     put :edit
     put 'process_payment'
   end
-  match "churches/edit/:id", :to => 'churches#edit', :as => 'edit_church'
+
+  resources :churches
+  resources :liaisons
+
+#  match "liaisons/edit/:id", :to => 'liaisons#edit', :as => 'edit_liaison'
+#  match "churches/edit/:id", :to => 'churches#edit', :as => 'edit_church'
   match "churches/main/:id", :to => 'liaisons#show', :as => "myssp"
   match "churches/main/:id", :to => 'liaisons#show', :as => "liaison"
   match "churches/invoice_report" => 'churches#invoice_report', :as => 'invoice_report'
@@ -77,22 +82,6 @@ Spoic3::Application.routes.draw do
   match '/signin', :to => 'pages#home'
   match '/signout', :to => 'pages#home'
   root :to => 'pages#home'
-
-  get "churches/new"
-
-  get "churches/edit"
-
-  get "churches/delete"
-
-  get "churches/show"
-
-  get "liaisons/new"
-
-  get "liaisons/edit"
-
-  get "liaisons/delete"
-
-  get "liaisons/show"
 
   get "program_type/show"
 

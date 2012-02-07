@@ -1,3 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <%= csrf_meta_tag %>
+    <%= render 'layouts/stylesheets' %>
+    <%= stylesheet_link_tag :all, 'formtastic', 'my_formtastic_changes' %>
+  <!--[if IE 6]><%= stylesheet_link_tag 'formtastic_ie6' %><![endif]-->
+  <!--[if IE 7]><%= stylesheet_link_tag 'formtastic_ie7' %><![endif]-->
+    <%= javascript_include_tag :defaults %>
+    </head>
+	<body>
+		<div class="container">
+		<%= render 'layouts/header' %>
+			<section class="round">
 <%= stylesheet_link_tag "active_admin", "custom" %>
 <div id = "title_bar">
   <div id="titlebar_left">
@@ -9,8 +24,15 @@
   </div>
 </div>
 <div id="active_admin_content"  class="with_sidebar">
-  <div id="main_content_wrapper">
-    <div id="main_content">
+    <div id="main_content_wrapper">
+      <div id="main_content">
+      <% if flash.count > 0 %>
+         <div class="panel">
+            <div class="flashes">
+              <% flash.each do |key, value| %>
+                  <div class="flash flash <%= key %>"><%= value %></div>
+              <% end %></div></div>
+      <% end %>
       <div class="panel">
         <div class="panel_contents">
           <%= yield %>
@@ -19,3 +41,9 @@
     </div>
   </div>
 </div>
+                			  <%= render 'layouts/footer' %>
+            </section>
+        <%= debug(params) if Rails.env.development? %>
+		</div>
+	</body>
+</html>

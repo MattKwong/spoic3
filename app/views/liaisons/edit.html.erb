@@ -1,0 +1,48 @@
+ <%= form_for(@liaison) do |r| %>
+     <table border="0" cellspacing="0" cellpadding="0" >
+       <p>As a liaison, you may update your personal contact information, but not your primary email. Since this is
+       used as your login, please contact our office if you need to start using a new email. Also, to change liaisons
+       entirely for your church, contact the office.</p>
+
+       <tr>
+         <td><%= r.label "Address 1" %></td>
+         <td><%= r.text_field :address1, %></td>
+       </tr>
+       <tr>
+         <td><%= r.label "Address 2" %></td>
+         <td><%= r.text_field :address2, %></td>
+       </tr>
+       <tr>
+         <td><%= r.label "City" %></td>
+         <td><%= r.text_field :city, %></td>
+       </tr>
+       <tr>
+         <td><%= r.label "State" %></td>
+         <td><%= r.text_field :state, %></td>
+       </tr>
+       <tr>
+         <td><%= r.label "Zip" %></td>
+         <td><%= r.text_field :zip, %></td>
+       </tr>
+       <tr>
+         <td><%= r.label "Home Phone" %></td>
+         <td><%= r.text_field :home_phone, %></td>
+       </tr>
+       <tr>
+         <td><%= r.label "Cell Phone" %></td>
+         <td><%= r.text_field :cell_phone, %></td>
+       </tr>
+       <tr>
+         <td><%= r.label "Work Phone" %></td>
+         <td><%= r.text_field :work_phone, %></td>
+       </tr>
+       <tr>
+         <td><%= r.label "Fax" %></td>
+         <td><%= r.text_field :fax, %></td>
+       </tr>
+     </table>
+     <div class="actions">
+       <%= r.submit "Submit Changes", :action => "update" %>
+       <%= cancel_link %>
+     </div>
+ <% end %>

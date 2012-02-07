@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  layout 'admin_layout'
   def home
       @title = "Welcome"
   end

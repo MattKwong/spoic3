@@ -1,10 +1,10 @@
  <%= form_for(@screen_info[:liaison]) do |r| %>
                     <h3>Church Details</h3>
-
-                        <div class="attributes_table church" id="church_info_table">
+                         <div class="attributes_table church" id="church_info_table">
                             <table id = "church_info" border="0" cellspacing="0" cellpadding="0" >
                                 <tr><th>Church Name</th><td><%= link_to @screen_info[:church_info].name,
-                                                 edit_church_path(:id => @screen_info[:liaison].church_id) %></td></tr>
+                                                 edit_church_path(:id => @screen_info[:liaison].church_id,
+                                                 :liaison_id => @screen_info[:liaison].id) %></td></tr>
                                 <tr><th>Address</th><td><%= @screen_info[:church_info].address1 %></td></tr>
                                 <tr><th>City</th><td><%= @screen_info[:church_info].city %></td></tr>
                                 <tr><th>State</th><td><%= @screen_info[:church_info].state %></td></tr>
@@ -158,7 +158,7 @@
                             </tr>
                             <tr>
                                 <td><%= link_to "Edit Liaison Information",
-                                        edit_admin_liaison_path(:id => @screen_info[:liaison].id) %></td>
+                                        edit_liaison_path(:id => @screen_info[:liaison].id) %></td>
                                 <% if signed_in? && current_admin_user.admin? %>
                                   <td><%= mail_to @screen_info[:liaison].email1, "Email #{@screen_info[:liaison].first_name}",
                                                         :subject => "SSP Information" %></td>
