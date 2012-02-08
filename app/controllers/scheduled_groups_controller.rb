@@ -5,9 +5,10 @@ class ScheduledGroupsController < ApplicationController
   before_filter :check_for_submit_changes, :only => [:update]
 
   def program_session
-    group = ScheduledGroup.find(params[:id])
-    @groups = ScheduledGroup.find_all_by_session_id(group.session_id)
-    session = Session.find(group.session_id)
+    session = Session.find(params[:id])
+#    group = ScheduledGroup.find(params[:id])
+    @groups = ScheduledGroup.find_all_by_session_id(session.id)
+#    session = Session.find(group.session_id)
     @session_week = Period.find(session.period.id).name
     @session_site = Site.find(session.site_id).name
   end
