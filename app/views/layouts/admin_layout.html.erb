@@ -33,14 +33,12 @@
                   <div class="flash flash <%= key %>"><%= value %></div>
               <% end %></div></div>
       <% end %>
-      <div class="panel">
-        <div class="panel_contents">
+
           <%= yield %>
         </div>
       </div>
     </div>
-  </div>
-</div>
+
                 			  <%= render 'layouts/footer' %>
             </section>
         <%= debug(params) if Rails.env.development? %>

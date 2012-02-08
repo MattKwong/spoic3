@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120206214618) do
+ActiveRecord::Schema.define(:version => 20120208001658) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -343,6 +343,9 @@ ActiveRecord::Schema.define(:version => 20120206214618) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "roster_id"
+    t.string   "disclosure_status"
+    t.string   "covenant_status"
+    t.string   "background_status"
   end
 
   create_table "rosters", :force => true do |t|

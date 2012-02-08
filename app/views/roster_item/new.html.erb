@@ -1,18 +1,5 @@
-<div id="title_bar">
-  <div id="titlebar_left">
-     <span class="breadcrumb">
-        <%= link_to "Return to Roster", :back %>
-        <span class="breadcrumb_sep">/</span>
-     </span>
-     <h2 id="page_title"><%= @title %></h2>
-  </div>
-</div>
 <%= form_for(@roster_item) do |r| %>
-  <%= render 'shared/error_messages_roster_item' %>
-     <div id="active_admin_content">
-        <div id="main_content_wrapper">
-          <div id="main_content">
-                          <div class="panel">
+             <div class="panel">
                             <h3>Enter Participant Information</h3>
                             <div class="panel_contents">
                               <table border="0" cellspacing="0" cellpadding="0">
@@ -64,6 +51,20 @@
                                   <td><%= r.label "Shirt Size" %></td>
                                   <td><%= r.select :shirt_size, options_for_select(@size_list) %></td>
                                 </tr>
+                                <% if signed_in? && current_admin_user.admin? %>
+                                  <tr>
+                                    <td><%= r.label "Disclosure Status" %></td>
+                                    <td><%= r.select :disclosure_status, options_for_select(@disclosure_status_list) %></td>
+                                  </tr>
+                                <tr>
+                                  <td><%= r.label "Covenant Status" %></td>
+                                  <td><%= r.select :covenant_status, options_for_select(@covenant_status_list) %></td>
+                                </tr>
+                                <tr>
+                                  <td><%= r.label "Background Check Status" %></td>
+                                  <td><%= r.select :background_status, options_for_select(@background_status_list) %></td>
+                                </tr>
+                                <% end %>
                         <input type = "hidden" name="roster_item[roster_id]" value= <%= @roster_item.roster_id %> />
                         <input type = "hidden" name="roster_item[group_id]" value= <%= @roster_item.group_id %> />
                       </table>
@@ -73,9 +74,7 @@
                              </div>
                 </div>
               </div>
-          </div>
+
         <% end %>
-        </div>
-        </div>
 
 

@@ -7,7 +7,6 @@ class LiaisonsController < ApplicationController
   end
 
   def update
-    logger.debug "Liaison update #{@liaison}"
     if @liaison.update_attributes(params[:liaison])
       flash[:success] = "Successful update of liaison information"
     else
