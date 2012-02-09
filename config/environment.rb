@@ -11,7 +11,7 @@ Spoic3::Application.initialize!
 ActionMailer::Base.delivery_method = :smtp
 
 ActionMailer::Base.smtp_settings = {
-  :address              => "sierraserviceproject.org",
+  :address              => "smtp.sierraserviceproject.org",
   :port                 => 25,
   :user_name            => "director@sierraserviceproject.org",
   :password             => "norge1",
