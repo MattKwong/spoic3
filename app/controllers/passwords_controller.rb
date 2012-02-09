@@ -12,16 +12,19 @@ class PasswordsController < Devise::PasswordsController
 
   # POST /resource/password
   def create
-    self.resource = resource_class.send_reset_password_instructions(params[resource_name])
-    logger.debug "In passwords_controller#{resource_class}"
-    Notifier.password_email(resource).deliver
+    h = params[:admin_user]
+    user = AdminUser.find_by_email(h["email"])
 
- #    if successfully_sent?(resource)
-    respond_with({}, :location => after_sending_reset_password_instructions_path_for(resource_name))
-    flash[:notify] = "Password reset instructions have been sent to #{resource.email}"
- #   else
- #     respond_with_navigational(resource){ render_with_scope :new }
- #   end
+    if user
+    #   self.resource = resource_class.send_reset_password_instructions(params[resource_name])
+      logger.debug "In passwords_controller#{user.inspect}"
+      Notifier.password_email(user).deliver
+#      respond_with({}, :location => after_sending_reset_password_instructions_path_for(resource_name))
+      flash[:notify] = "Password reset instructions have been sent to #{user.email}"
+    else
+      flash[:error] = "This email is not registered with the MySSP system."
+    end
+    redirect_to :root
   end
 
   # GET /resource/password/edit?reset_password_token=abcdef
