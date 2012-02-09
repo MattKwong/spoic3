@@ -9,7 +9,6 @@ Spoic3::Application.initialize!
 #end
 
 ActionMailer::Base.delivery_method = :smtp
-config.time_zone = "Pacific Time (US & Canada)"
 
 ActionMailer::Base.smtp_settings = {
   :address              => "sierraserviceproject.org",
