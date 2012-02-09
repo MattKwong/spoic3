@@ -9,14 +9,14 @@ Spoic3::Application.initialize!
 #end
 
 ActionMailer::Base.delivery_method = :smtp
-#config.time_zone = "Pacific Time (US & Canada)"
+config.time_zone = "Pacific Time (US & Canada)"
 
-#ActionMailer::Base.smtp_settings = {
-#  :address              => "sierraserviceproject.org",
-#  :port                 => 25,
-#  :user_name            => "director@sierraserviceproject.org",
-#  :password             => "norge1",
-#  :authentication       => nil #,
-#  :enable_starttls_auto => true
-#}
+ActionMailer::Base.smtp_settings = {
+  :address              => "sierraserviceproject.org",
+  :port                 => 25,
+  :user_name            => "director@sierraserviceproject.org",
+  :password             => "norge1",
+  :authentication       => 'plain',
+  :enable_starttls_auto => true
+}
 
