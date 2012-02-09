@@ -50,6 +50,6 @@ Spoic3::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  config.action_mailer.default_url_options = { :host => 'spoic3.heroku.com' }
+  config.action_mailer.default_url_options = { :host => 'stark-fire-1166.heroku.com' }
   config.action_mailer.raise_delivery_errors = true
 end
