@@ -12,14 +12,16 @@ class PasswordsController < Devise::PasswordsController
 
   # POST /resource/password
   def create
-    logger.debug "In passwords_controller#{self.resource}"
     self.resource = resource_class.send_reset_password_instructions(params[resource_name])
+    logger.debug "In passwords_controller#{resource_class}"
+    Notifier.password_email(resource).deliver
 
-    if successfully_sent?(resource)
-      respond_with({}, :location => after_sending_reset_password_instructions_path_for(resource_name))
-    else
-      respond_with_navigational(resource){ render_with_scope :new }
-    end
+ #    if successfully_sent?(resource)
+    respond_with({}, :location => after_sending_reset_password_instructions_path_for(resource_name))
+    flash[:notify] = "Password reset instructions have been sent to #{resource.email}"
+ #   else
+ #     respond_with_navigational(resource){ render_with_scope :new }
+ #   end
   end
 
   # GET /resource/password/edit?reset_password_token=abcdef
