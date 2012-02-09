@@ -11,7 +11,7 @@ default :from => "admin@sierraserviceproject.com"
 
 We have received a request to reset your MySSP password. To change your password, click on the link below.
 
- #{admin_users/password/edit?}#{user.reset_password_token}
+ admin_users/password/edit?#{user.reset_password_token}
 
 Meghan Osborn, SSP Business Manager
 

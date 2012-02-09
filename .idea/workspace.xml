@@ -96,19 +96,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="notifier.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="notifier.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/notifier.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="27" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0">
+            <state line="20" column="32" selection-start="513" selection-end="513" vertical-scroll-proportion="0.6060606">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="reset_password_instructions.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="reset_password_instructions.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cancan/ruby/1.9.1/gems/devise-1.5.3/app/views/devise/mailer/reset_password_instructions.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="0" selection-start="317" selection-end="317" vertical-scroll-proportion="0.2605364">
+            <state line="8" column="0" selection-start="317" selection-end="317" vertical-scroll-proportion="-5.230769">
               <folding />
             </state>
           </provider>
@@ -1835,16 +1835,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/notifier.rb">
+    <entry file="file://$PROJECT_DIR$/cancan/ruby/1.9.1/gems/devise-1.5.3/app/views/devise/mailer/reset_password_instructions.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="27" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0">
+        <state line="8" column="0" selection-start="317" selection-end="317" vertical-scroll-proportion="-5.230769">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cancan/ruby/1.9.1/gems/devise-1.5.3/app/views/devise/mailer/reset_password_instructions.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/models/notifier.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="317" selection-end="317" vertical-scroll-proportion="0.2605364">
+        <state line="20" column="32" selection-start="513" selection-end="513" vertical-scroll-proportion="0.6060606">
           <folding />
         </state>
       </provider>
