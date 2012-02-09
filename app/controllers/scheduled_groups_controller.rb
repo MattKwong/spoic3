@@ -1,14 +1,16 @@
 class ScheduledGroupsController < ApplicationController
-  load_and_authorize_resource
+#  skip_authorization_check :only => :program_session
+#  load_and_authorize_resource
+
   require 'erb'
   before_filter :check_for_cancel, :only => [:update]
   before_filter :check_for_submit_changes, :only => [:update]
 
   def program_session
     session = Session.find(params[:id])
-#    group = ScheduledGroup.find(params[:id])
+#   group = ScheduledGroup.find(params[:id])
     @groups = ScheduledGroup.find_all_by_session_id(session.id)
-#    session = Session.find(group.session_id)
+#   session = Session.find(group.session_id)
     @session_week = Period.find(session.period.id).name
     @session_site = Site.find(session.site_id).name
   end
@@ -413,7 +415,7 @@ private
 
       new_total = new_values[:current_youth].to_i  + new_values[:current_counselors].to_i
 
-      if (new_total != @group.current_total) then
+      if (new_total != @group.current_total) || new_values[:current_youth].to_i != @group.current_youth  then
         count_change = true
       end
 

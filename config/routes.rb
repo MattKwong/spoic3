@@ -26,7 +26,7 @@ Spoic3::Application.routes.draw do
   match "registration/:id/program_session" => 'registration#program_session', :as => 'reg_program_session'
   match "registration/alt_schedule" => 'registration#alt_schedule', :as => 'alt_schedule_group'
   match "scheduled_groups/:id/program_session" => 'scheduled_groups#program_session', :as => 'sched_program_session'
-  resources :scheduled_groups
+
   match "scheduled_groups/:id/schedule" => 'scheduled_groups#confirmation', :as => "scheduled_groups_schedule"
   match "scheduled_groups/:id/success" => 'scheduled_groups#success', :as => "scheduled_group_confirmation"
   match "scheduled_groups/:id/change_success" => 'scheduled_groups#change_success', :as => "change_confirmation"
@@ -56,17 +56,17 @@ Spoic3::Application.routes.draw do
     put :edit
     put 'process_payment'
   end
+  match "scheduled_groups/invoice_report" => 'scheduled_groups#invoice_report', :as => 'invoice_report'
+  match "scheduled_groups/invoice_report.csv" => 'scheduled_groups#invoice_report', :as => 'invoice_report_csv'
+  match "scheduled_groups/church_and_liaison_report.csv" => 'scheduled_groups#church_and_liaison', :as => 'church_and_liaison_csv'
 
   resources :churches
   resources :liaisons
-
+  resources :scheduled_groups
 #  match "liaisons/edit/:id", :to => 'liaisons#edit', :as => 'edit_liaison'
 #  match "churches/edit/:id", :to => 'churches#edit', :as => 'edit_church'
   match "churches/main/:id", :to => 'liaisons#show', :as => "myssp"
   match "churches/main/:id", :to => 'liaisons#show', :as => "liaison"
-  match "churches/invoice_report" => 'churches#invoice_report', :as => 'invoice_report'
-  match "churches/invoice_report.csv" => 'churches#invoice_report', :as => 'invoice_report_csv'
-  match "churches/church_and_liaison_report.csv" => 'reports#church_and_liaison', :as => 'church_and_liaison_csv'
   match "registration", :to => 'index', :as => 'registrations'
   match "registration/show_schedule", :to => 'registration#show_schedule'
   match "registration/update", :to => 'registration#update'

@@ -45,6 +45,7 @@ class PasswordsController < Devise::PasswordsController
       sign_in(resource_name, resource)
       respond_with resource, :location => after_sign_in_path_for(resource)
     else
+      @page_title = "Reset Your Password"
       respond_with_navigational(resource){ render_with_scope :edit }
     end
   end
