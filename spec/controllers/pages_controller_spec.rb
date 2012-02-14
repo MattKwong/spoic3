@@ -4,16 +4,9 @@ describe PagesController do
   include Devise::TestHelpers
   render_views
 
-  before (:each) do
-    @current_admin_user = AdminUser.find_by_email('admin@sierraserviceproject.org')
-    sign_in @current_admin_user
-  end
-
-  before (:each) do
-    @base_title = "Sierra Service Project Online Information Center "
-  end
 
   describe "GET 'home'" do
+    login_admin
     it "should be successful" do
       get 'home'
       response.should be_success
