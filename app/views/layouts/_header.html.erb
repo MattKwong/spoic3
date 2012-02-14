@@ -12,10 +12,8 @@
                           registration_show_schedule_path(:reg_or_sched => 'scheduled', :type => 'summer_domestic')%></li>
                   <li><%= link_to "Show the schedule - unscheduled summer domestic",
                           registration_show_schedule_path(:reg_or_sched => 'registered', :type => 'summer_domestic')%></li>
-                  <li><%= link_to "Show the schedule - scheduled other programs",
-                          registration_show_schedule_path(:reg_or_sched => 'scheduled', :type => 'other')%></li>
-                  <li><%= link_to "Show the schedule - unscheduled other programs",
-                          registration_show_schedule_path(:reg_or_sched => 'registered', :type => 'other')%></li>
+                  <li><%= link_to "Reset user password",
+                          new_admin_user_password_path %></li>
                 </ul>
              </li>
              <li><a href="#">Reports</a>

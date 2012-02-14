@@ -37,21 +37,22 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
+gem 'rspec-rails', :group => [:development, :test]
+
 group :production, :staging do
   gem "pg"
 end
 
 group :development do
-  gem 'rspec-rails', '2.0.1'
   gem 'faker', '0.3.1'
   gem 'sqlite3-ruby', :require => 'sqlite3'
 #  gem 'annotate-models', '1.0.4'
 end
 
 group :test do
-  gem 'rspec', '2.0.1'
   gem 'webrat', '0.7.1'
-  gem 'factory_girl_rails', '1.0'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
   gem 'spork', '0.9.0.rc9'
   gem 'sqlite3-ruby', :require => 'sqlite3'
 end

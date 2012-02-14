@@ -1,0 +1,13 @@
+<p>Welcome <%= @resource.name %>!</p>
+
+<p>An account has been created for you at the SSP Information Center. This account will make it easier for you to
+  manage your interaction with SSP. This is meant for your convenience, but not as a replacement for picking up the
+  phone and calling us when you need to.</p>
+
+<p>To use the account, you will log on using your email address (to which this email has been sent, as well as a password.
+When you activate your account by clicking on the link below, you'll be prompted to set a password. Please call the office if
+you encounter any difficulty in getting logged in.</p
+>
+<p>To start using the Information Center, please click on the link below to activate your account</p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>

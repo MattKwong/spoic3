@@ -888,7 +888,7 @@ body.logged_in .flash {
   margin-bottom: 10px;
   padding: 13px 30px 11px;
   position: relative;
-  top: -15px; }
+  top: -0px; }
   body.logged_in .flash.flash_notice {
     background: #dce9dd;
     background: -webkit-gradient(linear, left top, left bottom, from(#dce9dd), to(#ccdfcd));

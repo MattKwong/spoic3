@@ -1,13 +1,13 @@
 class ScheduledGroupsController < ApplicationController
 #  skip_authorization_check :only => :program_session
-#  load_and_authorize_resource
+  load_and_authorize_resource
 
   require 'erb'
   before_filter :check_for_cancel, :only => [:update]
   before_filter :check_for_submit_changes, :only => [:update]
 
   def program_session
-    session = Session.find(params[:id])
+    session = Session.find(params[:session])
 #   group = ScheduledGroup.find(params[:id])
     @groups = ScheduledGroup.find_all_by_session_id(session.id)
 #   session = Session.find(group.session_id)

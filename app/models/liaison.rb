@@ -1,5 +1,5 @@
 class Liaison < ActiveRecord::Base
-
+  default_scope :order => 'last_name'
   scope :scheduled, where(:scheduled => 't')
   scope :unscheduled, where(:scheduled => 'f')
 

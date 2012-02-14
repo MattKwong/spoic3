@@ -70,8 +70,8 @@
                                 <td><%= g.current_youth %></td>
                                 <td><%= g.current_counselors %></td>
                                 <td><%= g.current_total %></td>
-                                <td><% s = Session.find(g.session_id)%><%= link_to Site.find(s.site_id).name, sched_program_session_path(s.id),
-                                :title => "Click to see what other groups are coming to this site at this week." %></td>
+                                <td><% s = Session.find(g.session_id)%><%= link_to Site.find(s.site_id).name, sched_program_session_path(:id => @screen_info[:liaison].id,
+                                    :session => g.session_id),:title => "Click to see what other groups are coming to this site at this week." %></td>
                                 <td><%= link_to Period.find(s.period_id).name, "#",
                                                 :title => "Starts on #{Period.find(s.period_id).start_date.strftime("%m/%d/%y")
                                                 } and ends on #{Period.find(s.period_id).end_date.strftime("%m/%d/%y")}" %></td>

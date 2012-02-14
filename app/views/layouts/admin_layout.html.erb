@@ -4,44 +4,44 @@
     <title><%= title %></title>
     <%= csrf_meta_tag %>
     <%= render 'layouts/stylesheets' %>
-    <%= stylesheet_link_tag :all, 'formtastic', 'my_formtastic_changes' %>
-  <!--[if IE 6]><%= stylesheet_link_tag 'formtastic_ie6' %><![endif]-->
-  <!--[if IE 7]><%= stylesheet_link_tag 'formtastic_ie7' %><![endif]-->
     <%= javascript_include_tag :defaults %>
   </head>
-  <body>
-    <div class="container">
+  <body class = logged_in>
+  <div class="wrapper">
 	<%= render 'layouts/header' %>
-	<section class="round">
-<%= stylesheet_link_tag "active_admin", "custom" %>
-<div id = "title_bar">
-  <div id="titlebar_left">
-    <span class="breadcrumb">
-      <a href="/">Home</a>
-      <span class="breadcrumb_sep">/</span>
-    </span>
-    <h2 id="page_title"><%= @page_title %></h2>
-  </div>
-</div>
-<div id="active_admin_content"  class="with_sidebar">
-    <div id="main_content_wrapper">
-      <div id="main_content">
-      <% if flash.count > 0 %>
-         <div class="panel">
-            <div class="flashes">
-              <% flash.each do |key, value| %>
-                  <div class="flash flash <%= key %>"><%= value %></div>
-              <% end %></div></div>
-      <% end %>
-
-          <%= yield %>
-        </div>
+    <div id = "title_bar">
+      <div id="titlebar_left">
+        <span class="breadcrumb">
+           <a href="/">Home</a>
+           <span class="breadcrumb_sep">/</span>
+        </span>
+        <h2 id="page_title"><%= @page_title %></h2>
       </div>
     </div>
+    <div class="flashes">
+      <% if flash.count > 0 %>
+      <% logger.debug flash.inspect %>
+        <% flash.each do |key, value| %>
+           <% if key.to_s == 'notice' %>
+             <div class="flash flash_notice"><%= value %></div>
+           <% else %>
+             <div class="flash flash_error"><%= value %></div>
+           <% end %>
+        <% end %>
+      <% end %>
+    </div>
+	<section class="round">
+      <div id="active_admin_content"  class="with_sidebar">
+        <div id="main_content_wrapper">
+          <div id="main_content">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <%= render 'layouts/footer' %>
+    <%= debug(params) if Rails.env.development? %>
 
-        <%= render 'layouts/footer' %>
-        </section>
-        <%= debug(params) if Rails.env.development? %>
-		</div>
-	</body>
+  </body>
 </html>

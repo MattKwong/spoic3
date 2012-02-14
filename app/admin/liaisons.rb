@@ -46,7 +46,8 @@ ActiveAdmin.register Liaison do
         column "Counselors", :current_counselors
         column "Total", :current_total
         column "Session", :session_id do |session|
-          link_to session.session.name, sched_program_session_path(session.session.id)
+          link_to session.session.name, sched_program_session_path(liaison.id,
+            :session => session.session.id),:title => "Click to see what other groups are coming to this site at this week."
         end
         column "Site", :session_id do |session|
           session.session.site.name
