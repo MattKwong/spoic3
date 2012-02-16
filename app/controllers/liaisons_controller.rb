@@ -257,7 +257,7 @@ class LiaisonsController < ApplicationController
   end
 
   def calculate_2nd_payment_status(group, checklist, invoice)
-    due = invoice[:deposit_amount] = invoice[:second_payment_amount]
+    due = invoice[:deposit_amount] + invoice[:second_payment_amount]
     if invoice[:amount_paid] >= due
       "Paid"
     else

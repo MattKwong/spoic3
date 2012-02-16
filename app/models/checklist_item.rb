@@ -1,7 +1,7 @@
 class ChecklistItem < ActiveRecord::Base
   attr_accessible :name, :due_date, :notes, :seq_number, :description, :active, :default_status
 
-  validates :name, :notes, :presence => true,
+  validates :name, :presence => true,
                     :length => { :within => 6..40},
                     :uniqueness => true
     validates_numericality_of :seq_number,  :allow_blank => false, :only_integer =>  true, :less_than => 100,
