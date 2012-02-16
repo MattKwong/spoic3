@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     resource ||= @current_admin_user
-    flash[:error] = "Error: You are not authorized to perform this action (CanCan::AccessDenied: app controller)"
+    flash[:error] = "Error: You are not authorized to perform this action."
     if resource.liaison?
       redirect_to myssp_path(resource.liaison_id)
     else if resource.admin?

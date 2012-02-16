@@ -33,6 +33,7 @@ Spoic3::Application.routes.draw do
   match "liaisons/:id/create_user" => 'liaisons#create_user', :as => 'create_user'
   match "payment/:group_id/new" => 'payment#new', :as => "record_payment"
   match "payments" => 'payment#create', :as => 'payments'
+  match "payment/:id" => 'payment#show', :as => 'show_payment'
   match "adjustment/:group_id/new" => 'adjustment#new', :as => "make_adjustment"
   match "adjustments" => 'adjustment#create', :as => 'adjustments'
 
@@ -58,7 +59,7 @@ Spoic3::Application.routes.draw do
   end
   match "scheduled_groups/invoice_report" => 'scheduled_groups#invoice_report', :as => 'invoice_report'
   match "scheduled_groups/invoice_report.csv" => 'scheduled_groups#invoice_report', :as => 'invoice_report_csv'
-  match "scheduled_groups/church_and_liaison_report.csv" => 'scheduled_groups#church_and_liaison', :as => 'church_and_liaison_csv'
+  match "scheduled_groups/church_and_liaison_report.csv" => 'reports#church_and_liaison', :as => 'church_and_liaison_csv'
 
   resources :churches
   resources :liaisons

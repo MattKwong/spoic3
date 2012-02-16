@@ -32,6 +32,11 @@
                             <td><%= r.select :session_id, @sessions %></td>
                           </tr>
                         <% end %>
+                        <tr>
+                          <td><%= r.label "Notes" %></td>
+                          <td><input id="notes" name="notes" size="30" type="text"></td>
+                        </tr>
+
                     </table>
                     <div id = "group_change_button" class="actions">
                         <%= submit_tag 'Submit Changes', { :disabled => true, :confirm => "Are you sure you want to make these changes?",

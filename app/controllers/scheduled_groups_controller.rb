@@ -1,12 +1,16 @@
 class ScheduledGroupsController < ApplicationController
-#  skip_authorization_check :only => :program_session
-  load_and_authorize_resource
-
+#  skip_authorize_resource :only => :program_session
+  authorize_resource
+  require 'csv'
   require 'erb'
   before_filter :check_for_cancel, :only => [:update]
   before_filter :check_for_submit_changes, :only => [:update]
 
   def program_session
+#TODO: This doesn't seem to be working
+    if current_admin_user.admin?
+      skip_authorize_resource
+    end
     session = Session.find(params[:session])
 #   group = ScheduledGroup.find(params[:id])
     @groups = ScheduledGroup.find_all_by_session_id(session.id)
@@ -98,6 +102,7 @@ class ScheduledGroupsController < ApplicationController
     @sessions = Session.find_all_by_session_type_id(@scheduled_group.group_type_id).map { |s| [s.name, s.id ]}
     @liaison = Liaison.find(@scheduled_group.liaison_id)
     @title = "Change Schedule"
+    @notes = String.new
   end
 
 
@@ -163,6 +168,7 @@ class ScheduledGroupsController < ApplicationController
   def update_group_change
       @group_id = params[:id]
       @group = ScheduledGroup.find(@group_id)
+      logger.debug params.inspect
       if can? :move, @group
         update_all_fields
       else
@@ -272,7 +278,8 @@ private
       flash[:notice] = "#{name} has been successfully created in #{path + dir}."
     end
     rescue => e
-      logger.debug filename
+      #logger.debug e.inspect
+      #logger.debug filename
           flash[:notice] = "#{filename} could not be created. Check if a file by that name is open."
   end
 
@@ -403,6 +410,7 @@ private
 
   def update_all_fields
       new_values = params[:scheduled_group]
+      logger.debug new_values.inspect
       site_change = week_change = count_change = false
       new_session_name = Session.find(new_values[:session_id]).name
       old_session_name = Session.find(@group.session_id).name
@@ -429,8 +437,11 @@ private
          :new_session => new_session_name,:old_session => old_session_name,
          :site_change => site_change,
          :week_change => week_change,
-         :count_change => count_change)
-       unless change_record.save! then
+         :count_change => count_change,
+         :notes => @notes)
+       if change_record.save! then
+          flash[:notice] = "You have successfully completed this group change."
+       else
           flash[:error] = "Update of change record failed for unknown reason."
           render "edit"
        end
@@ -485,11 +496,14 @@ private
          :new_youth => new_values[:current_youth],:old_youth => @group.current_youth,
          :updated_by => 1,
          :new_total => new_total,:old_total => @group.current_total,
-         :count_change => count_change)
-        unless change_record.save! then
+         :count_change => count_change,
+         :notes => @notes)
+       if change_record.save! then
+          flash[:notice] = "You have successfully completed this group change."
+       else
           flash[:error] = "Update of change record failed for unknown reason."
           render "edit"
-        end
+       end
 
 #Update ScheduledGroup
         if count_change then
@@ -576,13 +590,22 @@ private
     end
 
     payments.each do |p|
-      event = [p.payment_date.to_date, "Payment Received", "", number_to_currency(p.payment_amount)]
+      event = [p.payment_date.to_date, "Payment Received", "", number_to_currency(p.payment_amount), shorten(p.payment_notes), p.id]
       event_list << event
     end
 
     changes.each do |c|
       if c.count_change?
-        event = [c.updated_at.to_date, "Enrollment change: #{c.new_total - c.old_total}", "", ""]
+        count_change = c.new_total - c.old_total
+        amount_due = 0
+        if count_change > 0
+          if group.second_payment_date.nil?
+            amount_due = count_change * payment_schedule.deposit
+          else
+            amount_due = count_change * (payment_schedule.deposit + payment_schedule.second_payment)
+          end
+        end
+        event = [c.updated_at.to_date, "Enrollment change: #{c.new_total - c.old_total}", "#{number_to_currency(amount_due)}", ""]
         event_list << event
       end
     end
@@ -635,5 +658,13 @@ private
     unless a.save!
       flash[:error] = "Unknown problem occurred logging a transaction."
     end
+  end
+
+  def shorten(s)
+    limit = 40
+    if s.length > limit
+      s = s[0, limit] + '...'
+    end
+    s
   end
 end

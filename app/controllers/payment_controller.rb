@@ -1,6 +1,10 @@
 class PaymentController < ApplicationController
-  before_filter :authenticate_admin_user!
+#  load_and_authorize_resource
   before_filter :check_for_cancel, :only => [:create]
+
+#  def show
+#    redirect_to admin_payment_path(params[:id])
+#  end
 
   def new
     payment = Payment.new()
@@ -21,7 +25,6 @@ class PaymentController < ApplicationController
   end
 
   def create
-
     payment = Payment.new(params[:payment])
     scheduled_group = ScheduledGroup.find(payment.scheduled_group_id)
     payment.registration_id = Registration.find_by_liaison_id(scheduled_group.liaison_id).id

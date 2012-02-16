@@ -3,11 +3,11 @@ class Ability
 
   def initialize(user)
     if user.liaison?
-#Needs to change to take into account more than one group per liaison
+#TODO: Needs to change to take into account more than one group per liaison
 
       group = ScheduledGroup.find_by_liaison_id(user.liaison_id)
       liaison = Liaison.find(user.liaison_id)
-
+#      can :manage, Payment
       if liaison then
         can [:edit, :update], Church, :id => liaison.church_id
         can [:read, :edit, :update], Liaison, :id => liaison.id
@@ -17,6 +17,7 @@ class Ability
         can [:manage], ScheduledGroup, :liaison_id => user.liaison_id
         can :manage, Roster, :id => group.roster_id
         can :manage, RosterItem, :roster_id => roster.id
+#        can :read, Payment, :scheduled_group_id => group.id
       end
   #move is defined as being able to move a scheduled group and to increase their numbers
       cannot :move, ScheduledGroup

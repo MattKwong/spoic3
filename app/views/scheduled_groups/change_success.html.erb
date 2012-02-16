@@ -16,7 +16,6 @@
                     <div class="panel_contents">
                         <div class="attributes_table liaison" id="attributes_table_liaison_3">
 			                <%= render 'layouts/scheduled_group_table' %>
-                            <h3>You have successfully completed this group change.</h3>
                             <h3>Click to send a confirming email: <%= mail_to Liaison.find(@scheduled_group.liaison_id).email1,
                                                         Liaison.find(@scheduled_group.liaison_id).name,
                                                         :subject => "SSP Group Change Confirmation",

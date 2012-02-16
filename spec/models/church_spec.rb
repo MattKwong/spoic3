@@ -4,7 +4,7 @@ describe Church do
   before (:each) do
     @attr = { :name => "First Church", :address1 => "4410 S. Budlong Avenue", :city => "Los Angeles", :state => "CA",
               :zip => "90037", :email1 => "info@example.com", :registered => false,
-    :office_phone => "123-456-7890", :fax => "123-456-7890", :liaison_id => 1, :active => true, }
+    :office_phone => "123-456-7890", :fax => "123-456-7890", :liaison_id => 1, :active => true, :church_type_id => 1 }
   end
 
   describe "Church name tests" do
@@ -20,12 +20,12 @@ describe Church do
     end
 
     it "should accept a valid name" do
-      church = Church.new(@attr)
+      church = Church.new(@attr.merge(:name => 'Church of the Valid Name'))
       church.should be_valid
     end
 
     it "should reject a long name" do
-      long_name = "a" * 41
+      long_name = "a" * 46
       long_name_church = Church.new(@attr.merge(:name => long_name))
       long_name_church.should_not be_valid
     end
@@ -45,6 +45,11 @@ describe Church do
   
   describe "State tests" do
     
+    it "should accept a valid state abbreviation" do
+      good_state = Church.new(@attr)
+      good_state.should be_valid
+    end
+
     it "should require a state" do
       no_state_church = Church.new(@attr.merge(:state => ""))
       no_state_church.should_not be_valid
@@ -55,13 +60,14 @@ describe Church do
       invalid_state_church.should_not be_valid
     end
 
-    it "should accept a valid state abbreviation" do
-      good_state = Church.new(@attr)
-      good_state.should be_valid
-    end
   end
   
   describe "zip code tests" do
+
+    it "should accept a valid zip code" do
+      good_zip = Church.new(@attr)
+      good_zip.should be_valid
+    end
 
     it "should require a zip code" do
       no_zip = Church.new(@attr.merge(:zip => ""))
@@ -78,10 +84,6 @@ describe Church do
       bad_zip.should_not be_valid
     end
 
-    it "should accept a valid zip code" do
-      good_zip = Church.new(@attr)
-      good_zip.should be_valid
-    end
   end
 
   describe "email1 tests" do
@@ -118,11 +120,6 @@ describe Church do
       good_phone.should be_valid
     end
  
-    it "should have an fax phone" do
-      no_phone = Church.new(@attr.merge(:fax => ""))
-      no_phone.should_not be_valid
-    end
-
     it "should reject an invalid fax phone" do
       bad_phone = Church.new(@attr.merge(:fax => "123-4567"))
       bad_phone.should_not be_valid

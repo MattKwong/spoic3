@@ -129,7 +129,8 @@
                  <table border="0" cellspacing="0" cellpadding="0">
                     <thead>
                         <th>Date</th>
-                        <th >Description</th>
+                        <th>Description</th>
+                        <th>Payment Notes</th>
                         <th>Amount Due</th>
                         <th>Amount Received</th>
                     </thead>
@@ -138,23 +139,29 @@
                             <tr>
                               <td><%= e[0].strftime("%m/%d/%y") %></td>
                               <td><%= e[1] %></td>
+                              <td><% unless e[4].nil? %>
+                                    <%= e[4] %>
+                                <% end %>
+                              </td>
                               <td><% unless e[2].nil? %>
-                                    <%= e[2] %><% end %>
+                                    <%= e[2] %>
+                                <% end %>
                               </td>
                               <td><% unless e[3].nil? %>
-                                    <%= e[3] %><% end %>
+                                    <%= e[3] %>
+                                <% end %>
                               </td>
                             </tr>
                         <% end %>
                         <tr>
                             <td></td>
-                            <td>Totals</td>
+                            <td>Totals</td><td></td>
                             <td><%= number_to_currency(@screen_info[:invoice_data][:total_due]) %></td>
                             <td><%= number_to_currency(@screen_info[:invoice_data][:amount_paid]) %></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>Balance Due</td>
+                            <td>Balance Due</td><td></td>
                             <td><%= number_to_currency(@screen_info[:invoice_data][:current_balance]) %></td>
                          </tr>
                     </tbody>

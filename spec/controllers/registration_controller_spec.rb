@@ -8,12 +8,8 @@ describe RegistrationController do
    @base_title = "Sierra Service Project Online Information Center"
   end
 
-  before (:each) do
-    @current_admin_user = AdminUser.find(1)
-    sign_in @current_admin_user
-  end
-
   describe "Get 'Create a Registration'" do
+    login_admin
     it "should be successful" do
       get 'register'
       response.should be_success

@@ -33,7 +33,11 @@ class Church < ActiveRecord::Base
             :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i,
             :message => 'Email appears to be invalid.', :allow_blank => true
 
-  validates_format_of :office_phone, :fax, :with => /\A[0-9]{3}-[0-9]{3}-[0-9]{4}/,
+  validates_format_of :office_phone, :with => /\A[0-9]{3}-[0-9]{3}-[0-9]{4}/,
+                      :message => 'Please enter phone numbers in the 123-456-7890 format.',
+                      :allow_blank => false
+
+  validates_format_of :fax, :with => /\A[0-9]{3}-[0-9]{3}-[0-9]{4}/,
                       :message => 'Please enter phone numbers in the 123-456-7890 format.',
                       :allow_blank => true
 

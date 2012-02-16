@@ -73,11 +73,6 @@ GEM
     ffi (1.0.11)
     formtastic (2.0.2)
       rails (~> 3.0)
-    guard (1.0.0)
-      ffi (>= 0.5.0)
-      thor (~> 0.14.6)
-    guard-rspec (0.6.0)
-      guard (>= 0.10.0)
     haml (3.1.4)
     has_scope (0.5.1)
     i18n (0.4.2)
@@ -202,7 +197,6 @@ DEPENDENCIES
   factory_girl_rails
   faker (= 0.3.1)
   formtastic
-  guard-rspec
   haml
   jquery-rails
   pg
