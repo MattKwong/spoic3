@@ -1,10 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.1'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'jquery-rails'
 gem 'rake', '0.8.7'
 gem 'haml'
@@ -14,29 +10,7 @@ gem 'validates_timeliness'
 gem 'cancan'
 gem 'prawn_rails'
 gem 'bcrypt-ruby', :require => 'bcrypt'
-
-#gem 'prawn', '0.11.1.pre'
-#gem 'prawn', :git => "git://github.com/sandal/prawn.git", :tag => '0.11.1.pre', :submodules => true
-#gem 'prawn-rails', :tag => '0.11.1.pre', :submodules => true
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug'
-
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
+gem 'fastercsv'
 gem 'rspec-rails', :group => [:development, :test]
 
 group :production, :staging do
@@ -54,7 +28,7 @@ group :test do
   gem 'webrat', '0.7.1'
   gem 'factory_girl_rails'
   gem "capybara"
-#  gem "guard-rspec"
+  gem "guard-rspec"
   gem 'database_cleaner'
   gem 'sqlite3-ruby', :require => 'sqlite3'
 end

@@ -19,7 +19,7 @@
              <li><a href="#">Reports</a>
                 <ul>
                   <li><%= link_to "Invoice report", invoice_report_path%></li>
-                  <li><%= link_to "Churches and Liaisons: CSV", church_and_liaison_csv_path%></li>
+                  <li><%= link_to "Churches and Liaisons: CSV", church_and_liaison_csv_path(:format => :csv)%></li>
                   <li><%= link_to "Show the schedule - scheduled summer domestic",
                           registration_show_schedule_path(:reg_or_sched => 'scheduled', :type => 'summer_domestic')%></li>
                   <li><%= link_to "Show the schedule - unscheduled summer domestic",

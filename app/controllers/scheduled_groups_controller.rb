@@ -225,7 +225,7 @@ class ScheduledGroupsController < ApplicationController
     @invoices = build_invoice_report
 
     respond_to do |format|
-      format.csv { create_csv("invoice-#{Time.now.strftime("%Y%m%d")}") }
+      format.csv { create_csv("invoice-#{Time.now.strftime("%Y%m%d")}.csv") }
       format.html { @title = 'Invoice Report'}
     end
   end
@@ -233,17 +233,7 @@ class ScheduledGroupsController < ApplicationController
 
 private
 
-  def create_csv(name = nil)
-      name ||= params[:action]
-      name += '.csv'
-      dir = "\\documents\\"
-      path = ENV['USERPROFILE']
-      filename = path + dir + name
-
-    begin
-      if File.exists?(filename)
-        File.delete(filename)
-      end
+  def create_csv(filename = nil)
 
       if request.env['HTTP_USER_AGENT'] =~ /msie/i
         headers['Pragma'] = 'public'
@@ -255,36 +245,6 @@ private
         headers["Content-Type"] ||= 'text/csv'
         headers["Content-Disposition"] = "attachment; filename=\"#{filename}\""
       end
-
-#      render :layout => false
-
-      CSV.open(filename, 'w') do |csv|
-        header = []
-        header << 'Church Name' << 'Group Name' << 'Number Youth' << 'Number Counselors' << 'Total Number'
-        header << 'Deposits Due' << 'Deposit $ Paid' << 'Deposit $ Outstanding' << 'Sec Payments Due'
-        header << 'Sec Payment $ Paid' << 'Sec Payment $ Outstanding' << 'Final Payments Due'<< 'Final Payment $ Due'
-        header << 'Final Payment $ Outstanding' << 'Adjustment' << 'Current Balance' << 'Total Due'
-        csv << header
-
-        @invoices.each do |i|
-        row = []
-          row << i[:church_name] << i[:group_name] << i[:youth] << i[:counselors] << (i[:youth] + i[:counselors])
-          row << i[:deposits_due] << i[:deposits_paid] << i[:deposits_outstanding] << i[:second_payments_due]
-          row << i[:second_payments_paid] << i[:second_payments_outstanding] << i[:final_payments_due]
-          row << i[:final_payments_paid] << i[:final_payments_outstanding] << i[:adjustments]
-          row << i[:current_balance] << i[:total_due]
-          csv << row
-        end
-      flash[:notice] = "#{name} has been successfully created in #{path + dir}."
-    end
-    rescue => e
-      #logger.debug e.inspect
-      #logger.debug filename
-          flash[:notice] = "#{filename} could not be created. Check if a file by that name is open."
-  end
-
-  redirect_to invoice_report_path :as => :html
-
   end
 
   def build_invoice_report

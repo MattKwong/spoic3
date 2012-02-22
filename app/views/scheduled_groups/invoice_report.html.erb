@@ -8,7 +8,7 @@
         </div>
 </div>
 <div class="panel">
-    <h3><%= link_to "Download Report as CSV", invoice_report_csv_path %></h3>
+    <h3><%= link_to "Download Report as CSV", request.parameters.merge({:format => :csv}) %></h3>
     <div class="panel_contents">
         <table border="0" cellspacing="0" cellpadding="0">
             <thead>
