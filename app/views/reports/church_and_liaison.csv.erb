@@ -1,4 +1,4 @@
 <%= CSV.generate_line @headers, :row_sep => ?\t, :quote_char => ?\ %>
 <% @rows.each do |i| %>
-    <%=   CSV.generate_line i, :row_sep => ?\t, :quote_char => ?\ %>
+    <%=   CSV.generate_line i, :col_sep => ?\,, :row_sep => ?\t, :quote_char => ?\ %>
 <% end %>

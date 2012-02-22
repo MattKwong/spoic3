@@ -295,7 +295,7 @@ private
       end
     end
 
-    invoice = {:church_name => church.name, :group_name => group.name, :youth => group.current_youth,
+    invoice = {:church_name => trim(church.name), :group_name => trim(group.name), :youth => group.current_youth,
                     :counselors => group.current_counselors,
                     :group_id => group.id,
                     :church_id => church.id,
@@ -315,6 +315,13 @@ private
           invoices << invoice
     end
     invoices
+  end
+
+  def trim(s)
+    if s.instance_of?(String)
+      s.chomp.strip!
+    end
+    return s
   end
 
 

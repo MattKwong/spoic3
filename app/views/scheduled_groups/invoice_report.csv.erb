@@ -1,11 +1,11 @@
 <% headers = ['Church Name', 'Group Name', 'Number Youth', 'Number Counselors', 'Total Number', 'Deposits Due',
         'Deposit $ Paid', 'Deposit $ Outstanding', 'Sec Payments Due', 'Sec Payment $ Paid', 'Sec Payment $ Outstanding',
         'Final Payments Due', 'Final Payment $ Due', 'Final Payment $ Outstanding', 'Adjustment', 'Current Balance', 'Total Due' ] %>
-<%= CSV.generate_line headers, :row_sep => ?\t, :quote_char => ?\ %>
+<%= CSV.generate_line headers, :col_sep => ?\,, :row_sep => ?\t, :quote_char => ?\ %>
 <% @invoices.each do |i| %>
     <% row = [ i[:church_name], i[:group_name], i[:youth], i[:counselors], (i[:youth] + i[:counselors]), i[:deposits_due],
         i[:deposits_paid], i[:deposits_outstanding], i[:second_payments_due],i[:second_payments_paid],
         i[:second_payments_outstanding], i[:final_payments_due], i[:final_payments_paid],
         i[:final_payments_outstanding], i[:adjustments], i[:current_balance], i[:total_due] ] %>
-    <%=   CSV.generate_line row, :row_sep => ?\t, :quote_char => ?\ %>
+    <%= CSV.generate_line row, :col_sep => ?\,, :row_sep => ?\t, :quote_char => ?\ %>
 <% end %>

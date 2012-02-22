@@ -36,11 +36,11 @@ class ReportsController < ApplicationController
       liaisons.each do |l|
           row = []
           l.attributes.each do |k, v|
-            row << v
+            row << trim(v)
           end
           if Church.exists?(l.church_id)
             Church.find(l.church_id).attributes.each do |k, v|
-              row << v
+              row << trim(v)
             end
           end
           @rows << row
@@ -50,6 +50,12 @@ class ReportsController < ApplicationController
    end
 
 private
+  def trim(s)
+    if s.instance_of?(String)
+      s.chomp.strip!
+    end
+    return s
+  end
 
   def create_csv(filename = nil)
       if request.env['HTTP_USER_AGENT'] =~ /msie/i
