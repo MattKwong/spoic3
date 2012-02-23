@@ -5,6 +5,7 @@ class ScheduledGroupsController < ApplicationController
   require 'erb'
   before_filter :check_for_cancel, :only => [:update]
   before_filter :check_for_submit_changes, :only => [:update]
+  layout 'admin_layout'
 
   def program_session
 #TODO: This doesn't seem to be working

@@ -1,3 +1,8 @@
+#logo {
+    float:left;
+    margin:0 auto;
+    width: 110px;
+}
 
 span.icon {
   vertical-align: middle;
@@ -233,19 +238,20 @@ th, td, caption {
   padding-bottom: 0; }
 
 #header {
-  background: #6a7176;
-  background: -webkit-gradient(linear, left top, left bottom, from(#6a7176), to(#003366));
-  background: -moz-linear-gradient(-90deg, #6a7176, #003366);
+  background: #4D7194;
+  background: -webkit-gradient(linear, left top, left bottom, from(#4D7194), to(#1b3664));
+  background: -moz-linear-gradient(-90deg, #4D7194, #1b3664) repeat scroll 0 0 transparent;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#6a7176, endColorstr=#4d5256);
-  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#6a7176, endColorstr=#4d5256);
-  border-bottom: 1px solid #44484b;
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#4D7194, endColorstr=#1b3664);
+  border-bottom: 1px solid #1b3664;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
   -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
-  text-shadow: grey 0 1px 0;
+  text-shadow: none;
   overflow: visible;
   padding: 9px 30px;
   z-index: 900; }
+
   #header h1 {
     display: inline-block;
     color: #cdcdcd;
@@ -353,6 +359,19 @@ th, td, caption {
       text-decoration: none; }
     #header #utility_nav a:hover {
       color: #fff; }
+
+.section h3, .panel h3 {
+    background: -moz-linear-gradient(-90deg, #4D7194, #4D7194) repeat scroll 0 0 transparent;
+    border-bottom: 1px solid #4D7194;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
+    color: #5E6469;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 140%;
+    margin-bottom: 0.5em;
+    padding: 5px 10px 3px;
+    text-shadow: 0 1px 0 white;
+}
 
 form {
   /* Reset margins & Padding */
@@ -1016,9 +1035,10 @@ body {
   #title_bar #titlebar_left, #title_bar #titlebar_right {
     height: 50px;
     vertical-align: middle;
-    display: table-cell; }
+    display: inline; }
   #title_bar #titlebar_right {
     text-align: right; }
+
   #title_bar h2 {
     margin: 0;
     padding: 0;

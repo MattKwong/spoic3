@@ -1,5 +1,6 @@
 class RegistrationController < ApplicationController
   load_and_authorize_resource
+  layout 'admin_layout'
 
   def index
     @title = "Manage Groups"
@@ -11,6 +12,7 @@ class RegistrationController < ApplicationController
       @liaisons = Liaison.all.map { |l| [l.name, l.id ]}
       @group_types = SessionType.all.map { |s| [s.name, s.id ]}
       @title = "Register A Group"
+      @page_title = "Register A Group"
       render "register"
   end
 
