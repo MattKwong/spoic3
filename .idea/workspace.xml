@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Rick\railsprojects\spoic3\public\images\admin.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rick\railsprojects\spoic3\public\images\const.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rick\railsprojects\spoic3\public\images\cook.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rick\railsprojects\spoic3\public\images\groups.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rick\railsprojects\spoic3\public\images\logo.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rick\railsprojects\spoic3\public\images\rails.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/registration_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/registration_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/_header.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/_header.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/admin_layout.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/admin_layout.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/registration/register.html.erb" afterPath="$PROJECT_DIR$/app/views/registration/register.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/registration/show_schedule.html.erb" afterPath="$PROJECT_DIR$/app/views/registration/show_schedule.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/active_admin_custom.css" afterPath="$PROJECT_DIR$/public/stylesheets/active_admin_custom.css" />
     </list>
     <ignored path="spoic3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1724,7 +1711,7 @@
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="CSS File Changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="CSS File Changes and layout changes" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1737,7 +1724,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Successful install of active_admin release 0.4" />
     <MESSAGE value="Added bcrypt-ruby to gemfile" />
     <MESSAGE value="Troubleshooting bcrypt problem on heroku - removed Gemfile.lock" />
     <MESSAGE value="Troubleshooting CSV problem on heroku" />
@@ -1762,6 +1748,7 @@
     <MESSAGE value="Corrected csv report problem; changed from saving file to downloading file. Now test on server." />
     <MESSAGE value="Minor changes to CSV variables." />
     <MESSAGE value="CSS File Changes" />
+    <MESSAGE value="CSS File Changes and layout changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
