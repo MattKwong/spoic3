@@ -169,7 +169,6 @@ class ScheduledGroupsController < ApplicationController
   def update_group_change
       @group_id = params[:id]
       @group = ScheduledGroup.find(@group_id)
-      logger.debug params.inspect
       if can? :move, @group
         update_all_fields
       else
@@ -508,6 +507,7 @@ private
     original_reg = Registration.find(group.registration_id)
     payment_schedule = PaymentSchedule.find(Session.find(group.session_id).payment_schedule_id)
     payments = Payment.find_all_by_scheduled_group_id(group_id, :order => 'payment_date')
+    logger.debug payments.inspect
     adjustments = Adjustment.find_all_by_group_id(group.id)
     adjustment_total = Adjustment.sum(:amount, :conditions => ['group_id = ?', group.id])
     changes = ChangeHistory.find_all_by_group_id(group_id)
@@ -545,7 +545,7 @@ private
      end
 
      total_due = deposit_amount + second_pay_amount + final_pay_amount - adjustment_total
-     amount_paid = Payment.sum(:payment_amount, :conditions => ['registration_id = ?', group.registration_id])
+    amount_paid = Payment.sum(:payment_amount, :conditions => ['scheduled_group_id = ?', group_id])
      current_balance = total_due - amount_paid
 
 #Assemble event list

@@ -9,6 +9,6 @@ class ChangeHistory < ActiveRecord::Base
       change_history.validates_presence_of :new_counselors, :old_counselors, :new_youth, :old_youth,
         :new_total, :old_total
       change_history.validates_numericality_of :new_counselors, :old_counselors, :new_youth, :old_youth,
-        :new_total, :old_total, :only_integer => true, :greater_than => 0, :message => "must be valid number"
+        :new_total, :old_total, :only_integer => true, :greater_than_or_equal_to => 0, :message => "must be valid number"
   end
 end

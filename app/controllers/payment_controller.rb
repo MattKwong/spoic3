@@ -27,12 +27,14 @@ class PaymentController < ApplicationController
   def create
     payment = Payment.new(params[:payment])
     scheduled_group = ScheduledGroup.find(payment.scheduled_group_id)
-    payment.registration_id = Registration.find_by_liaison_id(scheduled_group.liaison_id).id
+# The registration step check is here because some abandoned registration records exist in the db.
+# The fix is to change the registration process and to store group_id in the payment record.
+    payment.registration_id = Registration.find_by_liaison_id_and_registration_step(scheduled_group.liaison_id, 'Step 3').id
 
     if payment.valid?
       payment.save!
       log_activity("Payment", "$#{sprintf('%.2f', payment.payment_amount)} paid for #{scheduled_group.name}")
-      flash[:notice] = "Successful entry of new participant"
+      flash[:notice] = "Successful entry of new payment."
       redirect_to myssp_path(:id => scheduled_group.liaison_id)
     else
 #      payment = Payment.new()

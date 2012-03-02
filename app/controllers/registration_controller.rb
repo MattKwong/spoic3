@@ -202,7 +202,7 @@ class RegistrationController < ApplicationController
     @session_id_matrix = Array.new(@site_names.size + 1){ Array.new(@period_names.size + 1, 0)}
 
 #    Registration.find_all_by_request1_and_scheduled(not nil, false).each do |r|
-    Registration.find(:all, :conditions => "(request1 IS NOT NULL) AND (scheduled = 'f')").each do |r|
+    Registration.all(:conditions => "(request1 IS NOT NULL) AND (scheduled = 'f')").each do |r|
         @session = Session.find(r.request1)
         @site = Site.find(@session.site_id)
         @period = Period.find(@session.period_id)

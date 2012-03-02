@@ -113,7 +113,7 @@ class LiaisonsController < ApplicationController
      end
 
      total_due = deposit_amount + second_pay_amount + final_pay_amount - adjustment_total
-     amount_paid = Payment.sum(:payment_amount, :conditions => ['registration_id = ?', group.registration_id])
+     amount_paid = Payment.sum(:payment_amount, :conditions => ['scheduled_group_id = ?', group_id])
      current_balance = total_due - amount_paid
 
 #Assemble event list
