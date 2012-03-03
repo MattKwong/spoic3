@@ -1,14 +1,5 @@
-<div id="title_bar">
-        <div id="titlebar_left">
-          <span class="breadcrumb">
-            <a href="/admin">Admin</a>
-            <span class="breadcrumb_sep">/</span>
-          </span>
-          <h2 id="page_title"><%= @title %></h2>
-        </div>
-    </div>
     <%= form_for(@scheduled_group) do |r| %>
-     <div id="active_admin_content"  class="with_sidebar">
+     <div id="active_admin_content"  class="without_sidebar">
         <div id="main_content_wrapper">
           <div id="main_content">
               <div class="panel">
@@ -19,8 +10,8 @@
                   <div class="actions">
                     <%= submit_tag 'Confirm', { :confirm => "Are you sure you want to complete this transaction?", :regid => @scheduled_group.registration_id } %>
                     <%= submit_tag "Cancel", { :confirm => "Are you sure you want to cancel and return to the Requests page?" } %>
-                    </div>
-                  <% end %>
+                  </div>
+     <% end %>
                 </div>
                 </div>
               </div>

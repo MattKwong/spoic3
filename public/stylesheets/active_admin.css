@@ -400,21 +400,20 @@ form {
       form fieldset legend span {
         display: block;
         background: #efefef;
-        background: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#dfe1e2));
-        background: -moz-linear-gradient(-90deg, #efefef, #dfe1e2);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#efefef, endColorstr=#dfe1e2);
-        -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#efefef, endColorstr=#dfe1e2);
+        background: -webkit-gradient(linear, left top, left bottom, from(#93A9BE), to(#4D7194));
+        background: -moz-linear-gradient(-90deg, #93A9BE, #4D7194);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#93A9BE, endColorstr=#4D7194);
+        -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#93A9BE, endColorstr=#4D7194);
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
         -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
         -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
-        text-shadow: white 0 1px 0;
-        border-bottom: 1px solid #ededed;
+        border-bottom: 1px solid #4D7194;
         padding: 5px 10px 3px 10px;
         font-size: 1.0em;
         font-weight: bold;
         line-height: 140%;
         margin-bottom: 0.5em;
-        color: #1b3664; }
+        color: #FFFFFF; }
         form fieldset legend span span.icon svg path, form fieldset legend span span.icon svg polygon, form fieldset legend span span.icon svg rect, form fieldset legend span span.icon svg circle {
           fill: #5e6469 !important; }
         form fieldset legend span span.icon {
@@ -902,8 +901,7 @@ table.index_table {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
     -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
-
-    border-bottom: 1px solid #ededed;
+    border-bottom: 1px solid #4D7194;
     padding: 5px 10px 3px 10px;
     font-size: 1.0em;
     font-weight: normal;
@@ -940,7 +938,7 @@ table.index_table {
       background: -moz-linear-gradient(-90deg, #93A9BE, #4D7194);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#e2e2e2, endColorstr=#d2d4d6);
       -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#e2e2e2, endColorstr=#d2d4d6);
-      border-bottom: 1px solid #dfe1e2; }
+      border-bottom: 1px solid #4D7194; }
   table.index_table tr.even td {
     background: #f4f5f5; }
   table.index_table td {
@@ -1110,7 +1108,7 @@ body {
     float: left;
     width: 100%; }
     #active_admin_content #main_content_wrapper #main_content {
-      margin-right: 300px; }
+      margin-right: 280px; }
   #active_admin_content.without_sidebar #main_content_wrapper #main_content {
     margin-right: 0; }
   #active_admin_content #sidebar {
@@ -1126,8 +1124,12 @@ body {
     padding-top: 10px; }
 
 a, a:link, a:visited {
-  color: #38678b;
+  color: #FFFFFF;
   text-decoration: underline; }
+
+#panel_contents > a, a:link, a:visited  {
+    color: red;
+}
 
 a:hover {
   text-decoration: none; }
@@ -1212,7 +1214,7 @@ a.button, input[type=submit] {
     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
     -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
     text-shadow: white 0 0px 0;
-    border-bottom: 1px solid #ededed;
+    border-bottom: 1px solid #4D7194;
     padding: 5px 10px 3px 10px;
     font-size: 1.0em;
     font-weight: normal;
@@ -1281,7 +1283,7 @@ a.button, input[type=submit] {
     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
     -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
     text-shadow: white 0 0px 0;
-    border-bottom: 1px solid #ededed;
+    border-bottom: 1px solid #4D7194;
     padding: 5px 10px 3px 10px;
     font-size: 1.0em;
     font-weight: normal;
@@ -1503,20 +1505,19 @@ table.dashboard {
     table.dashboard .dashboard_section h3 {
       background: #efefef;
       background: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#dfe1e2));
-      background: -moz-linear-gradient(-90deg, #efefef, #dfe1e2);
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#efefef, endColorstr=#dfe1e2);
-      -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#efefef, endColorstr=#dfe1e2);
+      background: -moz-linear-gradient(-90deg, #93A9BE, #4D7194);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#93A9BE, endColorstr=#4D7194);
+      -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#93A9BE, endColorstr=#4D7194);
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
       -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
       -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
-      text-shadow: white 0 1px 0;
-      border-bottom: 1px solid #ededed;
+      border-bottom: 1px solid #4D7194;
       padding: 5px 10px 3px 10px;
       font-size: 1.0em;
-      font-weight: bold;
+      font-weight: normal;
       line-height: 140%;
       margin-bottom: 0.5em;
-      color: #5e6469; }
+      color: #FFFFFF; }
       table.dashboard .dashboard_section h3 span.icon svg path, table.dashboard .dashboard_section h3 span.icon svg polygon, table.dashboard .dashboard_section h3 span.icon svg rect, table.dashboard .dashboard_section h3 span.icon svg circle {
         fill: #5e6469 !important; }
       table.dashboard .dashboard_section h3 span.icon {

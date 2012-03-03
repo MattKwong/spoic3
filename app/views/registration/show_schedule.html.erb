@@ -1,4 +1,4 @@
-     <div id="active_admin_content"  class="with_sidebar">
+     <div id="active_admin_content" class="without_sidebar">
         <div id="main_content_wrapper">
             <div id="main_content">
             <div class="panel">
@@ -33,7 +33,7 @@
                             <% count = @schedule[:period_count].to_s.to_i %>
                             <% for j in 0..count - 1 do %>
                                 <% if params[:reg_or_sched] == "registered" then %>
-                                    <% if @schedule[:registration_matrix][i][j] > 0 then %>
+                                     <% if @schedule[:registration_matrix][i][j] > 0 then %>
                                           <td><%= link_to (@schedule[:registration_matrix][i][j]).to_s,
                                                 reg_program_session_path(:id => @schedule[:session_id_matrix][i][j]) %></td>
                                           <% else %>

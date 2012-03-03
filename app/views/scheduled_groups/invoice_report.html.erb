@@ -1,12 +1,3 @@
-<div id="title_bar">
-        <div id="titlebar_left">
-          <span class="breadcrumb">
-            <a href="/registration">Manage Groups</a>
-            <span class="breadcrumb_sep">/</span>
-          </span>
-          <h2 id="page_title"><%= @title %></h2>
-        </div>
-</div>
 <div class="panel">
     <h3><%= link_to "Download Report as CSV", request.parameters.merge({:format => :csv}) %></h3>
     <div class="panel_contents">

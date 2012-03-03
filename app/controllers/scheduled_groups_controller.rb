@@ -21,7 +21,7 @@ class ScheduledGroupsController < ApplicationController
   end
 
   def confirmation       # before the confirmation screen
-    @title = "Group Confirmation"
+    @title = @page_title = "Group Confirmation"
     @registration = Registration.find(params[:reg])
     church_name = Church.find(@registration.church_id).name
     if ScheduledGroup.find_all_by_registration_id(params[:reg]).count == 0
@@ -48,7 +48,6 @@ class ScheduledGroupsController < ApplicationController
     roster = Roster.create!(:group_id => @scheduled_group.id,
       :group_type => SessionType.find(Session.find(@scheduled_group.session_id).session_type_id).id)
     @scheduled_group.update_attribute('roster_id', roster.id)
-    log_activity("Group scheduled", "#{@scheduled_group.name} from #{church_name} for #{@registration.requested_total} participants")
     @session = Session.find(params[:id])
   end
 
@@ -73,7 +72,7 @@ class ScheduledGroupsController < ApplicationController
 
   def success
     require 'erb'
-    @title = "Scheduling Complete"
+    @title = @page_title = "Scheduling Complete"
     @scheduled_group = ScheduledGroup.find(params[:id])
     @session = Session.find(@scheduled_group.session_id)
     filename = File.join('app', 'views', 'email_templates', 'schedule_confirmation.text.erb')
@@ -223,7 +222,8 @@ class ScheduledGroupsController < ApplicationController
 
   def invoice_report
     @invoices = build_invoice_report
-
+    logger.debug @invoices[0].inspect
+    @page_title = 'Invoice Report'
     respond_to do |format|
       format.csv { create_csv("invoice-#{Time.now.strftime("%Y%m%d")}.csv") }
       format.html { @title = 'Invoice Report'}
@@ -312,8 +312,8 @@ private
                     :current_balance => full_invoice[:current_balance],
                     :total_due => full_invoice[:total_due] }
 
-          invoices << invoice
-    end
+    invoices << invoice
+  end
     invoices
   end
 

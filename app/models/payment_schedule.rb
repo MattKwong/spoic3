@@ -7,7 +7,7 @@ class PaymentSchedule < ActiveRecord::Base
 
   validates :name, :presence => true, :uniqueness => true
   validates :deposit, :final_payment, :second_payment, :total_payment, :presence => true
-  validates_numericality_of :deposit, :total_payment, :greater_than => 0
+  validates_numericality_of :deposit, :total_payment, :greater_than_or_equal_to => 1.00
   validates_numericality_of :second_payment, :final_payment, :greater_than_or_equal_to => 0
   validates_date :second_payment_date, :final_payment_date, :second_payment_late_date,
                  :final_payment_late_date, :allow_nil => true

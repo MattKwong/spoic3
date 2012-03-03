@@ -42,6 +42,7 @@ class RegistrationController < ApplicationController
     @sessions = Session.find_all_by_session_type_id(@registration.group_type_id).map { |s| [s.name, s.id ]}
     @sessions.insert(0, @temp)
     @title = "Registration Step 2"
+    @page_title = "Register A Group: Step 2"
   end
 
   def step2?
@@ -68,12 +69,13 @@ class RegistrationController < ApplicationController
 
     if (step2?) then
       if @registration.update_attributes(params[:registration])
-        flash[:success] = "Successful completion of Step 2"
+        flash[:notice] = "Successful completion of Step 2"
         redirect_to registration_payment_path(:id => @registration.id)
       else
         @sessions = Session.all.map  { |s| [s.name, s.id ]}
         @sessions.insert(0, @temp)
         @title = "Registration Step 2"
+        @page_title = "Register A Group: Step 3"
         render "edit"
       end
     end
@@ -88,10 +90,11 @@ class RegistrationController < ApplicationController
         @payment.payment_notes=@registration.payment_notes
         @church.registered=true
         if @payment.save && @church.save then
-          flash[:success] = "Successful completion of step 3"
+          flash[:notice] = "Successful completion of step 3"
           redirect_to registration_success_path(:id => @registration.id)
         else
           @title = "Registration Step 3"
+          @page_title = "Register A Group: Step 3"
           render "update"
         end
       end
@@ -109,10 +112,12 @@ class RegistrationController < ApplicationController
     @registration.amount_due= @payment_schedule.deposit * (@registration.requested_counselors + @registration.requested_youth)
     @payment_types = 'Check', 'Credit Card', 'Cash'
     @title = "Registration Step 3"
+    @page_title = "Register A Group: Step 3"
   end
 
   def successful
     @title = "Completed Registration"
+    @page_title = "Register A Group: Complete"
     @registration = Registration.find(params[:id])
     @church = Church.find(@registration.church_id)
     @liaison = Liaison.find(@registration.liaison_id)
@@ -121,6 +126,7 @@ class RegistrationController < ApplicationController
 
   def schedule
     @title = "Schedule a Group"
+    @page_title = "Schedule a Group"
     @registration = Registration.find(params[:id])
     authorize! :update, @registration
     @church = Church.find(@registration.church_id)
@@ -178,13 +184,21 @@ class RegistrationController < ApplicationController
 #      @site_names = Site.order(:listing_priority).find_all.map { |s| s.name}
       @period_names = Period.order(:start_date).find_all_by_active_and_summer_domestic(true, true).map { |p| p.name}
 #      @period_names = Period.order(:start_date).find_all.map { |p| p.name}
-      @title = "Domestic Summer Schedule"
+      @title = @page_title = "Domestic Summer Schedule"
     else
       @site_names = Site.order(:listing_priority).find_all_by_active_and_summer_domestic(true, false).map { |s| s.name}
 #      @site_names = Site.order(:listing_priority).find_all.map { |s| s.name}
       @period_names = Period.order(:start_date).find_all_by_active_and_summer_domestic(true, false).map { |p| p.name}
 #      @period_names = Period.order(:start_date).find_all.map { |p| p.name}
-      @title = "Special Program Schedule"
+      @title = @page_title = "Special Program Schedule"
+    end
+
+    if reg_or_sched == 'scheduled'
+      @title += ': Scheduled'
+      @page_title += ': Scheduled'
+    else
+      @title += ': Unscheduled'
+      @page_title += ': Unscheduled'
     end
 
     @period_ordinal = Array.new
