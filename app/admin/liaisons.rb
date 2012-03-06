@@ -1,8 +1,11 @@
 ActiveAdmin.register Liaison do
   controller.authorize_resource
   menu :if => proc{ can?(:index, Liaison) }, :priority => 5
-  scope :scheduled, :default => true
-  scope :unscheduled
+
+# This is commented out because these flags weren't properly set when the data was initially input.
+# Until we can fit the data, these filters won't work properly
+#  scope :scheduled, :default => true
+#  scope :unscheduled
 
   show :title => :name do
     panel "Liaison Details" do
