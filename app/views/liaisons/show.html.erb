@@ -1,17 +1,20 @@
-<div class="panel">
+<div id="active_admin_content"  class="with_sidebar">
+  <div id="main_content_wrapper">
+    <div id="main_content">
+    <div class="panel">
    <%= form_for(@screen_info[:liaison]) do |r| %>
       <h3>Church Details</h3>
       <div class="panel_contents">
           <div class="attributes_table church" id="church_info_table">
               <table id = "church_info" border="0" cellspacing="0" cellpadding="0" >
-                  <tr><th>Church Name</th><td><%= link_to @screen_info[:church_info].name,
+                  <tr><td>Church Name</td><td><%= link_to @screen_info[:church_info].name,
                                                  edit_church_path(:id => @screen_info[:liaison].church_id,
                                                  :liaison_id => @screen_info[:liaison].id) %></td></tr>
-                  <tr><th>Address</th><td><%= @screen_info[:church_info].address1 %></td></tr>
-                  <tr><th>City</th><td><%= @screen_info[:church_info].city %></td></tr>
-                  <tr><th>State</th><td><%= @screen_info[:church_info].state %></td></tr>
-                  <tr><th>Zip</th><td><%= @screen_info[:church_info].zip %></td></tr>
-                  <tr><th>Church Phone</th><td><%= @screen_info[:church_info].office_phone %></td></tr>
+                  <tr><td>Address</td><td><%= @screen_info[:church_info].address1 %></td></tr>
+                  <tr><td>City</td><td><%= @screen_info[:church_info].city %></td></tr>
+                  <tr><td>State</td><td><%= @screen_info[:church_info].state %></td></tr>
+                  <tr><td>Zip</td><td><%= @screen_info[:church_info].zip %></td></tr>
+                  <tr><td>Church Phone</td><td><%= @screen_info[:church_info].office_phone %></td></tr>
               </table>
           </div>
       </div>
@@ -146,7 +149,8 @@
             </div>
             <% end %>
         </div>
-    </div>
+        </div>
+
 <!--Liaison Sidebar Section -->
     <div id="sidebar">
         <div class="sidebar_section panel" id="liaison information_sidebar_section">
@@ -189,6 +193,9 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
 
+
+</div>

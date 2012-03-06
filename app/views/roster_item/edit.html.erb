@@ -1,4 +1,7 @@
 <%= form_for(@roster_item) do |r| %>
+    <div id="active_admin_content">
+      <div id="main_content_wrapper">
+         <div id="group_content">
                           <div class="panel">
                             <h3>Update Participant Information</h3>
                             <div class="panel_contents">
@@ -71,6 +74,9 @@
                             <div class="actions">
                                 <%= r.submit "Submit" %>
                                 <%= submit_tag 'Cancel', :name => 'cancel' %>
+                             </div>
+                </div>
+              </div>
                              </div>
                 </div>
               </div>

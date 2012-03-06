@@ -29,7 +29,7 @@ class RosterItemController < ApplicationController
       flash[:notice] = "Successful entry of new participant"
       redirect_to show_roster_path(@roster_item.roster_id)
     else
-      @title = "Add Participant Information"
+      @title = @page_title = 'Add New Participant Information'
       @grade_list = ['9th', '10th', '11th', '12th', 'Graduate', 'Adult']
       @size_list = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
       @youth_list = [["Youth", true], ["Counselor", false]]

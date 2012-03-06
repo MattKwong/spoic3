@@ -1,5 +1,6 @@
 class RostersController < ApplicationController
   load_and_authorize_resource
+  layout 'admin_layout'
 
   def show
     roster = Roster.find(params[:id])
@@ -29,6 +30,6 @@ class RostersController < ApplicationController
       :site_name => site_name, :period_name => period_name, :start_date => start_date,
       :end_date => end_date,  :session_type => session_type, :roster_status => roster_status,
       :left_to_enter => left_to_enter, :liaison_name => liaison_name}
-    @title = "Roster for: #{scheduled_group.name}"
+    @title = @page_title = "Roster for: #{scheduled_group.name}"
   end
 end

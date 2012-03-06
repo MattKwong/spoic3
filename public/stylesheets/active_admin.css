@@ -934,7 +934,7 @@ table.index_table {
       background-position: 0 -56px; }
     table.index_table th.sorted-asc, table.index_table th.sorted-desc {
       background: #e2e2e2;
-      background: -webkit-gradient(linear, left top, left bottom, from(#e2e2e2), to(#d2d4d6));
+      background: -webkit-gradient(linear, left top, left bottom, from(#93A9BE), to(#4D7194));
       background: -moz-linear-gradient(-90deg, #93A9BE, #4D7194);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#e2e2e2, endColorstr=#d2d4d6);
       -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#e2e2e2, endColorstr=#d2d4d6);
@@ -1124,12 +1124,12 @@ body {
     padding-top: 10px; }
 
 a, a:link, a:visited {
-  color: #FFFFFF;
+  color: #5e6469    ;
   text-decoration: underline; }
 
-#panel_contents > a, a:link, a:visited  {
-    color: red;
-}
+h3 > a:link  {
+  color: white;
+  text-decoration: underline; }
 
 a:hover {
   text-decoration: none; }
@@ -1206,7 +1206,7 @@ a.button, input[type=submit] {
   margin-bottom: 20px; }
   .section h3, .panel h3 {
     background: #1b3664;
-    background: -webkit-gradient(linear, left top, left bottom, from(#1b3664), to(#1b3664));
+    background: -webkit-gradient(linear, left top, left bottom, from(#93A9BE), to(#4D7194));
     background: -moz-linear-gradient(-90deg, #93A9BE, #4D7194);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#1b3664, endColorstr=#1b3664);
     -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#1b3664, endColorstr=#1b3664);
@@ -1504,7 +1504,7 @@ table.dashboard {
     margin-bottom: 20px; }
     table.dashboard .dashboard_section h3 {
       background: #efefef;
-      background: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#dfe1e2));
+      background: -webkit-gradient(linear, left top, left bottom, from(#93A9BE), to(#4D7194));
       background: -moz-linear-gradient(-90deg, #93A9BE, #4D7194);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#93A9BE, endColorstr=#4D7194);
       -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#93A9BE, endColorstr=#4D7194);
@@ -1600,7 +1600,7 @@ table.dashboard {
       -webkit-box-shadow: inset 0 1px 0 #cccccc;
       text-shadow: white 0 1px 0;
       background: #efefef;
-      color: #666; }
+      color: #666666; }
       .scopes .scope.selected em {
         font-weight: bold;
         font-style: normal; }

@@ -6,8 +6,14 @@
               <div class="panel_contents">
                  <div class="attributes_table liaison" id="attributes_table_liaison_3">
                  <%= render 'layouts/scheduled_group_table' %>
-                    <table border="0" cellspacing="0" cellpadding="0" >
-                        <h3>Make changes to scheduled group information below.</h3>
+              </div>
+           </div>
+        </div>
+        <div class="without_sidebar">
+                     <div class="panel">
+                        <div class="panel_contents">
+                 <table border="0" cellspacing="0" cellpadding="0" >
+                      <h3>Make changes to scheduled group information below.</h3>
                             <tr>
                                 <td><div class="youth-label"><%= r.label "New Youth" %></div></td>
                                 <td><div class="youth-label"><%= r.number_field :current_youth, :as => :integer %></div></td>

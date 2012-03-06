@@ -1,9 +1,16 @@
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
+<div id="active_admin_content"  class="without_sidebar">
+  <div id="main_content_wrapper">
+  <div id="main_content">
+
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div><br>
+    <%= f.label :email %><br>
   <%= f.email_field :email %></div>
 
-  <div><%= f.label :password %><br/>
-  <%= f.password_field :password %></div><br>
+  <div><br>
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div><br>
 
   <% if devise_mapping.rememberable? -%>
     <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div><br>
@@ -12,3 +19,7 @@
   <div><%= f.submit "Sign in" %></div><br>
 <% end %>
 <%= render :partial => "devise/shared/links" %>
+</div>
+</div>
+</div>
+

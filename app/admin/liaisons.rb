@@ -1,7 +1,7 @@
 ActiveAdmin.register Liaison do
   controller.authorize_resource
   menu :if => proc{ can?(:index, Liaison) }, :priority => 5
-  scope :scheduled
+  scope :scheduled, :default => true
   scope :unscheduled
 
   show :title => :name do

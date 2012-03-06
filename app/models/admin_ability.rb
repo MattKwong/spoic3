@@ -5,25 +5,31 @@ class AdminAbility
   include CanCan::Ability
 
   def initialize(user)
-#    user ||= AdminUser.new
+
+    if user.liaison?
+       liaison = Liaison.find(user.liaison_id)
+#      can :manage, Payment
+      if liaison then
+        can [:edit, :update], Church, :id => liaison.church_id
+        can [:read, :edit, :update], Liaison, :id => liaison.id
+      end
+      groups = ScheduledGroup.find_all_by_liaison_id(user.liaison_id)
+      if groups then
+        can [:manage], ScheduledGroup, :liaison_id => user.liaison_id
+        groups.each do |group|
+          roster = Roster.find_by_group_id(group.id)
+          can :manage, Roster, :id => group.roster_id
+          can :manage, RosterItem, :roster_id => group.roster_id
+#        can :read, Payment, :scheduled_group_id => group.id
+        end
+      end
+  #move is defined as being able to move a scheduled group and to increase their numbers
+      cannot :move, ScheduledGroup
+    end
 
     if user.admin?
       can :manage, :all
     end
 
-    if user.liaison?
-#TODO: Needs to be modified to cover multiple groups per liaison
-      group = ScheduledGroup.find_by_liaison_id(user.liaison_id)
-#      roster = Roster.find_by_group_id(group.id)
-      liaison = Liaison.find(user.liaison_id)
-#      church = Church.find(liaison.church_id)
-#      cannot :manage, [Denomination, Activity, AdjustmentCode, AdminUser,
-#          BudgetItemType, BudgetItem,  ChangeHistory, ChecklistItem ]
-#TODO: The payment restriction isn't working
-#      can :read, Payment, :scheduled_group_id => group.id
-      can [:read, :edit, :update], Church, :id => liaison.church_id
-      can [:read, :edit, :update], Liaison, :id => liaison.id
-      cannot [:index, :destroy], [Church, Liaison ]
-    end
   end
 end

@@ -1,9 +1,22 @@
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+           <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+               <div id="active_admin_content"  class="without_sidebar">
+                  <div id="main_content_wrapper">
+                     <div id="main_content">
+                        <div class="panel">
+                          <%= devise_error_messages! %>
+                          <div>
+                            <%= f.label :email %><br>
+                            <%= f.email_field :email %>
+                          </div><br>
+                          <div>
+                            <%= f.submit "Send me reset password instructions" %>
+                          </div><br>
+                          <div>
+                            <%= render :partial => "devise/shared/links" %>
+                          </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+           <% end %>
 
-  <div><%= f.label :email %><br>
-  <%= f.email_field :email %></div><br>
-
-  <div><%= f.submit "Send me reset password instructions" %></div><br>
-<% end %>
-<%= render :partial => "devise/shared/links" %>

@@ -5,7 +5,7 @@ ActiveAdmin.register Church do
   scope :inactive
   scope :unregistered
   scope :active
-  scope :registered
+  scope :registered, :default => true
 
   show :title => :name do
     panel "Church Details " do
