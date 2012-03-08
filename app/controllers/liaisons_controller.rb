@@ -81,6 +81,7 @@ class LiaisonsController < ApplicationController
     changes = ChangeHistory.find_all_by_group_id(group_id)
     late_payment_penalty = 0.1
 
+
 #Find the overall high-water total.
     totals = changes.map { |i| i.new_total }
     totals << original_reg.requested_total << group.second_payment_total << group.current_total
