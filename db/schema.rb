@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120215212507) do
+ActiveRecord::Schema.define(:version => 20120308172459) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer   "resource_id",   :null => false
@@ -28,14 +28,14 @@ ActiveRecord::Schema.define(:version => 20120215212507) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "activities", :force => true do |t|
-    t.string   "activity_type"
-    t.string   "activity_details"
-    t.integer  "user_id"
-    t.string   "user_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "user_role"
-    t.datetime "activity_date"
+    t.string    "activity_type"
+    t.string    "activity_details"
+    t.integer   "user_id"
+    t.string    "user_name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "user_role"
+    t.timestamp "activity_date"
   end
 
   create_table "adjustment_codes", :force => true do |t|
@@ -66,28 +66,28 @@ ActiveRecord::Schema.define(:version => 20120215212507) do
   end
 
   create_table "admin_users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "admin"
-    t.string   "name"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "user_role"
-    t.integer  "liaison_id"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.integer  "site_id"
+    t.string    "email",                                 :default => "", :null => false
+    t.string    "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string    "reset_password_token"
+    t.timestamp "reset_password_sent_at"
+    t.timestamp "remember_created_at"
+    t.integer   "sign_in_count",                         :default => 0
+    t.timestamp "current_sign_in_at"
+    t.timestamp "last_sign_in_at"
+    t.string    "current_sign_in_ip"
+    t.string    "last_sign_in_ip"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.boolean   "admin"
+    t.string    "name"
+    t.string    "first_name"
+    t.string    "last_name"
+    t.string    "user_role"
+    t.integer   "liaison_id"
+    t.string    "confirmation_token"
+    t.timestamp "confirmed_at"
+    t.timestamp "confirmation_sent_at"
+    t.integer   "site_id"
   end
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
@@ -269,6 +269,7 @@ ActiveRecord::Schema.define(:version => 20120215212507) do
     t.timestamp "created_at"
     t.timestamp "updated_at"
     t.integer   "scheduled_group_id"
+    t.string    "payment_type"
   end
 
   create_table "periods", :force => true do |t|

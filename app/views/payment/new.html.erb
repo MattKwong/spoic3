@@ -16,8 +16,12 @@
                            <td><%= r.date_select(:payment_date, :default => Date.today) %></td>
                         </tr>
                         <tr>
+                           <td><%= r.label "Select payment method" %></td>
+                           <td><%= r.select(:payment_method, options_for_select(@screen_info[:payment_methods])) %></td>
+                        </tr>
+                        <tr>
                            <td><%= r.label "Select payment type" %></td>
-                           <td><%= r.select(:payment_method, options_for_select(@screen_info[:payment_types])) %></td>
+                           <td><%= r.select(:payment_type, options_for_select(@screen_info[:payment_types])) %></td>
                         </tr>
                         <tr>
                            <td><%= r.label "Payment Notes" %></td>

@@ -8,7 +8,8 @@ class PaymentController < ApplicationController
 
   def new
     payment = Payment.new()
-    payment_types = 'Check', 'Credit Card', 'Cash'
+    payment_types = 'Deposit', 'Second', 'Final', 'Other'
+    payment_methods = 'Check', 'Credit Card', 'Cash'
     scheduled_group = ScheduledGroup.find(params[:group_id])
     liaison_name = Liaison.find(scheduled_group.liaison_id).name
     site_name = Site.find(Session.find(scheduled_group.session_id).site_id).name
@@ -20,7 +21,7 @@ class PaymentController < ApplicationController
     @screen_info = {:scheduled_group => scheduled_group,
       :site_name => site_name, :period_name => period_name, :start_date => start_date,
       :end_date => end_date,  :session_type => session_type, :payment => payment, :payment_types => payment_types,
-      :liaison_name => liaison_name}
+      :liaison_name => liaison_name, :payment_methods => payment_methods}
     @title = "Record payment for: #{scheduled_group.name}"
   end
 
@@ -32,13 +33,23 @@ class PaymentController < ApplicationController
     payment.registration_id = Registration.find_by_liaison_id_and_registration_step(scheduled_group.liaison_id, 'Step 3').id
 
     if payment.valid?
+      if payment.payment_type == 'Second'
+        group = ScheduledGroup.find(payment.scheduled_group_id)
+        group.second_payment_date = payment.payment_date
+        group.second_payment_total=group.current_total
+        if group.save!
+          log_activity("Scheduled Group second payment date recorded: ", "$#{payment.payment_date} for #{scheduled_group.name}")
+        else
+          flash[:error] = "Unable to updated group record."
+        end
+      end
       payment.save!
-      log_activity("Payment", "$#{sprintf('%.2f', payment.payment_amount)} paid for #{scheduled_group.name}")
+      log_activity("Payment", "#{sprintf('%.2f', payment.payment_amount)} paid for #{scheduled_group.name}")
       flash[:notice] = "Successful entry of new payment."
       redirect_to myssp_path(:id => scheduled_group.liaison_id)
     else
-#      payment = Payment.new()
-      payment_types = 'Check', 'Credit Card', 'Cash'
+      payment_types = 'Deposit', 'Second', 'Final', 'Other'
+      payment_methods = 'Check', 'Credit Card', 'Cash'
       scheduled_group = ScheduledGroup.find(payment.scheduled_group_id)
       liaison_name = Liaison.find(scheduled_group.liaison_id).name
       site_name = Site.find(Session.find(scheduled_group.session_id).site_id).name
@@ -46,11 +57,10 @@ class PaymentController < ApplicationController
       start_date = Period.find(Session.find(scheduled_group.session_id).period_id).start_date
       end_date = Period.find(Session.find(scheduled_group.session_id).period_id).end_date
       session_type = SessionType.find(Session.find(scheduled_group.session_id).session_type_id).name
-
       @screen_info = {:scheduled_group => scheduled_group,
         :site_name => site_name, :period_name => period_name, :start_date => start_date,
         :end_date => end_date,  :session_type => session_type, :payment => payment, :payment_types => payment_types,
-        :liaison_name => liaison_name}
+        :liaison_name => liaison_name, :payment_methods => payment_methods}
       @title = "Record payment for: #{scheduled_group.name}"
       render "payment/new"
     end
