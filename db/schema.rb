@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120308172459) do
+ActiveRecord::Schema.define(:version => 20120310194442) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer   "resource_id",   :null => false
@@ -202,6 +202,12 @@ ActiveRecord::Schema.define(:version => 20120308172459) do
     t.integer   "group_id"
   end
 
+  create_table "jobs", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "liaison_types", :force => true do |t|
     t.string    "name"
     t.string    "description"
@@ -261,15 +267,15 @@ ActiveRecord::Schema.define(:version => 20120308172459) do
   end
 
   create_table "payments", :force => true do |t|
-    t.integer   "registration_id"
-    t.date      "payment_date"
-    t.decimal   "payment_amount"
-    t.string    "payment_method"
-    t.text      "payment_notes"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "scheduled_group_id"
-    t.string    "payment_type"
+    t.integer  "registration_id"
+    t.date     "payment_date"
+    t.decimal  "payment_amount"
+    t.string   "payment_method"
+    t.text     "payment_notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "scheduled_group_id"
+    t.string   "payment_type"
   end
 
   create_table "periods", :force => true do |t|
@@ -287,6 +293,27 @@ ActiveRecord::Schema.define(:version => 20120308172459) do
     t.string    "description"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.integer   "position"
+  end
+
+  create_table "program_users", :force => true do |t|
+    t.integer  "job_id"
+    t.integer  "program_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "programs", :force => true do |t|
+    t.integer  "site_id"
+    t.integer  "program_type_id"
+    t.boolean  "active"
+    t.string   "name"
+    t.string   "short_name"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "registrations", :force => true do |t|
@@ -417,6 +444,7 @@ ActiveRecord::Schema.define(:version => 20120308172459) do
     t.integer   "listing_priority"
     t.boolean   "active"
     t.boolean   "summer_domestic"
+    t.string    "abbr"
   end
 
   create_table "user_roles", :force => true do |t|
@@ -424,6 +452,20 @@ ActiveRecord::Schema.define(:version => 20120308172459) do
     t.string    "description"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+  end
+
+  create_table "vendors", :force => true do |t|
+    t.integer  "site_id",    :null => false
+    t.string   "name",       :null => false
+    t.string   "address",    :null => false
+    t.string   "city",       :null => false
+    t.string   "state",      :null => false
+    t.string   "zip",        :null => false
+    t.string   "contact"
+    t.string   "phone"
+    t.string   "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

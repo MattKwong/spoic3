@@ -7,10 +7,10 @@ ActiveAdmin.register Period do
  show :title => :name
 
  form do |f|
-    f.inputs "Period Details" do
+    f.inputs "Period Details: #{:name}" do
       f.input :name
-      f.input :start_date, :start_year => 2011, :required => true
-      f.input :end_date, :start_year => 2011, :required => true
+      f.input :start_date, :start_year => 2012, :value => 21020601, :required => true
+      f.input :end_date, :start_year => 2012, :required => true
       f.input :active, :required =>  true
       f.input :summer_domestic, :required =>  true
     end
