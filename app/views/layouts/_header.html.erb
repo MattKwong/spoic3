@@ -40,10 +40,10 @@
                   <li><%= link_to "Liaisons", admin_liaisons_path %></li>
                   <li><%= link_to "Admin Center", admin_path %></li>
                </ul>
-            <% if signed_in? && current_admin_user.food_admin? %>
+            <% if signed_in? && (current_admin_user.food_admin? || current_admin_user.admin?) %>
               <li><%= link_to "Food/Tabatha", food_path %></li>
             <% end %>
-            <% if signed_in? && current_admin_user.construction_admin? %>
+            <% if signed_in? && (current_admin_user.construction_admin? || current_admin_user.admin?)%>
               <li><%= link_to "Construction", construction_path %></li>
             <% end %>
         <% end %>

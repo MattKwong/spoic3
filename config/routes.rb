@@ -13,7 +13,33 @@ Spoic3::Application.routes.draw do
   devise_for :admin_users, :controllers => { :passwords => "passwords",
             :confirmations => "confirmations", :sessions => "sessions" }
 
+  resources :admin_users
+
 #  match "admin/confirmation/new", :to => 'active_admin/devise/confirmations#new', :as => 'new_admin_user_confirmation'
+
+  resources :sites do
+      resources :vendors, :shallow => true
+  end
+
+  resources :programs do
+    resources :periods, :shallow => true
+    resources :purchases, :shallow => true do
+      resources :food_item_purchases, :shallow => true
+    end
+    resources :food_inventories, :shallow => true
+    get :autocomplete_user_name
+    get :autocomplete_food_item
+
+    get :activation
+  end
+
+
+  #reports
+  get "reports/list"
+  get "reports/inventory/:id", :controller => 'reports', :action => 'inventory'
+  get "reports/budget/:id", :controller => 'reports', :action => :budget
+  get "reports/consumption/:id", :controller => :reports, :action => :consumption
+  get "reports/week/:id", :controller => :reports, :action => :week
 
   match "registration/schedule", :to => 'registration#schedule', :as => "registration_schedule"
   match "registration/register", :to => 'registration#register'
@@ -61,6 +87,7 @@ Spoic3::Application.routes.draw do
   match "scheduled_groups/invoice_report.csv" => 'scheduled_groups#invoice_report', :as => 'invoice_report_csv'
   match "reports/church_and_liaison" => 'reports#church_and_liaison', :as => 'church_and_liaison_csv'
 
+  resources :vendors
   resources :churches
   resources :liaisons
   resources :scheduled_groups

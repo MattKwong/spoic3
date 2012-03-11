@@ -1,0 +1,52 @@
+!!!
+%html
+  %head
+    %title SSP | #{@title}
+    = stylesheet_link_tag 'blueprint/screen', :media => 'screen'
+    = stylesheet_link_tag 'blueprint/print', :media => 'print'
+    = stylesheet_link_tag 'jqueryui/jquery-ui-1.8.11.custom.css'
+    = stylesheet_link_tag :all
+    = csrf_meta_tag
+
+  %body
+    .container
+      #header.span-24
+        .span-16
+          %h1 SSP Food Tracking Application
+        - if signed_in?
+          #user-pane.span-8.last
+            %div
+              %span= current_admin_user.name
+              %span.links
+                -#= link_to "account", current_admin_user
+                |
+                = link_to "sign out", destroy_admin_user_session_path
+
+      - short_nav = (render_navigation :level => 2, :renderer => :text)
+      - skip_second_nav = short_nav.nil? || short_nav.empty?
+      #main-nav.span-24.last.nav-bar{:class => skip_second_nav ? "non-admin" : ""}
+        = render_navigation :level => 1
+
+      - unless skip_second_nav
+        #page-info.span-24.last
+          #site-nav= render_navigation :level => 2
+
+      = render 'shared/flash', :flash => flash
+
+      .span-16.prepend-top
+        %h2= @title
+      #action-links.span-8.last.prepend-top
+        = render_navigation :context => :actions, :renderer => :links
+
+
+      #content.span-24.last
+
+        .span-24.last= yield
+
+      #footer.span-24.last
+
+      = javascript_include_tag 'jquery/jquery-1.5.1.min'
+      = javascript_include_tag 'jquery/jquery-ui-1.8.11.custom.min.js'
+      = javascript_include_tag 'jquery/jquery-ui-widgets.js'
+      = javascript_include_tag :all
+      = yield :javascript

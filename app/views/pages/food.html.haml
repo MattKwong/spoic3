@@ -1,2 +1,7 @@
-%h1 Tabatha
-%p Find me in view/pages/food.html.haml
+= render 'layouts/food_layout'
+- if signed_in?
+  - if can? :manage, Program
+    %form{:action => "/?month=#{@month}", :method => :get}
+      = label_tag 'Program'
+      = select_tag 'program', options_for_select([["All", ""]] + Program.current.map {|u| [u.to_s, u.id]}, @program.try(:id)) 
+      = submit_tag 'Filter'

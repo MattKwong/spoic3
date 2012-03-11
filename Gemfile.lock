@@ -156,6 +156,8 @@ GEM
       ffi (~> 1.0.9)
       multi_json (~> 1.0.4)
       rubyzip
+    simple-navigation (3.7.0)
+      activesupport (>= 2.3.2)
     spork (1.0.0rc2-x86-mingw32)
       win32-process
     spork-rails (3.2.0)
@@ -211,6 +213,7 @@ DEPENDENCIES
   rails (= 3.0.1)
   rake (= 0.8.7)
   rspec-rails
+  simple-navigation
   spork-rails (= 3.2.0)
   sqlite3-ruby
   validates_timeliness

@@ -7,7 +7,6 @@ class Vendor < ActiveRecord::Base
   validates :city, :presence => true
   validates_inclusion_of :state, :in => State::STATE_ABBREVIATIONS, :message => 'Invalid state.'
   validates :zip, :presence => true, :length => { :maximum => 10, :minimum => 5 }
-  validates :contact
   validates :phone, :length => { :maximum => 20 }
 
 
