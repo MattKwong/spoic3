@@ -1,0 +1,49 @@
+<h3>Admin users</h3>
+<div class='tablewrapper'>
+  <table>
+    <thead>
+      <th>Admin Name</th>
+      <th>Last Sign In</th>
+      <th></th>
+    </thead>
+    <tbody>
+        <% @admins.each do |admin| %>
+            <tr>
+                <td><%= link_to admin.name, admin_user_path(admin.id) %></td>
+                <td><%= admin.last_sign_in_at.in_time_zone("Pacific Time (US & Canada)").strftime("%b %d, %Y %l:%M %p") %></td>
+            </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div>
+
+<% if @all_users %>
+  <h3>All Staff</h3>
+  <%= link_to "view current staff", admin_users_path %>
+<% else %>
+  <h3>Current Staff</h3>
+  <%= link_to "view all users", admin_users_path( :all_staff=>true) %>
+<% end %>
+<div class='tablewrapper'>
+  <table>
+    <thead>
+      <tr>
+        <th>Staff Name</th>
+        <th>Current Job</th>
+        <th>Current Site</th>
+        <th>Last Sign In</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @staff.each do |user| %>
+        <tr>
+          <td><%= link_to user.name, admin_user_path(user.id) %></td>
+          <td></td>
+          <td></td>
+          <td><%= user.last_sign_in_at.in_time_zone("Pacific Time (US & Canada)").strftime("%b %d, %Y %l:%M %p") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

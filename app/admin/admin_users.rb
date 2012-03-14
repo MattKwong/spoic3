@@ -7,6 +7,7 @@ ActiveAdmin.register AdminUser do
   index do
     column :email
     column :name
+    column :username
     column :user_role
     column :site
     column :liaison_id
@@ -24,6 +25,7 @@ ActiveAdmin.register AdminUser do
       f.input :last_name
       f.input :password
       f.input :user_role
+      f.input :username, :hint => "Assign name to all site staff - no spaces"
       f.input :site
     end
     f.buttons

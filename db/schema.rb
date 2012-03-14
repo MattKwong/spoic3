@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120310194442) do
+ActiveRecord::Schema.define(:version => 20120313231137) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer   "resource_id",   :null => false
@@ -66,28 +66,29 @@ ActiveRecord::Schema.define(:version => 20120310194442) do
   end
 
   create_table "admin_users", :force => true do |t|
-    t.string    "email",                                 :default => "", :null => false
-    t.string    "encrypted_password",     :limit => 128, :default => "", :null => false
-    t.string    "reset_password_token"
-    t.timestamp "reset_password_sent_at"
-    t.timestamp "remember_created_at"
-    t.integer   "sign_in_count",                         :default => 0
-    t.timestamp "current_sign_in_at"
-    t.timestamp "last_sign_in_at"
-    t.string    "current_sign_in_ip"
-    t.string    "last_sign_in_ip"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "admin"
-    t.string    "name"
-    t.string    "first_name"
-    t.string    "last_name"
-    t.string    "user_role"
-    t.integer   "liaison_id"
-    t.string    "confirmation_token"
-    t.timestamp "confirmed_at"
-    t.timestamp "confirmation_sent_at"
-    t.integer   "site_id"
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                         :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "admin"
+    t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "liaison_id"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.integer  "site_id"
+    t.integer  "user_role_id"
+    t.string   "username"
   end
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
@@ -107,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20120310194442) do
     t.decimal   "amount"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.integer   "program_id"
   end
 
   create_table "change_histories", :force => true do |t|
@@ -193,6 +195,24 @@ ActiveRecord::Schema.define(:version => 20120310194442) do
     t.string    "doc_type"
   end
 
+  create_table "food_inventories", :force => true do |t|
+    t.integer  "program_id"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "food_inventory_food_items", :force => true do |t|
+    t.integer  "food_inventory_id"
+    t.integer  "item_id"
+    t.string   "quantity"
+    t.decimal  "in_base_units"
+    t.decimal  "in_inventory"
+    t.decimal  "average_cost"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "group_checklist_statuses", :force => true do |t|
     t.string    "status"
     t.string    "notes"
@@ -200,6 +220,46 @@ ActiveRecord::Schema.define(:version => 20120310194442) do
     t.timestamp "updated_at"
     t.integer   "checklist_item_id"
     t.integer   "group_id"
+  end
+
+  create_table "item_categories", :force => true do |t|
+    t.string   "name"
+    t.integer  "type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "position"
+  end
+
+  create_table "item_purchases", :force => true do |t|
+    t.integer  "item_id"
+    t.integer  "purchase_id"
+    t.decimal  "quantity"
+    t.string   "size"
+    t.string   "uom"
+    t.decimal  "price"
+    t.boolean  "taxable"
+    t.decimal  "total_base_units"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "item_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "items", :force => true do |t|
+    t.integer  "program_id"
+    t.integer  "item_type_id"
+    t.string   "name"
+    t.string   "description"
+    t.string   "notes"
+    t.string   "base_unit"
+    t.boolean  "default_taxed"
+    t.integer  "item_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "jobs", :force => true do |t|
@@ -312,6 +372,18 @@ ActiveRecord::Schema.define(:version => 20120310194442) do
     t.string   "short_name"
     t.date     "start_date"
     t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "purchases", :force => true do |t|
+    t.integer  "program_id"
+    t.integer  "vendor_id"
+    t.date     "date"
+    t.integer  "purchaser_id"
+    t.decimal  "total"
+    t.decimal  "tax"
+    t.string   "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -429,6 +501,7 @@ ActiveRecord::Schema.define(:version => 20120310194442) do
     t.timestamp "created_at"
     t.timestamp "updated_at"
     t.integer   "payment_schedule_id"
+    t.integer   "program_id"
   end
 
   create_table "sites", :force => true do |t|
@@ -448,10 +521,10 @@ ActiveRecord::Schema.define(:version => 20120310194442) do
   end
 
   create_table "user_roles", :force => true do |t|
-    t.string    "role_name"
-    t.string    "description"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "vendors", :force => true do |t|

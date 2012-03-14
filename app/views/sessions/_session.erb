@@ -1,0 +1,9 @@
+<tr id="session<%= session.id %>" >
+  <td><%= session.name %></td>
+  <td><%= session.period.start_date.strftime("%a %b #{session.period.start_date.day.ordinalize}") %></td>
+  <td><%= session.period.end_date.strftime("%a %b #{session.period.end_date.day.ordinalize}") %></td>
+  <td><%= session.session_type.name %></td>
+  <td><%= session.scheduled_adults %></td>
+  <td><%= session.scheduled_youth %></td>
+  <td><%= session.scheduled_total %></td>
+</tr>

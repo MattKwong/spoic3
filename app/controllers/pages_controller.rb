@@ -11,8 +11,8 @@ class PagesController < ApplicationController
   end
 
   def food
-    @page_title = "SSP Information Center"
-    @title = "Tabatha"
+    @page_title = "SSP Food Tracking Application"
+    @title = "SSP Food"
   end
 
   def construction

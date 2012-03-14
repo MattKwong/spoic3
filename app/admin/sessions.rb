@@ -4,4 +4,9 @@ ActiveAdmin.register Session do
   menu :if => proc{ can?(:read, Session) }, :parent => "Configuration"
 
   show :title => :name
+
+  index do
+    column "Session Name", :name
+    default_actions
+  end
 end

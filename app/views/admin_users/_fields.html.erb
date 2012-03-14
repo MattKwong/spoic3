@@ -1,0 +1,12 @@
+<%= semantic_form_for user do |form| %>
+  <%= form.inputs do %>
+    <%= form.input :name %>
+    <%= form.input :email %>
+    <%= form.input :password %>
+    <%= form.input :password_confirmation %>
+    <% if can? :create_admin, AdminUser %>
+      <%= form.input :admin %>
+    <% end %>
+  <% end %>
+  <%= form.buttons %>
+<% end %>

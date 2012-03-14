@@ -1,0 +1,30 @@
+.span-12
+  .properties
+    %dl
+      %dt Vendor
+      %dd= @purchase.vendor.name
+      %dt Date
+      %dd= @purchase.date
+      %dt Purchaser
+      %dd= @purchase.purchaser.name
+      %dt Total
+      %dd= number_to_currency(@purchase.total, :unit => "$")
+      %dt Tax
+      %dd= number_to_currency(@purchase.tax, :unit => "$")
+      %dt Effective tax rate
+      %dd= number_to_percentage(@purchase.effective_tax_rate * 100, :precision => 2)
+      %dt Actual Tax Rate
+      %dd#actual_tax_rate= number_to_percentage(@purchase.actual_tax_rate * 100, :precision => 2)
+      %dt Accounted for
+      %dd#accounted_for= number_to_currency(@purchase.accounted_for)
+      %dt Unaccounted For
+      %dd#unaccounted_for= number_to_currency @purchase.unaccounted_for, :unit => "$"
+
+.span-12.last
+  -if can? :create, @purchase.food_item_purchases.new
+    %h3 Add Item to Purchase
+    = render 'food_item_purchases/form', :food_item_purchase => @purchase.food_item_purchases.new, :remote => true
+
+.span-24.last.prepend-top
+  = render 'food_item_purchases/table', :food_item_purchases => @purchase.food_item_purchases
+

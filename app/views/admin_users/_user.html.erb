@@ -1,0 +1,19 @@
+<tr>
+  <td><%= can?(:read, user) ? link_to(user.name, user) : user.name %></td>
+  <td>
+    <% unless user.current_program.nil? %>
+      <%= user.current_job %>
+    <% end %>
+  </td>
+  <td>
+    <% unless user.current_program.nil? %>
+      <%= link_to user.current_program.name, user.current_program %>
+    <% end %>
+  </td>
+  <td><%= user[:current_sign_in_at] %></td>
+  <td>
+    <% if can? :destroy, user %>
+      <%= link_to "delete", user_path(user, :all_staff=>@all_staff), :method=>:delete, :confirm => "Are you sure you want to delete #{user.name}", :title => "Confirm Delete" %>
+    <% end %>
+  </td>
+</tr>

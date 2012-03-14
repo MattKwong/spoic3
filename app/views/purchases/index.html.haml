@@ -1,0 +1,27 @@
+.paginator.append-bottom
+  %span.wrapper
+    = will_paginate @purchases
+
+.tablewrapper
+  %table
+    %thead
+      %tr
+        - unless @program
+          %th Program
+        %th Vendor
+        %th Date
+        %th Total
+        %th
+    %tbody
+      - @purchases.each do |purchase|
+        %tr
+          - unless @program
+            %td= link_to purchase.program, program_purchases_path(purchase.program) 
+          %td= link_to purchase.vendor, purchase.vendor
+          %td= purchase.date
+          %td= purchase.total
+          %td= link_to "view", purchase
+
+.paginator.prepend-top
+  %span.wrapper
+    = will_paginate @purchases

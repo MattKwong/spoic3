@@ -1,0 +1,5 @@
+<tr>
+  <td><%= can?(:read, program_user.admin_user) ?
+                  link_to(program_user.admin_user.name, program_user.admin_user) : program_user.admin_user.name%></td>
+  <td><%= program_user.job.name %></td>
+</tr>

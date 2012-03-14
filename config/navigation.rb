@@ -41,7 +41,7 @@ SimpleNavigation::Configuration.run do |navigation|
     #                            against the current URI.
     #
 
-    primary.item :home, "Home", root_path, :if => lambda { signed_in?}
+    primary.item :home, "Food Home", food_path, :if => lambda { signed_in?}
 
     #primary.item(:purchases, "Purchases", purchases_path, :if => lambda { can? :index, Purchase }, :highlights_on => /purchases/) do |purchase_menu|
     #  if(can? :manage, Purchase)
@@ -95,10 +95,10 @@ SimpleNavigation::Configuration.run do |navigation|
         end
       end
     end
-    primary.item :sites, "Sites", sites_path, :highlights_on => /^\/sites(\/[0-9]*)?$/, :if => lambda { can? :manage, Site }
+#    primary.item :sites, "Sites", sites_path, :highlights_on => /^\/sites(\/[0-9]*)?$/, :if => lambda { can? :manage, Site }
     primary.item :programs, "Programs", programs_path, :highlights_on => /^\/programs(\/[0-9]*)?$/, :if => lambda { can? :manage, Program }
     primary.item(:reports, "Reports", reports_list_path, :highlights_on => /\/reports\//, :if => lambda {can? :report, Program })
-    primary.item :admin_users, "Users", admin_users_path, :highlights_on => /^\/users/, :if => lambda { can? :create, AdminUser }
+#    primary.item :admin_users, "Users", admin_users_path, :highlights_on => /^\/users/, :if => lambda { can? :create, AdminUser }
 #    primary.item :options, "Options", options_path, :if => lambda {can? :view, 'options'}
 
     # Add an item which has a sub navigation (same params, but with block)

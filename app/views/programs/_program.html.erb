@@ -1,0 +1,10 @@
+<tr>
+  <td><%= can?(:read, program) ? link_to(program.name, program) : program.name %></td>
+  <td><%= program.start_date.strftime("%a %b #{program.start_date.day.ordinalize}") %></td>
+  <td><%= program.end_date.strftime("%a %b #{program.end_date.day.ordinalize}") %></td>
+  <td><%= pluralize(program.sessions.count, "Sessions") %></td>
+  <td><%= program.adults %></td>
+  <td><%= program.youth %></td>
+  <td><%= program.total %></td>
+</tr>
+

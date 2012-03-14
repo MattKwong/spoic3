@@ -1,4 +1,3 @@
-= render 'layouts/food_layout'
 - if signed_in?
   - if can? :manage, Program
     %form{:action => "/?month=#{@month}", :method => :get}

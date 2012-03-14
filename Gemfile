@@ -13,6 +13,7 @@ gem 'prawn_rails'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'fastercsv'
 gem 'rspec-rails', :group => [:development, :test]
+gem 'rails3-jquery-autocomplete'
 
 group :production, :staging do
   gem "pg"

@@ -8,20 +8,18 @@
     = stylesheet_link_tag :all
     = csrf_meta_tag
 
-  %body
+  %body.logged_in
+    = render 'layouts/header'
+    #title_bar
+      #titlebar_left
+        #logo
+          = link_to image_tag('logo.png', :alt => "Sierra Service Project", :width => 75, :height => 75), "http://www.sierraserviceproject.org", :title => "Go to SSP Website"
+        .breadcrumb
+          %a{:href => '/'} Home
+          .breadcrumb_sep |
+        %h2
+          SSP Food and Construction Cost Tracking Application
     .container
-      #header.span-24
-        .span-16
-          %h1 SSP Food Tracking Application
-        - if signed_in?
-          #user-pane.span-8.last
-            %div
-              %span= current_admin_user.name
-              %span.links
-                -#= link_to "account", current_admin_user
-                |
-                = link_to "sign out", destroy_admin_user_session_path
-
       - short_nav = (render_navigation :level => 2, :renderer => :text)
       - skip_second_nav = short_nav.nil? || short_nav.empty?
       #main-nav.span-24.last.nav-bar{:class => skip_second_nav ? "non-admin" : ""}
@@ -30,9 +28,6 @@
       - unless skip_second_nav
         #page-info.span-24.last
           #site-nav= render_navigation :level => 2
-
-      = render 'shared/flash', :flash => flash
-
       .span-16.prepend-top
         %h2= @title
       #action-links.span-8.last.prepend-top

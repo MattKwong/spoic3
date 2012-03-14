@@ -1,0 +1,3 @@
+$("#actual_tax_rate").text("<%= number_to_percentage(purchase.actual_tax_rate * 100, :precision => 2) %>");
+$("#accounted_for").text("<%= number_to_currency(purchase.accounted_for, :unit => '$') %>");
+$("#unaccounted_for").text("<%= number_to_currency(purchase.unaccounted_for, :unit => '$') %>");

@@ -1,0 +1,15 @@
+.span-5.description
+  %dl
+    %dt Gravatar
+
+.span-19.last.properties
+  %dl
+    %dt Name
+    %dd.wide= @user.name
+    %dt Username
+    %dd.wide= @user.username
+    %dt Email
+    %dd.wide= @user.email
+    - unless @user.current_program.nil?
+      %dt Current Job
+      %dd.wide #{@user.current_job}, #{link_to @user.current_program, @user.current_program}

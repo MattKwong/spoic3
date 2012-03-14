@@ -18,7 +18,8 @@ class ProgramUser < ActiveRecord::Base
   validates :job_id, :presence => true
   validates :program_id, :presence => true
 
-  belongs_to :admin_user, :through => :user_id
+  belongs_to :admin_user, :foreign_key => :user_id
   belongs_to :program
   belongs_to :job
+
 end

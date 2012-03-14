@@ -6,10 +6,12 @@ Spoic3::Application.routes.draw do
 
   get "scheduled_group/confirmation"
   ActiveAdmin.routes(self)
+
 #  devise_for :admin_users, ActiveAdmin::Devise.config
   as :admin_user do
     match '/admin_user/confirmation' => 'confirmations#update', :via => :put, :as => :update_admin_user_confirmation
   end
+
   devise_for :admin_users, :controllers => { :passwords => "passwords",
             :confirmations => "confirmations", :sessions => "sessions" }
 
@@ -33,6 +35,7 @@ Spoic3::Application.routes.draw do
     get :activation
   end
 
+  resources :program_users, :only => [:create, :destroy]
 
   #reports
   get "reports/list"
@@ -101,9 +104,9 @@ Spoic3::Application.routes.draw do
   match "registration/delete", :to => 'registration#delete'
 
   match '/admin', :to => 'admin#index'
-  match '/food', :to => 'pages#food'
+  match 'ops_pages/food', :to => 'ops_pages#food', :as => 'food'
   match 'RegistrationController', :to => 'pages#groups'
-  match '/construction', :to => 'pages#construction'
+  match 'ops_pages/construction', :to => 'ops_pages#construction', :as => 'construction'
   match '/help', :to => 'pages#help', :as => 'help'
   match '/contact', :to => 'pages#contact'
   match '/about', :to => 'pages#about'

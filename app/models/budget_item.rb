@@ -1,6 +1,6 @@
 class BudgetItem < ActiveRecord::Base
   belongs_to :budget_item_type, :foreign_key => :item_id
-  belongs_to :site
+  belongs_to :program
   attr_accessible :amount, :item_id, :site_id
 
   validates :item_id, :amount, :site_id, :presence => true
