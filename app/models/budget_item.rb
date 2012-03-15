@@ -1,26 +1,34 @@
 class BudgetItem < ActiveRecord::Base
-  belongs_to :budget_item_type, :foreign_key => :item_id
+  belongs_to :budget_item_type
   belongs_to :program
-  attr_accessible :amount, :item_id, :site_id
+  attr_accessible :amount, :budget_item_type_id, :program_id
 
-  validates :item_id, :amount, :site_id, :presence => true
+  validates :budget_item_type_id, :amount, :presence => true
   validates_numericality_of :amount, :greater_than_or_equal_to => 0, :decimal => true
 
-  validate :site_and_item_unique
+  validate :program_and_item_unique
 
-  validate :site_valid
+  validate :program_valid
   validate :item_valid
 
-  def site_valid
-    errors.add(:site_id, "Must enter a valid site.") unless Site.find(site_id)
-  end
-  def item_valid
-    errors.add(:item_id, "Must enter a valid item type.") unless BudgetItemType.find(item_id)
+#  get all budget items with budget type of food.
+  scope :food, lambda {joins(:budget_item_type).where("budget_item_types.name = 'Food'" ) }
+
+  def budget_item_food
+    BudgetItemType.find(self.budget_item_type_id).name == "Food"
   end
 
-  def site_and_item_unique
-    if BudgetItem.find(:conditions => ["item_id = ? AND site_id = ?", :item_id, :site_id]) then
-      errors.add(:site_id, "A budget already exists for this site and item.")
+  def program_valid
+    errors.add(:site_id, "Must enter a valid site.") unless Program.find(program_id)
+  end
+
+  def item_valid
+    errors.add(:item_id, "Must enter a valid item type.") unless BudgetItemType.find(budget_item_type_id)
+  end
+
+  def program_and_item_unique
+    if BudgetItem.find_by_budget_item_type_id_and_program_id(:budget_item_type_id, :site_id) then
+      errors.add(:site_id, "A budget item already exists for this program and item type. Updated the exiting item type instead.")
     end
   end
 end

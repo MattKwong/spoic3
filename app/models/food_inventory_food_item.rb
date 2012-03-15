@@ -5,7 +5,7 @@
 #
 #  id                :integer         not null, primary key
 #  food_inventory_id :integer
-#  food_item_id      :integer
+#  item_id      :integer
 #  quantity          :string(255)
 #  created_at        :datetime
 #  updated_at        :datetime
@@ -15,17 +15,17 @@
 #
 
 class FoodInventoryFoodItem < ActiveRecord::Base
-  attr_accessible :food_item_id, :quantity
+  attr_accessible :item_id, :quantity
 
-  belongs_to :food_item
+  belongs_to :item
   belongs_to :food_inventory
 
   validates :food_inventory_id, :presence => true
-  validates :food_item_id, :presence => true
+  validates :item_id, :presence => true
   validate :validate_units
   # validates :quantity, :presence => true
 
-  scope :for_item, lambda {|food_item| where('food_item_id = ?', food_item.id) }
+  scope :for_item, lambda {|food_item| where('item_id = ?', food_item.id) }
   scope :for_program, lambda { |program| includes(:food_inventory).where('food_inventories.program_id = ?', program.id) }
   scope :after, lambda { |date| includes(:food_inventory).where('food_inventories.date >= ?', date) }
 
@@ -39,11 +39,11 @@ class FoodInventoryFoodItem < ActiveRecord::Base
   end
 
   def consumed_units
-    "#{consumed} #{food_item.base_unit}"
+    "#{consumed} #{item.base_unit}"
   end
   
   def in_inventory_units
-    "#{in_inventory} #{food_item.base_unit}"
+    "#{in_inventory} #{item.base_unit}"
   end
 
   def total_price
@@ -57,7 +57,7 @@ class FoodInventoryFoodItem < ActiveRecord::Base
   end
 
   def update_derived_fields
-    FoodInventoryFoodItem.for_item(food_item).for_program(food_inventory.program).after(food_inventory.date).each do |item|
+    FoodInventoryFoodItem.for_item(item).for_program(food_inventory.program).after(food_inventory.date).each do |item|
       unless item.id == self.id
         item.skip_derivations = true
         item.save
@@ -66,7 +66,7 @@ class FoodInventoryFoodItem < ActiveRecord::Base
   end
 
   def update_in_inventory
-    self.in_inventory = food_item.in_inventory_for_program_at(food_inventory.program, food_inventory.date)
+    self.in_inventory = item.in_inventory_for_program_at(food_inventory.program, food_inventory.date)
   end
 
 
@@ -89,21 +89,21 @@ class FoodInventoryFoodItem < ActiveRecord::Base
   private
 
   def update_base_units
-    self.in_base_units = self.quantity.u.to(self.food_item.base_unit).abs
+    self.in_base_units = self.quantity.u.to(self.item.base_unit).abs
   end
 
   def update_average_cost
-    self.average_cost = food_item.cost_of(food_inventory.program, food_inventory.date, consumed_units, quantity)
+    self.average_cost = item.cost_of(food_inventory.program, food_inventory.date, consumed_units, quantity)
   end
 
   def validate_units
     begin
       self.quantity.unit
-      errors.add(:quantity, "Base unit should be a unit of weight, volumn, or each") unless [:unitless, :mass, :volume].include? self.quantity.unit.kind
-      errors.add(:quantity, "the units entered are a measure of #{self.quantity.unit.kind.to_s.humanize}, while #{self.food_item.name} requires a unit of #{self.food_item.base_unit.unit.kind.to_s.humanize} to convert") unless(self.food_item.nil? || self.food_item.base_unit.unit =~ self.quantity.unit)
+      errors.add(:quantity, "Base unit should be a unit of weight, length, volume, or each") unless [:unitless, :length, :mass, :volume].include? self.quantity.unit.kind
+      errors.add(:quantity, "the units entered are a measure of #{self.quantity.unit.kind.to_s.humanize}, while #{self.item.name} requires a unit of #{self.item.base_unit.unit.kind.to_s.humanize} to convert") unless(self.item.nil? || self.item.base_unit.unit =~ self.quantity.unit)
     rescue Exception => e
       #errors.add(:quantity, e.message)
-      errors.add(:quantity, "#{self.quantity} does not use recogized units")
+      errors.add(:quantity, "#{self.quantity} does not use recognized units")
     end
   end
 

@@ -21,10 +21,10 @@
       %dd#unaccounted_for= number_to_currency @purchase.unaccounted_for, :unit => "$"
 
 .span-12.last
-  -if can? :create, @purchase.food_item_purchases.new
+  -if can? :create, @purchase.item_purchases.new
     %h3 Add Item to Purchase
-    = render 'food_item_purchases/form', :food_item_purchase => @purchase.food_item_purchases.new, :remote => true
+    = render 'item_purchases/form', :item_purchase => @purchase.item_purchases.new, :remote => true
 
 .span-24.last.prepend-top
-  = render 'food_item_purchases/table', :food_item_purchases => @purchase.food_item_purchases
+  = render 'item_purchases/table', :item_purchases => @purchase.item_purchases
 

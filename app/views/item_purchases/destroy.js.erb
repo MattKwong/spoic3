@@ -1,0 +1,9 @@
+<% if @item_purchase.destroyed? %>
+  $("tr[item_purchase_id='<%= @item_purchase.id %>']").fadeOut(500, function () { $(this).remove(); });
+  <% if @item_purchase.taxable? %>
+    <% @item_purchase.purchase.item_purchases.taxable.each do |item| %>
+      $("tr[item_purchase_id='<%= item.id %>']").replaceWith("<%= escape_javascript(render(item)) %>");
+    <% end %>
+  <% end %>
+  <%= render 'purchases/purchase_totals', :purchase => @item_purchase.purchase %>
+<% end %>

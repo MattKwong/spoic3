@@ -27,11 +27,11 @@ Spoic3::Application.routes.draw do
   resources :programs do
     resources :periods, :shallow => true
     resources :purchases, :shallow => true do
-      resources :food_item_purchases, :shallow => true
+      resources :item_purchases, :shallow => true
     end
     resources :food_inventories, :shallow => true
     get :autocomplete_user_name
-    get :autocomplete_food_item
+    get :autocomplete_item
 
     get :activation
   end

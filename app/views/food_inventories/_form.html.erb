@@ -1,6 +1,6 @@
 <%= semantic_form_for food_inventory, :url => (food_inventory.new_record? ? program_food_inventories_path(@program) : food_inventory_path(@food_inventory)) do |form| %>
   <%= form.inputs do %>
-    <%= form.input :date, :as => :datepicker %>
+    <%= form.input :date  %>
   <% end %>
   <%= form.buttons %>
 <% end %>

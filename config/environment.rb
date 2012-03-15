@@ -9,6 +9,7 @@ Spoic3::Application.initialize!
 #end
 
 ActionMailer::Base.delivery_method = :smtp
+Formtastic::SemanticFormBuilder.send(:include, Formtastic::DatePicker)
 
 #ActionMailer::Base.smtp_settings = {
 ##  :address              => "smtp.sierraserviceproject.org",

@@ -1,0 +1,13 @@
+<tr item_purchase_id="<%= item_purchase.id %>" >
+  <td><%= item_purchase.item.name %></td>
+  <td><%= item_purchase.quantity %></td>
+  <td><%= number_to_currency(item_purchase.price, :unit => "$") %></td>
+  <td><%= number_to_currency(item_purchase.total_price, :unit => "$") %></td>
+  <td><%= number_to_currency(item_purchase.total_price_with_tax, :unit => "$") if item_purchase.taxable?%></td>
+  <td><%= item_purchase.size %></td>
+  <td><%= item_purchase.size_in_base_units %></td>
+  <td><%= item_purchase.total_size_in_base_units %></td>
+  <td><%= number_to_currency(item_purchase.price_per_base_unit.abs, :unit => "$") %></td>
+  <td><%= link_to "remove", item_purchase, :method=>:delete, :remote => true, :confirm =>
+          "Are you sure you want to remove #{item_purchase.item}?", :title => "Confirm Delete" %></td>
+</tr>

@@ -21,16 +21,21 @@ class ItemPurchase < ActiveRecord::Base
 
   scope :taxable, where(:taxable => true)
 
+  #I've stubed out the following because of problems with the conversions.
+  #TODO Fix conversion logic'
   def size_in_base_units
-    size.u >> item.base_unit
+#    size.u >> item.base_unit
+    1
   end
 
   def total_size
-    size.u * quantity
+#    size.u * quantity
+    1
   end
 
   def total_size_in_base_units
-    size_in_base_units * quantity
+#    size_in_base_units * quantity
+    1
   end
 
   def total_price
@@ -76,8 +81,8 @@ class ItemPurchase < ActiveRecord::Base
   def validate_units
     begin
       self.size.unit
-      errors.add(:size, "Base unit should be a unit of weight, volume, or each") unless [:unitless, :mass, :volume].include? self.size.unit.kind
-      errors.add(:size, "the units entered are a measure of #{self.size.unit.kind.to_s.humanize}, while #{self.food_item.name} requires a unit of #{self.food_item.base_unit.unit.kind.to_s.humanize} to convert") unless self.food_item.base_unit.unit =~ self.size.unit
+      errors.add(:size, "Base unit should be a unit of length, weight, volume, or each") unless [:unitless, :length, :mass, :volume].include? self.size.unit.kind
+      errors.add(:size, "the units entered are a measure of #{self.size.unit.kind.to_s.humanize}, while #{self.item.name} requires a unit of #{self.item.base_unit.unit.kind.to_s.humanize} to convert") unless self.item.base_unit.unit =~ self.size.unit
     rescue
       errors.add(:size, "#{self.size} does not use recognized units")
     end

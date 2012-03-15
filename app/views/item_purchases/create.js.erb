@@ -1,0 +1,10 @@
+$("#item_purchases tbody").prepend("<%= escape_javascript( render(@item_purchase)) %>").hide().fadeIn(500);
+<% @purchase.item_purchases.taxable.each do |item| %>
+  $("tr[item_purchase_id='<%= item.id %>']").replaceWith("<%= escape_javascript(render(item)) %>");
+<% end %>
+$("#new_item_purchase").replaceWith("<%= escape_javascript( render( 'item_purchases/form', :item_purchase =>
+        @purchase.item_purchases.new, :remote => true)) %>");
+$("#item_purchase_food_item_id").combobox();
+$("#new_item_purchase :input:visible:first").focus();
+$("#item_purchase_new_row").remove();
+<%= render 'purchases/purchase_totals', :purchase => @purchase %>

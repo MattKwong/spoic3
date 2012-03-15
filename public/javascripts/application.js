@@ -19,6 +19,10 @@ $(document).ready(function() {
     });
 });
 
+$(document).ready(function(){
+  $('input.ui-datepicker').datepicker();
+});
+
 $(document).ready(function() {
   $('input.jq-date').live("focus", function() {
     $(this).datepicker();

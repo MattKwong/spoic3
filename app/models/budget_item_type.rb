@@ -6,4 +6,8 @@ class BudgetItemType < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
   validates :description, :seq_number, :presence => true
   validates_numericality_of :seq_number, :greater_than_or_equal_to => 0, :integer => true
+
+  def food
+
+  end
 end

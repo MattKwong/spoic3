@@ -25,7 +25,7 @@ class Purchase < ActiveRecord::Base
 
   belongs_to :program
   belongs_to :vendor
-  belongs_to :purchaser, :class_name => "User"
+  belongs_to :purchaser, :class_name => "AdminUser"
 
   has_many :item_purchases, :dependent => :destroy
   has_many :items, :through => :item_purchases
@@ -41,7 +41,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def accounted_for
-    (food_item_purchases.map &:total_price_with_tax).sum
+    (item_purchases.map &:total_price_with_tax).sum
   end
 
   def unaccounted_for
@@ -49,7 +49,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def food_item_total
-    (food_item_purchases.map &:total_price_with_tax).sum
+    (item_purchases.map &:total_price_with_tax).sum
   end
 
   def effective_tax_rate
@@ -57,7 +57,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def actual_tax_rate
-    total_taxable = (food_item_purchases.taxable.map &:total_price).sum
+    total_taxable = (item_purchases.taxable.map &:total_price).sum
     unless total_taxable == 0
       tax / total_taxable
     else

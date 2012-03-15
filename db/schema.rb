@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120313231137) do
+ActiveRecord::Schema.define(:version => 20120315153525) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer   "resource_id",   :null => false
@@ -103,12 +103,12 @@ ActiveRecord::Schema.define(:version => 20120313231137) do
   end
 
   create_table "budget_items", :force => true do |t|
-    t.integer   "site_id"
-    t.integer   "item_id"
-    t.decimal   "amount"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "program_id"
+    t.integer  "site_id"
+    t.integer  "budget_item_type_id"
+    t.decimal  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "program_id"
   end
 
   create_table "change_histories", :force => true do |t|
@@ -260,12 +260,20 @@ ActiveRecord::Schema.define(:version => 20120313231137) do
     t.integer  "item_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "budget_item_type_id"
+  end
+
+  create_table "job_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "jobs", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "job_type_id"
   end
 
   create_table "liaison_types", :force => true do |t|
