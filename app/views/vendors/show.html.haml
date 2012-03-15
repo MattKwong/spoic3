@@ -1,0 +1,64 @@
+.span-14.properties.last
+  %dl
+    %dt Contact
+    %dd.wide= @vendor.contact
+    %dt Phone
+    %dd= format_phone @vendor.phone
+    %dt Address
+    %dd.wide  
+      = @vendor.address
+      #{@vendor.city}, #{@vendor.state} #{@vendor.zip}
+    %dt Total Spent
+    %dd= number_to_currency((@vendor.purchases.all.map &:total).sum )
+
+.span-10.description
+  %dl
+    %dt Map
+    %dd#map
+ 
+.span-24.last.prepend-top
+  %h3 Purchases
+  .tablewrapper
+    %table
+      %thead
+        %tr
+          %th Program
+          %th Date
+          %th Purchaser
+          %th Total
+          %th 
+      %tbody
+        - @purchases.each do |purchase|
+          %tr
+            %td= link_to purchase.program, purchase.program
+            %td= purchase.date
+            %td= purchase.purchaser
+            %td= number_to_currency(purchase.total)
+            %td= link_to "view", purchase
+
+- content_for :javascript do
+  %script{:type => 'text/javascript', :src => 'http://maps.google.com/maps/api/js?sensor=false'}
+  :javascript
+    $(document).ready(function () {
+      var geocoder = new google.maps.Geocoder();
+      var address = "#{@vendor.address}, #{@vendor.city}, #{@vendor.state}";
+
+      var latlng = new google.maps.LatLng(40.730885, -73.997383);
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 8,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+
+      geocoder.geocode({'address':address}, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          map.setZoom(14);
+          map.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+            position: results[0].geometry.location,
+            map: map
+          });
+        }
+      });
+    });
+    

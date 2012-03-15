@@ -41,45 +41,45 @@ SimpleNavigation::Configuration.run do |navigation|
     #                            against the current URI.
     #
 
-    primary.item :home, "Food Home", food_path, :if => lambda { signed_in?}
+    primary.item :home, "#{@tracking_area} Home", ops_pages_show_path, :if => lambda { signed_in?}
 
-    #primary.item(:purchases, "Purchases", purchases_path, :if => lambda { can? :index, Purchase }, :highlights_on => /purchases/) do |purchase_menu|
-    #  if(can? :manage, Purchase)
-    #    purchase_menu.item(:all_purchases, "All Purchases", purchases_path)
-    #    Program.current.each do |program|
-    #      purchase_menu.item("program_#{program.id}_menu",
-    #                         program.short_name,
-    #                         program_purchases_path(program),
-    #                         :highlights_on => /^\/programs\/#{program.id}\/purchases/,
-    #                         :if => lambda { can? :see_purchases_for, program }) do |program_purchase_menu|
-    #
-    #        if( !@purchase.nil? && !@purchase.new_record? && @purchase.program == program)
-    #          program_purchase_menu.item(:purchase, "Purchase", purchase_path(@purchase))
-    #        end
-    #      end
-    #    end
-    #  end
-    #end
-    #primary.item(:food_items, "Food Items", food_items_path, :if => lambda {can? :index, FoodItem }, :highlights_on => /food_item/)
-    #
-    #primary.item(:food_inventories, "Food Inventories", food_inventories_path, :if => lambda {can? :index, FoodInventory }, :highlights_on => /food_inventories/) do |inventories_menu|
-    #  if(can? :manage, FoodInventory)
-    #    inventories_menu.item(:all_food_inventories,
-    #                          "All Food Inventories",
-    #                          food_inventories_path)
-    #    Program.current.each do |program|
-    #      inventories_menu.item("program_#{program.id}_food_inventories",
-    #                            program.short_name,
-    #                            program_food_inventories_path(program),
-    #                            :highlights_on => /^\/programs\/#{program.id}\/food_inventories/,
-    #                            :if => lambda { can? :see_food_inventories_for, program})  do |program_fi_menu|
-    #        if(!@food_inventory.nil? && !@food_inventory.new_record? && @food_inventory.program == program)
-    #          program_fi_menu.item(:food_inventory, "Food Inventory", food_inventory_path(@food_inventory))
-    #        end
-    #      end
-    #    end
-    #  end
-    #end
+    primary.item(:purchases, "Purchases", purchases_path, :if => lambda { can? :index, Purchase }, :highlights_on => /purchases/) do |purchase_menu|
+      if(can? :manage, Purchase)
+        purchase_menu.item(:all_purchases, "All Purchases", purchases_path)
+        Program.current.each do |program|
+          purchase_menu.item("program_#{program.id}_menu",
+                             program.short_name,
+                             program_purchases_path(program),
+                             :highlights_on => /^\/programs\/#{program.id}\/purchases/,
+                             :if => lambda { can? :see_purchases_for, program }) do |program_purchase_menu|
+
+            if( !@purchase.nil? && !@purchase.new_record? && @purchase.program == program)
+              program_purchase_menu.item(:purchase, "Purchase", purchase_path(@purchase))
+            end
+          end
+        end
+      end
+    end
+    primary.item(:items, "Items", items_path, :if => lambda {can? :index, Item }, :highlights_on => /item/)
+
+    primary.item(:food_inventories, "Food Inventories", food_inventories_path, :if => lambda {can? :index, FoodInventory }, :highlights_on => /food_inventories/) do |inventories_menu|
+      if(can? :manage, FoodInventory)
+        inventories_menu.item(:all_food_inventories,
+                              "All Food Inventories",
+                              food_inventories_path)
+        Program.current.each do |program|
+          inventories_menu.item("program_#{program.id}_food_inventories",
+                                program.short_name,
+                                program_food_inventories_path(program),
+                                :highlights_on => /^\/programs\/#{program.id}\/food_inventories/,
+                                :if => lambda { can? :see_food_inventories_for, program})  do |program_fi_menu|
+            if(!@food_inventory.nil? && !@food_inventory.new_record? && @food_inventory.program == program)
+              program_fi_menu.item(:food_inventory, "Food Inventory", food_inventory_path(@food_inventory))
+            end
+          end
+        end
+      end
+    end
 
     primary.item(:vendors, "Vendors", vendors_path, :if => lambda { can? :index, Vendor }, :highlights_on => /vendors/) do |vendor_menu|
       if(can? :manage, Vendor)

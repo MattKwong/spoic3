@@ -1,4 +1,5 @@
 class PurchasesController < ApplicationController
+  layout '_ops_layout'
   load_and_authorize_resource :program
   load_and_authorize_resource :purchase, :through => :program, :shallow => true
 
@@ -7,9 +8,9 @@ class PurchasesController < ApplicationController
     @title = @program.nil? ? "Purchases" : "Purchases for #{@program}"
     unless @program.nil?
       @menu_actions = [{:name => "New Purchase", :path => new_program_purchase_path(@program)}]
-      @purchases = @program.purchases.accessible_by(current_ability, :index).paginate :page => params[:page]
+      @purchases = @program.purchases.accessible_by(current_ability, :index).page params[:page]
     else
-      @purchases = Purchase.accessible_by(current_ability, :index).paginate :page => params[:page]
+      @purchases = Purchase.accessible_by(current_ability, :index).page params[:page]
     end
   end
 

@@ -1,0 +1,69 @@
+.span-12.properties
+  %dl
+    %dt Name
+    %dd= @item.name
+    %dt Description
+    %dd= @item.description
+    %dt Type
+    %dd= @item.item_type.name
+    %dt Category
+    %dd= @item.item_category.name
+    %dt Unit
+    %dd= @item.base_unit
+    %dt Default Taxed
+    %dd= @item.default_taxed ? "Yes" : "No"
+
+.span-12.last.properties
+  %dl
+    %dt Total Purchased
+    %dd #{(@purchases.map &:total_base_units).sum} #{@item.base_unit}
+    %dt Average Price
+    %dd
+      = "#{number_to_currency(@avg_price)} #{@item.base_unit}" if @avg_price
+      = "N/A" unless @avg_price
+    %dt Total Consumed
+    %dd
+      = sprintf '%.2f', (@inventories.map &:consumed).sum
+      = @item.base_unit
+
+.span-12.prepend-top
+  %h3 Purchases
+  .tablewrapper
+    %table
+      %thead
+        %tr
+          %th Program
+          %th Date
+          %th Quantity
+          %th Price
+      %tbody
+        - @purchases.each do |purchase|
+          %tr
+            %td= purchase.purchase.program
+            %td= purchase.purchase.date
+            %td #{purchase.total_base_units} #{@item.base_unit}
+            %td #{number_to_currency(purchase.price_per_base_unit.abs)} / #{@item.base_unit}
+        - unless @purchases.any?
+          %tr
+            %td{:colspan => 4, :style => 'text-align: center;'} No Purchases
+
+.span-12.prepend-top.last
+  %h3 Inventories
+  .tablewrapper
+    %table
+      %thead
+        %tr
+          %th Program
+          %th Date
+          %th Consumed
+          %th Total Price
+      %tbody
+        - @inventories.each do |inventory|
+          %tr
+            %td= inventory.food_inventory.program
+            %td= inventory.food_inventory.date
+            %td #{sprintf '%.2f', inventory.consumed} #{@food_item.base_unit}
+            %td= number_to_currency(inventory.total_price)
+      - unless @inventories.any?
+        %tr
+          %td{:colspan => 4, :style => 'text-align: center;'} No Inventories

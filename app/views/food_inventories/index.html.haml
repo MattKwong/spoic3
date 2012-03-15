@@ -1,0 +1,24 @@
+.paginator.append-bottom
+  %span.wrapper
+    = paginate @food_inventories
+
+.tablewrapper
+  %table
+    %thead
+      %tr
+        %th= "Program" if @program.nil?
+        %th Date
+        %th Value Consumed
+        %th
+    %tbody
+      - @food_inventories.each do |inventory|
+        %tr
+          %td= link_to inventory.program, program_food_inventories_path(inventory.program) if @program.nil?
+          %td= inventory.date
+          %td= number_to_currency(inventory.value_consumed)
+          %td= link_to "view", inventory
+
+.paginator.prepend-top
+  %span.wrapper
+    = paginate @food_inventories
+

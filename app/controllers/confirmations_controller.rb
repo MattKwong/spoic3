@@ -62,7 +62,7 @@ class ConfirmationsController < Devise::PasswordsController
 
   def with_unconfirmed_confirmable
     @confirmable = AdminUser.find_or_initialize_with_error_by(:confirmation_token, params[:confirmation_token])
-    logger.debug @confirmable.inspect
+
     if !@confirmable.new_record?
       @confirmable.only_if_unconfirmed {yield}
     end

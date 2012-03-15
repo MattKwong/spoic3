@@ -1,0 +1,9 @@
+<tr>
+  <td><%= link_to_if(can?(:see_food_inventories_for, food_inventory_program.program), food_inventory_program.program, program_food_inventories_path(food_inventory_program.program)) %></td>
+  <td><%= link_to_if(can?(:view, food_inventory_program), food_inventory_program.date, food_inventory_program) %></td>
+  <td>Not Impl.</td>
+  <td>Not Impl.</td>
+  <td>
+    <%= link_to "edit", edit_food_inventory_path(food_inventory_program) if can? :edit, food_inventory_program %>
+  </td>
+</tr>

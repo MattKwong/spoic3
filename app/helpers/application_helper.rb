@@ -21,8 +21,8 @@ module ApplicationHelper
       image_tag("logo.jpg", :alt => "SSP Logo", :class => "round", :width => 75, :height => 75)
   end
 
-  def spoic_graphic
-    image_tag("spoic_graphic.jpg", :alt => "SSP Online Information Center", :class => "round", :width => 200, :height => 100)
+  def format_phone(phone)
+    "(#{phone[0..2]}) #{phone[3..5]}-#{phone[6..9]}"
   end
 
 end

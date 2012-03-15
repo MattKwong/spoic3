@@ -1,0 +1,16 @@
+<%= semantic_form_for vendor, :url => (vendor.new_record? ? site_vendors_path(@site) : vendor_path(@vendor)) do |form| %>
+  <%= form.inputs do %>
+    <% if @site.nil? %>
+      <%= form.input :site %>
+    <% end %>
+    <%= form.input :name %>
+    <%= form.input :address %>
+    <%= form.input :city, :input_html => { :size => 25 } %>
+    <%= form.input :state, :input_html => { :size => 3 } %>
+    <%= form.input :zip, :input_html => { :size => 6 } %>
+    <%= form.input :contact %>
+    <%= form.input :phone, :input_html => { :size => 25 } %>
+    <%= form.input :notes %>
+  <% end %>
+  <%= form.buttons %>
+<% end %>

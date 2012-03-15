@@ -15,10 +15,10 @@
         #logo
           = link_to image_tag('logo.png', :alt => "Sierra Service Project", :width => 75, :height => 75), "http://www.sierraserviceproject.org", :title => "Go to SSP Website"
         .breadcrumb
-          %a{:href => '/'} Home
+          %a{:href => '/'} Site Tracking Home
           .breadcrumb_sep |
         %h2
-          SSP Food and Construction Cost Tracking Application
+          SSP Site Cost Tracking Application
     .container
       - short_nav = (render_navigation :level => 2, :renderer => :text)
       - skip_second_nav = short_nav.nil? || short_nav.empty?

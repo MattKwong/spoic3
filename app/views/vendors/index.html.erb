@@ -1,0 +1,6 @@
+<% if @site.nil? && can?(:manage, Vendor) %>
+  <%= render 'table_site', :vendors => @vendors %>
+<% else %>
+  <%= render 'table', :vendors => @vendors %>
+<% end %>
+

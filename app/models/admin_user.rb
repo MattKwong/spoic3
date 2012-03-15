@@ -33,15 +33,23 @@ class AdminUser < ActiveRecord::Base
     end
 
     def liaison?
-      self.user_role == "Liaison"
+      self.user_role.name == "Liaison"
+    end
+
+    def area_admin?
+      self.user_role.name == "Food Admin" || "Construction Admin" || "Other Admin"
     end
 
     def food_admin?
-      self.user_role == "Food Admin"
+      self.user_role.name == "Food Admin"
     end
 
     def construction_admin?
-      self.user_role == "Construction Admin"
+      self.user_role.name == "Construction Admin"
+    end
+
+    def staff?
+      self.user_role.name == "Staff"
     end
 
   def password_required?

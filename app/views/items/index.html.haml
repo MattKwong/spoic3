@@ -1,0 +1,30 @@
+- if @items
+  .paginator.append-bottom
+    %span.wrapper
+      = paginate @items
+
+
+.tablewrapper
+  %table
+    %thead
+      %tr
+        %th Item Name
+        %th Program
+        %th Category
+        %th Base Unit
+        %th Taxed?
+        %th
+    %tbody
+      - @items.each do |item|
+        %tr
+          %td= item
+          %td= item.program unless item.program.nil?
+          %td= item.item_category
+          %td= item.base_unit
+          %td= item.default_taxed ? "Yes" : "No"
+          %td= link_to "view", item
+
+- if @items
+  .paginator.prepend-top
+    %span.wrapper
+      = paginate @items

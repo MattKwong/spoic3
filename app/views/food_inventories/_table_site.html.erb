@@ -1,0 +1,16 @@
+<div class='tablewrapper'>
+  <table>
+    <thead>
+      <tr>
+        <th>Program</th>
+        <th>Date</th>
+        <th>Value in Inventory</th>
+        <th>Change in Value</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render :partial => 'food_inventory_program', :collection => food_inventories %>
+    </tbody>
+  </table>
+</div>

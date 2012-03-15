@@ -9,13 +9,12 @@ class Vendor < ActiveRecord::Base
   validates :zip, :presence => true, :length => { :maximum => 10, :minimum => 5 }
   validates :phone, :length => { :maximum => 20 }
 
-
-  belongs_to :site
-#  has_many :purchases
-
-  def before_validation
+  before_validation do
     self.phone = phone.gsub(/[^0-9]/, "")
   end
+
+  belongs_to :site
+  has_many :purchases
 
   def to_s
     name

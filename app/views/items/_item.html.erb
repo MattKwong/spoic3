@@ -1,0 +1,12 @@
+<tr>
+  <td><%= link_to item.name, item_path(item) %></td>
+  <td><%= item.description %></td>
+  <td><%= item.item_type.name %></td>
+  <td><%= item.item_category.name %></td>
+  <td><%= item.base_unit %></td>
+  <td><%= item.default_taxed ? "Yes" : "No" %></td>
+  <td>
+    <%= link_to "edit", edit_item_path(item) if can? :edit, food_item %>
+    <%= link_to "delete", item_path(item), :method => :delete, :confirm => "Delete #{item.name}?", :title => "Confirm Delete" if can? :destroy, item %>
+  </td>
+</tr>

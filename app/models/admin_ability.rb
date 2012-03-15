@@ -27,6 +27,14 @@ class AdminAbility
       cannot :move, ScheduledGroup
     end
 
+    if user.staff?
+      can :index, Vendor #, :site_id => user.program_user.program.site_id
+      can :manage, Vendor #, :site_id => user.program_user.program.site_id
+      can :manage, Item
+      can :manage, Program #, :id => user.program_user.program_id
+#      can :report, Program
+    end
+
     if user.admin?
       can :manage, :all
     end

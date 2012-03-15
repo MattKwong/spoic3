@@ -1,5 +1,6 @@
 class Ability
   include CanCan::Ability
+  # used to authorize program user actions
 
   def initialize(user)
     if user.liaison?
@@ -22,6 +23,31 @@ class Ability
   #move is defined as being able to move a scheduled group and to increase their numbers
       cannot :move, ScheduledGroup
     end
+
+   if user.staff?
+     program_user = ProgramUser.find_by_user_id(user.id)
+      can :index, Vendor, :site_id => program_user.program.site_id
+      can :manage, Vendor, :site_id => program_user.program.site_id
+      can :manage, Item
+      can :manage, Program, :id => program_user.program_id
+      can :report, Program
+  end
+
+  if user.construction_admin?
+      can :index, Vendor
+      can :manage, Vendor
+      can :manage, Item
+      can :manage, Program
+      can :report, Program
+  end
+
+  if user.food_admin?
+      can :index, Vendor
+      can :manage, Vendor
+      can :manage, Item
+      can :manage, Program
+      can :report, Program
+  end
 
    if user.admin?
      can :manage, :all
