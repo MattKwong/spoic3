@@ -40,11 +40,8 @@
                   <li><%= link_to "Liaisons", admin_liaisons_path %></li>
                   <li><%= link_to "Admin Center", admin_path %></li>
                </ul>
-            <% if signed_in? && (current_admin_user.food_admin? || current_admin_user.admin?) %>
-              <li><%= link_to "Food", food_path %></li>
-            <% end %>
-            <% if signed_in? && (current_admin_user.construction_admin? || current_admin_user.admin?)%>
-              <li><%= link_to "Construction", construction_path %></li>
+            <% if signed_in? %>
+              <li><%= link_to "Site Cost Tracking", ops_pages_show_path %></li>
             <% end %>
         <% end %>
         <% if signed_in? && current_admin_user.liaison? %>

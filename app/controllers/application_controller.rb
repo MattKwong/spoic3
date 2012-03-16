@@ -14,34 +14,49 @@ class ApplicationController < ActionController::Base
        destroy_admin_user_session_path #log out
      else
        log_activity(Time.now, "Liaison Login", "Logged on to system", resource.id, resource.name, resource.user_role)
-       myssp_path(liaison.id)
+       return myssp_path(liaison.id)
      end
    else
    if resource.admin?
      log_activity(Time.now, "Admin Login", "Logged on to system", resource.id, resource.name, resource.user_role)
-     '/admin'
-   else if resource.construction_admin?
+     return '/admin'
+   else
+     if resource.construction_admin?
        log_activity(Time.now, "Construction Admin Login", "Logged on to system", resource.id, resource.name, resource.user_role)
-       ops_pages_show_path
+       return ops_pages_show_path
      else
        if resource.food_admin?
          log_activity(Time.now, "Food Admin Login", "Logged on to system", resource.id, resource.name, resource.user_role)
-         ops_pages_show_path
+         return ops_pages_show_path
        else
          if resource.staff?
+           logger.debug resource.inspect
            program_user = ProgramUser.find_by_user_id(resource.id)
-           if program_user.program.name == "Supply Coordinator" || "Construction Coordinator" || "Home Repair Coordinator"
-             log_activity(Time.now, "Construction Staff Login", "Logged on to system", resource.id, resource.name, resource.user_role)
-             ops_page_show_path(program_user.program_id, program_user.job_id)
+           logger.debug program_user.job.job_type.inspect
+           if program_user.job.job_type.cook?
+             log_activity(Time.now, "Cook Login", "Logged on to system", resource.id, resource.name, resource.user_role)
+             return ops_pages_show_path
+           end
+           if program_user.job.job_type.construction?
+             log_activity(Time.now, "Construction Login", "Logged on to system", resource.id, resource.name, resource.user_role)
+             return ops_pages_show_path
+           end
+           if program_user.job.job_type.slc?
+             log_activity(Time.now, "SLC Login", "Logged on to system", resource.id, resource.name, resource.user_role)
+             return ops_pages_show_path
+           end
+           if program_user.job.job_type.sd?
+             log_activity(Time.now, "SD Login", "Logged on to system", resource.id, resource.name, resource.user_role)
+             return ops_pages_show_path
            end
          else
            log_activity(Time.now, "Unknown user", "Unsuccessful logon attempt", resource.id, resource.name, resource.user_role)
-           destroy_admin_user_session_path
+           return destroy_admin_user_session_path
          end
        end
      end
    end
-   end
+ end
 
  end
 

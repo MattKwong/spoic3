@@ -1,11 +1,5 @@
 
 <% unless @active_programs.empty? %>
-  <h3>Active Programs</h3>
-  <%= render 'table', :programs => @active_programs %>
-<% end %>
-
-<% unless @inactive_programs.empty? %>
-  <h3>Inactive Programs</h3>
-  <%= render 'table', :programs => @inactive_programs %>
+ <%= render 'table', :programs => @active_programs %>
 <% end %>
 

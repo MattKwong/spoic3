@@ -2,6 +2,7 @@
 %html
   %head
     %title SSP | #{@title}
+    = csrf_meta_tag
     = stylesheet_link_tag 'blueprint/screen', :media => 'screen'
     = stylesheet_link_tag 'blueprint/print', :media => 'print'
     = stylesheet_link_tag 'jqueryui/jquery-ui-1.8.11.custom.css'
@@ -33,6 +34,8 @@
       #action-links.span-8.last.prepend-top
         = render_navigation :context => :actions, :renderer => :links
 
+      - if signed_in?
+        %h3 Welcome, #{current_admin_user.first_name} #{current_admin_user.last_name}!
 
       #content.span-24.last
 

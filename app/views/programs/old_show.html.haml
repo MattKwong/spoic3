@@ -1,27 +1,20 @@
-.span-8.properties
+.span-12.properties
   %dl
     %dt Site
-    %dd= @program.site.name
-
-.span-8.properties
-  %dl.properties
+    %dd= link_to @program.site.name, @program.site
     %dt Program Type
     %dd= @program.program_type.name
-
-.span-8.last.properties
-  %dl.properties
     %dt Start Date
     %dd= @program.start_date
 
-.span-24.prepend-top
-  %h3 Budget
-  .tablewrapper
-    = render 'purchases/table', :purchases => @program.purchases
-
-.span-24.prepend-top
-  %h3 Purchases
-  .tablewrapper
-    = render 'purchases/table', :purchases => @program.purchases
+.span-12.last.properties
+  %dl.properties
+    %dt Food Budget
+    %dd= number_to_currency(@program.food_budget, :unit => '$')
+    %dt Food Budget Used
+    %dd= number_to_currency(@program.food_budget_spent, :unit => '$')
+    %dt Food Budget Remaining
+    %dd= number_to_currency(@program.food_budget_remaining, :unit => '$')
 
 .span-24.prepend-top
   %h3 Sessions
@@ -50,4 +43,8 @@
           %th
       = render @program.program_users.order("job_id")
 
+.span-24.prepend-top
+  %h3 Purchases
+  .tablewrapper
+    = render 'purchases/table', :purchases => @program.purchases
 

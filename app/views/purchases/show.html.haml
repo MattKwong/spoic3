@@ -1,26 +1,32 @@
-.span-12
+.span-8
   .properties
-    %dl
+    %dl.properties
       %dt Vendor
       %dd= @purchase.vendor.name
       %dt Date
       %dd= @purchase.date
       %dt Purchaser
       %dd= @purchase.purchaser.name
-      %dt Total
-      %dd= number_to_currency(@purchase.total, :unit => "$")
-      %dt Tax
-      %dd= number_to_currency(@purchase.tax, :unit => "$")
-      %dt Effective tax rate
-      %dd= number_to_percentage(@purchase.effective_tax_rate * 100, :precision => 2)
-      %dt Actual Tax Rate
-      %dd#actual_tax_rate= number_to_percentage(@purchase.actual_tax_rate * 100, :precision => 2)
-      %dt Accounted for
-      %dd#accounted_for= number_to_currency(@purchase.accounted_for)
-      %dt Unaccounted For
-      %dd#unaccounted_for= number_to_currency @purchase.unaccounted_for, :unit => "$"
 
-.span-12.last
+.span-8.last.properties
+  %dl.properties
+    %dt Total
+    %dd= number_to_currency(@purchase.total, :unit => "$")
+    %dt Accounted for
+    %dd#accounted_for= number_to_currency(@purchase.accounted_for)
+    %dt Unaccounted For
+    %dd#unaccounted_for= number_to_currency @purchase.unaccounted_for, :unit => "$"
+
+.span-8.last.properties
+  %dl.properties
+    %dt Tax
+    %dd= number_to_currency(@purchase.tax, :unit => "$")
+    %dt Effective tax rate
+    %dd= number_to_percentage(@purchase.effective_tax_rate * 100, :precision => 2)
+    %dt Actual Tax Rate
+    %dd#actual_tax_rate= number_to_percentage(@purchase.actual_tax_rate * 100, :precision => 2)
+
+.span-12.last.properties
   -if can? :create, @purchase.item_purchases.new
     %h3 Add Item to Purchase
     = render 'item_purchases/form', :item_purchase => @purchase.item_purchases.new, :remote => true

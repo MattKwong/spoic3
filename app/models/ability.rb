@@ -23,14 +23,17 @@ class Ability
   #move is defined as being able to move a scheduled group and to increase their numbers
       cannot :move, ScheduledGroup
     end
-
+ # Need to restrict purchases to program
    if user.staff?
      program_user = ProgramUser.find_by_user_id(user.id)
       can :index, Vendor, :site_id => program_user.program.site_id
       can :manage, Vendor, :site_id => program_user.program.site_id
       can :manage, Item
       can :manage, Program, :id => program_user.program_id
+      can :manage, Purchase, :id => program_user.program_id
       can :report, Program
+      can :manage, Site, :id => program_user.program.site_id
+      can :manage, ItemPurchase
   end
 
   if user.construction_admin?
@@ -38,13 +41,16 @@ class Ability
       can :manage, Vendor
       can :manage, Item
       can :manage, Program
+      can :manage, Purchase
       can :report, Program
+      can :manage, ItemPurchase
   end
 
   if user.food_admin?
       can :index, Vendor
       can :manage, Vendor
       can :manage, Item
+      can :manage, Purchase
       can :manage, Program
       can :report, Program
   end
