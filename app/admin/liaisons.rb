@@ -117,6 +117,7 @@ ActiveAdmin.register Liaison do
       f.input :fax
       f.input :scheduled
       f.input :registered
+      f.input :user_created, :hint => "Uncheck this only if you need to recreate the liaison's myssp login"
     end
     f.buttons
   end

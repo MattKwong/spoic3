@@ -1,0 +1,17 @@
+.tablewrapper
+  %table
+    %thead
+      %tr
+        %th Program
+        %th Inventory
+        %th Budget
+        %th Consumption
+        %th Weekly Cost
+    %tbody
+      - @programs.each do |program|
+        %tr
+          %td= program
+          %td= link_to "view", url_for(:controller => :site_reports, :action => :inventory, :id => program.id)
+          %td= link_to "view", url_for(:controller => :site_reports, :action => :budget, :id => program.id)
+          %td= link_to "view", url_for(:controller => :site_reports, :action => :consumption, :id => program.id)
+          %td= link_to "view", url_for(:controller => :site_reports, :action => :session, :id => program.id)

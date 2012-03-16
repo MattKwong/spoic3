@@ -42,11 +42,12 @@ Spoic3::Application.routes.draw do
   resources :items
 
   #reports
-  get "reports/list"
-  get "reports/inventory/:id", :controller => 'reports', :action => 'inventory'
-  get "reports/budget/:id", :controller => 'reports', :action => :budget
-  get "reports/consumption/:id", :controller => :reports, :action => :consumption
-  get "reports/week/:id", :controller => :reports, :action => :week
+
+  get "site_reports/list", :controller => 'site_reports', :action => 'list', :as => 'site_reports_list'
+  get "site_reports/inventory/:id", :controller => 'site_reports', :action => 'inventory', :as => 'inventory_report'
+  get "site_reports/budget/:id", :controller => 'site_reports', :action => :budget, :as => 'budget_report'
+  get "site_reports/consumption/:id", :controller => :'site_reports', :action => :consumption, :as => 'consumption_report'
+  get "site_reports/session/:id", :controller => 'site_reports', :action => :session, :as => 'session_report'
 
   match "registration/schedule", :to => 'registration#schedule', :as => "registration_schedule"
   match "registration/register", :to => 'registration#register'

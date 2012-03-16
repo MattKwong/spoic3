@@ -12,7 +12,7 @@
       %tbody
         -@food_inventory.food_inventory_food_items.each do |food_inventory_food_item|
           %tr
-            %td= food_inventory_food_item.food_item
+            %td= food_inventory_food_item.item
             %td= food_inventory_food_item.in_inventory
             - form.fields_for :food_inventory_food_items, food_inventory_food_item do |builder|
               %td

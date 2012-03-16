@@ -1,0 +1,19 @@
+.tablewrapper
+  %table
+    %thead
+      %tr
+        %th Session
+        %th Adults
+        %th Youth
+        %th Volunteer Days
+        %th Total Cost
+        %th Cost/ Person/ Day
+    %tbody
+      - @program.sessions.each do |week|
+        %tr
+          %td= week
+          %td= week.adults
+          %td= week.youth
+          %td= week.volunteer_days
+          %td= number_to_currency(week.total_cost)
+          %td= number_to_currency(week.cost_per_day)

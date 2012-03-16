@@ -1,0 +1,26 @@
+.tablewrapper
+  %table
+    %thead
+      %tr
+        %th Week
+        %th Start Date
+        %th Attendees
+        %th Spent During week
+    %tbody
+      - @weeks.each do |week|
+        %tr
+          %td= week
+          %td= week.start_date
+          %td= week.total
+          %td= number_to_currency(week.purchased_during)
+    %tfoot
+      %tr
+        %th
+        %th
+        %th= (@weeks.map &:total).sum
+        %th= number_to_currency (@weeks.map &:purchased_during).sum
+      %tr
+        %th{:colspan => 2}
+        %th{:style => "text-align:right;"} Budget Remaining:
+        %th= number_to_currency @program.food_budget_remaining
+

@@ -13,7 +13,7 @@ class Liaison < ActiveRecord::Base
 
   attr_accessible :active, :address1, :address2, :city, :state, :zip, :first_name,
         :last_name, :name, :email1, :email2, :cell_phone, :home_phone, :work_phone,
-        :fax, :liaison_type, :title, :church_id, :liaison_type_id, :id, :registered, :scheduled
+        :fax, :liaison_type, :title, :church_id, :liaison_type_id, :id, :registered, :scheduled, :user_created
 
   before_validation do
     if self.cell_phone[0..1] == '1-'
