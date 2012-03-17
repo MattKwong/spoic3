@@ -14,7 +14,7 @@ class ItemPurchase < ActiveRecord::Base
 
   validate :validate_units
 
-  scope :food, lambda {joins(:items).where((joins(:item_types).where("item_types.name = 'Food'")) ) }
+  scope :by_budget_line_type, lambda { |id| joins(:item).where("budget_item_type_id = ?", id) }
 
   before_save :update_base_units, :unless => :skip_calculations?
   after_save :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }
@@ -28,6 +28,10 @@ class ItemPurchase < ActiveRecord::Base
   def size_in_base_units
 #    size.u >> item.base_unit
     1
+  end
+
+  def items_by_budget_item_type_id
+    self.item.budget_item_type_id
   end
 
   def total_size

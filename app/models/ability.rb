@@ -24,22 +24,30 @@ class Ability
       cannot :move, ScheduledGroup
     end
  # Need to restrict purchases to program
-   if user.staff?
-     program_user = ProgramUser.find_by_user_id(user.id)
-      can :index, Vendor, :site_id => program_user.program.site_id
-      can :manage, Vendor, :site_id => program_user.program.site_id
+
+  if user.staff?
+     program_id = user.program_id
+     program = Program.find(program_id)
+      can :index, Vendor, :site_id => program.site_id
+      can :manage, Vendor, :site_id => program.site_id
+     can [:see_vendors_for], Site, :id => program.site.id
+
+      can :index, Item
       can :manage, Item
-      can :manage, Program, :id => program_user.program_id
-      can :manage, Purchase, :id => program_user.program_id
+      can :manage, Program, :id => program_id
+      can :manage, Purchase, :id => program_id
       can :report, Program
-      can :manage, Site, :id => program_user.program.site_id
+      can :manage, Site, :id => program.site_id
       can :manage, ItemPurchase
   end
 
-  if user.construction_admin?
+  if user.construction_admin? || user.food_admin?
       can :index, Vendor
       can :manage, Vendor
+      can :see_vendors_for, Program
+      can :see_vendors_for, Site
       can :manage, Item
+      can :index, Item
       can :manage, Program
       can :manage, Purchase
       can :report, Program
@@ -47,12 +55,9 @@ class Ability
   end
 
   if user.food_admin?
-      can :index, Vendor
-      can :manage, Vendor
-      can :manage, Item
-      can :manage, Purchase
-      can :manage, Program
-      can :report, Program
+      can :index, FoodInventory
+      can :manage, FoodInventory
+      can :manage, FoodInventoryFoodItem
   end
 
    if user.admin?

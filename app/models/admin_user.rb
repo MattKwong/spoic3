@@ -52,6 +52,11 @@ class AdminUser < ActiveRecord::Base
       self.user_role.name == "Staff"
     end
 
+    def program_id
+      p_id = ProgramUser.find_by_user_id(self.id).program_id
+      p_id ? p_id : 0
+    end
+
   def password_required?
   # Password is required if it is being set, but not for new records
     if !persisted?

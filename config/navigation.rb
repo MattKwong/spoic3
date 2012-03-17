@@ -41,7 +41,7 @@ SimpleNavigation::Configuration.run do |navigation|
     #                            against the current URI.
     #
 
-    primary.item :home, "#{@tracking_area} Home", ops_pages_show_path, :if => lambda { signed_in?}
+    primary.item :home, "Home", ops_pages_show_path, :if => lambda { signed_in?}
 
     primary.item(:purchases, "Purchases", purchases_path, :if => lambda { can? :index, Purchase }, :highlights_on => /purchases/) do |purchase_menu|
       if(can? :manage, Purchase)
@@ -60,7 +60,7 @@ SimpleNavigation::Configuration.run do |navigation|
         end
       end
     end
-    primary.item(:items, "Items", items_path, :if => lambda {can? :index, Item }, :highlights_on => /item/)
+    primary.item(:items, "Items", items_path, :highlights_on => /item/)
 
     primary.item(:food_inventories, "Food Inventories", food_inventories_path, :if => lambda {can? :index, FoodInventory }, :highlights_on => /food_inventories/) do |inventories_menu|
       if(can? :manage, FoodInventory)

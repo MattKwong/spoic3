@@ -1,6 +1,6 @@
 class BudgetItemType < ActiveRecord::Base
   has_many :budget_items
-
+  has_many :item
   attr_accessible :description, :name, :seq_number
 
   validates :name, :presence => true, :uniqueness => true

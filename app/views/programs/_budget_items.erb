@@ -1,9 +1,19 @@
+<% @program.budget_items.each do |id| %>
 <tr>
-  <td></td>
-  <td><%= @program.start_date.strftime("%a %b #{@program.start_date.day.ordinalize}") %></td>
-  <td><%= @program.end_date.strftime("%a %b #{@program.end_date.day.ordinalize}") %></td>
-  <td><%= pluralize(@program.sessions.count, "Sessions") %></td>
-  <td><%= @program.adults %></td>
-  <td><%= @program.youth %></td>
-  <td><%= @program.total %></td>
+  <td><%= @program.budget_item_name(id) %></td>
+  <td><%= '%.2f' % @program.budget_item_budgeted(id) %></td>
+  <td><%= '%.2f' % @program.budget_item_spent(id) %></td>
+  <td><%= '%.2f' % @program.budget_item_spent_with_tax(id) %></td>
+  <td><%= '%.2f' % @program.budget_item_remaining(id) %></td>
 </tr>
+<% end %>
+<tfoot>
+<tr>
+  <td>Totals</td>
+  <td><%= '%.2f' % @program.budget_item_budgeted_total %></td>
+  <td><%= '%.2f' % @program.budget_item_spent_total %></td>
+  <td><%= '%.2f' % @program.budget_item_spent_with_tax_total %></td>
+  <td><%= '%.2f' % @program.budget_item_remaining_total %></td>
+</tr>
+
+</tfoot>

@@ -19,12 +19,13 @@
     %table
       %thead
         %tr
-          %th
+
           %th Category
           %th Budgeted
           %th Spent to Date
+          %th Spent to Date with Tax
           %th Amount Remaining
-          %th
+
       = render 'budget_items'
 
 .span-24.prepend-top
@@ -55,8 +56,8 @@
       %thead
         %tr
           %th Staff Name
+          %th Email
           %th Job
           %th
       = render @program.program_users.order("job_id")
-
 

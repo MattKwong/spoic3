@@ -14,6 +14,10 @@ class ItemsController < ApplicationController
   end
 
   def create
+    if current_admin_user.staff?
+      @item.program_id = current_admin_user.program_id
+    end
+
     if @item.save
       flash[:success] = "#{@item.name} created successfully"
       redirect_to @item
