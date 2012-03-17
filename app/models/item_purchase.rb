@@ -14,6 +14,8 @@ class ItemPurchase < ActiveRecord::Base
 
   validate :validate_units
 
+  scope :food, lambda {joins(:items).where((joins(:item_types).where("item_types.name = 'Food'")) ) }
+
   before_save :update_base_units, :unless => :skip_calculations?
   after_save :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }
   after_destroy :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }

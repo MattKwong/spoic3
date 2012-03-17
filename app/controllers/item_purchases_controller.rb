@@ -7,16 +7,28 @@ class ItemPurchasesController < ApplicationController
   end
 
   def create
-    if @item_purchase.save
-      respond_to do |format|
-        format.html do 
-          flash[:success] = "Added Item"
-          redirect_to @item_purchase.purchase
+    #TODO: need to warn if the type of user doesn't match the type of item'
+    program_user = ProgramUser.find(current_admin_user.user_id)
+    logger.debug @item_purchase.inspect
+    logger.debug program_user.inspect
+
+    if @item_purchase.item.item_type.name == program_user.job.job_type.name
+      if @item_purchase.save
+        respond_to do |format|
+          format.html do
+            flash[:success] = "Added Item"
+            redirect_to @item_purchase.purchase
+            end
+          format.js
         end
-        format.js
+      else
+        @title = "Purchase Item"
+        flash[:error] = "Could not save item"
+        render :new
       end
     else
       @title = "Purchase Item"
+      flash[:error] = "Item and user type mismatch"
       render :new
     end
   end

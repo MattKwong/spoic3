@@ -16,7 +16,16 @@
 .span-24.prepend-top
   %h3 Budget
   .tablewrapper
-    = render 'purchases/table', :purchases => @program.purchases
+    %table
+      %thead
+        %tr
+          %th
+          %th Category
+          %th Budgeted
+          %th Spent to Date
+          %th Amount Remaining
+          %th
+      = render 'budget_items'
 
 .span-24.prepend-top
   %h3 Purchases

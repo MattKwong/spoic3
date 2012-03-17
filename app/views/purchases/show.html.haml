@@ -8,7 +8,7 @@
       %dt Purchaser
       %dd= @purchase.purchaser.name
 
-.span-8.last.properties
+.span-8.properties
   %dl.properties
     %dt Total
     %dd= number_to_currency(@purchase.total, :unit => "$")
@@ -26,7 +26,7 @@
     %dt Actual Tax Rate
     %dd#actual_tax_rate= number_to_percentage(@purchase.actual_tax_rate * 100, :precision => 2)
 
-.span-12.last.properties
+.span-24.prepend-top
   -if can? :create, @purchase.item_purchases.new
     %h3 Add Item to Purchase
     = render 'item_purchases/form', :item_purchase => @purchase.item_purchases.new, :remote => true
