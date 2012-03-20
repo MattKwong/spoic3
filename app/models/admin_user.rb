@@ -97,7 +97,8 @@ class AdminUser < ActiveRecord::Base
   end
 
   def current_program
-    self.programs.where("end_date >= ?", Time.now).order('start_date ASC').first
+    program_id
+    #self.programs.where("end_date >= ?", Time.now).order('start_date ASC').first
   end
 
 #  def current_job

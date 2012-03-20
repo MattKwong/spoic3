@@ -21,5 +21,35 @@ class Session < ActiveRecord::Base
   def scheduled_total
     scheduled_adults + scheduled_youth
   end
+  def purchased_during
+    program.purchases.where('date >= ? AND date < ?', period.start_date, period.end_date).inject(0) { |t, p| t += p.total }
+  end
+
+  def days
+    end_date - start_date + 1
+  end
+
+  def volunteer_days
+    days * total
+  end
+
+  def cost_per_day
+    if volunteer_days != 0
+      total_cost / volunteer_days
+    else
+      0
+    end
+  end
+
+  def total_cost
+    (start_date..end_date).inject(0) do |sum, date|
+      inventory = program.food_inventories.after(date).order('date ASC').first
+      if inventory
+        sum + inventory.daily_cost
+      else
+        sum
+      end
+    end
+  end
 
 end

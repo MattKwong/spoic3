@@ -1,6 +1,6 @@
 Spoic3::Application.routes.draw do
 
-  get "roster_item/update"
+   get "roster_item/update"
 
   get "scheduled_group/new"
 
@@ -43,7 +43,7 @@ Spoic3::Application.routes.draw do
 
   #reports
 
-  get "site_reports/list", :controller => 'site_reports', :action => 'list', :as => 'site_reports_list'
+  get "staff_report", :controller => 'staff_report', :action => 'show', :as => 'staff_report'
   get "site_reports/inventory/:id", :controller => 'site_reports', :action => 'inventory', :as => 'inventory_report'
   get "site_reports/budget/:id", :controller => 'site_reports', :action => :budget, :as => 'budget_report'
   get "site_reports/consumption/:id", :controller => :'site_reports', :action => :consumption, :as => 'consumption_report'

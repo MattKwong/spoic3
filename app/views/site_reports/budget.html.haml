@@ -2,25 +2,25 @@
   %table
     %thead
       %tr
-        %th Week
+        %th Session
         %th Start Date
         %th Attendees
         %th Spent During week
     %tbody
-      - @weeks.each do |week|
+      - @sessions.each do |session|
         %tr
-          %td= week
-          %td= week.start_date
-          %td= week.total
-          %td= number_to_currency(week.purchased_during)
+          %td= session.name
+          %td= session.period.start_date
+          %td= session.scheduled_total
+          %td= number_to_currency(session.purchased_during)
     %tfoot
       %tr
         %th
         %th
-        %th= (@weeks.map &:total).sum
-        %th= number_to_currency (@weeks.map &:purchased_during).sum
+        %th= (@sessions.map &:scheduled_total).sum
+        %th= number_to_currency (@sessions.map &:purchased_during).sum
       %tr
         %th{:colspan => 2}
         %th{:style => "text-align:right;"} Budget Remaining:
-        %th= number_to_currency @program.food_budget_remaining
+        %th= number_to_currency @program.budget_remaining
 

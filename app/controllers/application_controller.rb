@@ -30,28 +30,9 @@ class ApplicationController < ActionController::Base
          return ops_pages_show_path
        else
          if resource.staff?
-           logger.debug resource.inspect
            program_user = ProgramUser.find_by_user_id(resource.id)
-           logger.debug program_user.job.job_type.inspect
-           if program_user.job.job_type.cook?
-             log_activity(Time.now, "Cook Login", "Logged on to system", resource.id, resource.name, resource.user_role)
-             return ops_pages_show_path
-           end
-           if program_user.job.job_type.construction?
-             log_activity(Time.now, "Construction Login", "Logged on to system", resource.id, resource.name, resource.user_role)
-             return ops_pages_show_path
-           end
-           if program_user.job.job_type.slc?
-             log_activity(Time.now, "SLC Login", "Logged on to system", resource.id, resource.name, resource.user_role)
-             return ops_pages_show_path
-           end
-           if program_user.job.job_type.sd?
-             log_activity(Time.now, "SD Login", "Logged on to system", resource.id, resource.name, resource.user_role)
-             return ops_pages_show_path
-           end
-         else
-           log_activity(Time.now, "Unknown user", "Unsuccessful logon attempt", resource.id, resource.name, resource.user_role)
-           return destroy_admin_user_session_path
+           log_activity(Time.now, "#{program_user.job.job_type.name} Login", "Logged on to system", resource.id, resource.name, resource.user_role)
+             return program_path(program_user.program_id)
          end
        end
      end

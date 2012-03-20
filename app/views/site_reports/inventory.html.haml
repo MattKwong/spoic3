@@ -8,10 +8,10 @@
         %th In Inventory Cost
         %th Average Cost
     %tbody
-      - @items.each do |food_item|
+      - @items.each do |item|
         %tr
-          %td= link_to food_item, item
-          %td= food_item.purchased_for_program @program, @program.start_date, @program.end_date
-          %td= "%.2f %s" % [food_item.in_inventory_for_program_at(@program, @date), food_item.base_unit]
-          %td= number_to_currency(food_item.cost_of_inventory(@program, @date))
-          %td= number_to_currency(food_item.average_cost(@program, @date)) 
+          %td= link_to item.name, item
+          %td= item.purchased_for_program @program, @program.start_date, @program.end_date
+          %td= "%.2f %s" % [item.in_inventory_for_program_at(@program, @date), item.base_unit]
+          %td= number_to_currency(item.cost_of_inventory(@program, @date))
+          %td= number_to_currency(item.average_cost(@program, @date))
