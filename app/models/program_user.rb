@@ -22,4 +22,8 @@ class ProgramUser < ActiveRecord::Base
   belongs_to :program
   belongs_to :job
 
+  def job_name
+    self.job.name
+  end
+
 end

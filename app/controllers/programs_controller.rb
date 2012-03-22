@@ -29,7 +29,9 @@ class ProgramsController < ApplicationController
   def show
     @title = @program.name
     @menu_actions = []
-
+    unless params[:scope].nil? || params[:scope] == 'All'
+      @purchases = Purchases.last(20)
+    end
 #    @menu_actions << {:name => "Edit", :path => edit_program_path(@program)} if can? :edit, @program
 #    @menu_actions << {:name => "New Purchase", :path => new_program_purchase_path(@program)} if can? :crate, @program.purchases.new
   end

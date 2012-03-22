@@ -57,6 +57,49 @@ class AdminUser < ActiveRecord::Base
       p_id ? p_id : 0
     end
 
+    def program_user
+      ProgramUser.find_by_user_id(self.id)
+    end
+
+    def job_name
+      job_name = nil
+      if self.staff?
+        job_name = program_user.job_name
+      end
+    end
+
+    def slc?
+      if self.staff?
+        program_user.job.job_type.slc?
+      else
+        false
+      end
+    end
+
+    def sd?
+      if self.staff?
+        program_user.job.job_type.sd?
+      else
+        false
+      end
+    end
+
+    def cook?
+      if self.staff?
+        program_user.job.job_type.cook?
+      else
+        false
+      end
+    end
+
+    def construction?
+      if self.staff?
+        program_user.job.job_type.construction?
+      else
+        false
+      end
+    end
+
   def password_required?
   # Password is required if it is being set, but not for new records
     if !persisted?

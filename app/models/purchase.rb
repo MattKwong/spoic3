@@ -22,6 +22,7 @@ class Purchase < ActiveRecord::Base
   validates :total, :presence => true
   validates :tax, :presence => true
   validates :date, :presence => true
+  validate :date_range
 
   belongs_to :program
   belongs_to :vendor
@@ -65,5 +66,12 @@ class Purchase < ActiveRecord::Base
     end
   end
 
+  private
+
+  def date_range
+    if self.date < program.start_date || self.date > program.end_date
+      errors.add(:date, "The purchase date must be within the beginning and end dates of the program.")
+    end
+  end
 
 end

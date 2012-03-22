@@ -1,12 +1,11 @@
-.span-8
-  .properties
-    %dl.properties
-      %dt Vendor
-      %dd= @purchase.vendor.name
-      %dt Date
-      %dd= @purchase.date
-      %dt Purchaser
-      %dd= @purchase.purchaser.name
+.span-8.properties
+  %dl.properties
+    %dt Vendor
+    %dd= @purchase.vendor.name
+    %dt Date
+    %dd= @purchase.date
+    %dt Purchaser
+    %dd= @purchase.purchaser.name
 
 .span-8.properties
   %dl.properties
@@ -29,7 +28,7 @@
 .span-24.prepend-top
   -if can? :create, @purchase.item_purchases.new
     %h3 Add Item to Purchase
-    = render 'item_purchases/form', :item_purchase => @purchase.item_purchases.new, :remote => true
+    = render 'item_purchases/form', :item_purchase => @purchase.item_purchases.new#, :remote => true
 
 .span-24.last.prepend-top
   = render 'item_purchases/table', :item_purchases => @purchase.item_purchases

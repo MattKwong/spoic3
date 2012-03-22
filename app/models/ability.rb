@@ -30,15 +30,19 @@ class Ability
      program = Program.find(program_id)
       can :index, Vendor, :site_id => program.site_id
       can :manage, Vendor, :site_id => program.site_id
-     can [:see_vendors_for], Site, :id => program.site.id
-
+      can [:see_vendors_for], Site, :id => program.site.id
+      can [:read, :see_purchases_for, :see_food_inventories_for, :report], Program, :id => program_id
       can :index, Item
       can :manage, Item
       can :manage, Program, :id => program_id
-      can :manage, Purchase, :id => program_id
+      can :manage, Purchase, :program_id => program_id
       can :report, Program
       can :manage, Site, :id => program.site_id
       can :manage, ItemPurchase
+      if user.cook?
+        can [:read, :create, :destroy, :update], FoodInventory, :program_id => program.id
+        can [:read, :create, :destroy, :update], FoodInventoryFoodItem, :food_inventory => { :program_id => program_id }
+      end
   end
 
   if user.construction_admin? || user.food_admin?
@@ -52,6 +56,7 @@ class Ability
       can :manage, Purchase
       can :report, Program
       can :manage, ItemPurchase
+
   end
 
   if user.food_admin?

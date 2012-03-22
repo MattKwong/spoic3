@@ -22,12 +22,10 @@ class ItemPurchase < ActiveRecord::Base
 
 
   scope :taxable, where(:taxable => true)
+  scope :alphabetized, lambda { |id| joins(:item).order("name") }
 
-  #I've stubed out the following because of problems with the conversions.
-  #TODO Fix conversion logic'
   def size_in_base_units
-#    size.u >> item.base_unit
-    1
+    size.u / item.base_unit
   end
 
   def items_by_budget_item_type_id
@@ -35,13 +33,11 @@ class ItemPurchase < ActiveRecord::Base
   end
 
   def total_size
-#    size.u * quantity
-    1
-  end
+    size.u * quantity
+   end
 
   def total_size_in_base_units
-#    size_in_base_units * quantity
-    1
+    size_in_base_units * quantity
   end
 
   def total_price

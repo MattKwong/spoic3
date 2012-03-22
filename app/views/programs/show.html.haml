@@ -30,8 +30,12 @@
 
 .span-24.prepend-top
   %h3 Purchases
+  -# Need to add scope button here to limit list to the most recent n purchases
+  -#= link_to 'Most recent 20', program_path(@program.id, :scope => '20')
+  -#= link_to 'All', '/'
+
   .tablewrapper
-    = render 'purchases/table', :purchases => @program.purchases
+    = render 'purchases/table', :purchases => @program.purchases(@scope)
 
 .span-24.prepend-top
   %h3 Sessions

@@ -2,8 +2,9 @@
   <%= form.inputs do %>
     <%= form.input :name, :input_html => { :size => 35 } %>
     <%= form.input :description, :input_html => { :size => 35 } %>
-    <%= form.input :item_category, :hint => "Select the category that best describes the item." %>
+
     <%= form.input :item_type, :as => :radio, :hint => "Select the broad grouping that the item falls into." %>
+    <%= form.input :item_category, :hint => "Select the category that best describes the item." %>
     <%= form.input :budget_item_type, :as => :radio, :hint => "Purchases of this item will be charged to this budget line" %>
     <%= form.input :base_unit, :hint => "Enter the base units for this item. This is the unit that the item will always be expressed in. Most every unit of volume, mass is valid.  Use 'each' to specify a unitless measure.", :input_html => { :size => 6 } %>
     <%= form.input :default_taxed, :hint => "Whether or not tax will be applied to this item.  Can be overridden on each purchase" %>
