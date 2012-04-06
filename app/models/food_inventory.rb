@@ -44,6 +44,14 @@ class FoodInventory < ActiveRecord::Base
   end
 
   def value_consumed
-    (food_inventory_food_items.map &:total_price).sum
+    (food_inventory_food_items.map &:total_consumed_cost).sum
+  end
+
+  def value_in_inventory
+    (food_inventory_food_items.map &:total_inventoried_cost).sum
+  end
+
+  def value_previously_in_inventory
+    (food_inventory_food_items.map &:total_starting_inventory_cost).sum
   end
 end

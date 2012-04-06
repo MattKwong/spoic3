@@ -63,7 +63,7 @@
             %td= inventory.food_inventory.program
             %td= inventory.food_inventory.date
             %td #{sprintf '%.2f', inventory.consumed} #{@food_item.base_unit}
-            %td= number_to_currency(inventory.total_price)
+            %td= number_to_currency(inventory.total_consumed_Cost)
       - unless @inventories.any?
         %tr
           %td{:colspan => 4, :style => 'text-align: center;'} No Inventories

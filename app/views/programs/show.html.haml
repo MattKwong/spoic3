@@ -19,14 +19,31 @@
     %table
       %thead
         %tr
-
           %th Category
           %th Budgeted
           %th Spent to Date
           %th Spent to Date with Tax
           %th Amount Remaining
-
       = render 'budget_items'
+
+.span-24.prepend-top
+  %h3 Food Program Snapshot
+  .tablewrapper
+    %table
+      %thead
+        %tr
+          %th Session
+          %th Start Date
+          %th Session Participants
+          %th Cumulative Participants
+          %th Session Purchases
+          %th Cumulative Purchases
+          %th Session Consumed
+          %th Cumulative Consumed
+          %th Session Consumed Cost/Participant
+          %th Program Consumed Cost/Participant
+      %tbody
+        = render 'site_reports/food_budget_items'
 
 .span-24.prepend-top
   %h3 Purchases

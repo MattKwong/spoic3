@@ -1,0 +1,33 @@
+- cum_participants = cum_food_consumption = cum_food_purchased = 0
+- @sessions.each do |session|
+  %tr
+    %td= session.period.name
+    %td= session.period.start_date.strftime("%b %d")
+    %td= session.scheduled_total
+    - cum_participants += session.scheduled_total
+    %td= cum_participants
+    %td= number_to_currency(session.session_food_purchased)
+    - cum_food_purchased += session.session_food_purchased
+    %td= number_to_currency(cum_food_purchased)
+    %td= number_to_currency(session.session_food_consumption)
+    - cum_food_consumption += session.session_food_consumption
+    %td= number_to_currency(cum_food_consumption)
+    %td= number_to_currency(session.session_food_consumption / session.scheduled_total)
+    %td= number_to_currency(cum_food_consumption / cum_participants)
+%tfoot
+  %tr
+    %th
+    %th
+    %th= cum_participants
+    %th
+    %th
+    %th= number_to_currency cum_food_purchased
+  %tr
+    %th{:style => "text-align:right;"} Total Budget:
+    %th= number_to_currency @program.budget_item_budgeted(@budget_type_id)
+    %th{:colspan => 2}
+    %th{:style => "text-align:right;"} Budget Remaining:
+    %th= number_to_currency @program.budget_item_remaining(@budget_type_id)
+    %th{:colspan => 2}
+    %th{:style => "text-align:right;"} Budgeted Cost/Participant:
+    %th= number_to_currency(@program.budget_item_budgeted(@budget_type_id) / @program.total)

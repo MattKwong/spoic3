@@ -21,14 +21,60 @@ class Session < ActiveRecord::Base
   def scheduled_total
     scheduled_adults + scheduled_youth
   end
-  def purchased_during
-    program.purchases.where('date >= ? AND date < ?',
-                            period.start_date, period.end_date).inject(0) { |t, p| t += p.total }
+
+  def session_food_purchased
+    #if this session is the first in the program, we need to pick up all purchases made prior to the session as well.
+    if id == program.first_session_id
+      purchases = program.purchases.where('date < ?', period.end_date)
+    else
+      purchases = program.purchases.where('date >= ? AND date < ?',
+                                  period.start_date, period.end_date)
+    end
+
+    budget_type = BudgetItemType.find_by_name("Food").id
+    total = 0
+    purchases.each { |p| p.item_purchases.by_budget_line_type(budget_type).each {|i| total += i.total_price } }
+    return total
   end
 
   def cumulative_food_purchased
     program.purchases.where('date < ? ', period.end_date).inject(0) { |t, p| t += p.food_item_total }
   end
+
+  def session_food_consumption
+    #Find an inventory at the end of the previous session
+    starting_inventory = program.food_inventories.where('date = ? ', period.start_date.to_date - 1).last
+
+    if starting_inventory.nil?
+      starting_inventory = program.food_inventories.where('date = ? ', period.start_date.to_date - 2).last
+    end
+
+    if starting_inventory.nil?
+      starting_inventory_value = 0
+    else
+      starting_inventory_value = starting_inventory.value_in_inventory
+    end
+
+    #Find an inventory at the last day of the session
+    ending_inventory = program.food_inventories.where('date = ? ', period.end_date.to_date).last
+    if ending_inventory.nil?
+      ending_inventory = program.food_inventories.where('date = ? ', period.end_date.to_date - 1).last
+    end
+    logger.debug ending_inventory.inspect
+    if ending_inventory.nil?
+      ending_inventory_value = starting_inventory_value
+    else
+      ending_inventory_value = ending_inventory.value_in_inventory
+    end
+
+    logger.debug starting_inventory_value + session_food_purchased - ending_inventory_value
+    starting_inventory_value + session_food_purchased - ending_inventory_value
+
+  end
+
+  #def cumulative_food_consumption
+  #  0
+  #end
 
   def days
     end_date - start_date + 1

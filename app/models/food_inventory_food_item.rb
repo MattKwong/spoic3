@@ -50,6 +50,18 @@ class FoodInventoryFoodItem < ActiveRecord::Base
     average_cost * consumed
   end
 
+  def total_consumed_cost
+    average_cost * consumed
+  end
+
+  def total_inventoried_cost
+    average_cost * in_base_units
+  end
+
+  def total_starting_inventory_cost
+    average_cost * in_inventory
+  end
+
   def update_calculated_fields
     update_base_units
     update_in_inventory

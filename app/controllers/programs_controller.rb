@@ -28,6 +28,9 @@ class ProgramsController < ApplicationController
 
   def show
     @title = @program.name
+    @sessions = @program.to_current
+    logger.debug @sessions
+    @budget_type_id = BudgetItemType.find_by_name('Food').id
     @menu_actions = []
     unless params[:scope].nil? || params[:scope] == 'All'
       @purchases = Purchases.last(20)

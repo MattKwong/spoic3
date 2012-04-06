@@ -4,26 +4,18 @@
       %tr
         %th Session
         %th Start Date
-        %th Participants
+        %th Session Participants
+        %th Cumulative Participants
+        %th Session Purchases
         %th Cumulative Purchases
-        %th Consumption During Session
-        %th Consumption Cost/Participant
-    -#Add in session's food consumption and consumption per person
+        %th Session Consumed
+        %th Cumulative Consumed
+        %th Session Consumed Cost/Participant
+        %th Program Consumed Cost/Participant
+
     %tbody
-      - @sessions.each do |session|
-        %tr
-          %td= session.name
-          %td= session.period.start_date.strftime("%b %d, %Y")
-          %td= session.scheduled_total
-          %td= number_to_currency(session.cumulative_food_purchased)
-    %tfoot
-      %tr
-        %th
-        %th
-        %th= (@sessions.map &:scheduled_total).sum
-        %th
-      %tr
-        %th{:colspan => 2}
-        %th{:style => "text-align:right;"} Budget Remaining:
-        %th= number_to_currency @program.budget_item_remaining(@budget_type_id)
+      = render 'site_reports/food_budget_items'
+
+
+
 

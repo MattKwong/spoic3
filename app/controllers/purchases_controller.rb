@@ -22,6 +22,7 @@ class PurchasesController < ApplicationController
       flash[:notice] = "There are no vendors for #{@program.site.name}, please create one before creating a new purchase"
       redirect_to new_site_vendor_path(@program.site) 
     end
+    @purchase.date = Date.today
   end
 
   def create
