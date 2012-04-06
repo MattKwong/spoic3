@@ -50,7 +50,8 @@ class Purchase < ActiveRecord::Base
   end
 
   def food_item_total
-    (item_purchases.map &:total_price_with_tax).sum
+    budget_item_id = BudgetItemType.find_by_name('Food').id
+    (item_purchases.by_budget_line_type(budget_item_id).map &:total_price_with_tax).sum
   end
 
   def effective_tax_rate

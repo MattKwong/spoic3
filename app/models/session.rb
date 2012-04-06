@@ -22,7 +22,12 @@ class Session < ActiveRecord::Base
     scheduled_adults + scheduled_youth
   end
   def purchased_during
-    program.purchases.where('date >= ? AND date < ?', period.start_date, period.end_date).inject(0) { |t, p| t += p.total }
+    program.purchases.where('date >= ? AND date < ?',
+                            period.start_date, period.end_date).inject(0) { |t, p| t += p.total }
+  end
+
+  def cumulative_food_purchased
+    program.purchases.where('date < ? ', period.end_date).inject(0) { |t, p| t += p.food_item_total }
   end
 
   def days

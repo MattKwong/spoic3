@@ -44,9 +44,9 @@ Spoic3::Application.routes.draw do
   #reports
 
   get "staff_report", :controller => 'staff_report', :action => 'show', :as => 'staff_report'
-  get "site_reports/inventory/:id", :controller => 'site_reports', :action => 'inventory', :as => 'inventory_report'
-  get "site_reports/budget/:id", :controller => 'site_reports', :action => :budget, :as => 'budget_report'
-  get "site_reports/consumption/:id", :controller => :'site_reports', :action => :consumption, :as => 'consumption_report'
+  get "site_reports/food_inventory/:id", :controller => 'site_reports', :action => 'food_inventory', :as => 'food_inventory_report'
+  get "site_reports/food_budget/:id", :controller => 'site_reports', :action => :food_budget, :as => 'food_budget_report'
+  get "site_reports/food_consumption/:id", :controller => :'site_reports', :action => :food_consumption, :as => 'food_consumption_report'
   get "site_reports/session/:id", :controller => 'site_reports', :action => :session, :as => 'session_report'
 
   match "registration/schedule", :to => 'registration#schedule', :as => "registration_schedule"

@@ -53,8 +53,11 @@ class AdminUser < ActiveRecord::Base
     end
 
     def program_id
-      p_id = ProgramUser.find_by_user_id(self.id).program_id
-      p_id ? p_id : 0
+      unless ProgramUser.find_by_user_id(self.id)
+        0
+      else
+        ProgramUser.find_by_user_id(self.id).program_id
+      end
     end
 
     def program_user

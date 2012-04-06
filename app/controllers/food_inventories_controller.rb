@@ -5,7 +5,7 @@ class FoodInventoriesController < ApplicationController
 
   def index
     authorize! :see_food_inventories_for, @program unless @program.nil?
-    redirect_to program_food_inventories_path(current_user.current_program) if ( @program.nil? && cannot?(:manage, FoodInventory))
+    redirect_to program_food_inventories_path(current_admin_user.current_program) if ( @program.nil? && cannot?(:manage, FoodInventory))
     @title = @program.nil? ? "Food Inventories" : "Food Inventories for #{@program}"
     unless @program.nil?
       @menu_actions = [{:name => "New", :path => new_program_food_inventory_path(@program) }] if can? :create, FoodInventory
@@ -28,6 +28,7 @@ class FoodInventoriesController < ApplicationController
 
   def new
     @title = "New Food Inventory"
+    @food_inventory.date = Date.today
   end
 
   def create
@@ -48,6 +49,7 @@ class FoodInventoriesController < ApplicationController
   end
 
   def update
+    logger.debug @food_inventory.inspect
     if @food_inventory.update_attributes(params[:food_inventory])
       flash[:success] = "Food inventory updated successfully"
       redirect_to @food_inventory

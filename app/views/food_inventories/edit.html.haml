@@ -5,6 +5,7 @@
         %tr
           %th Item Name
           %th In Inventory
+          %th Base Unit
           %th New Amount
           %th
           %th Remove
@@ -14,6 +15,7 @@
           %tr
             %td= food_inventory_food_item.item
             %td= food_inventory_food_item.in_inventory
+            %td= food_inventory_food_item.item.base_unit
             - form.fields_for :food_inventory_food_items, food_inventory_food_item do |builder|
               %td
                 = builder.hidden_field :item_id

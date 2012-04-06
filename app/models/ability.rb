@@ -39,7 +39,7 @@ class Ability
       can :report, Program
       can :manage, Site, :id => program.site_id
       can :manage, ItemPurchase
-      if user.cook?
+      if user.cook? || user.sd?
         can [:read, :create, :destroy, :update], FoodInventory, :program_id => program.id
         can [:read, :create, :destroy, :update], FoodInventoryFoodItem, :food_inventory => { :program_id => program_id }
       end
@@ -56,7 +56,6 @@ class Ability
       can :manage, Purchase
       can :report, Program
       can :manage, ItemPurchase
-
   end
 
   if user.food_admin?

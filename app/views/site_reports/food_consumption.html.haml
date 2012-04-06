@@ -6,12 +6,12 @@
         %th Unit
         - @inventories.each do |inventory|
           %th= inventory.date
-        %th Total Consumed
-        %th Total Price
+        %th Total Consumed Amount
+        %th Total Consumed Cost
     %tbody
       - @items.each do |food_item|
         %tr
-          %td= link_to food_item, item
+          %td= link_to food_item, food_item
           %td= food_item.base_unit
           - @inventories.each do |inventory|
             - inv = inventory.food_inventory_food_items.for_item(food_item).first
