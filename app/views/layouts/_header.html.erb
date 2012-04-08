@@ -41,7 +41,7 @@
                   <li><%= link_to "Admin Center", admin_path %></li>
                </ul>
             <% if signed_in? %>
-              <li><%= link_to "Site Cost Tracking", ops_pages_show_path %></li>
+              <li><%= link_to "SiteManager", ops_pages_show_path %></li>
             <% end %>
         <% end %>
         <% if signed_in? && current_admin_user.liaison? %>

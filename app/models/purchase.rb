@@ -67,6 +67,11 @@ class Purchase < ActiveRecord::Base
     end
   end
 
+  def purchased_by
+    self.purchaser.name
+  end
+
+
   private
 
   def date_range
