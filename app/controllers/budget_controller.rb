@@ -34,9 +34,9 @@ private
     @budget_cell_matrix = Array.new(@item_names.size + 1){ Array.new(@site_names.size + 1, 0)}
 
     BudgetItem.all.each do |r|
-        @site = Site.find(r.site_id)
+        @site = Site.find(r.program.site_id)
         @column_position = @site_ordinal.index(@site.name)
-        @row_position = @item_ordinal.index(BudgetItemType.find(r.item_id).name)
+        @row_position = @item_ordinal.index(r.budget_item_type.name)
 
         @budget_matrix[@row_position][@column_position] += r.amount.to_i
           unless (@column_position.nil? || @row_position.nil?)

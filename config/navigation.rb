@@ -60,7 +60,7 @@ SimpleNavigation::Configuration.run do |navigation|
         end
       end
     end
-    primary.item(:items, "Items", items_path, :highlights_on => /item/)
+    primary.item(:items, "Items", items_path, :if => lambda { can? :index, Purchase }, :highlights_on => /item/)
 
     primary.item(:food_inventories, "Food Inventories", food_inventories_path, :if => lambda {can? :index, FoodInventory }, :highlights_on => /food_inventories/) do |inventories_menu|
       if(can? :manage, FoodInventory)

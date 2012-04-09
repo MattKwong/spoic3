@@ -58,6 +58,7 @@ class OpsPagesController < ApplicationController
         end
       end
     end
+    logger.debug @active_programs.inspect
   end
 
 end

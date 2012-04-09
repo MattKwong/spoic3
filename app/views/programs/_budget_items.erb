@@ -1,10 +1,10 @@
-<% @program.budget_items.each do |id| %>
+<% @program.budget_items.each do |item| %>
 <tr>
-  <td><%= @program.budget_item_name(id) %></td>
-  <td><%= '%.2f' % @program.budget_item_budgeted(id) %></td>
-  <td><%= '%.2f' % @program.budget_item_spent(id) %></td>
-  <td><%= '%.2f' % @program.budget_item_spent_with_tax(id) %></td>
-  <td><%= '%.2f' % @program.budget_item_remaining(id) %></td>
+  <td><%= @program.budget_item_name(item.budget_item_type_id) %></td>
+  <td><%= '%.2f' % @program.budget_item_budgeted(item.budget_item_type_id) %></td>
+  <td><%= '%.2f' % @program.budget_item_spent(item.budget_item_type_id) %></td>
+  <td><%= '%.2f' % @program.budget_item_spent_with_tax(item.budget_item_type_id) %></td>
+  <td><%= '%.2f' % @program.budget_item_remaining(item.budget_item_type_id) %></td>
 </tr>
 <% end %>
 <tfoot>

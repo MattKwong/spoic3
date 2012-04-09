@@ -9,7 +9,7 @@
 
 #column1 {float: left; width: 125px; padding-left: 10px; }
 #column2 {float: left; width: 125px; padding-left: 10px; }
-
+#money {text-align: left}
 #group_content {
     margin-right: 0
 }

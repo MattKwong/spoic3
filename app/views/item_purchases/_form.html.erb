@@ -2,7 +2,7 @@
 <%= semantic_form_for item_purchase, :url => (item_purchase.new_record? ? purchase_item_purchases_path(item_purchase.purchase)
                 : item_purchase ) do |form| %>
   <%= form.inputs do %>
-    <%= form.input :item, :collection => Item.all_for_program(item_purchase.purchase.program).alphabetized,
+    <%= form.input :item, :collection => Item.food.all_for_program(item_purchase.purchase.program).alphabetized,
                    :input_html => { :class => "jq-combo" }%>
     <%= form.input :quantity, :hint => "Enter the number of the selected item that was bought" %>
     <%= form.input :price, :hint => "Enter the price each for the selected item" %>

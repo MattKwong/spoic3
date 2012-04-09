@@ -31,7 +31,7 @@
                  <tr>
                      <td></td>
                      <% for i in 0..@budget[:site_count] do %>
-                         <td><%= @budget[:site_names][i]%></td>
+                         <td class= "money"><%= @budget[:site_names][i]%></td>
                      <% end %>
                  </tr>
                  </thead>
@@ -42,14 +42,14 @@
                      <td><%= @budget[:item_names][i] %></td>
                      <% column_count = @budget[:site_count].to_s.to_i %>
                      <% for j in 0..column_count do %>
-                         <td><%= @budget[:budget_matrix][i][j] %></td>
+                         <td class= "money"><%= number_to_currency(@budget[:budget_matrix][i][j]) %></td>
                      <% end %>
                  </tr>
                  <% end %>
                  <tr>
                       <td><%= @budget[:item_names][row_count] %></td>
                       <% for j in 0..column_count do %>
-                          <td><%= (@budget[:budget_matrix][@budget[:item_count]][j]).to_s %></td>
+                          <td class= "money"><%= number_to_currency(@budget[:budget_matrix][@budget[:item_count]][j]) %></td>
                       <% end %>
                  </tr>
                  </tbody>

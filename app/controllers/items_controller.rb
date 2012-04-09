@@ -6,7 +6,9 @@ class ItemsController < ApplicationController
     @title = "Items"
     @menu_actions = []
     @menu_actions << {:name => "New", :path => new_item_path} if can? :create, Item
-    @items = Item.accessible_by(current_ability).joins(:item_category).order('item_categories.position ASC, name ASC').page params[:page]
+#TODO: Below is a temporary fix. Current_ability should return only food (or matl) items depending upon staff position
+#Related to this: cooks should not be able to create material items, and viceversa
+    @items = Item.food.accessible_by(current_ability).joins(:item_category).order('item_categories.position ASC, name ASC').page params[:page]
   end
 
   def new
