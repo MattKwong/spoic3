@@ -20,9 +20,7 @@
              <li class="has_nested" ><a href="#">Reports</a>
                 <ul>
                   <li><%= link_to "Invoice report", invoice_report_path%></li>
-                  <li><%= link_to "Scheduled Liaisons: Web page", scheduled_liaisons_html_path(:format => :html)%></li>
-                  <li><%= link_to "Scheduled Liaisons: CSV", scheduled_liaisons_csv_path(:format => :csv)%></li>
-                  <li><%= link_to "All Churches and Liaisons: CSV", church_and_liaison_csv_path(:format => :csv)%></li>
+                  <li><%= link_to "Churches and Liaisons: CSV", church_and_liaison_csv_path(:format => :csv)%></li>
                   <li><%= link_to "Show the schedule - scheduled summer domestic",
                           registration_show_schedule_path(:reg_or_sched => 'scheduled', :type => 'summer_domestic')%></li>
                   <li><%= link_to "Show the schedule - unscheduled summer domestic",
@@ -42,11 +40,8 @@
                   <li><%= link_to "Liaisons", admin_liaisons_path %></li>
                   <li><%= link_to "Admin Center", admin_path %></li>
                </ul>
-            <% if signed_in? && current_admin_user.food_admin? %>
-              <li><%= link_to "Food/Tabatha", food_path %></li>
-            <% end %>
-            <% if signed_in? && current_admin_user.construction_admin? %>
-              <li><%= link_to "Construction", construction_path %></li>
+            <% if signed_in? %>
+              <li><%= link_to "SiteManager", ops_pages_show_path %></li>
             <% end %>
         <% end %>
         <% if signed_in? && current_admin_user.liaison? %>
