@@ -20,7 +20,10 @@
               %td
                 = builder.hidden_field :item_id
                 = builder.text_field :quantity
-              %td= food_inventory_food_item.errors[:quantity]
+              -if food_inventory_food_item.errors.empty?
+                %td
+              -else
+                %td= food_inventory_food_item.errors[:quantity]
               %td= builder.check_box :_destroy
 
   = form.submit "Save"

@@ -1,0 +1,16 @@
+#menu, #main-nav, #header, #title_bar {
+	display: none;
+	}
+
+#wrapper, #content {
+	width: auto;
+	border: 0;
+	margin: 0 5%;
+	padding: 0;
+	float: none !important;
+	}.reminder_line_one {
+    text-decoration: underline;
+}
+body {
+	background: white;
+	}

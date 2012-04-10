@@ -18,6 +18,7 @@ class OpsPagesController < ApplicationController
     program_user = ProgramUser.find_by_user_id(current_admin_user.id)
     if current_admin_user.staff?
       @active_programs = Program.find(program_user.program_id)
+      redirect_to program_path(program_user.program_id)
     else
       @active_programs = Program.current
     end

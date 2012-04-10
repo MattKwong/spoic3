@@ -11,7 +11,9 @@ class SiteReportsController < ApplicationController
   def food_inventory
     @program = Program.find(params[:id])
     @title = "Food Inventory Report: #{@program}"
-    @date = (Date.parse(params[:date]) if params[:date]) || Date.today
+#    @date = (Date.parse(params[:date]) if params[:date]) || Date.today
+#For testing
+    @date = (Date.parse(params[:date]) if params[:date]) || "07/08/2012".to_date
     @items = Item.food.all_for_program(@program)
     @budget_type_id = BudgetItemType.find_by_name('Food').id
   end

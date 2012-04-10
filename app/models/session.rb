@@ -76,14 +76,13 @@ class Session < ActiveRecord::Base
       ending_inventory_value = ending_inventory.value_in_inventory
     end
 
-    logger.debug starting_inventory_value + session_food_purchased - ending_inventory_value
     starting_inventory_value + session_food_purchased - ending_inventory_value
 
   end
 
-  #def cumulative_food_consumption
-  #  0
-  #end
+ def session_start_date
+   period.start_date.to_date
+ end
 
   def days
     if session_type_junior_high?

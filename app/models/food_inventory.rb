@@ -39,7 +39,7 @@ class FoodInventory < ActiveRecord::Base
     if previous
       date - previous.date
     else
-      date - program.weeks.order('start_date ASC').first.start_date + 1
+      date - program.sessions.first.session_start_date + 1
     end
   end
 

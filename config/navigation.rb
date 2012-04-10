@@ -43,7 +43,8 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :home, "Home", ops_pages_show_path, :if => lambda { signed_in?}
 
-    primary.item(:purchases, "Purchases", purchases_path, :if => lambda { can? :index, Purchase }, :highlights_on => /purchases/) do |purchase_menu|
+    primary.item(:purchases, "Purchases", purchases_path, :if => lambda { can? :index, Purchase },
+                  :highlights_on => /purchases/) do |purchase_menu|
       if(can? :manage, Purchase)
         purchase_menu.item(:all_purchases, "All Purchases", purchases_path)
         Program.current.each do |program|
@@ -60,7 +61,20 @@ SimpleNavigation::Configuration.run do |navigation|
         end
       end
     end
-    primary.item(:items, "Items", items_path, :if => lambda { can? :index, Purchase }, :highlights_on => /item/)
+    primary.item(:items, "Items", items_path, :if => lambda { can? :index, Item }, :highlights_on => /item/) do |item_menu|
+      if(can? :manage, Item)
+        item_menu.item(:all_items, "All Items", items_path)
+        (Program.current.map &:site).uniq.each do |site|
+        item_menu.item("site_items_#{site.id}", site.name, site_items_path(site),
+                       :highlights_on => /^\/sites\/#{site.id}\/items/,
+                       :if => lambda {can? :see_items_for, site}) do |program_item_menu|
+          if(@item && !@item.new_record? && @item.site == site)
+            program_item_menu.item :item, "Item", item_path(@item)
+          end
+        end
+      end
+    end
+  end
 
     primary.item(:food_inventories, "Food Inventories", food_inventories_path, :if => lambda {can? :index, FoodInventory }, :highlights_on => /food_inventories/) do |inventories_menu|
       if(can? :manage, FoodInventory)
@@ -87,7 +101,9 @@ SimpleNavigation::Configuration.run do |navigation|
                          "All Vendors",
                          vendors_path)
         (Program.current.map &:site).uniq.each do |site|
-          vendor_menu.item("site_vendors_#{site.id}", site.name, site_vendors_path(site), :highlights_on => /^\/sites\/#{site.id}\/vendors/, :if => lambda {can? :see_vendors_for, site}) do |program_vendor_menu|
+          vendor_menu.item("site_vendors_#{site.id}", site.name, site_vendors_path(site),
+                           :highlights_on => /^\/sites\/#{site.id}\/vendors/,
+                           :if => lambda {can? :see_vendors_for, site}) do |program_vendor_menu|
             if(@vendor && !@vendor.new_record? && @vendor.site == site)
               program_vendor_menu.item :vendor, "Vendor", vendor_path(@vendor)
             end
