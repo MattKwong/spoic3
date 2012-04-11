@@ -1,5 +1,10 @@
- <%= form_for(@church) do |r| %>
-     <table border="0" cellspacing="0" cellpadding="0" >
+<div id="active_admin_content">
+  <div id="main_content_wrapper">
+    <div id="main_content">
+    <div class="panel">
+      <h3>Church Details</h3>
+      <%= form_for(@church) do |r| %>
+        <table border="0" cellspacing="0" cellpadding="0" >
        <tr>
          <td><%= r.label "Church Name" %></td>
          <td><%= r.text_field :name, %></td>
@@ -42,3 +47,7 @@
        <%= cancel_link %>
      </div>
  <% end %>
+        </div>
+      </div>
+   </div>
+</div>

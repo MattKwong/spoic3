@@ -9,12 +9,13 @@ class ChurchesController < ApplicationController
   end
 
   def update
-    if @church.update_attributes(params[:church])
-      flash[:success] = "Successful update of church information"
-    else
-      flash[:error] = "Update of church information failed."
-    end
-    redirect_to myssp_path(current_admin_user.liaison_id)
+      if @church.update_attributes(params[:church])
+        flash[:success] = "Successful update of church information"
+        redirect_to myssp_path(Liaison.find_by_church_id(@church.id).id)
+      else
+        flash[:error] = "Update of church information failed."
+        render 'edit'
+      end
   end
 end
 

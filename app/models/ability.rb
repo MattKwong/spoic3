@@ -33,8 +33,8 @@ class Ability
       can [:see_vendors_for], Site, :id => program.site.id
       can [:see_items_for], Site, :id => program.site.id
       can [:read, :see_purchases_for, :see_food_inventories_for, :report], Program, :id => program_id
-      can :index, Item, :site_id => program.site_id
-      can :manage, Item, :site_id => program.site_id
+      can :index, Item
+      can :manage, Item, :program_id => program.id
       can :manage, Program, :id => program_id
       can :manage, Purchase, :program_id => program_id
       can :report, Program

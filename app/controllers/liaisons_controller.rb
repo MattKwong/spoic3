@@ -28,7 +28,7 @@ class LiaisonsController < ApplicationController
 
     checklists = []
     for j in 0..groups.size - 1
-      checklist = ChecklistItem.find(:all, :order => 'seq_number')
+      checklist = ChecklistItem.all(:order => 'seq_number')
       checklist_item = []
       for i in 0..checklist.length - 1
         checklist_item[i] = {:name => checklist[i].name, :due_date => checklist[i].due_date,
@@ -53,8 +53,9 @@ class LiaisonsController < ApplicationController
     user.first_name = liaison.first_name
     user.last_name = liaison.last_name
     user.liaison_id = liaison.id
-    user.name = liaison.name
-    user.user_role = "Liaison"
+    user.username = liaison.name
+    user.user_role = UserRole.find_by_name('Liaison')
+
 #    user.reset_password_token = AdminUser.reset_password_token
 #    user.password = random_pronouncable_password(8)
 

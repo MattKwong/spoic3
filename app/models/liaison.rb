@@ -29,6 +29,7 @@ class Liaison < ActiveRecord::Base
       self.fax[0..1] = ''
     end
 
+    self.state = self.state.upcase.first(2)
     self.cell_phone = self.cell_phone.gsub(/\D/,'')
     self.home_phone = self.home_phone.gsub(/\D/,'')
     self.work_phone = self.work_phone.gsub(/\D/,'')

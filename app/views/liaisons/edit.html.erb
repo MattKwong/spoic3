@@ -1,12 +1,21 @@
- <%= form_for(@liaison) do |r| %>
-     <table border="0" cellspacing="0" cellpadding="0" >
-       <p>As a liaison, you may update your personal contact information, but not your primary email. Since this is
-       used as your login, please contact our office if you need to start using a new email. Also, to change liaisons
-       entirely for your church, contact the office.</p>
-
-       <tr>
-         <td><%= r.label "Address 1" %></td>
-         <td><%= r.text_field :address1, %></td>
+<div id="active_admin_content">
+  <div id="main_content_wrapper">
+    <div id="main_content">
+    <div class="panel">
+      <h3>Liaison Details</h3>
+      <p>As a liaison, you may update your personal contact information, but not your primary email. Since this is
+     used as your login, please contact our office if you need to start using a new email. Also, to change liaisons
+     entirely for your church, contact the office.</p>
+      <div class="panel_contents" >
+        <%= form_for(@liaison) do |r| %>
+        <table border="0" cellspacing="0" cellpadding="0" >
+          <tr>
+            <td><%= r.label "Liaison Name" %></td>
+            <td><%= r.text_field :name, %></td>
+       </tr>
+          <tr>
+            <td><%= r.label "Address 1" %></td>
+            <td><%= r.text_field :address1, %></td>
        </tr>
        <tr>
          <td><%= r.label "Address 2" %></td>
@@ -42,7 +51,12 @@
        </tr>
      </table>
      <div class="actions">
-       <%= r.submit "Submit Changes", :action => "update" %>
+       <%= r.submit "Submit Changes" %>
        <%= cancel_link %>
      </div>
  <% end %>
+    </div>
+    </div>
+  </div>
+</div>
+</div>

@@ -30,6 +30,7 @@ Spoic3::Application.routes.draw do
       resources :item_purchases, :shallow => true
     end
     resources :food_inventories, :shallow => true
+    resources :items, :shallow => true
     get :autocomplete_user_name
     get :autocomplete_item
 

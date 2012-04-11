@@ -17,6 +17,9 @@ class RosterItem < ActiveRecord::Base
   validates :zip,   :presence => true,
                     :length => { :is => 5},
                     :numericality => true
+  before_validation do
+    self.state = self.state.upcase.first(2)
+    end
 
   with_options :if => :youth? do |registration|
     registration.validates_format_of :email,
