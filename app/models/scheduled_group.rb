@@ -11,6 +11,7 @@ class ScheduledGroup < ActiveRecord::Base
   belongs_to :church
   belongs_to :liaison
   belongs_to :session
+  belongs_to :session_type, :foreign_key => :group_type_id
   has_one :roster
 
 #TODO: Validate referential integrity of liaison, session, churches and registration ids
@@ -24,4 +25,12 @@ class ScheduledGroup < ActiveRecord::Base
                             :only_integer => true
   validates_numericality_of :current_counselors, :greater_than_or_equal_to => 0,
                             :only_integer => true
+  def senior_high?
+     session_type.name.include?("Senior High")
+  end
+
+  def junior_high?
+     session_type.name.include?("Junior High")
+  end
+
 end

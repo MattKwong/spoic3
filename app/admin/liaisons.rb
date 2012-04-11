@@ -107,7 +107,7 @@ ActiveAdmin.register Liaison do
       f.input :address1
       f.input :address2
       f.input :city
-      f.input :state
+      f.input :state, :input_html => { :maxlength => 2 }
       f.input :zip
       f.input :email1
       f.input :email2

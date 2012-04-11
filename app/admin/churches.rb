@@ -82,7 +82,7 @@ form :title => :name do |f|
       f.input :address1
       f.input :address2
       f.input :city
-      f.input :state
+      f.input :state, :input_html => { :maxlength => 2, :length => 2 }
       f.input :zip
       f.input :church_type
       f.input :email1

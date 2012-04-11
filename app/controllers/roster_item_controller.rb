@@ -9,7 +9,7 @@ class RosterItemController < ApplicationController
     @roster_item.roster_id=params[:roster_id]
     @roster_item.group_id= params[:group_id]
     @title = "Add Participant Information"
-    @grade_list = ['9th', '10th', '11th', '12th', 'Graduate', 'Adult']
+    set_grade_list
     @size_list = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
     @youth_list = [["Youth", true], ["Counselor", false]]
     @disclosure_status_list = ['Received', 'Incomplete', 'Not Received']
@@ -30,7 +30,7 @@ class RosterItemController < ApplicationController
       redirect_to show_roster_path(@roster_item.roster_id)
     else
       @title = @page_title = 'Add New Participant Information'
-      @grade_list = ['9th', '10th', '11th', '12th', 'Graduate', 'Adult']
+      set_grade_list
       @size_list = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
       @youth_list = [["Youth", true], ["Counselor", false]]
       @disclosure_status_list = ['Not Received', 'Received', 'Incomplete' ]
@@ -53,7 +53,7 @@ class RosterItemController < ApplicationController
     @page_title = 'Edit Participant Information'
     @roster_item = RosterItem.find(params[:id])
     @title = "Edit Participant Information"
-    @grade_list = ['9th', '10th', '11th', '12th', 'Graduate', 'Adult']
+    set_grade_list
     @size_list = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
     @youth_list = [["Youth", true], ["Counselor", false]]
     @disclosure_status_list = ['Not Received', 'Received', 'Incomplete']
@@ -71,7 +71,7 @@ class RosterItemController < ApplicationController
       @page_title = 'Edit Participant Information'
       @roster_item = RosterItem.find(params[:id])
       @title = "Edit Participant Information"
-      @grade_list = ['9th', '10th', '11th', '12th', 'Graduate', 'Adult']
+      set_grade_list
       @size_list = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
       @youth_list = [["Youth", true], ["Counselor", false]]
       @disclosure_status_list = ['Not Received', 'Received', 'Incomplete']
@@ -91,5 +91,16 @@ class RosterItemController < ApplicationController
       flash[:notice] = "Unexpected problem occurred deleting this entry"
     end
   end
-end
 
+  private
+  def set_grade_list
+    if @roster_item.roster.scheduled_group.senior_high?
+      @grade_list = ['9th', '10th', '11th', '12th', '13th', 'Adult']
+    else if @roster_item.roster.scheduled_group.junior_high?
+      @grade_list = ['7th', '8th', '9th', 'Adult']
+      else
+        @grade_list = ['7th', '8th', '9th', '10th', '11th', '12th', '13th', 'Adult', 'Other']
+      end
+    end
+  end
+end
