@@ -1,0 +1,11 @@
+<%= semantic_form_for project, :url => project.new_record? ? program_projects_path(project.program) : project_path(project) do |form| %>
+  <%= form.inputs do %>
+    <%= form.input :name %>
+    <%= form.input :beneficiary_name %>
+    <%= form.input :project_type, :as => :select, :collection => project.project_type %>
+    <%= form.input :planned_start %>
+    <%= form.input :planned_end %>
+
+  <% end %>
+  <%= form.buttons %>
+<% end %>
