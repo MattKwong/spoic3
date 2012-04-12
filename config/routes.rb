@@ -1,6 +1,6 @@
 Spoic3::Application.routes.draw do
 
-   get "roster_item/update"
+  get "roster_item/update"
 
   get "scheduled_group/new"
 
@@ -25,6 +25,11 @@ Spoic3::Application.routes.draw do
   end
 
   resources :programs do
+    resources :projects do
+      resources :material_item_estimateds, :shallow => true
+      resources :material_item_delivereds, :shallow => true
+      resources :labor_items, :shallow => true
+      end
     resources :periods, :shallow => true
     resources :purchases, :shallow => true do
       resources :item_purchases, :shallow => true
@@ -33,7 +38,6 @@ Spoic3::Application.routes.draw do
     resources :items, :shallow => true
     get :autocomplete_user_name
     get :autocomplete_item
-
     get :activation
   end
 
@@ -41,6 +45,11 @@ Spoic3::Application.routes.draw do
   resources :purchases, :only => [:index]
   resources :food_inventories, :only => [:index]
   resources :items
+  resources :projects
+  resources :material_item_estimateds, :only => [:index]
+  resources :material_item_delivereds, :only => [:index]
+  resources :labor_items, :only => [:index]
+
 
   #reports
 

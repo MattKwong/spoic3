@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120320030043) do
+ActiveRecord::Schema.define(:version => 20120411192625) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer   "resource_id",   :null => false
@@ -277,6 +277,16 @@ ActiveRecord::Schema.define(:version => 20120320030043) do
     t.integer  "job_type_id"
   end
 
+  create_table "labor_items", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "recorded_by"
+    t.string   "team_name"
+    t.integer  "team_size"
+    t.decimal  "days_worked"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "liaison_types", :force => true do |t|
     t.string    "name"
     t.string    "description"
@@ -307,6 +317,26 @@ ActiveRecord::Schema.define(:version => 20120320030043) do
     t.boolean   "user_created"
     t.boolean   "scheduled"
     t.boolean   "registered"
+  end
+
+  create_table "material_item_delivereds", :force => true do |t|
+    t.integer  "item_id"
+    t.integer  "project_id"
+    t.decimal  "quantity"
+    t.string   "uom"
+    t.datetime "delivery_date"
+    t.integer  "delivered_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "material_item_estimateds", :force => true do |t|
+    t.integer  "item_id"
+    t.integer  "project_id"
+    t.decimal  "quantity"
+    t.string   "uom"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "organizations", :force => true do |t|
@@ -383,6 +413,41 @@ ActiveRecord::Schema.define(:version => 20120320030043) do
     t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "project_types", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.string   "beneficiary_name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "description"
+    t.string   "telephone1"
+    t.string   "telephone2"
+    t.text     "notes"
+    t.decimal  "estimated_days"
+    t.decimal  "actual_days"
+    t.decimal  "estimated_cost"
+    t.decimal  "actual_cost"
+    t.date     "planned_start"
+    t.date     "actual_start"
+    t.date     "planned_end"
+    t.date     "actual_end"
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.integer  "project_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "program_id"
   end
 
   create_table "purchases", :force => true do |t|

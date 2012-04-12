@@ -35,7 +35,9 @@ class AdminAbility
       can :manage, Program #, :id => user.program_user.program_id
 #      can :report, Program
     end
-
+    if user.construction_admin?
+      can :manage, ProjectType
+    end
     if user.admin?
       can :manage, :all
     end

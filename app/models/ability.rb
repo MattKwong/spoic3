@@ -32,7 +32,8 @@ class Ability
       can :manage, Vendor, :site_id => program.site_id
       can [:see_vendors_for], Site, :id => program.site.id
       can [:see_items_for], Site, :id => program.site.id
-      can [:read, :see_purchases_for, :see_food_inventories_for, :report], Program, :id => program_id
+      can [:read, :see_purchases_for, :see_food_inventories_for, :see_projects_for, :report], Program,
+          :id => program_id
       can :index, Item
       can :manage, Item, :program_id => program.id
       can :manage, Program, :id => program_id
@@ -42,7 +43,14 @@ class Ability
       can :manage, ItemPurchase
       if user.cook? || user.sd?
         can [:read, :create, :destroy, :update], FoodInventory, :program_id => program.id
-        can [:read, :create, :destroy, :update], FoodInventoryFoodItem, :food_inventory => { :program_id => program_id }
+        can [:read, :create, :destroy, :update], FoodInventoryFoodItem, :food_inventory =>
+            { :program_id => program_id }
+      end
+     if user.construction? || user.sd?
+        can [:read, :create, :destroy, :update], Project, :program_id => program.id
+        can [:read, :create, :destroy, :update], LaborItem, :project => { :program_id => program_id }
+        can [:read, :create, :destroy, :update], MaterialItemDelivered, :project => { :program_id => program_id }
+        can [:read, :create, :destroy, :update], MaterialItemEstimated, :project => { :program_id => program_id }
       end
   end
 
@@ -63,6 +71,13 @@ class Ability
       can :index, FoodInventory
       can :manage, FoodInventory
       can :manage, FoodInventoryFoodItem
+  end
+  if user.construction_admin?
+    can :manage, Project
+    can :manage, LaborItem
+    can :manage, ProjectType
+    can :manage, MaterialItemDelivered
+    can :manage, MaterialEstimated
   end
 
    if user.admin?

@@ -78,7 +78,8 @@ SimpleNavigation::Configuration.run do |navigation|
     end
   end
 
-    primary.item(:food_inventories, "Food Inventories", food_inventories_path, :if => lambda {can? :index, FoodInventory }, :highlights_on => /food_inventories/) do |inventories_menu|
+    primary.item(:food_inventories, "Food Inventories", food_inventories_path, :if => lambda {can? :index, FoodInventory },
+                 :highlights_on => /food_inventories/) do |inventories_menu|
       if(can? :manage, FoodInventory)
         inventories_menu.item(:all_food_inventories,
                               "All Food Inventories",
@@ -91,6 +92,25 @@ SimpleNavigation::Configuration.run do |navigation|
                                 :if => lambda { can? :see_food_inventories_for, program})  do |program_fi_menu|
             if(!@food_inventory.nil? && !@food_inventory.new_record? && @food_inventory.program == program)
               program_fi_menu.item(:food_inventory, "Food Inventory", food_inventory_path(@food_inventory))
+            end
+          end
+        end
+      end
+    end
+    primary.item(:projects, "Projects", projects_path, :if => lambda {can? :index, Project },
+                 :highlights_on => /projects/) do |projects_menu|
+      if(can? :manage, Project)
+        projects_menu.item(:all_projects,
+                              "All Projects",
+                              projects_path)
+        Program.current.each do |program|
+          projects_menu.item("program_#{program.id}_projects",
+                                program.short_name,
+                                program_projects_path(program),
+                                :highlights_on => /^\/programs\/#{program.id}\/projects/,
+                                :if => lambda { can? :see_projects_for, program})  do |program_p_menu|
+            if(!@project.nil? && !@project.new_record? && @project.program == program)
+              program_p_menu.item(:project, "Project", project_path(@project))
             end
           end
         end
