@@ -7,37 +7,31 @@
     = stylesheet_link_tag 'active_admin', :media => 'screen'
     = stylesheet_link_tag 'custom', :media => 'screen'
     = stylesheet_link_tag 'formtastic', :media => 'screen'
+    = stylesheet_link_tag 'formtastic_changes', :media => 'screen'
     = stylesheet_link_tag 'style', :media => 'screen'
     = stylesheet_link_tag 'print', :media => 'print'
 
   %body.logged_in
-    = render 'layouts/header'
+
     #title_bar
       #titlebar_left
         #logo
-          = link_to image_tag('logo.png', :alt => "Sierra Service Project", :width => 75, :height => 75), "http://www.sierraserviceproject.org", :title => "Go to SSP Website"
+          = link_to image_tag('logo.png', :alt => "Sierra Service Project", :width => 50, :height => 50), "http://www.sierraserviceproject.org", :title => "Go to SSP Website"
         .breadcrumb
           %a{:href => '/ops_pages/show'} SSP SiteManager
           .breadcrumb_sep |
-        %h2
-          SSP SiteManager
+        %h3
+          SSP SiteManager: #{@title}
     .container
       - short_nav = (render_navigation :level => 2, :renderer => :text)
       - skip_second_nav = short_nav.nil? || short_nav.empty?
       #main-nav.span-24.last.nav-bar{:class => skip_second_nav ? "non-admin" : ""}
         = render_navigation :level => 1
-
       - unless skip_second_nav
         #page-info.span-24.last
           #site-nav= render_navigation :level => 2
-      .span-16.prepend-top
-        %h2= @title
       #action-links.span-8.last.prepend-top
         = render_navigation :context => :actions, :renderer => :links
-
-      - if signed_in?
-        %h3 Welcome, #{current_admin_user.first_name} #{current_admin_user.last_name}!
-
       #content.span-24.last
 
         .span-24.last= yield

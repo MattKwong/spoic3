@@ -1,0 +1,20 @@
+<div class='tablewrapper'>
+  <table id="material_item_estimateds">
+    <thead>
+      <tr>
+        <th>Item name</th>
+        <th>Estimated quantity</th>
+        <th>Unit of measure</th>
+        <th>Item cost</th>
+        <th>Total cost</th>
+        <th></th>
+      </th>
+    </thead>
+    <tbody>
+      <%= render material_item_estimateds %>
+      <% if material_item_estimateds.empty? %>
+        <tr id="material_item_estimated_new_row"><td colspan=10>No estimated items have been added for this project</td></tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

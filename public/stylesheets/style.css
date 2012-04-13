@@ -12,12 +12,12 @@ h1 {
   color: #d1e0e7; }
 
 h2, h3 {
-  color: #5c91aa;
+  color: #1b3664;
   font-weight: bold; }
 
 /* Header Styling */
 #header {
-  background-color: #5c91aa; }
+  background-color: #1b3664; }
 
 #header h1 {
   padding: 15px; }
@@ -34,7 +34,7 @@ h2, h3 {
 
 #user-pane > div span.gravatar {
   padding: 3px;
-  background-color: #d1e0e7;
+  background-color: #1b3664;
   border-top-left-radius: 7px;
   -moz-border-radius-top-left: 7px;
   -webkit-border-top-left-radius: 7px;
@@ -59,7 +59,7 @@ h2, h3 {
 #main-nav {
   position: relative;
   z-index: 2;
-  background-color: #5c91aa;
+  background-color: #4D7194;
   height: 22px;
   border-bottom-left-radius: 15px;
   -moz-border-radius-bottom-left: 15px;
@@ -92,7 +92,7 @@ h2, h3 {
   background-color: white; }
 
 #main-nav ul li.selected a {
-  color: #5c91aa; }
+  color: #4D7194; }
 
 /* Page title and site navigation */
 #page-info {
@@ -111,7 +111,7 @@ h2, h3 {
   -webkit-border-top-right-radius: 10px; }
 
 #page-info div.blank {
-  background-color: #d1e0e7;
+  background-color: #4D7194;
   border-bottom-right-radius: 5px;
   -moz-border-radius-bottom-right: 5px;
   -webkit-border-bottom-right-radius: 5px;
@@ -125,7 +125,7 @@ h2, h3 {
 #site-nav {
   margin-top: -20px;
   padding-top: 20px;
-  background-color: #d1e0e7;
+  background-color: #efefef;
   border-bottom-left-radius: 10px;
   -moz-border-radius-bottom-left: 10px;
   -webkit-border-bottom-left-radius: 10px;
@@ -190,7 +190,7 @@ div.tablewrapper {
   border-bottom-right-radius: 3px;
   -moz-border-radius-bottom-right: 3px;
   -webkit-border-bottom-right-radius: 3px;
-  background-color: #9fbecd;
+  background-color: #4D7194;
   margin-bottom: 1.4em; }
 
 div.tablewrapper table {
@@ -251,11 +251,11 @@ form button.ui-combobox-button {
   margin-left: -1px; }
 
 div.properties dl dt {
-  color: #5c91aa;
+  color: #4D7194;
   clear: left;
   float: left;
-  width: 150px;
-  background-color: #d1e0e7;
+  width: 100px;
+  background-color: #efefef;                <<
   text-align: right;
   margin: 5px 0;
   padding: 5px;

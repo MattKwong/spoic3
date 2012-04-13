@@ -1,0 +1,2 @@
+form.formtastic input, form.formtastic textarea, form.formtastic select { font-size:95%; }
+form.formtastic textarea { height: 100px }

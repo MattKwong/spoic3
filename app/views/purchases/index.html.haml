@@ -1,6 +1,7 @@
-.paginator.append-bottom
-  %span.wrapper
-    = paginate @purchases
+- if @purchases.size > 20
+  .paginator.append-bottom
+    %span.wrapper
+      = paginate @purchases
 
 .tablewrapper
   %table
@@ -22,6 +23,7 @@
           %td= purchase.total
           %td= link_to "view", purchase
 
-.paginator.prepend-top
-  %span.wrapper
-    = paginate @purchases
+- if @purchases.size > 20
+  .paginator.append-bottom
+    %span.wrapper
+      = paginate @purchases

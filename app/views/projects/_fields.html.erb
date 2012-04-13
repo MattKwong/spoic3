@@ -1,11 +1,20 @@
-<%= semantic_form_for project, :url => project.new_record? ? program_projects_path(project.program) : project_path(project) do |form| %>
+<%= semantic_form_for project, :url => project.new_record? ? program_projects_path(@program) : project_path(@project) do |form| %>
   <%= form.inputs do %>
-    <%= form.input :name %>
-    <%= form.input :beneficiary_name %>
-    <%= form.input :project_type, :as => :select, :collection => project.project_type %>
-    <%= form.input :planned_start %>
-    <%= form.input :planned_end %>
-
+    <%= form.input :name, :label => "Project name" , :input_html => {:size => 30} %>
+    <%= form.input :beneficiary_name, :hint => "Client, family or organization name", :input_html => {:size => 30}  %>
+    <%= form.input :address1 %>
+    <%= form.input :address2 %>
+    <%= form.input :city %>
+    <%= form.input :state, :input_html => {:size => 4, :max_length => 2} %>
+    <%= form.input :zip, :input_html => {:size => 10, :max_length => 5} %>
+    <%= form.input :telephone1, :label => "Primary phone" , :input_html => {:size => 30} %>
+    <%= form.input :telephone2, :label => "Alternative phone", :input_html => {:size => 30} %>
+    <%= form.input :project_type_id, :as => :select, :collection => ProjectType.all %>
+    <%= form.input :description, :hint => "Give a short description of the project." %>
+    <%= form.input :planned_start, :label => "Planned start date" %>
+    <%= form.input :estimated_days, :label => "Estimated work days" %>
+    <%= form.input :planned_end, :label => "Planned completion date" %>
+    <%= form.input :notes, label: "Project notes", :hint => "Use this area to record project notes." %>
   <% end %>
   <%= form.buttons %>
 <% end %>
