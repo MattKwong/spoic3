@@ -31,7 +31,8 @@
         #page-info.span-24.last
           #site-nav= render_navigation :level => 2
       #action-links.span-8.last.prepend-top
-        = render_navigation :context => :actions, :renderer => :links
+        #action-anchors
+          = render_navigation :context => :actions, :renderer => :links
       #content.span-24.last
 
         .span-24.last= yield

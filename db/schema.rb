@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120411192625) do
+ActiveRecord::Schema.define(:version => 20120414183518) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer   "resource_id",   :null => false
@@ -415,11 +415,27 @@ ActiveRecord::Schema.define(:version => 20120411192625) do
     t.datetime "updated_at"
   end
 
+  create_table "project_categories", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "project_subtypes", :force => true do |t|
+    t.string   "name"
+    t.string   "compound_name"
+    t.integer  "project_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "project_types", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "project_category_id"
   end
 
   create_table "projects", :force => true do |t|
@@ -592,6 +608,14 @@ ActiveRecord::Schema.define(:version => 20120411192625) do
     t.boolean   "active"
     t.boolean   "summer_domestic"
     t.string    "abbr"
+  end
+
+  create_table "standard_items", :force => true do |t|
+    t.integer  "item_id"
+    t.string   "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "project_subtype_id"
   end
 
   create_table "user_roles", :force => true do |t|

@@ -158,9 +158,16 @@ h2, h3 {
 
 /* Page action stylings */
 #action-links > div {
-  padding-top: 5px; }
+  margin-top: 0px;
+  padding-bottom: 5px; }
 
-/* Table styling */
+#action-anchors a {
+  margin-left: 25px;
+  padding-right: 5px; }
+
+.span-6 h5 {
+    margin-bottom: 0;}
+/* #Table styling */
 table thead tr th {
   background-color: #9fbecd; }
 
@@ -250,36 +257,64 @@ form input.ui-combobox {
 form button.ui-combobox-button {
   margin-left: -1px; }
 
+div.notes-area dt {
+    color: #4D7194;
+}
+
+div.notes-area {
+    background-color: #efefef;
+    width: 100%;
+    float:left;
+    margin: 5px 0;
+    padding: 1px;
+    border-top-left-radius: 5px;
+    -moz-border-radius-top-left: 5px;
+    -webkit-border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    -moz-border-radius-bottom-left: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -moz-border-radius-top-right: 5px;
+    -webkit-border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -moz-border-radius-bottom-right: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    border: solid 1px #d1e0e7; }
+
 div.properties dl dt {
   color: #4D7194;
   clear: left;
   float: left;
   width: 100px;
-  background-color: #efefef;                <<
+  background-color: #efefef;
   text-align: right;
   margin: 5px 0;
-  padding: 5px;
-  border-top-left-radius: 10px;
-  -moz-border-radius-top-left: 10px;
-  -webkit-border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  -moz-border-radius-bottom-left: 10px;
-  -webkit-border-bottom-left-radius: 10px;
+  padding: 1px;
+  border-top-left-radius: 5px;
+  -moz-border-radius-top-left: 5px;
+  -webkit-border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -moz-border-radius-bottom-left: 5px;
+  -webkit-border-bottom-left-radius: 5px;
   border: solid 1px #d1e0e7; }
 
 div.properties dl dd {
   float: left;
   margin: 5px 0;
+  text-align: right;
   width: 100px;
-  padding: 5px;
-  border-top-right-radius: 10px;
-  -moz-border-radius-top-right: 10px;
-  -webkit-border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  -moz-border-radius-bottom-right: 10px;
-  -webkit-border-bottom-right-radius: 10px;
+  padding: 1px;
+  border-top-right-radius: 5px;
+  -moz-border-radius-top-right: 5px;
+  -webkit-border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  -moz-border-radius-bottom-right: 5px;
+  -webkit-border-bottom-right-radius: 5px;
   border: 1px solid #d1e0e7; }
 
+div.prepend-top, .prepend-top {margin-top:0em;}
+form.material_item_estimated {
+    margin: 5px; }
 div.properties dl dd.wide {
   width: 60%; }
 

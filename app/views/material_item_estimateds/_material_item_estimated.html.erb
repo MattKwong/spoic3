@@ -1,0 +1,11 @@
+<tr material_item_estimated_id="<%= material_item_estimated.id %>" >
+  <td><%= material_item_estimated.item.name %></td>
+  <td><%= material_item_estimated.quantity %></td>
+  <td><%= material_item_estimated.item.base_unit %></td>
+  <td><%= number_to_currency(material_item_estimated.item.average_cost(material_item_estimated.project.program,
+                                                                       Date.today), :unit => "$") %></td>
+  <td><%= number_to_currency(material_item_estimated.item.average_cost(material_item_estimated.project.program,
+                                                                         Date.today) * material_item_estimated.quantity, :unit => "$") %></td>
+  <td><%= link_to "remove", material_item_estimated, :method=>:delete, #:remote => true,
+                  :confirm => "Are you sure you want to remove #{material_item_estimated.item}?", :title => "Confirm Delete" %></td>
+</tr>

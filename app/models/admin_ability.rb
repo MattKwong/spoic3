@@ -37,6 +37,10 @@ class AdminAbility
     end
     if user.construction_admin?
       can :manage, ProjectType
+      can :manage, ProjectCategory
+      can :manage, ProjectSubtype
+      can :manage, StandardItem
+      can :manage, Item
     end
     if user.admin?
       can :manage, :all

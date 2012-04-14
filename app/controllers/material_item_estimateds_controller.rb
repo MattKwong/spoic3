@@ -15,21 +15,26 @@ class MaterialItemEstimatedsController < ApplicationController
   def edit
   end
 
-  def delete
+  def destroy
+    return_path = project_path(:id => @material_item_estimated.project_id)
+    if @material_item_estimated.destroy
+      flash[:success] = "#{@material_item_estimated.item} removed successfully"
+      redirect_to return_path
+    else
+      flash[:error] = "Could not remove #{@material_item_estimated.item}"
+    end
   end
 
 
 
   def create
-
-    logger.debug @material_item_estimated.inspect
     if @material_item_estimated.save
-      flash[:success] = "New project has been successfully created."
+      flash[:success] = "New planned item has been successfully created."
       redirect_to @project
     else
       flash[:warning] = "Errors prevented this record from being saved."
-      @title = "Create a new project"
-      render :new
+      @title = "Add a new planned item."
+      redirect_to @project
     end
   end
 

@@ -5,7 +5,7 @@
   <%= form.inputs do %>
     <%= form.input :item, :collection => Item.all,
                    :input_html => { :class => "jq-combo" }%>
-    <%= form.input :quantity, :hint => "Enter the number of the selected item that was bought" %>
+    <%= form.input :quantity, :hint => "Enter the estimate for the quantity to be used." %>
     <%= form.input :uom, :hint => "Enter the unit of measure (lbs, gals, etc.)" %>
   <% end %>
   <%= form.buttons %>
