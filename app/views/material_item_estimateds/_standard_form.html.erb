@@ -1,12 +1,19 @@
-<% remote ||= false %>
-<%= semantic_form_for material_item_estimated, :url => (material_item_estimated.new_record? ?
-        project_material_item_estimateds_path(material_item_estimated.project)
-                : material_item_estimated ) do |form| %>
-  <%= form.inputs do %>
-    <%= form.input :item, :collection => Item.all,
-                   :input_html => { :class => "jq-combo" }%>
-    <%= form.input :quantity, :hint => "Enter the estimate for the quantity to be used." %>
-    <%= form.input :uom, :hint => "Enter the unit of measure (lbs, gals, etc.)" %>
-  <% end %>
-  <%= form.buttons %>
-<% end %>
+<div class='tablewrapper'>
+  <table id="material_item_estimateds">
+    <thead>
+      <tr>
+        <th>Item name</th>
+        <th>Comments</th>
+        <th>Unit of measure</th>
+        <th>Item cost</th>
+        <th></th>
+      </th>
+    </thead>
+    <tbody>
+      <%= render standard_items %>
+      <% if standard_items.empty? %>
+        <tr><td colspan=10>There are no standard items for this project type.</td></tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120414183518) do
+ActiveRecord::Schema.define(:version => 20120414224209) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer   "resource_id",   :null => false
@@ -450,9 +450,6 @@ ActiveRecord::Schema.define(:version => 20120414183518) do
     t.string   "telephone1"
     t.string   "telephone2"
     t.text     "notes"
-    t.decimal  "estimated_days"
-    t.decimal  "actual_days"
-    t.decimal  "estimated_cost"
     t.decimal  "actual_cost"
     t.date     "planned_start"
     t.date     "actual_start"
@@ -464,6 +461,7 @@ ActiveRecord::Schema.define(:version => 20120414183518) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "program_id"
+    t.decimal  "estimated_days"
   end
 
   create_table "purchases", :force => true do |t|

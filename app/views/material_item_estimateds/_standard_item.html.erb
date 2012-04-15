@@ -1,0 +1,8 @@
+<tr standard_item_id="<%= standard_item.id %>" >
+  <td><%= standard_item.item.name %></td>
+  <td><%= standard_item.comments %></td>
+  <td><%= standard_item.item.base_unit %></td>
+  <td><%= number_to_currency(standard_item.item.average_cost(material_item_estimated.project.program,
+                                                                       Date.today), :unit => "$") %></td>
+  <td><%= link_to "Add", material_item_estimated, :method=>:add %></td>
+</tr>

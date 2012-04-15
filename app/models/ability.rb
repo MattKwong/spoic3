@@ -47,6 +47,7 @@ class Ability
             { :program_id => program_id }
       end
      if user.construction? || user.sd?
+        can :read, StandardItem
         can [:read, :create, :destroy, :update], Project, :program_id => program.id
         can [:read, :create, :destroy, :update], LaborItem, :project => { :program_id => program_id }
         can [:read, :create, :destroy, :update], MaterialItemDelivered, :project => { :program_id => program_id }

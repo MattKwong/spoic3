@@ -1,5 +1,19 @@
 Spoic3::Application.routes.draw do
 
+  get "material_item_delivereds/index"
+
+  get "material_item_delivereds/new"
+
+  get "material_item_delivereds/create"
+
+  get "material_item_delivereds/show"
+
+  get "material_item_delivereds/destroy"
+
+  get "material_item_delivereds/update"
+
+  get "material_item_delivereds/edit"
+
   get "roster_item/update"
 
   get "scheduled_group/new"
