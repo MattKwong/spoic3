@@ -1,0 +1,6 @@
+<%= semantic_form_for @material_item_estimated, :url => project_material_item_estimateds_path(@project) do |form| %>
+  <%= form.inputs do %>
+    <%= form.input :quantity, :hint => "Enter the estimate for the quantity to be used." %>
+  <% end %>
+  <%= form.buttons %>
+<% end %>

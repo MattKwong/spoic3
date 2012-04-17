@@ -1,0 +1,12 @@
+<%= semantic_form_for material_item_delivered do |form| %>
+  <%= form.inputs do %>
+    <%= form.input :item, :collection => @project.material_item_estimated,
+                           :input_html => { :class => "jq-combo" }%>
+    <%= form.input :delivered_by, :collection => @program.program_users %>
+
+    <%= form.input :delivery_date, :as => :date %>
+    <%= form.input :quantity %>
+    <%= form.input :base_unit, :hint => "Enter the base units for this item. This is the unit that the item will always be expressed in. Most every unit of volume, mass is valid.  Use 'each' to specify a unitless measure.", :input_html => { :size => 6 } %>
+  <% end %>
+  <%= form.buttons %>
+<% end %>

@@ -1,0 +1,7 @@
+<tr standard_item_id="<%= standard_item.id %>" >
+  <td><%= standard_item.item.name %></td>
+  <td><%= standard_item.comments %></td>
+  <td><%= standard_item.item.base_unit %></td>
+  <td></td>
+  <td><%= link_to "Add", add_standard_item_path(standard_item.id), :action => "add_standard" %></td>
+</tr>

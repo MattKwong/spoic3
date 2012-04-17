@@ -1,0 +1,14 @@
+.span-12.last.prepend_top
+  %h3 Add standard item to project
+  %table
+    %tr
+      %td Item name
+      %td= @item.name
+    %tr
+      %td Comments
+      %td= @standard_item.comments
+    %tr
+      %td Unit Of Measure
+      %td= @item.base_unit
+
+= render 'form'

@@ -43,6 +43,7 @@ Spoic3::Application.routes.draw do
       resources :material_item_estimateds, :shallow => true
       resources :material_item_delivereds, :shallow => true
       resources :labor_items, :shallow => true
+      resources :standard_items, :shallow => true
       end
     resources :periods, :shallow => true
     resources :purchases, :shallow => true do
@@ -63,7 +64,8 @@ Spoic3::Application.routes.draw do
   resources :material_item_estimateds, :only => [:index]
   resources :material_item_delivereds, :only => [:index]
   resources :labor_items, :only => [:index]
-
+  resources :standard_items
+  match "material_item_estimated/add_standard/:id", :to => 'material_item_estimateds#add_standard', :as => 'add_standard_item'
 
   #reports
 
@@ -73,6 +75,8 @@ Spoic3::Application.routes.draw do
   get "site_reports/food_consumption/:id", :controller => :'site_reports', :action => :food_consumption, :as => 'food_consumption_report'
   get "site_reports/session/:id", :controller => 'site_reports', :action => :session, :as => 'session_report'
 
+  match "material_item_delivereds/add/:id", :to => 'material_item_delivereds#new', :as => 'deliver_project'
+  match "labor_items/add/:id", :to => 'labor_items#add', :as =>'labor_project'
   match "registration/schedule", :to => 'registration#schedule', :as => "registration_schedule"
   match "registration/register", :to => 'registration#register'
   match "registration/:id/update", :to => 'registration#process_payment', :as => 'registration_payment'

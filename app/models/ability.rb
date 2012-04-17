@@ -61,6 +61,8 @@ class Ability
       can :see_vendors_for, Program
       can :see_vendors_for, Site
       can :manage, Item
+      can :manage, ItemType
+      can :manage, ItemCategory
       can :index, Item
       can :manage, Program
       can :manage, Purchase
@@ -78,7 +80,7 @@ class Ability
     can :manage, LaborItem
     can :manage, ProjectType
     can :manage, MaterialItemDelivered
-    can :manage, MaterialEstimated
+    can :manage, MaterialItemEstimated
   end
 
    if user.admin?

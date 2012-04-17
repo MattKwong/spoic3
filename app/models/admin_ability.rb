@@ -40,8 +40,13 @@ class AdminAbility
       can :manage, ProjectCategory
       can :manage, ProjectSubtype
       can :manage, StandardItem
-      can :manage, Item
     end
+    if user.construction_admin? || user.food_admin?
+      can :manage, Item
+      can :manage, ItemType
+      can :manage, ItemCategory
+    end
+
     if user.admin?
       can :manage, :all
     end

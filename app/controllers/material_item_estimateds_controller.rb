@@ -27,8 +27,6 @@ class MaterialItemEstimatedsController < ApplicationController
     end
   end
 
-
-
   def create
     if @material_item_estimated.save
       flash[:success] = "New planned item has been successfully created."
@@ -39,6 +37,5 @@ class MaterialItemEstimatedsController < ApplicationController
       redirect_to @project
     end
   end
-
 
 end

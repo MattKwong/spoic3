@@ -3,10 +3,10 @@
         project_material_item_estimateds_path(material_item_estimated.project)
                 : material_item_estimated ) do |form| %>
   <%= form.inputs do %>
-    <%= form.input :item, :collection => Item.all,
+    <%= form.input :item, :collection => @nonstandard_item_list,
                    :input_html => { :class => "jq-combo" }%>
     <%= form.input :quantity, :hint => "Enter the estimate for the quantity to be used." %>
-    <%= form.input :uom, :hint => "Enter the unit of measure (lbs, gals, etc.)" %>
+        <%= form.input :uom, :hint => "Enter the unit of measure (lbs, gals, etc.). Use 'each' to specify a unitless measure.", :input_html => { :size => 6 } %>
   <% end %>
   <%= form.buttons %>
 <% end %>
