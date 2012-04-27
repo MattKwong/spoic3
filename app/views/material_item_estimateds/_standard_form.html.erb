@@ -1,12 +1,14 @@
 <% remote ||= false %>
-<%= semantic_form_for material_item_estimated, :url => (material_item_estimated.new_record? ?
-        project_material_item_estimateds_path(material_item_estimated.project)
-                : material_item_estimated ) do |form| %>
+<%= semantic_form_for @material_item_estimated, :url => (@material_item_estimated.new_record? ?
+        project_material_item_estimateds_path(@material_item_estimated.project)
+                : new_material_item_estimated(@material_item_estimated.project )) do |form| %>
   <%= form.inputs do %>
-    <%= form.input :item, :collection => @standard_item_list,
+    <%= form.input :item,  :prompt => 'Select an item', :collection => @standard_item_list,
                    :input_html => { :class => "jq-combo" }%>
-    <%= form.input :quantity, :hint => "Enter the estimate for the quantity to be used." %>
-    <%= form.input :uom, :hint => "Enter the unit of measure (lbs, gals, etc.). Use 'each' to specify a unitless measure.", :input_html => { :size => 6 } %>
+    <%= form.input :quantity, :hint => "Enter the estimate for the quantity to be used.", :input_html => { :size => 4 } %>
+    <%= form.input :uom,  :prompt => 'Select an item', :collection => UNIT_NAMES,
+                   :label => 'Unit of Measure',
+                   :hint => "Enter the unit of measure (lbs, gals, etc.). Use 'each' to specify a unitless measure." %>
   <% end %>
   <%= form.buttons %>
 <% end %>

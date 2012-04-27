@@ -2,14 +2,14 @@
   <div id="main_content_wrapper">
   <div id="main_content">
 
-      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><br>
     <%= f.label :email %><br>
-  <%= f.email_field :email %></div>
+  <%= f.email_field :email, :input_html => {:size => 4} %></div>
 
   <div><br>
     <%= f.label :password %><br>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, :input_html => {:size => 4}  %>
   </div><br>
 
   <% if devise_mapping.rememberable? -%>

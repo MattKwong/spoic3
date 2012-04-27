@@ -1,9 +1,9 @@
-
 class MaterialItemEstimatedsController < ApplicationController
   layout '_ops_layout'
   load_and_authorize_resource :project
-  load_and_authorize_resource :material_item_estimated, :through => :project, :shallow => true
-  load_and_authorize_resource :standard_item, :through => :project, :shallow => true
+  #load_and_authorize_resource :material_item_estimated
+  #load_and_authorize_resource :standard_item
+  #load_and_authorize_resource :item
 
   def index
   end
@@ -18,7 +18,8 @@ class MaterialItemEstimatedsController < ApplicationController
   end
 
   def destroy
-    return_path = project_path(:id => @material_item_estimated.project_id)
+    @material_item_estimated = MaterialItemEstimated.find(params[:id])
+    return_path = project_path(@material_item_estimated.project_id)
     if @material_item_estimated.destroy
       flash[:success] = "#{@material_item_estimated.item} removed successfully"
       redirect_to return_path
@@ -28,6 +29,8 @@ class MaterialItemEstimatedsController < ApplicationController
   end
 
   def create
+    @material_item_estimated = MaterialItemEstimated.new(params[:material_item_estimated])
+    @material_item_estimated.project_id = @project.id
     if @material_item_estimated.save
       flash[:success] = "New planned item has been successfully created."
       redirect_to @project

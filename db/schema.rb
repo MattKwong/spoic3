@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120414224209) do
+ActiveRecord::Schema.define(:version => 20120426000210) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer   "resource_id",   :null => false
@@ -535,6 +535,7 @@ ActiveRecord::Schema.define(:version => 20120414224209) do
     t.string    "disclosure_status"
     t.string    "covenant_status"
     t.string    "background_status"
+    t.string    "special_need"
   end
 
   create_table "rosters", :force => true do |t|
@@ -606,6 +607,13 @@ ActiveRecord::Schema.define(:version => 20120414224209) do
     t.boolean   "active"
     t.boolean   "summer_domestic"
     t.string    "abbr"
+  end
+
+  create_table "special_needs", :force => true do |t|
+    t.string   "name"
+    t.integer  "list_priority"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "standard_items", :force => true do |t|

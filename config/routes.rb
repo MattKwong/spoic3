@@ -1,26 +1,11 @@
 Spoic3::Application.routes.draw do
 
-  get "material_item_delivereds/index"
-
-  get "material_item_delivereds/new"
-
-  get "material_item_delivereds/create"
-
-  get "material_item_delivereds/show"
-
-  get "material_item_delivereds/destroy"
-
-  get "material_item_delivereds/update"
-
-  get "material_item_delivereds/edit"
-
   get "roster_item/update"
 
   get "scheduled_group/new"
 
   get "scheduled_group/confirmation"
   ActiveAdmin.routes(self)
-
 
 #  devise_for :admin_users, ActiveAdmin::Devise.config
   as :admin_user do
@@ -76,7 +61,9 @@ Spoic3::Application.routes.draw do
   get "site_reports/session/:id", :controller => 'site_reports', :action => :session, :as => 'session_report'
 
   match "material_item_delivereds/add/:id", :to => 'material_item_delivereds#new', :as => 'deliver_project'
+  match "material_item_delivereds", :to => 'material_item_delivereds#create', :as => 'add_material_item'
   match "labor_items/add/:id", :to => 'labor_items#add', :as =>'labor_project'
+
   match "registration/schedule", :to => 'registration#schedule', :as => "registration_schedule"
   match "registration/register", :to => 'registration#register'
   match "registration/:id/update", :to => 'registration#process_payment', :as => 'registration_payment'

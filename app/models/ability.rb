@@ -80,7 +80,7 @@ class Ability
     can :manage, LaborItem
     can :manage, ProjectType
     can :manage, MaterialItemDelivered
-    can :manage, MaterialItemEstimated
+    can [:read, :create, :destroy, :update], MaterialItemEstimated
   end
 
    if user.admin?

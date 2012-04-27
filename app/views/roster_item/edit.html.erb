@@ -27,10 +27,6 @@
                                   <td><%= r.text_field :address1 %></td>
                                 </tr>
                                 <tr>
-                                  <td><%= r.label "Address 2" %></td>
-                                  <td><%= r.text_field :address2 %></td>
-                                </tr>
-                                <tr>
                                   <td><%= r.label "City" %></td>
                                   <td><%= r.text_field :city %></td>
                                 </tr>
@@ -53,6 +49,12 @@
                                 <tr>
                                   <td><%= r.label "Shirt Size" %></td>
                                   <td><%= r.select :shirt_size, options_for_select(@size_list, @roster_item.shirt_size) %></td>
+                                </tr>
+                                <tr>
+                                  <td><%= r.label "Special Needs" %></td>
+                                  <td><%= r.select :special_need,
+                                                   options_for_select(SpecialNeed.all.sort_by{|s| s.list_priority}.map{|s| s.name},
+                                                   @roster_item.special_need)  %></td>
                                 </tr>
                                 <% if signed_in? && current_admin_user.admin? %>
                                   <tr>

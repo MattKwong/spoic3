@@ -13,13 +13,13 @@
                              <th>First</th>
                              <th>Last</th>
                              <th>Address 1</th>
-                             <th>Address 2</th>
                              <th>City</th>
                              <th>State</th>
                              <th>Zip</th>
                              <th>Email</th>
                              <th>Grade</th>
                              <th>Size</th>
+                             <th>Special Needs<th>
                            </tr>
                          </thead>
                          <tbody><% @screen_info[:items].each do |r| %>
@@ -29,13 +29,13 @@
                              <td><%= r.first_name%></td>
                              <td><%= r.last_name %></td>
                              <td><%= r.address1 %></td>
-                             <td><%= r.address2 %></td>
                              <td><%= r.city%></td>
                              <td><%= r.state %></td>
                              <td><%= r.zip %></td>
                              <td><%= r.email %></td>
                              <td><%= r.grade_in_fall%></td>
                              <td><%= r.shirt_size %></td>
+                             <td><%= r.special_need %></td>
                              <td><%= link_to "Change", edit_roster_item_path(r.id)%>
                                  <%= link_to "Delete", delete_roster_item_path(r.id), :group_id => @screen_info[:scheduled_group].id,
                                     :action => :delete, :confirm => "Are you sure you want to delete this?" %></td>
