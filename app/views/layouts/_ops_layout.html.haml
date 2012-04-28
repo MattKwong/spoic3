@@ -23,6 +23,11 @@
             .breadcrumb_sep |
         %h3
           SSP SiteManager: #{@title}
+    - flash.each do |key, value|
+      .flash
+
+        = value
+
     .container
       - short_nav = (render_navigation :level => 2, :renderer => :text)
       - skip_second_nav = short_nav.nil? || short_nav.empty?

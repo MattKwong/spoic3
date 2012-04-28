@@ -61,6 +61,14 @@ class LaborItemsController < ApplicationController
   end
 
   def destroy
+    @labor_item = LaborItem.find(params[:id])
+    return_path = project_path(@labor_item.project_id)
+    if @labor_item.destroy
+      flash[:success] = "These volunteer days have been removed successfully"
+      redirect_to return_path
+    else
+      flash[:error] = "Could not remove volunteer days"
+    end
   end
 
   def update

@@ -77,6 +77,7 @@ class Ability
   end
   if user.construction_admin?
     can :manage, Project
+    can :approve, Project
     can :manage, LaborItem
     can :manage, ProjectType
     can :manage, MaterialItemDelivered
