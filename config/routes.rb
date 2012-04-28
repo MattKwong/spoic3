@@ -41,6 +41,7 @@ Spoic3::Application.routes.draw do
     get :activation
   end
 
+
   resources :vendors, :only => [:index]
   resources :purchases, :only => [:index]
   resources :food_inventories, :only => [:index]
@@ -53,7 +54,6 @@ Spoic3::Application.routes.draw do
   match "material_item_estimated/add_standard/:id", :to => 'material_item_estimateds#add_standard', :as => 'add_standard_item'
 
   #reports
-
   get "staff_report", :controller => 'staff_report', :action => 'show', :as => 'staff_report'
   get "site_reports/food_inventory/:id", :controller => 'site_reports', :action => 'food_inventory', :as => 'food_inventory_report'
   get "site_reports/food_budget/:id", :controller => 'site_reports', :action => :food_budget, :as => 'food_budget_report'
@@ -62,7 +62,10 @@ Spoic3::Application.routes.draw do
 
   match "material_item_delivereds/add/:id", :to => 'material_item_delivereds#new', :as => 'deliver_project'
   match "material_item_delivereds", :to => 'material_item_delivereds#create', :as => 'add_material_item'
-  match "labor_items/add/:id", :to => 'labor_items#add', :as =>'labor_project'
+  match "labor_item", :to => 'labor_items#create', :as => 'add_labor_item'
+  match "labor_items/add/:id", :to => 'labor_items#new', :as =>'labor_project'
+
+  match "move_stage/:id" => 'projects#move_stage', :as =>'project_review'
 
   match "registration/schedule", :to => 'registration#schedule', :as => "registration_schedule"
   match "registration/register", :to => 'registration#register'

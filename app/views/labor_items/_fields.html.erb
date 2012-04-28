@@ -1,0 +1,30 @@
+<% remote ||= false %>
+<%= semantic_form_for @labor_item, :url => (@labor_item.new_record? ?
+        add_labor_item_path(@labor_item.id)
+                : new_labor_item(@labor_item.project )) do |form| %>
+  <%= form.inputs do %>
+    <h4>Add volunteer days for: <%= @project.name %></h4>
+    <%= form.input :team_name, :hint => "Enter a name for the team that did the work.", :input_html => { :size => 20 }  %>
+     <%= form.input :recorded_by, :as => :select, :collection => options_for_select(@user_list, current_admin_user.id),
+                            :include_blank => false,
+                           :input_html => { :class => "jq-combo" }%>
+
+    <%= form.input :team_size, :hint => "Enter the number of youth and adult volunteers on the team. Must be between 1 and 15. ",
+                   :input_html => { :size => 4 } %>
+    <%= form.input :days_worked,
+                   :hint => "Enter the number of days that the team worked on this project. Must be between 0.5 and 4.5. Typical LA: 4; JH: 3.5; SH: 4.5 ",
+                   :input_html => { :size => 4 } %>
+    <%= form.input :session_id, :as => :select, :collection => @project.program.sessions,
+                               :include_blank => false,
+                              :input_html => { :class => "jq-combo" }%>
+    <input type = "hidden" name="labor_item[project_id]" value= <%= @labor_item.project_id %> />
+  <% end %>
+  <%= form.buttons do %>
+
+    <div class="actions">
+        <%= form.submit "Add Volunteer Days" %>
+        <%= submit_tag 'Cancel', :name => 'cancel' %>
+     </div>
+<% end %>
+<% end %>
+

@@ -1,0 +1,10 @@
+<tr>
+  <td><%= link_to project.name, project %></td>
+  <td><%= project.project_subtype.compound_name %></td>
+  <td><%= number_to_currency(project.estimated_cost(project.program)) %></td>
+  <td><%= number_to_currency(project.actual_cost(project.program)) %></td>
+  <td><%= number_to_currency(project.estimated_cost(project.program) - project.actual_cost(project.program)) %></td>
+  <td><%= project.estimated_days %></td>
+  <td><%= project.actual_days %></td>
+  <td><%= project.estimated_days - project.actual_days %></td>
+</tr>

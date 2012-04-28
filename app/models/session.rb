@@ -80,9 +80,9 @@ class Session < ActiveRecord::Base
 
   end
 
- def session_start_date
+  def session_start_date
    period.start_date.to_date
- end
+  end
 
   def days
     if session_type_junior_high?

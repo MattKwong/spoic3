@@ -6,20 +6,21 @@
     = stylesheet_link_tag 'jqueryui/jquery-ui-1.8.11.custom.css'
     = stylesheet_link_tag 'active_admin', :media => 'screen'
     = stylesheet_link_tag 'custom', :media => 'screen'
+    = stylesheet_link_tag 'custom_aa', :media => 'screen'
     = stylesheet_link_tag 'formtastic', :media => 'screen'
     = stylesheet_link_tag 'formtastic_changes', :media => 'screen'
     = stylesheet_link_tag 'style', :media => 'screen'
     = stylesheet_link_tag 'print', :media => 'print'
 
   %body.logged_in
-
     #title_bar
       #titlebar_left
         #logo
-          = link_to image_tag('logo.png', :alt => "Sierra Service Project", :width => 50, :height => 50), "http://www.sierraserviceproject.org", :title => "Go to SSP Website"
-        .breadcrumb
-          %a{:href => '/ops_pages/show'} SSP SiteManager
-          .breadcrumb_sep |
+          = link_to image_tag('logo.png', :alt => "Sierra Service Project", :width => 60, :height => 60), "http://www.sierraserviceproject.org", :title => "Go to SSP Website"
+        %span
+          .breadcrumb
+            %a{:href => '/ops_pages/show'} SSP SiteManager
+            .breadcrumb_sep |
         %h3
           SSP SiteManager: #{@title}
     .container
@@ -30,7 +31,7 @@
       - unless skip_second_nav
         #page-info.span-24.last
           #site-nav= render_navigation :level => 2
-      #action-links.span-8.last.prepend-top
+      #action-links.span-24.last.prepend-top
         #action-anchors
           = render_navigation :context => :actions, :renderer => :links
       #content.span-24.last

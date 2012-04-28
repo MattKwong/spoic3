@@ -181,3 +181,19 @@ ul.liaisons {
 .liaisons {
     list-style: none;
 }
+div.tablewrapper {
+  padding: 3px;
+  border-top-left-radius: 3px;
+  -moz-border-radius-top-left: 3px;
+  -webkit-border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  -moz-border-radius-top-right: 3px;
+  -webkit-border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  -moz-border-radius-bottom-left: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  -moz-border-radius-bottom-right: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  background-color: #9FBECD;
+  margin-bottom: 1.4em; }

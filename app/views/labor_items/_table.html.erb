@@ -1,0 +1,20 @@
+<div class='tablewrapper'>
+  <table id="labor_items">
+    <thead>
+      <tr>
+        <th>Team name</th>
+        <th>Team size</th>
+        <th>Days worked</th>
+        <th>Recorded by</th>
+        <th>Volunteer days</th>
+        <th></th>
+      </th>
+    </thead>
+    <tbody>
+      <%= render labor_items %>
+      <% if labor_items.empty? %>
+        <tr id="material_item_estimated_new_row"><td colspan=10>No labor has been recorded for this project</td></tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

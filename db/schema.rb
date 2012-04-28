@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120426000210) do
+ActiveRecord::Schema.define(:version => 20120427234914) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer   "resource_id",   :null => false
@@ -285,6 +285,7 @@ ActiveRecord::Schema.define(:version => 20120426000210) do
     t.decimal  "days_worked"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "session_id"
   end
 
   create_table "liaison_types", :force => true do |t|
@@ -462,6 +463,7 @@ ActiveRecord::Schema.define(:version => 20120426000210) do
     t.datetime "updated_at"
     t.integer  "program_id"
     t.decimal  "estimated_days"
+    t.string   "stage"
   end
 
   create_table "purchases", :force => true do |t|

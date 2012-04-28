@@ -3,18 +3,24 @@
         add_material_item_path(@material_item_delivered.id)
                 : new_material_item_delivered(@material_item_delivered.project )) do |form| %>
   <%= form.inputs do %>
+    <h4>Delivering material to or returning material from: <%= @project.name %></h4>
     <%= form.input :item, :collection => @item_list,
                             :prompt => "Select an item",
                             :hint => "Items must be estimated for project before delivery.",
                            :input_html => { :class => "jq-combo" } %>
-     <%= form.input :delivered_by, :as => :select, :collection => @user_list,
-                            :prompt => current_admin_user.name,
+     <%= form.input :delivered_by, :as => :select, :collection => options_for_select(@user_list, current_admin_user.id),
+                            :include_blank => false,
                            :input_html => { :class => "jq-combo" }%>
     <%= form.input :delivery_date, :as => :date %>
     <%= form.input :quantity, :hint => "Enter negative quantity to return previously delivered items.",
                    :input_html => { :size => 4 } %>
     <input type = "hidden" name="material_item_delivered[project_id]" value= <%= @material_item_delivered.project_id %> />
   <% end %>
-  <%= form.buttons %>
+    <%= form.buttons do %>
+      <div class="actions">
+          <%= form.submit "Add Volunteer Days" %>
+          <%= submit_tag 'Cancel', :name => 'cancel' %>
+       </div>
+    <% end %>
 <% end %>
 

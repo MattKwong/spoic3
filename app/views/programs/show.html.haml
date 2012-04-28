@@ -55,6 +55,22 @@
     = render 'purchases/table', :purchases => @program.purchases(@scope)
 
 .span-24.prepend-top
+  %h3 Projects
+  .tablewrapper
+    %table
+      %thead
+        %tr
+          %th Project Name
+          %th Type
+          %th Estimated Cost
+          %th Actual Cost
+          %th Amount Remaining
+          %th Estimated Days
+          %th Actual Days
+          %th Remaining Days
+      = render @program.projects
+
+.span-24.prepend-top
   %h3 Sessions
   .tablewrapper
     %table
@@ -67,7 +83,6 @@
           %th Scheduled Adults
           %th Scheduled Youth
           %th Total
-          %th
       = render @program.sessions
 
 .span-24.prepend-top
@@ -79,6 +94,6 @@
           %th Staff Name
           %th Email
           %th Job
-          %th
+
       = render @program.program_users.order("job_id")
 

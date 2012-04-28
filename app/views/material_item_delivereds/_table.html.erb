@@ -1,0 +1,21 @@
+<div class='tablewrapper'>
+  <table id="material_item_delivereds">
+    <thead>
+      <tr>
+        <th>Item name</th>
+        <th>Delivered quantity</th>
+        <th>Delivery date</th>
+        <th>Delivered by</th>
+        <th>Item cost</th>
+        <th>Total cost</th>
+        <th></th>
+      </th>
+    </thead>
+    <tbody>
+      <%= render material_item_delivereds %>
+      <% if material_item_delivereds.empty? %>
+        <tr id="material_item_estimated_new_row"><td colspan=10>No deliveries have been made for this project</td></tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
