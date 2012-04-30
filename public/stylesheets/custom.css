@@ -1,3 +1,18 @@
+div.properties dl dlt {
+    background-color: #EFEFEF;
+    border: 1px solid #D1E0E7;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    clear: left;
+    color: #4D7194;
+    float: left;
+    margin: 5px 0;
+    padding: 1px;
+    text-align: center;
+    width: 200px;
+}
 .reminder_line_one {
     text-decoration: underline;
 }
@@ -6,7 +21,52 @@
     font-style: italic;
     text-align: center;
 }
+.group-header {
+    /*display: table-cell;*/
+    height: 30px;
+    vertical-align: middle;
+}
+.plus-minus {
+  /*vertical-align: middle;*/
+  float: left;
+  margin: 0 auto;
+  width: 40px;
+  ;
 
+}
+.toggle-image {
+    float: left;
+    margin: 0 auto;
+    vertical-align: middle;
+    width: 30px;
+}
+.clear {clear:both}
+div.group-container {
+    border: 3px solid #9FBECD;
+    overflow: auto;
+    width:100%;
+    border-top-left-radius: 3px;
+    -moz-border-radius-top-left: 3px;
+    -webkit-border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    -moz-border-radius-top-right: 3px;
+    -webkit-border-top-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    -moz-border-radius-bottom-left: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    -moz-border-radius-bottom-right: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    margin-bottom: 1.4em;
+}
+
+#material_item_delivereds {
+    display: normal;
+}
+
+.highlight {
+    color: red;
+}
 #column1 {float: left; width: 125px; padding-left: 10px; }
 #column2 {float: left; width: 125px; padding-left: 10px; }
 #money {text-align: left}

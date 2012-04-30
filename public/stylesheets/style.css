@@ -243,27 +243,6 @@ form button.ui-combobox-button {
 div.notes-area dt {
     color: #4D7194;
 }
-
-div.notes-area {
-    background-color: #efefef;
-    width: 100%;
-    float:left;
-    margin: 5px 0;
-    padding: 1px;
-    border-top-left-radius: 5px;
-    -moz-border-radius-top-left: 5px;
-    -webkit-border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    -moz-border-radius-bottom-left: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    border-top-right-radius: 5px;
-    -moz-border-radius-top-right: 5px;
-    -webkit-border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    -moz-border-radius-bottom-right: 5px;
-    -webkit-border-bottom-right-radius: 5px;
-    border: solid 1px #d1e0e7; }
-
 div.properties dl dt {
   color: #4D7194;
   clear: left;

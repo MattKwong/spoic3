@@ -134,6 +134,7 @@ Spoic3::Application.routes.draw do
   match 'ops_pages/show', :to => 'ops_pages#show', :as => 'ops_pages_show'
   match 'ops_pages/construction', :to => 'ops_pages#construction', :as => 'construction'
   match 'ops_pages/staff', :to => 'ops_pages#staff', :as => 'staff'
+  match 'ops_pages/index', :to => 'ops_pages#index', :as => 'ops_indx'
 
   match '/help', :to => 'pages#help', :as => 'help'
   match '/contact', :to => 'pages#contact'

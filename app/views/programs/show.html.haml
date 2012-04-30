@@ -85,10 +85,14 @@
           %th Total
       = render @program.sessions
 
+/<input type="submit" name="hideh1" value="Hide site tile" id="hideh1" />
+/%a(title=@title href=href) Stuff
+
 .span-24.prepend-top
   %h3 Staff
+  %input#staff-toggle(type="submit" value="Show/Hide")
   .tablewrapper
-    %table
+    %table#staff-table
       %thead
         %tr
           %th Staff Name
@@ -96,4 +100,6 @@
           %th Job
 
       = render @program.program_users.order("job_id")
+
+
 
