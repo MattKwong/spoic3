@@ -2,7 +2,7 @@ require 'csv'
 
 class ChurchesController < ApplicationController
   load_and_authorize_resource
-  layout 'admin_layout'
+    layout 'admin_layout'
 
   def edit
     @page_title = "Edit Church Information"

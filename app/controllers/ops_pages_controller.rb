@@ -1,22 +1,24 @@
 class OpsPagesController < ApplicationController
+
+  layout 'admin_layout'
 #  load_and_authorize_resource
-  layout '_ops_layout'
 
   def food
-    @title = "SSP Food Cost Tracking"
+    @page_title = "SSP Food Cost Tracking"
   end
 
   def construction
-    @title = "SSP Construction Cost Tracking"
+    @page_title = "SSP Construction Cost Tracking"
   end
 
   def staff
-    @title = "Staff"
+    @page_title = "Staff"
   end
 
   def show
+    @page_title = "Programs"
     program_user = ProgramUser.find_by_user_id(current_admin_user.id)
-    if current_admin_user.staff?
+    if current_admin_user.field_staff?
       @active_programs = Program.find(program_user.program_id)
       redirect_to program_path(program_user.program_id)
     else
@@ -24,20 +26,20 @@ class OpsPagesController < ApplicationController
     end
 
     if current_admin_user.admin?
-      @title = "All Sites Cost Tracking - All Programs"
+      @page_title= "All Sites Cost Tracking - All Programs"
 
     else
       if current_admin_user.food_admin?
-        @title = "Food Cost Tracking - All Programs"
+        @page_title = "Food Cost Tracking - All Programs"
 
       else
         if current_admin_user.construction_admin?
           @title = "Construction Cost Tracking - All Programs"
 
         else
-          if current_admin_user.staff?
+          if current_admin_user.field_staff?
             if program_user.job.job_type.construction?
-              @title = "Construction Cost Tracking: #{program_user.program.name}"
+              @page_title = "Construction Cost Tracking: #{program_user.program.name}"
 
             end
             if program_user.job.job_type.cook?
@@ -45,21 +47,20 @@ class OpsPagesController < ApplicationController
 
             end
             if program_user.job.job_type.slc?
-              @title = "Other Program Cost Tracking: #{program_user.program.name}"
+              @page_title = "Other Program Cost Tracking: #{program_user.program.name}"
 
             end
             if program_user.job.job_type.sd?
-              @title = "All Program Cost Tracking: #{program_user.program.name}"
+              @page_title = "All Program Cost Tracking: #{program_user.program.name}"
 
             end
           else
-            @title = "Unknown User"
+            @page_title = "Unknown User"
 
           end
         end
       end
     end
-    logger.debug @active_programs.inspect
   end
 
 end

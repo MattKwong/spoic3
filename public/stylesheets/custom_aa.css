@@ -4,6 +4,17 @@
     width: 110px;
 }
 
+div#plan-material-info form fieldset.inputs {
+    background: none repeat scroll 0 0 #FFFFFF;
+    /*border-radius: none;*/
+    box-shadow: 0 1px 4px #FFFFFF inset;
+}
+div#deliver-material-info form fieldset.inputs {
+    background: none repeat scroll 0 0 #FFFFFF;
+    /*border-radius: none;*/
+    box-shadow: 0 1px 4px #FFFFFF inset;
+}
+
 span.icon {
   vertical-align: middle;
   display: inline-block; }

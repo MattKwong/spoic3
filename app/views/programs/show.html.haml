@@ -14,7 +14,10 @@
     %dd= @program.start_date
 
 .span-24.prepend-top
-  %h3 Budget
+  .group-header
+    .plus-minus
+      = link_to image_tag('plusminus.png', :id => 'budget-toggle')
+    %h3 Budget
   .tablewrapper
     %table
       %thead
@@ -24,10 +27,14 @@
           %th Spent to Date
           %th Spent to Date with Tax
           %th Amount Remaining
-      = render 'budget_items'
+      %tbody#budget-info
+        = render 'budget_items'
 
 .span-24.prepend-top
-  %h3 Food Program Snapshot
+  .group-header
+    .plus-minus
+      = link_to image_tag('plusminus.png', :id => 'food-snapshot-toggle')
+    %h3 Food Program Snapshot
   .tablewrapper
     %table
       %thead
@@ -42,64 +49,81 @@
           %th Cumulative Consumed
           %th Session Consumed Cost/Participant
           %th Program Consumed Cost/Participant
-      %tbody
+      %tbody#food-snapshot-info
         = render 'site_reports/food_budget_items'
 
 .span-24.prepend-top
-  %h3 Purchases
+  .group-header
+    .plus-minus
+      = link_to image_tag('plusminus.png', :id => 'purchases-toggle')
+    %h3 Purchases
   -# Need to add scope button here to limit list to the most recent n purchases
   -#= link_to 'Most recent 20', program_path(@program.id, :scope => '20')
   -#= link_to 'All', '/'
 
-  .tablewrapper
-    = render 'purchases/table', :purchases => @program.purchases(@scope)
+  .div#purchases-info
+    .tablewrapper
+      = render 'purchases/table', :purchases => @program.purchases(@scope)
 
 .span-24.prepend-top
-  %h3 Projects
-  .tablewrapper
-    %table
-      %thead
-        %tr
-          %th Project Name
-          %th Type
-          %th Estimated Cost
-          %th Actual Cost
-          %th Amount Remaining
-          %th Estimated Days
-          %th Actual Days
-          %th Remaining Days
-      = render @program.projects
+  .group-header
+    .plus-minus
+      = link_to image_tag('plusminus.png', :id => 'projects-toggle')
+    %h3 Projects
+  .div#projects-info
+    .tablewrapper
+      %table
+        %thead
+          %tr
+            %th Project Name
+            %th Type
+            %th Stage
+            %th Estimated Cost
+            %th Actual Cost
+            %th Amount Remaining
+            %th Estimated Days
+            %th Actual Days
+            %th Remaining Days
+        = render @program.projects
 
 .span-24.prepend-top
-  %h3 Sessions
-  .tablewrapper
-    %table
-      %thead
-        %tr
-          %th
-          %th Start Date
-          %th End Date
-          %th Type
-          %th Scheduled Adults
-          %th Scheduled Youth
-          %th Total
-      = render @program.sessions
+  .group-header
+    .plus-minus
+      = link_to image_tag('plusminus.png', :id => 'sessions-toggle')
+    %h3 Sessions
+  .div#sessions-info
+    .tablewrapper
+      %table
+        %thead
+          %tr
+            %th
+            %th Start Date
+            %th End Date
+            %th Type
+            %th Scheduled Adults
+            %th Scheduled Youth
+            %th Total
+        = render @program.sessions
 
 /<input type="submit" name="hideh1" value="Hide site tile" id="hideh1" />
 /%a(title=@title href=href) Stuff
 
-.span-24.prepend-top
-  %h3 Staff
-  %input#staff-toggle(type="submit" value="Show/Hide")
-  .tablewrapper
-    %table#staff-table
-      %thead
-        %tr
-          %th Staff Name
-          %th Email
-          %th Job
 
-      = render @program.program_users.order("job_id")
+.span-24.prepend-top
+  .group-header
+    .plus-minus
+      = link_to image_tag('plusminus.png', :id => 'staff-toggle')
+    %h3 Staff
+  .div#staff-info
+    .tablewrapper
+      %table
+        %thead
+          %tr
+            %th Staff Name
+            %th Email
+            %th Phone
+            %th Job
+        = render @program.program_users.order("job_id")
 
 
 

@@ -48,8 +48,12 @@ class AdminUser < ActiveRecord::Base
       self.user_role.name == "Construction Admin"
     end
 
-    def staff?
+    def field_staff?
       self.user_role.name == "Staff"
+    end
+
+    def staff?
+      self.user_role.name == "Staff" || self.area_admin? || self.admin?
     end
 
     def program_id

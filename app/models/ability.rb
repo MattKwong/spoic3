@@ -25,7 +25,7 @@ class Ability
     end
  # Need to restrict purchases to program
 
-  if user.staff?
+  if user.field_staff?
      program_id = user.program_id
      program = Program.find(program_id)
       can :index, Vendor, :site_id => program.site_id

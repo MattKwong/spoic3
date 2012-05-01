@@ -6,9 +6,6 @@
     <%= form.input :item,  :prompt => 'Select an item', :collection => @standard_item_list,
                    :input_html => { :class => "jq-combo" }%>
     <%= form.input :quantity, :hint => "Enter the estimate for the quantity to be used.", :input_html => { :size => 4 } %>
-    <%= form.input :uom,  :prompt => 'Select an item', :collection => UNIT_NAMES,
-                   :label => 'Unit of Measure',
-                   :hint => "Enter the unit of measure (lbs, gals, etc.). Use 'each' to specify a unitless measure." %>
   <% end %>
   <%= form.buttons %>
 <% end %>
