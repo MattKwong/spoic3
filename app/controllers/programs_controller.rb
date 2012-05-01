@@ -1,5 +1,5 @@
 class ProgramsController < ApplicationController
-  layout '_ops_layout'
+  layout 'admin_layout'
   load_and_authorize_resource
 
   autocomplete :admin_user, :name, :full => true, :scopes => [:staff]

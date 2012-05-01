@@ -1,6 +1,6 @@
 <div id= "header">
     <ul class="header_item" id="tabs">
-         <% if signed_in? && current_admin_user.admin? %>
+        <% if signed_in? && current_admin_user.admin? %>
              <h1 id="site_title">Sierra Service Project Manager</h1>
              <li><%= link_to "Home", root_path, %></li>
              <li class="has_nested" ><a href="#">Group Manager</a>
@@ -42,28 +42,38 @@
                   <li><%= link_to "Admin Center", admin_path %></li>
                </ul>
             </li>
+            <li class="has_nested" ><a href='#'>SiteManager</a>
+               <ul>
+                  <li><%= link_to "All Sites", ops_pages_show_path  %></li>
+                  <% Program.current.each do |p|  %>
+                    <li class='has_nested' ><a href='#'><%= p.name %></a>
+                      <ul>
+                        <li><%= link_to "Vendors", site_vendors_path(p.site) %></li>
+                      </ul>
+                      <li><%= link_to p.name, p %></li>
+                  <% end %>
+               </ul>
+            </li>
       <% end %>
-        <% if signed_in? && current_admin_user.staff? %>
+        <% if signed_in? && current_admin_user.field_staff? %>
                 <li class="has_nested" ><a href='#'>SiteManager</a>
                   <ul>
-                    <!--If the user is field staff, will be redirected to that summary page. -->
-                    <!--Add the menu items for Projects, Vendors, Items, Food (if food person, of course-->
-                    <% if current_admin_user.field_staff? %>
-                      <li><%= link_to current_admin_user.program_user.program.short_name, ops_pages_show_path %></li>
-                    <% else %>
-<!--If they aren't field staff, they are an admin user with access to all sites. They will be directed to the -->
-<!--all programs page. Set the menu items to be the same as above?-->
-                      <li><%= link_to "All Sites", ops_pages_show_path %></li>
-                    <% end %>
-                    <!--<li><%= link_to "SiteManager", ops_pages_show_path %></li>-->
+                    <!--These are single site users-->
+                      <li><%= link_to "Vendors", site_vendors_path(current_admin_user.program_user.program.site) %></li>
+                      <li><%= link_to "Items", program_items_path(current_admin_user.program_user.program) %></li>
+                      <li><%= link_to "Purchases", program_purchases_path(current_admin_user.program_user.program) %></li>
+                      <li><%= link_to "Reports", staff_report_path %></li>
+                      <li><%= link_to "Projects", program_projects_path(current_admin_user.program_user.program) %></li>
+                      <li><%= link_to "Food Inventories", program_food_inventories_path(current_admin_user.program_user.program) %></li>
                   </ul>
                 </li>
         <% end %>
 
+
         <% if signed_in? && current_admin_user.liaison? %>
             <li><%= link_to "MySSP", myssp_path(current_admin_user.liaison_id) %></li>
-        <li><%= link_to "Help", help_path %></li>
         <% end %>
+      <li><%= link_to "Help", help_path %></li>
     </ul>
     <p class="header-item" id="utility_nav"><span class="current_user">
     <% if signed_in? %><%= current_admin_user.name %></span>
