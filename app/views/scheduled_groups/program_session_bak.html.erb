@@ -1,0 +1,77 @@
+<div id="title_bar">
+    <div id="titlebar_left">
+        <span class="breadcrumb">
+            <a href="/admin">Admin</a>
+            <span class="breadcrumb_sep">/</span>
+        </span>
+        <h2 id="page_title">Groups Scheduled for <%= @session_week %> <%= @session_site %></h2>
+    </div>
+</div>
+    <div id="active_admin_content"  class="with_sidebar">
+        <div id="main_content_wrapper">
+            <div id="main_content">
+               <div class="panel">
+                 <div class="panel_contents">
+                   <div class="attributes_table choices" >
+                     <h3>Groups Scheduled for <%= @session_week %> <%= @session_site %></h3>
+                     <thead>
+                                     <tr>
+                                         <th>Name</th>
+                                         <th>Liaison</th>
+                                         <th>Church</th>
+                                         <th>Youth</th>
+                                         <th>Adults</th>
+                                         <th>Total</th>
+                                         <th></th>
+                                     </tr>
+                     </thead>
+                     <% total_youth = total_counselors = grand_total = 0 %>
+                     <% if signed_in? && current_admin_user.admin? %>
+                         <tbody>
+                         <% @groups.each do |r| %>
+                                     <tr>
+                                         <td><%= r.name %></td>
+                                         <td><%= link_to Liaison.find(r.liaison_id).name, admin_liaison_path(r.liaison_id) %></td>
+                                         <td><%= link_to Church.find(r.church_id).name, admin_church_path(r.church.id)%></td>
+                                         <td><%= r.current_youth %></td>
+                                         <td><%= r.current_counselors %></td>
+                                         <td><%= r.current_total %></td>
+                                         <td><%= link_to "Move this group", admin_scheduled_group_path(:id => r.id) %></td>
+                                         <% total_youth += r.current_youth %>
+                                         <% total_counselors += r.current_counselors %>
+                                         <% grand_total += r.current_total %>
+                                     </tr>
+                         <% end %>
+                     <% else %>
+                         <% @groups.each do |r| %>
+                                     <tr>
+                                         <td><%= r.name %></td>
+                                         <td><%= Liaison.find(r.liaison_id).name %></td>
+                                         <td><%= Church.find(r.church_id).name %></td>
+                                         <td><%= r.current_youth %></td>
+                                         <td><%= r.current_counselors %></td>
+                                         <td><%= r.current_total %></td>
+                                         <% total_youth += r.current_youth %>
+                                         <% total_counselors += r.current_counselors %>
+                                         <% grand_total += r.grand_total %>
+                                     </tr>
+                         <% end %>
+                      <% end %>
+                     </tbody>
+                     <tfoot>
+                         <tr>
+                           <td>Totals</td>
+                           <td></td>
+                           <td></td>
+                           <td><%= total_youth %></td>
+                           <td><%= total_counselors %></td>
+                           <td><%= grand_total %></td>
+                         </tr>
+                     </tfoot>
+                   </table>
+                   </div>
+                 </div>
+               </div>
+            </div>
+        </div>
+    </div>

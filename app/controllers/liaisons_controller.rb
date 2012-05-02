@@ -7,17 +7,20 @@ class LiaisonsController < ApplicationController
   end
 
   def update
+    logger.debug @liaison.inspect
     if @liaison.update_attributes(params[:liaison])
       flash[:success] = "Successful update of liaison information"
+      redirect_to myssp_path(@liaison.id)
     else
       flash[:error] = "Update of liaison information failed."
+      render 'edit'
     end
-    redirect_to myssp_path(current_admin_user.liaison_id)
+
   end
 
   def show
     liaison = Liaison.find(params[:id])
-    @page_title = "My SSP Information Portal. Welcome, #{liaison.first_name}!"
+    @page_title = "MySSP Information Portal. Welcome, #{liaison.first_name}!"
     church = Church.find(liaison.church_id)
     registrations = Registration.find_all_by_liaison_id(liaison.id) || []
     groups = ScheduledGroup.find_all_by_liaison_id(liaison.id)
@@ -53,12 +56,11 @@ class LiaisonsController < ApplicationController
     user.first_name = liaison.first_name
     user.last_name = liaison.last_name
     user.liaison_id = liaison.id
-    user.username = liaison.name
-    user.user_role = UserRole.find_by_name('Liaison')
-
+    user.name = liaison.name
+    user.user_role = "Liaison"
 #    user.reset_password_token = AdminUser.reset_password_token
 #    user.password = random_pronouncable_password(8)
-
+#TODO: change logic to update the admin user record if one exists.
     unless user.save!
       flash[:error] = "A problem occurred in create a logon for this liaison."
     else
@@ -244,7 +246,27 @@ class LiaisonsController < ApplicationController
          else
            non_default_status.status
          end
-
+       when "Disclosures Completed"
+          non_default_status = GroupChecklistStatus.find_by_group_id_and_checklist_item_id(group.id, checklist.id)
+          if non_default_status.nil?
+             calculate_disclosure_status(group)
+          else
+            non_default_status.status
+          end
+       when "Covenants Completed"
+          non_default_status = GroupChecklistStatus.find_by_group_id_and_checklist_item_id(group.id, checklist.id)
+          if non_default_status.nil?
+             calculate_covenant_status(group)
+          else
+            non_default_status.status
+          end
+       when "Background Checks Completed"
+          non_default_status = GroupChecklistStatus.find_by_group_id_and_checklist_item_id(group.id, checklist.id)
+          if non_default_status.nil?
+             calculate_background_status(group)
+          else
+            non_default_status.status
+          end
       else ""
     end
     return status
@@ -291,4 +313,45 @@ class LiaisonsController < ApplicationController
     end
   end
 
+  def calculate_disclosure_status(group)
+    items = RosterItem.adults.find_all_by_group_id(group.id).length
+    disclosures_received = RosterItem.adults.find_all_by_group_id_and_disclosure_status(group.id, "Received")
+    if items == 0
+      "Roster not started"
+    else
+      if items > disclosures_received.size
+        "Incomplete: missing #{items - disclosures_received.size} of #{items}"
+      else
+        "Disclosures complete"
+      end
+    end
+  end
+
+  def calculate_covenant_status(group)
+    items = RosterItem.adults.find_all_by_group_id(group.id).length
+    received = RosterItem.adults.find_all_by_group_id_and_covenant_status(group.id, "Received")
+    if items == 0
+      "Roster not started"
+    else
+      if items > received.size
+        "Incomplete: missing #{items - received.size} of #{items}"
+      else
+        "Covenants complete"
+      end
+    end
+  end
+
+  def calculate_background_status(group)
+    items = RosterItem.adults.find_all_by_group_id(group.id).length
+    not_received = RosterItem.adults.find_all_by_group_id_and_background_status(group.id, "Not Received")
+    if items == 0
+      "Roster not started"
+    else
+      if not_received.size == 0
+        "Covenants complete"
+      else
+        "Incomplete: missing #{not_received.size} of #{items}"
+      end
+    end
+  end
 end

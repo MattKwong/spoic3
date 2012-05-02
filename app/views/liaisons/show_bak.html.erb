@@ -20,33 +20,33 @@
       </div>
    <% end %>
 </div>
-<!--&lt;!&ndash;Original Request Section &ndash;&gt;-->
-            <!--<div class="panel">-->
-                <!--<h3>Original Request Information</h3>-->
-                <!--<div class="panel_contents">-->
-                    <!--<table border="0" cellspacing="0" cellpadding="0">-->
-                        <!--<thead>-->
-                            <!--<tr>-->
-                                <!--<th>Group Name</th>-->
-                                <!--<th>Youth</th>-->
-                                <!--<th>Counselors</th>-->
-                                <!--<th>Total</th>-->
-                                <!--<th>Date submitted</th>-->
-                            <!--</tr>-->
-                        <!--</thead>-->
+<!--Original Request Section -->
+            <div class="panel">
+                <h3>Original Request Information</h3>
+                <div class="panel_contents">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <thead>
+                            <tr>
+                                <th>Group Name</th>
+                                <th>Youth</th>
+                                <th>Counselors</th>
+                                <th>Total</th>
+                                <th>Date submitted</th>
+                            </tr>
+                        </thead>
                         <tbody><% @screen_info[:registration_info].each do |g| %>
-                            <!--<tr>-->
-                                <!--<td><%= g.name %></td>-->
-                                <!--<td><%= g.requested_youth %></td>-->
-                                <!--<td><%= g.requested_counselors %></td>-->
-                                <!--<td><%= g.requested_total %></td>-->
-                                <!--<td><%= g.created_at.strftime("%m/%d/%y") %></td>-->
-                            <!--</tr>-->
-                        <!--<% end %>-->
-                        <!--</tbody>-->
-                    <!--</table>-->
-                <!--</div>-->
-            <!--</div>-->
+                            <tr>
+                                <td><%= g.name %></td>
+                                <td><%= g.requested_youth %></td>
+                                <td><%= g.requested_counselors %></td>
+                                <td><%= g.requested_total %></td>
+                                <td><%= g.created_at.strftime("%m/%d/%y") %></td>
+                            </tr>
+                        <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 <!--Current Schedule Section -->
             <div class="panel">
                 <h3>Current Schedule Group Information</h3>

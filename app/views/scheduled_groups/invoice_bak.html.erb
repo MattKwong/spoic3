@@ -71,12 +71,6 @@
                            <td><%= number_to_currency(@screen_info[:invoice_data][:final_payment_amount]) %></td>
                        </tr>
                        <tr>
-                            <td>Net Adjustments</td>
-                            <td></td>
-                            <td></td>
-                            <td><%= number_to_currency(@screen_info[:invoice_data][:adjustment_total]) %></td>
-                       </tr>
-                       <tr>
                            <td>Total</td>
                            <td></td>
                            <td></td>
@@ -106,7 +100,13 @@
                            <td><%= number_to_currency(@screen_info[:invoice_data][:final_late_payment_amount]) %></td>
                          </tr>
                        <% end %>
-                        <tr>
+                       <tr>
+                           <td>Less Adjustments</td>
+                           <td></td>
+                           <td></td>
+                           <td><%= number_to_currency(@screen_info[:invoice_data][:adjustment_total]) %></td>
+                       </tr>
+                       <tr>
                            <td>Balance Due</td>
                            <td></td>
                            <td></td>
