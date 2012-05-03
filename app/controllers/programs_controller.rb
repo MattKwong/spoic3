@@ -17,7 +17,7 @@ class ProgramsController < ApplicationController
   #end
 
  def index
-    @title = "Programs"
+    @page_title = "Programs"
     program_user = ProgramUser.find_by_user_id(current_admin_user.id)
     if current_admin_user.staff?
       @active_programs = Program.find(program_user.program_id)
@@ -27,9 +27,8 @@ class ProgramsController < ApplicationController
   end
 
   def show
-    @title = @program.name
+    @page_title = @program.name
     @sessions = @program.to_current
-    logger.debug @sessions
     @budget_type_id = BudgetItemType.find_by_name('Food').id
     @menu_actions = []
     unless params[:scope].nil? || params[:scope] == 'All'
@@ -40,7 +39,7 @@ class ProgramsController < ApplicationController
   end
 
   def edit
-    @title = "Editing: #{@program.name}"
+    @page_title = "Editing: #{@program.name}"
   end
 
   def update
@@ -48,7 +47,7 @@ class ProgramsController < ApplicationController
       flash[:success] = "#{@program.name} updated successfully"
       redirect_to @program
     else
-      @title = "Editing: #{@program.name}"
+      @page_title = "Editing: #{@program.name}"
       render :edit
     end
   end

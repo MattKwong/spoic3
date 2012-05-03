@@ -44,14 +44,13 @@
             </li>
             <li class="has_nested" ><a href='#'>SiteManager</a>
                <ul>
-                  <li><%= link_to "All Sites", ops_pages_show_path  %></li>
-                  <% Program.current.each do |p|  %>
-                    <li class='has_nested' ><a href='#'><%= p.name %></a>
-                      <ul>
-                        <li><%= link_to "Vendors", site_vendors_path(p.site) %></li>
-                      </ul>
-                      <li><%= link_to p.name, p %></li>
-                  <% end %>
+                 <li><%= link_to "All Sites", ops_pages_show_path  %></li>
+                 <li><%= link_to "Vendors", vendors_path %></li>
+                 <li><%= link_to "Items", items_path %></li>
+                 <li><%= link_to "Purchases", purchases_path %></li>
+                 <li><%= link_to "Reports", staff_report_path %></li>
+                 <li><%= link_to "Projects", projects_path %></li>
+                 <li><%= link_to "Food Inventories", food_inventories_path %></li>
                </ul>
             </li>
       <% end %>

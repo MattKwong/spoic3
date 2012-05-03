@@ -1,21 +1,21 @@
 class PurchasesController < ApplicationController
-  layout '_ops_layout'
+  layout 'admin_layout'
   load_and_authorize_resource :program
   load_and_authorize_resource :purchase, :through => :program, :shallow => true
 
   def index
     redirect_to program_purchases_path(current_user.current_program) if (@program.nil? && cannot?(:manage, Purchase))
     @title = @program.nil? ? "Purchases" : "Purchases for #{@program}"
-    unless @program.nil?
-      @menu_actions = [{:name => "New Purchase", :path => new_program_purchase_path(@program)}]
-      @purchases = @program.purchases.accessible_by(current_ability, :index).page params[:page]
-    else
-      @purchases = Purchase.accessible_by(current_ability, :index).page params[:page]
-    end
+    #unless @program.nil?
+    #  @menu_actions = [{:name => "New Purchase", :path => new_program_purchase_path(@program)}]
+    #  @purchases = @program.purchases.accessible_by(current_ability, :index).page params[:page]
+    #else
+    #  @purchases = Purchase.accessible_by(current_ability, :index).page params[:page]
+    #end
   end
 
   def new
-    @title = "New Purchase"
+    @page_title = "New Purchase"
     @purchase.program = @program
     @menu_actions = [{:name => "Cancel", :path => program_purchases_path(@program)}]
     if @program.site.vendors.empty?
@@ -38,7 +38,7 @@ class PurchasesController < ApplicationController
   end
 
   def show
-    @title = "#{@purchase.vendor.name} #{@purchase.date}"
+    @page_title = "#{@purchase.vendor.name} #{@purchase.date}"
     if( @purchase.program.food_inventories.where(:date => @purchase.date).count != 0)
       flash.now[:notice] = "An inventory already exists for this date.  Any items added to this purchase will be treated as being purchased after the inventory was taken"
     end
@@ -48,7 +48,7 @@ class PurchasesController < ApplicationController
   end
 
   def edit
-    @title = "Editing #{@purchase.vendor} #{@purchase.date}"
+    @page_title = "Editing #{@purchase.vendor} #{@purchase.date}"
   end
 
   def update
@@ -56,7 +56,7 @@ class PurchasesController < ApplicationController
       flash[:success] = "Purchase updated successfully"
       redirect_to @purchase
     else
-      @title = "Editing #{@purchase.vendor} #{@purchase.date}"
+      @page_title = "Editing #{@purchase.vendor} #{@purchase.date}"
       render :edit
     end
   end

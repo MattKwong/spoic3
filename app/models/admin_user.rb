@@ -76,7 +76,7 @@ class AdminUser < ActiveRecord::Base
     end
 
     def slc?
-      if self.staff?
+      if self.field_staff?
         program_user.job.job_type.slc?
       else
         false
@@ -84,7 +84,7 @@ class AdminUser < ActiveRecord::Base
     end
 
     def sd?
-      if self.staff?
+      if self.field_staff?
         program_user.job.job_type.sd?
       else
         false
@@ -92,7 +92,7 @@ class AdminUser < ActiveRecord::Base
     end
 
     def cook?
-      if self.staff?
+      if self.field_staff?
         program_user.job.job_type.cook?
       else
         false
@@ -100,7 +100,7 @@ class AdminUser < ActiveRecord::Base
     end
 
     def construction?
-      if self.staff?
+      if self.field_staff?
         program_user.job.job_type.construction?
       else
         false

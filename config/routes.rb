@@ -32,7 +32,7 @@ Spoic3::Application.routes.draw do
       end
     resources :periods, :shallow => true
     resources :purchases, :shallow => true do
-      resources :item_purchases, :shallow => true
+    resources :item_purchases, :shallow => true
     end
     resources :food_inventories, :shallow => true
     resources :items, :shallow => true
@@ -47,7 +47,7 @@ Spoic3::Application.routes.draw do
   resources :food_inventories, :only => [:index]
   resources :items
   resources :projects
-  resources :material_item_estimateds, :only => [:index]
+  resources :material_item_estimateds
   resources :material_item_delivereds, :only => [:index]
   resources :labor_items, :only => [:index]
   resources :standard_items

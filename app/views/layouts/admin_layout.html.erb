@@ -5,6 +5,9 @@
     <%= favicon_link_tag %>
     <%= csrf_meta_tag %>
     <%= render 'layouts/stylesheets' %>
+    <%= javascript_include_tag '01.js' %>
+    <%= javascript_include_tag :defaults %>
+
   </head>
   <body class = logged_in>
   <div class="wrapper">
@@ -23,7 +26,6 @@
     </div>
     <div class="flashes">
       <% if flash.count > 0 %>
-      <% logger.debug flash.inspect %>
         <% flash.each do |key, value| %>
            <% if key.to_s == 'notice' %>
              <div class="flash flash_notice"><%= value %></div>
@@ -33,16 +35,16 @@
         <% end %>
       <% end %>
     </div>
-	<section class="round">
-<!--
-      <div id="active_admin_content" >
+	<section class="round container">
+
+
         <div id="main_content_wrapper">
           <div id="main_content">
--->
+
             <%= yield %>
-      <!--    </div>
+          </div>
         </div>
-      </div>-->
+
     </section>
   </div>
   <%= render 'layouts/footer' %>

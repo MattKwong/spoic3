@@ -3,9 +3,10 @@
         add_material_item_path(@material_item_delivered.id)
                 : new_material_item_delivered(@material_item_delivered.project )) do |form| %>
   <%= form.inputs do %>
-    <h3>Deliver or material</h3>
+    <h3>Deliver or return material</h3>
     <%= form.input :item, :collection => @item_list,
-                            :prompt => "Select an item",
+                            #:prompt => "Select an item",
+                            :include_blank => false,
                             :hint => "Items must be estimated for project before delivery.",
                            :input_html => { :class => "jq-combo" } %>
      <%= form.input :delivered_by, :as => :select, :collection => options_for_select(@user_list, current_admin_user.id),

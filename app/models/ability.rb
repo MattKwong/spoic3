@@ -36,10 +36,12 @@ class Ability
           :id => program_id
       can :index, Item
       can :manage, Item, :program_id => program.id
+      can :read, Item
       can :manage, Program, :id => program_id
       can :manage, Purchase, :program_id => program_id
       can :report, Program
       can :manage, Site, :id => program.site_id
+
       can :manage, ItemPurchase
       if user.cook? || user.sd?
         can [:read, :create, :destroy, :update], FoodInventory, :program_id => program.id

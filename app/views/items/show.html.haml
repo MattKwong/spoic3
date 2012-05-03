@@ -1,35 +1,43 @@
-.span-12.properties
-  %dl
-    %dt Name
-    %dd= @item.name
-    %dt Description
-    %dd= @item.description
-    %dt Type
-    %dd= @item.item_type.name
-    %dt Category
-    %dd= @item.item_category.name
-    %dt Unit
-    %dd= @item.base_unit
-    %dt Default Taxed
-    %dd= @item.default_taxed ? "Yes" : "No"
+.group-container-clear
+  .span-8.properties
+    %dl
+      %dt Name
+      %dd= @item.name
+      %dt Description
+      %dd= @item.description
+      %dt Type
+      %dd= @item.item_type.name
 
-.span-12.last.properties
-  %dl
-    %dt Total Purchased
-    %dd #{(@purchases.map &:total_base_units).sum} #{@item.base_unit}
-    %dt Average Price
-    %dd
-      = "#{number_to_currency(@avg_price)} #{@item.base_unit}" if @avg_price
-      = "N/A" unless @avg_price
-    %dt Total Consumed
-    %dd
-      = sprintf '%.2f', (@inventories.map &:consumed).sum
-      = @item.base_unit
+  .span-8.properties
+    %dl
+      %dt Category
+      %dd= @item.item_category.name
+      %dt Unit
+      %dd= @item.base_unit
+      %dt Default Taxed
+      %dd= @item.default_taxed ? "Yes" : "No"
+      -if can? :edit, @item
+        %dlt= link_to "Edit Item", edit_item_path(@item)
+
+  .span-8.last.properties
+    %dl
+      %dt Total Purchased
+      %dd #{(@item.item_purchases.map &:total_base_units).sum} #{@item.base_unit}
+      %dt Average Price
+      %dd
+        = "#{number_to_currency(@avg_price)} #{@item.base_unit}" if @avg_price
+        = "N/A" unless @avg_price
+      %dt Total Consumed
+      %dd
+        = sprintf '%.2f', (@item.food_inventory_food_items.map &:consumed).sum
+        = @item.base_unit
+      -if can? :edit, @item
+        %dlt= link_to "Delete Item", item_path(@item.id), :method => :delete, :confirm => "Are you sure you want to delete this item? This action cannot be undone."
 
 .span-12.prepend-top
   %h3 Purchases
-  .tablewrapper
-    %table
+  .index_as_table
+    %table.index_table
       %thead
         %tr
           %th Program
@@ -37,20 +45,20 @@
           %th Quantity
           %th Price
       %tbody
-        - @purchases.each do |purchase|
+        - @item.item_purchases.each do |purchase|
           %tr
             %td= purchase.purchase.program
             %td= purchase.purchase.date
             %td #{purchase.total_base_units} #{@item.base_unit}
             %td #{number_to_currency(purchase.price_per_base_unit.abs)} / #{@item.base_unit}
-        - unless @purchases.any?
+        - unless @item.item_purchases.any?
           %tr
             %td{:colspan => 4, :style => 'text-align: center;'} No Purchases
 
 .span-12.prepend-top.last
   %h3 Inventories
-  .tablewrapper
-    %table
+  .index_as_table
+    %table.index_table
       %thead
         %tr
           %th Program
@@ -58,12 +66,12 @@
           %th Consumed
           %th Total Price
       %tbody
-        - @inventories.each do |inventory|
+        - @item.food_inventory_food_items.each do |inventory|
           %tr
             %td= inventory.food_inventory.program
             %td= inventory.food_inventory.date
-            %td #{sprintf '%.2f', inventory.consumed} #{@food_item.base_unit}
-            %td= number_to_currency(inventory.total_consumed_Cost)
-      - unless @inventories.any?
+            %td #{sprintf '%.2f', inventory.consumed} #{@item.base_unit}
+            %td= number_to_currency(inventory.total_consumed_cost)
+      - unless @item.food_inventory_food_items.any?
         %tr
           %td{:colspan => 4, :style => 'text-align: center;'} No Inventories

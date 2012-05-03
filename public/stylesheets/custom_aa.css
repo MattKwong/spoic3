@@ -1,3 +1,11 @@
+#header ul#tabs > ul.second_level {
+    display: inline-block;
+    font-size: 1em;
+    margin-right: 40px;
+    position: absolute;
+    color: red;
+}
+
 #logo {
     float:left;
     margin:0 auto;

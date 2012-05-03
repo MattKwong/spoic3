@@ -1,5 +1,5 @@
 class ItemPurchase < ActiveRecord::Base
-  attr_accessible :item_id, :purchase_id, :quantity, :size, :price, :taxable, :uom
+  attr_accessible :item_id, :purchase_id, :quantity, :size, :price, :taxable, :uom, :total_base_units
 
 
   belongs_to :item

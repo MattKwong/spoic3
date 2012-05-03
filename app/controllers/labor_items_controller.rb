@@ -28,7 +28,7 @@ class LaborItemsController < ApplicationController
       flash[:warning] = "Errors prevented this record from being saved."
       @title = "#{@project.program.short_name}: Record Labor for Project: #{@project.name}"
       @user_list = Hash[@project.program.program_users.map {|u| ["#{u.admin_user.name}", u.admin_user.id ]}]
-      render "labor_items/new"
+      redirect_to @project
     end
   end
 
@@ -51,24 +51,19 @@ class LaborItemsController < ApplicationController
     result
   end
 
-  def check_for_cancel
-    if params[:cancel] == "Cancel"
-      redirect_to Project.find(params[:labor_item][:project_id])
-    end
-  end
 
   def show
   end
 
   def destroy
     @labor_item = LaborItem.find(params[:id])
-    return_path = project_path(@labor_item.project_id)
+    @project = Project.find(@labor_item.project_id)
     if @labor_item.destroy
       flash[:success] = "These volunteer days have been removed successfully"
-      redirect_to return_path
     else
       flash[:error] = "Could not remove volunteer days"
     end
+    redirect_to @project
   end
 
   def update

@@ -25,7 +25,6 @@ class ItemPurchasesController < ApplicationController
   end
 
   def destroy
-
     return_path = purchase_path(:id => @item_purchase.purchase_id)
     if @item_purchase.destroy
       flash[:success] = "#{@item_purchase.item} removed successfully"
