@@ -32,7 +32,7 @@ Spoic3::Application.routes.draw do
       end
     resources :periods, :shallow => true
     resources :purchases, :shallow => true do
-    resources :item_purchases, :shallow => true
+      resources :item_purchases, :shallow => true
     end
     resources :food_inventories, :shallow => true
     resources :items, :shallow => true
@@ -41,8 +41,8 @@ Spoic3::Application.routes.draw do
     get :activation
   end
 
-
-  resources :vendors, :only => [:index]
+  match "items/new", :to => 'items#new', :as => 'add_item'
+  resources :vendors #, :only => [:index]
   resources :purchases, :only => [:index]
   resources :food_inventories, :only => [:index]
   resources :items
@@ -54,11 +54,13 @@ Spoic3::Application.routes.draw do
   match "material_item_estimated/add_standard/:id", :to => 'material_item_estimateds#add_standard', :as => 'add_standard_item'
 
   #reports
-  get "staff_report", :controller => 'staff_report', :action => 'show', :as => 'staff_report'
-  get "site_reports/food_inventory/:id", :controller => 'site_reports', :action => 'food_inventory', :as => 'food_inventory_report'
-  get "site_reports/food_budget/:id", :controller => 'site_reports', :action => :food_budget, :as => 'food_budget_report'
-  get "site_reports/food_consumption/:id", :controller => :'site_reports', :action => :food_consumption, :as => 'food_consumption_report'
-  get "site_reports/session/:id", :controller => 'site_reports', :action => :session, :as => 'session_report'
+
+  get "staff_reports", :controller => :staff_reports, :action => 'show', :as => 'staff_reports'
+  get "staff_reports/food_inventory/:id", :controller => :staff_reports, :action => 'food_inventory', :as => 'food_inventory_report'
+  get "staff_reports/food_budget/:id", :controller => :staff_reports, :action => :food_budget, :as => 'food_budget_report'
+  get "staff_reports/food_consumption/:id", :controller => :staff_reports, :action => :food_consumption, :as => 'food_consumption_report'
+  get "staff_reports/session/:id", :controller => :staff_reports, :action => :session, :as => 'session_report'
+
 
   match "material_item_delivereds/add/:id", :to => 'material_item_delivereds#new', :as => 'deliver_project'
   match "material_item_delivereds", :to => 'material_item_delivereds#create', :as => 'add_material_item'

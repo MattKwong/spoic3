@@ -48,7 +48,7 @@
                  <li><%= link_to "Vendors", vendors_path %></li>
                  <li><%= link_to "Items", items_path %></li>
                  <li><%= link_to "Purchases", purchases_path %></li>
-                 <li><%= link_to "Reports", staff_report_path %></li>
+                 <li><%= link_to "Reports", staff_reports_path %></li>
                  <li><%= link_to "Projects", projects_path %></li>
                  <li><%= link_to "Food Inventories", food_inventories_path %></li>
                </ul>
@@ -61,7 +61,7 @@
                       <li><%= link_to "Vendors", site_vendors_path(current_admin_user.program_user.program.site) %></li>
                       <li><%= link_to "Items", program_items_path(current_admin_user.program_user.program) %></li>
                       <li><%= link_to "Purchases", program_purchases_path(current_admin_user.program_user.program) %></li>
-                      <li><%= link_to "Reports", staff_report_path %></li>
+                      <li><%= link_to "Reports", staff_reports_path %></li>
                       <li><%= link_to "Projects", program_projects_path(current_admin_user.program_user.program) %></li>
                       <li><%= link_to "Food Inventories", program_food_inventories_path(current_admin_user.program_user.program) %></li>
                   </ul>

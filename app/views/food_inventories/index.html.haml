@@ -1,28 +1,32 @@
-.paginator.append-bottom
-  %span.wrapper
-    = paginate @food_inventories
+#active_admin_content
+  .paginator.append-bottom
+    %span.wrapper
+      = paginate @food_inventories
 
-.tablewrapper
-  %table
-    %thead
-      %tr
-        %th= "Program" if @program.nil?
-        %th Date
-        %th Previous Inventory Value
-        %th Value Inventoried
-        %th Value Consumed
-        %th
-    %tbody
-      - @food_inventories.each do |inventory|
-        %tr
-          %td= link_to inventory.program, program_food_inventories_path(inventory.program) if @program.nil?
-          %td= inventory.date
-          %td= number_to_currency(inventory.value_previously_in_inventory)
-          %td= number_to_currency(inventory.value_in_inventory)
-          %td= number_to_currency(inventory.value_consumed)
-          %td= link_to "view", inventory
+  .index_content
+    .index_as_table
+      %table.index_table
+        %thead
+          %tr
+            -if @program.nil?
+              %th= "Program"
+            %th Date
+            %th Previous Inventory Value
+            %th Value Inventoried
+            %th Value Consumed
+            %th
+        %tbody
+          - @food_inventories.each do |inventory|
+            %tr
+              -if @program.nil?
+                %td= link_to inventory.program, program_food_inventories_path(inventory.program)
+              %td= inventory.date
+              %td= number_to_currency(inventory.value_previously_in_inventory)
+              %td= number_to_currency(inventory.value_in_inventory)
+              %td= number_to_currency(inventory.value_consumed)
+              %td= link_to "view", inventory
 
-.paginator.prepend-top
-  %span.wrapper
-    = paginate @food_inventories
+  .paginator.prepend-top
+    %span.wrapper
+      = paginate @food_inventories
 

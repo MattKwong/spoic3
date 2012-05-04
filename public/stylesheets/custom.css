@@ -29,7 +29,7 @@ div.prepend-top, .prepend-top {margin-top:1.5em;}
 dl {margin:0 0 1.5em 0;}
 dl dt {font-weight:bold;}
 dd {margin-left:1.5em;}
-table {margin-bottom:1.4em;width:100%;}
+table {margin-bottom:0em;width:100%;}
 th {font-weight:bold;}
 .container {
     margin: 0 auto;
@@ -134,7 +134,7 @@ td.number {
 }
 .clear {clear:both}
 div.group-container {
-    border: 3px solid #9FBECD;
+    border: 3px solid #93A9BE;
     overflow: auto;
     width:100%;
     border-top-left-radius: 3px;

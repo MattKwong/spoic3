@@ -18,6 +18,9 @@ class ItemsController < ApplicationController
 
   def new
     @page_title = "New Item"
+    logger.debug @page_title
+    @item = Item.new
+    @item.program_id= @program.id if @program
   end
 
   def create
@@ -63,9 +66,27 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.destroy
-      flash[:success] = "#{@item.name} deleted"
+    if @item.item_purchases.any?
+      flash[:notice] = "Cannot remove this item because purchases have been made."
+      else if @item.food_inventory_food_items.any?
+        flash[:notice] = "Cannot remove this item because inventories for it exist"
+        else if @item.material_item_delivereds.any?
+          flash[:notice] = "Cannot remove this item because deliveries have been made."
+             else if @item.material_item_estimateds.any?
+               flash[:notice] = "Cannot remove this item because planned items exist."
+                 else if @item.standard_items.any?
+                    flash[:notice] = "Cannot remove this item because standard project items exist."
+                      else if @item.destroy
+                        flash[:success] = "#{@item.name} successfully deleted"
+                         else
+                        flash[:error] = "Unknown problem occurred deleting this item."
+                      end
+                 end
+             end
+        end
+      end
     end
+
     redirect_to items_path
   end
 

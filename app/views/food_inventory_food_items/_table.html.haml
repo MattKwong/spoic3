@@ -1,22 +1,24 @@
-.tablewrapper
-  %table
-    %thead
-      %tr
-        %th Item Name
-        %th In Inventory
-        %th New Amount
-        %th Consumed
-        %th Avg Cost
-        %th Total Consumed Cost
-    
-    %tbody
-      = render food_inventory_food_items
+#active_admin_content
+  .index_content
+    .index_as_table
+      %table.index_table
+        %thead
+          %tr
+            %th Item Name
+            %th In Inventory
+            %th New Amount
+            %th Consumed
+            %th Avg Cost
+            %th Total Consumed Cost
 
-    %tfoot
-      %tr
-        %th #{food_inventory_food_items.count} items inventoried
-        %th
-        %th
-        %th
-        %th
-        %th= number_to_currency (food_inventory_food_items .map &:total_price).sum
+        %tbody
+          = render food_inventory_food_items
+
+        %tfoot
+          %tr
+            %th #{food_inventory_food_items.count} items inventoried
+            %th
+            %th
+            %th
+            %th
+            %th= number_to_currency (food_inventory_food_items .map &:total_price).sum

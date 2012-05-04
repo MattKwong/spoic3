@@ -1,12 +1,12 @@
 class FoodInventoriesController < ApplicationController
-  layout '_ops_layout'
+  layout 'admin_layout'
   load_and_authorize_resource :program
   load_and_authorize_resource :food_inventory, :through => :program, :shallow => true
 
   def index
     authorize! :see_food_inventories_for, @program unless @program.nil?
     redirect_to program_food_inventories_path(current_admin_user.current_program) if ( @program.nil? && cannot?(:manage, FoodInventory))
-    @title = @program.nil? ? "Food Inventories" : "Food Inventories for #{@program}"
+    @page_title = @program.nil? ? "Food Inventories" : "Food Inventories for #{@program}"
     unless @program.nil?
       @menu_actions = [{:name => "New", :path => new_program_food_inventory_path(@program) }] if can? :create, FoodInventory
     end
@@ -14,7 +14,7 @@ class FoodInventoriesController < ApplicationController
   end
 
   def show
-    @title = "#{@food_inventory.date} Food Inventory"
+    @page_title = "#{@food_inventory.date} Food Inventory"
     @menu_actions = []
     @menu_actions << {:name => "Edit", :path => edit_food_inventory_path(@food_inventory) } if can? :edit, @food_inventory
     @menu_actions << {:name => "Delete",
@@ -27,7 +27,7 @@ class FoodInventoriesController < ApplicationController
   end
 
   def new
-    @title = "New Food Inventory"
+    @page_title = "New Food Inventory"
     @food_inventory.date = Date.today
   end
 
@@ -36,13 +36,13 @@ class FoodInventoriesController < ApplicationController
       flash[:success] = "Food inventory created successfully"
       redirect_to @food_inventory
     else
-      @title = "New Food Inventory"
+      @page_title = "New Food Inventory"
       render :new
     end
   end
 
   def edit
-    @title = "Editing #{@food_inventory.date} Food Inventory"
+    @page_title = "Editing #{@food_inventory.date} Food Inventory"
     @program = @food_inventory.program
     (@program.purchased_food_items - @food_inventory.items).each do
         |food_item| @food_inventory.food_inventory_food_items.build(:item_id => food_item.id).update_in_inventory
@@ -50,12 +50,12 @@ class FoodInventoriesController < ApplicationController
   end
 
   def update
-    logger.debug @food_inventory.inspect
+
     if @food_inventory.update_attributes(params[:food_inventory])
       flash[:success] = "Food inventory updated successfully"
       redirect_to @food_inventory
     else
-      @title = "Editing #{@food_inventory.date} Food Inventory"
+      @page_title = "Editing #{@food_inventory.date} Food Inventory"
       render :edit
     end
   end

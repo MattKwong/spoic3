@@ -1,3 +1,16 @@
+body.logged_in .flash {
+    background: #93A9BE;
+    border-bottom: 1px solid #EEE098;
+    color: black;
+    font-size: 1.1em;
+    font-weight: normal;
+    line-height: 1em;
+    margin-bottom: 10px;
+    padding: 13px 30px 11px;
+    position: relative;
+    text-shadow: none;
+    top: -15px;
+}
 #header ul#tabs > ul.second_level {
     display: inline-block;
     font-size: 1em;
@@ -48,11 +61,22 @@ h2 {
     padding-top: 5px;
     padding-left: 5px;
 }
-
+thead th {
+    background: -moz-linear-gradient(-90deg, #93A9BE, #4D7194) repeat scroll 0 0 transparent;
+    border-bottom: 1px solid #4D7194;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
+}
+tfoot td, th {
+    background: -moz-linear-gradient(-90deg, #93A9BE, #4D7194) repeat scroll 0 0 transparent;
+    border-bottom: 1px solid #4D7194;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
+    /*background: none repeat scroll 0 0 #4D7194;*/
+}
 caption, th, td {
   text-align: left;
   font-weight: normal;
   /*vertical-align: middle; */
+
     border-bottom: 1px solid #E8E8E8;
         padding: 8px 12px 6px;
         vertical-align: top;

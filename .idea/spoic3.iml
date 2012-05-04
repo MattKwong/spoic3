@@ -69,6 +69,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rails (v3.0.1, ruby-1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails3-jquery-autocomplete (v1.0.6, ruby-1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="railties (v3.0.1, ruby-1.9.2-p290) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rake (v0.8.7, ruby-1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="responders (v0.6.5, ruby-1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec (v2.0.1, ruby-1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-core (v2.0.1, ruby-1.9.2-p290) [gem]" level="application" />

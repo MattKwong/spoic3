@@ -1,0 +1,23 @@
+#active_admin_content
+  .index_content
+    .index_as_table
+      %table.index_table
+        %thead
+          %tr
+            %th Session
+            %th Start Date
+            %th Session Participants
+            %th Cumulative Participants
+            %th Session Purchases
+            %th Cumulative Purchases
+            %th Session Consumed
+            %th Cumulative Consumed
+            %th Session Consumed Cost/Participant
+            %th Program Consumed Cost/Participant
+
+        %tbody
+          = render 'staff_reports/food_budget_items'
+
+
+
+

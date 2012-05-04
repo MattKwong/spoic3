@@ -1,129 +1,137 @@
-.span-8.properties
-  %dl
-    %dt Site
-    %dd= @program.site.name
+#active_admin_content
+  .span-8.properties
+    %dl
+      %dt Site
+      %dd= @program.site.name
 
-.span-8.properties
-  %dl.properties
-    %dt Program Type
-    %dd= @program.program_type.name
+  .span-7.properties
+    %dl.properties
+      %dt Program Type
+      %dd= @program.program_type.name
+      -if can? :create, Item
+        %dlt= link_to "Create an New Item", new_program_item_path(@program)
 
-.span-8.last.properties
-  %dl.properties
-    %dt Start Date
-    %dd= @program.start_date
+  .span-7.last.properties
+    %dl.properties
+      %dt Start Date
+      %dd= @program.start_date
+      -if can? :create, Vendor
+        %dlt= link_to "Create an New Vendor", new_site_vendor_path(@program.site)
+  .span-24.prepend-top
+    .group-header
+      .plus-minus
+        = link_to image_tag('plusminus.png', :id => 'budget-toggle')
+      %h3 Budget
 
-.span-24.prepend-top
-  .group-header
-    .plus-minus
-      = link_to image_tag('plusminus.png', :id => 'budget-toggle')
-    %h3 Budget
-  .tablewrapper
-    %table
-      %thead
-        %tr
-          %th Category
-          %th Budgeted
-          %th Spent to Date
-          %th Spent to Date with Tax
-          %th Amount Remaining
-      %tbody#budget-info
-        = render 'budget_items'
+    .group-container
+      .index_as_table
+        %table
+          %thead
+            %tr
+              %th Category
+              %th Budgeted
+              %th Spent to Date
+              %th Spent to Date with Tax
+              %th Amount Remaining
+          %tbody#budget-info
+            = render 'budget_items'
 
-.span-24.prepend-top
-  .group-header
-    .plus-minus
-      = link_to image_tag('plusminus.png', :id => 'food-snapshot-toggle')
-    %h3 Food Program Snapshot
-  .tablewrapper
-    %table
-      %thead
-        %tr
-          %th Session
-          %th Start Date
-          %th Session Participants
-          %th Cumulative Participants
-          %th Session Purchases
-          %th Cumulative Purchases
-          %th Session Consumed
-          %th Cumulative Consumed
-          %th Session Consumed Cost/Participant
-          %th Program Consumed Cost/Participant
-      %tbody#food-snapshot-info
-        = render 'site_reports/food_budget_items'
+  .span-24.prepend-top
+    .group-header
+      .plus-minus
+        = link_to image_tag('plusminus.png', :id => 'food-snapshot-toggle')
+      %h3 Food Program Snapshot
+    .group-container
+      .index_as_table
+        %table
+          %thead
+            %tr
+              %th Session
+              %th Start Date
+              %th Session Participants
+              %th Cumulative Participants
+              %th Session Purchases
+              %th Cumulative Purchases
+              %th Session Consumed
+              %th Cumulative Consumed
+              %th Session Consumed Cost/Participant
+              %th Program Consumed Cost/Participant
+          %tbody#food-snapshot-info
+            = render 'staff_reports/food_budget_items'
 
-.span-24.prepend-top
-  .group-header
-    .plus-minus
-      = link_to image_tag('plusminus.png', :id => 'purchases-toggle')
-    %h3 Purchases
-  -# Need to add scope button here to limit list to the most recent n purchases
-  -#= link_to 'Most recent 20', program_path(@program.id, :scope => '20')
-  -#= link_to 'All', '/'
+  .span-24.prepend-top
+    .group-header
+      .plus-minus
+        = link_to image_tag('plusminus.png', :id => 'purchases-toggle')
+      %h3 Purchases
+    -# Need to add scope button here to limit list to the most recent n purchases
+    -#= link_to 'Most recent 20', program_path(@program.id, :scope => '20')
+    -#= link_to 'All', '/'
 
-  .div#purchases-info
-    .tablewrapper
-      = render 'purchases/table', :purchases => @program.purchases(@scope)
+    #purchases-info
+      .group-container
 
-.span-24.prepend-top
-  .group-header
-    .plus-minus
-      = link_to image_tag('plusminus.png', :id => 'projects-toggle')
-    %h3 Projects
-  .div#projects-info
-    .tablewrapper
-      %table
-        %thead
-          %tr
-            %th Project Name
-            %th Type
-            %th Stage
-            %th Estimated Cost
-            %th Actual Cost
-            %th Amount Remaining
-            %th Estimated Days
-            %th Actual Days
-            %th Remaining Days
-        = render @program.projects
+        = render 'purchases/table', :purchases => @program.purchases(@scope)
 
-.span-24.prepend-top
-  .group-header
-    .plus-minus
-      = link_to image_tag('plusminus.png', :id => 'sessions-toggle')
-    %h3 Sessions
-  .div#sessions-info
-    .tablewrapper
-      %table
-        %thead
-          %tr
-            %th
-            %th Start Date
-            %th End Date
-            %th Type
-            %th Scheduled Adults
-            %th Scheduled Youth
-            %th Total
-        = render @program.sessions
+  .span-24.prepend-top
+    .group-header
+      .plus-minus
+        = link_to image_tag('plusminus.png', :id => 'projects-toggle')
+      %h3 Projects
+    .div#projects-info
+      .group-container
+        %table
+          %thead
+            %tr
+              %th Project Name
+              %th Type
+              %th Stage
+              %th Estimated Cost
+              %th Actual Cost
+              %th Amount Remaining
+              %th Estimated Days
+              %th Actual Days
+              %th Remaining Days
+          = render @program.projects
 
-/<input type="submit" name="hideh1" value="Hide site tile" id="hideh1" />
-/%a(title=@title href=href) Stuff
+  .span-24.prepend-top
+    .group-header
+      .plus-minus
+        = link_to image_tag('plusminus.png', :id => 'sessions-toggle')
+      %h3 Sessions
+    .div#sessions-info
+      .group-container
+        %table
+          %thead
+            %tr
+              %th
+              %th Start Date
+              %th End Date
+              %th Type
+              %th Scheduled Adults
+              %th Scheduled Youth
+              %th Total
+          = render @program.sessions
+
+  /<input type="submit" name="hideh1" value="Hide site tile" id="hideh1" />
+  /%a(title=@title href=href) Stuff
 
 
-.span-24.prepend-top
-  .group-header
-    .plus-minus
-      = link_to image_tag('plusminus.png', :id => 'staff-toggle')
-    %h3 Staff
-  .div#staff-info
-    .tablewrapper
-      %table
-        %thead
-          %tr
-            %th Staff Name
-            %th Email
-            %th Phone
-            %th Job
-        = render @program.program_users.order("job_id")
+  .span-24.prepend-top
+    .group-header
+      .plus-minus
+        = link_to image_tag('plusminus.png', :id => 'staff-toggle')
+      %h3 Staff
+    .div#staff-info
+      .group-container
+        %table
+          %thead
+            %tr
+              %th Staff Name
+              %th Email
+              %th Phone
+              %th Job
+          = render @program.program_users.order("job_id")
 
 
 

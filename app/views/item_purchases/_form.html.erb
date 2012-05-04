@@ -9,5 +9,7 @@
     <%= form.input :size, :label => "Package Size", :hint => "Enter the size of the package of the item." %>
     <%= form.input :taxable, :hint => "Indicate if this item is taxable" %>
   <% end %>
-  <%= form.buttons %>
+    <% form.buttons do %>
+     <%= form.commit_button :label => "Add item to purchase" %>
+ <% end %>
 <% end %>

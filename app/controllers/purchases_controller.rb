@@ -5,19 +5,12 @@ class PurchasesController < ApplicationController
 
   def index
     redirect_to program_purchases_path(current_user.current_program) if (@program.nil? && cannot?(:manage, Purchase))
-    @title = @program.nil? ? "Purchases" : "Purchases for #{@program}"
-    #unless @program.nil?
-    #  @menu_actions = [{:name => "New Purchase", :path => new_program_purchase_path(@program)}]
-    #  @purchases = @program.purchases.accessible_by(current_ability, :index).page params[:page]
-    #else
-    #  @purchases = Purchase.accessible_by(current_ability, :index).page params[:page]
-    #end
+    @page_title = @program.nil? ? "Purchases" : "Purchases for #{@program}"
   end
 
   def new
     @page_title = "New Purchase"
     @purchase.program = @program
-    @menu_actions = [{:name => "Cancel", :path => program_purchases_path(@program)}]
     if @program.site.vendors.empty?
       flash[:notice] = "There are no vendors for #{@program.site.name}, please create one before creating a new purchase"
       redirect_to new_site_vendor_path(@program.site) 
@@ -32,7 +25,7 @@ class PurchasesController < ApplicationController
       flash[:success] = "Purchase created"
       redirect_to @purchase
     else
-      @title = "New purchase"
+      @page_title = "New purchase"
       render :new
     end
   end
@@ -42,9 +35,6 @@ class PurchasesController < ApplicationController
     if( @purchase.program.food_inventories.where(:date => @purchase.date).count != 0)
       flash.now[:notice] = "An inventory already exists for this date.  Any items added to this purchase will be treated as being purchased after the inventory was taken"
     end
-    @menu_actions = []
-    @menu_actions << {:name => "Edit", :path => edit_purchase_path(@purchase)} if can? :edit, @purchase
-    @menu_actions << {:name => "Delete", :path => purchase_path(@purchase), :method => :delete, :confirm => "Are you sure you want to delete this purchase? this action cannot be undone"} if can? :delete, @purchase
   end
 
   def edit
@@ -64,7 +54,11 @@ class PurchasesController < ApplicationController
   def destroy
     if @purchase.destroy
       flash[:success] = "Purchase successfully deleted"
-      redirect_to program_purchases_path(@purchase.program)
+      if current_admin_user.field_staff?
+        redirect_to program_purchases_path(current_user.current_program)
+      else
+        redirect_to purchases_path
+      end
     else
       flash[:error] = "Delete failed"
       redirect_to @purchase

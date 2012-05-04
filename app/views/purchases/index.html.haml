@@ -3,27 +3,33 @@
     %span.wrapper
       = paginate @purchases
 
-.tablewrapper
-  %table
-    %thead
-      %tr
-        - unless @program
-          %th Program
-        %th Vendor
-        %th Date
-        %th Total
-        %th
-    %tbody
-      - @purchases.each do |purchase|
-        %tr
-          - unless @program
-            %td= link_to purchase.program, program_purchases_path(purchase.program) 
-          %td= link_to purchase.vendor, purchase.vendor
-          %td= purchase.date
-          %td= purchase.total
-          %td= link_to "view", purchase
+#active_admin_content
+  .index_content
+    .index_as_table
+      %table.index_table
+        %thead
+          %tr
+            - unless @program
+              %th Program
+            %th Vendor
+            %th Date
+            %th Total
+            %th
+        %tbody
+          - @purchases.each do |purchase|
+            %tr
+              - unless @program
+                %td= link_to purchase.program, program_purchases_path(purchase.program)
+              %td= link_to purchase.vendor, purchase.vendor
+              %td= purchase.date
+              %td= purchase.total
+              %td= link_to "view", purchase
 
 - if @purchases.size > 20
   .paginator.append-bottom
     %span.wrapper
       = paginate @purchases
+.span-12.properties.last
+  %dl.properties
+    -if @program
+      %dlt= link_to "Add a New Purchase", new_program_purchase_path(@program)

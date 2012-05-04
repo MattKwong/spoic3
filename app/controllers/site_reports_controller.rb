@@ -1,5 +1,6 @@
 class SiteReportsController < ApplicationController
-  layout '_ops_layout'
+
+  layout 'admin_layout'
   before_filter :get_program, :except => :show
 #  load_and_authorize_resource
 

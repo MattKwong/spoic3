@@ -1,8 +1,0 @@
-<tr>
-  <td><%= link_to_if(can?(:read, food_inventory), food_inventory.date, food_inventory) %></td>
-  <td>Not Impl.</td>
-  <td>Not Impl.</td>
-  <td>
-    <%= link_to "edit", edit_food_inventory_path(food_inventory) if can? :edit, food_inventory %>
-  </td>
-</tr>

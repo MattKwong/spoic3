@@ -18,17 +18,15 @@
   %tr
     %th{:colspan => 2} Program Totals
     %th= cum_participants
-    %th
+    %th{:colspan => 2}
     %th= number_to_currency cum_food_purchased
     %th
     %th= number_to_currency cum_food_consumption
-    %th{:colspan => 3}
+    %th{:colspan => 2}
   %tr
-    %th{:style => "text-align:right;"} Total Budget:
+    %th{:colspan => 2, :style => "text-align:right;"} Total Budget:
     %th= number_to_currency @program.budget_item_budgeted(@budget_type_id)
-    %th{:colspan => 2}
-    %th{:style => "text-align:right;"} Budget Remaining:
+    %th{:colspan => 2,:style => "text-align:right;"} Budget Remaining:
     %th= number_to_currency @program.budget_item_remaining(@budget_type_id)
-    %th{:colspan => 2}
-    %th{:style => "text-align:right;"} Budgeted Cost/Participant:
+    %th{{:colspan => 3}, :style => "text-align:right;"} Budgeted Cost/Participant:
     %th= number_to_currency(@program.budget_item_budgeted(@budget_type_id) / @program.total)

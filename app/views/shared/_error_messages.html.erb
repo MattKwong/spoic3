@@ -1,10 +1,10 @@
-<% if @roster_item.errors.any? %>
+<% if object.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@roster_item.errors.count, "error") %>
+      <h2><%= pluralize(object.errors.count, "error") %>
         prohibited this item from being saved:</h2>
       <p>There were problems with the following fields:</p>
       <ul>
-        <% @roster_item.errors.full_messages.each do |msg| %>
+        <% object.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
         <% end %>
        </ul>
