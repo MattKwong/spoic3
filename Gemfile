@@ -11,7 +11,7 @@ gem 'simple-navigation'
 gem 'validates_timeliness'
 gem 'cancan'
 gem 'prawn_rails'
-gem 'bcrypt-ruby', :require => 'bcrypt'
+gem 'bcrypt-ruby'
 gem 'fastercsv'
 gem 'rspec-rails', :group => [:development, :test]
 gem 'rails3-jquery-autocomplete'
