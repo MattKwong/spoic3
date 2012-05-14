@@ -6,10 +6,9 @@
     <bookmark url="file://$PROJECT_DIR$/app/views/layouts/_ops_layout.html.haml" line="53" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="Gem modifications.">
-      <change type="DELETED" beforePath="C:\Users\Rick\railsprojects\ctab\Gemfile_back.lock" afterPath="" />
+    <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="">
+      <change type="MOVED" beforePath="C:\Users\Rick\railsprojects\ctab\Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile_back.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
     </list>
     <list id="6515e16b-01b0-44f6-bd49-9d9ce8271564" name="Failed commit: Default" comment="Added update of second payment fields in ScheduledGroup to payment controller code." />
     <ignored path="spoic3.iws" />
@@ -45,19 +44,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="72" selection-start="628" selection-end="628" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gemfile.lock" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Gemfile.lock">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="196" column="47" selection-start="4768" selection-end="4768" vertical-scroll-proportion="0.55028903">
+            <state line="30" column="72" selection-start="628" selection-end="628" vertical-scroll-proportion="0.5895954">
               <folding />
             </state>
           </provider>
@@ -1169,7 +1159,11 @@
       <created>1337034828889</created>
       <updated>1337034828889</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Gem modifications.">
+      <created>1337035092558</created>
+      <updated>1337035092558</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1373,16 +1367,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
+    <entry file="file://$PROJECT_DIR$/Gemfile_back.lock">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="72" selection-start="628" selection-end="628" vertical-scroll-proportion="0.0">
+        <state line="196" column="13" selection-start="4768" selection-end="4768" vertical-scroll-proportion="3.8520231">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile.lock">
+    <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="196" column="47" selection-start="4768" selection-end="4768" vertical-scroll-proportion="0.55028903">
+        <state line="30" column="72" selection-start="628" selection-end="628" vertical-scroll-proportion="0.5895954">
           <folding />
         </state>
       </provider>
