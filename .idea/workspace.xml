@@ -6,9 +6,8 @@
     <bookmark url="file://$PROJECT_DIR$/app/views/layouts/_ops_layout.html.haml" line="53" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="Gem modifications.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/admin/jobs.rb" />
+    <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\Users\Rick\railsprojects\ctab\Gemfile.lock" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="6515e16b-01b0-44f6-bd49-9d9ce8271564" name="Failed commit: Default" comment="Added update of second payment fields in ScheduledGroup to payment controller code." />
@@ -54,19 +53,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="job.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="job.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/job.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="37" selection-start="351" selection-end="351" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gemfile.lock" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Gemfile.lock">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="213" column="72" selection-start="5035" selection-end="5035" vertical-scroll-proportion="0.8265802">
+            <state line="18" column="37" selection-start="351" selection-end="351" vertical-scroll-proportion="0.53125">
               <folding />
             </state>
           </provider>
@@ -1204,7 +1194,11 @@
       <created>1337035733196</created>
       <updated>1337035733196</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Gem modifications.">
+      <created>1337036027594</created>
+      <updated>1337036027594</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1229,18 +1223,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3247191" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18504901" sideWeight="0.7213483" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3247191" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18504901" sideWeight="0.6752809" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28426966" sideWeight="0.80649114" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3251121" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21494183" sideWeight="0.21516165" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21139705" sideWeight="0.7213483" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21139705" sideWeight="0.6752809" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39910814" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27865168" sideWeight="0.994462" order="2" side_tool="false" content_ui="tabs" x="77" y="500" width="1633" height="304" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27865168" sideWeight="0.994462" order="2" side_tool="false" content_ui="tabs" x="77" y="500" width="1633" height="304" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32565284" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295964" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1414,14 +1408,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/job.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="37" selection-start="351" selection-end="351" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile.lock">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="213" column="72" selection-start="5035" selection-end="5035" vertical-scroll-proportion="0.8265802">
+        <state line="18" column="37" selection-start="351" selection-end="351" vertical-scroll-proportion="0.53125">
           <folding />
         </state>
       </provider>
