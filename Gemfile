@@ -1,10 +1,10 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.12'
+gem 'rails', '3.0.1'
 gem 'jquery-rails'
 gem 'rake', '0.8.7'
 gem 'haml'
-#gem 'bundler'
+gem 'bundler', '1.0.10'
 gem 'formtastic',  '2.1.1'
 gem 'activeadmin'
 gem 'simple-navigation'

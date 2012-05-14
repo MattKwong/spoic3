@@ -42,7 +42,7 @@ class RosterItem < ActiveRecord::Base
                     :length => { :is => 2}
   validates_inclusion_of :state, :in => State::STATE_ABBREVIATIONS, :message => 'Invalid state.'
 
-  validates_inclusion_of :special_need, :in => SpecialNeed.all.map {|need| need.name}, :message => 'Invalid need type.'
+  #validates_inclusion_of :special_need, :in => SpecialNeed.all.map {|need| need.name}, :message => 'Invalid need type.'
   validates :zip,   :presence => true,
                     :length => { :is => 5},
                     :numericality => true
