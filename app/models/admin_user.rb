@@ -17,10 +17,12 @@ class AdminUser < ActiveRecord::Base
                   :liaison_id, :password, :password_confirmation, :remember_me, :admin, :username, :phone
 
   before_validation do
-    if self.phone[0..1] == '1-'
-      self.phone[0..1] = ''
+    unless self.phone.nil?
+      if self.phone[0..1] == '1-'
+        self.phone[0..1] = ''
+      end
+      self.phone = self.phone.gsub(/\D/,'')
     end
-    self.phone = self.phone.gsub(/\D/,'')
   end
 
   validates :email, :uniqueness => true

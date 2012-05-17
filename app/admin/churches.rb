@@ -39,9 +39,13 @@ ActiveAdmin.register Church do
         column "Youth", :current_youth
         column "Counselors", :current_counselors
         column "Total", :current_total
+        #column "Session", :session_id do |session|
+        #  link_to session.session.name, sched_program_session_path(session.session.id)
+        #end
         column "Session", :session_id do |session|
-          link_to session.session.name, sched_program_session_path(session.session.id)
-        end
+          link_to session.session.name, sched_program_session_path(session.liaison.id,
+            :session => session.session.id),:title => "Click to see what other groups are coming to this site at this week."
+         end
         column "Site", :session_id do |session|
           session.session.site.name
         end

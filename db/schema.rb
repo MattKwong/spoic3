@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120517031338) do
+ActiveRecord::Schema.define(:version => 20120517215928) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer   "resource_id",   :null => false
@@ -368,15 +368,15 @@ ActiveRecord::Schema.define(:version => 20120517031338) do
   end
 
   create_table "payments", :force => true do |t|
-    t.integer  "registration_id"
-    t.date     "payment_date"
-    t.decimal  "payment_amount"
-    t.string   "payment_method"
-    t.text     "payment_notes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "scheduled_group_id"
-    t.string   "payment_type"
+    t.integer   "registration_id"
+    t.date      "payment_date"
+    t.decimal   "payment_amount"
+    t.string    "payment_method"
+    t.text      "payment_notes"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "scheduled_group_id"
+    t.string    "payment_type"
   end
 
   create_table "periods", :force => true do |t|
@@ -613,10 +613,10 @@ ActiveRecord::Schema.define(:version => 20120517031338) do
   end
 
   create_table "special_needs", :force => true do |t|
-    t.string   "name"
-    t.integer  "list_priority"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name"
+    t.integer   "list_priority"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "standard_items", :force => true do |t|
