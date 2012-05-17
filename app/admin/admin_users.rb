@@ -7,11 +7,12 @@ ActiveAdmin.register AdminUser do
   index do
     column :email
     column :name
+    column :phone
     column :username
     column :user_role
     column :site
     column :liaison_id
-    column :password
+    #column :password
     column :current_sign_in_at
     column :last_sign_in_at
     column :sign_in_count
@@ -23,7 +24,8 @@ ActiveAdmin.register AdminUser do
       f.input :email
       f.input :first_name
       f.input :last_name
-      f.input :password
+      #f.input :password
+      f.input :phone
       f.input :user_role
       f.input :username, :hint => "Assign name to all site staff - no spaces"
       f.input :site

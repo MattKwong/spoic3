@@ -14,20 +14,43 @@ class AdminUser < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :name, :user_role_id, :first_name, :last_name, :site_id,
-                  :liaison_id, :password, :password_confirmation, :remember_me, :admin, :username
+                  :liaison_id, :password, :password_confirmation, :remember_me, :admin, :username, :phone
+
+  before_validation do
+    if self.phone[0..1] == '1-'
+      self.phone[0..1] = ''
+    end
+    self.phone = self.phone.gsub(/\D/,'')
+  end
 
   validates :email, :uniqueness => true
   validates :username, :uniqueness => true
   validates :first_name, :last_name, :presence => true
 
-#  validates_inclusion_of :user_role, :in => UserRole.all.map {|i| i.role_name}
+
+
+  validates_numericality_of :phone,
+                      :message => 'Phone number must be 10 digits plus optional separators.',
+                      :allow_blank => true
+
+  validates_length_of :phone,
+                      :is => 10,
+                      :message => 'Phone number must be 10 digits plus optional separators.',
+                      :allow_blank => true
 
   before_save :create_name
+  before_save :format_phone_numbers
 
   scope :admin, where(:user_role_id == 1)
 #  scope :liaison, where(self.user_role.name == 'Liaison')
 #  scope :staff, where(self.user_role.name == 'Staff')
 
+    def format_phone_numbers
+       unless self.phone.nil? || self.phone == ""
+         self.phone = self.phone.insert 6, '-'
+         self.phone = self.phone.insert 3, '-'
+       end
+    end
     def admin?
       self.user_role.name == "Admin"
     end
