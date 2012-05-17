@@ -1,7 +1,6 @@
 prawn_document() do |pdf|
     logopath = "#{RAILS_ROOT}/public/images/logo.png"
     pdf.image logopath, :width => 80, :height => 80
-
     pdf.move_down(20)
 
     pdf.text "Sierra Service Project"
