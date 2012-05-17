@@ -1,7 +1,7 @@
 class PaymentController < ApplicationController
 #  load_and_authorize_resource
   before_filter :check_for_cancel, :only => [:create]
-
+  layout 'admin_layout'
 #  def show
 #    redirect_to admin_payment_path(params[:id])
 #  end
@@ -22,7 +22,7 @@ class PaymentController < ApplicationController
       :site_name => site_name, :period_name => period_name, :start_date => start_date,
       :end_date => end_date,  :session_type => session_type, :payment => payment, :payment_types => payment_types,
       :liaison_name => liaison_name, :payment_methods => payment_methods}
-    @title = "Record payment for: #{scheduled_group.name}"
+    @page_title = "Record payment for: #{scheduled_group.name}"
   end
 
   def create

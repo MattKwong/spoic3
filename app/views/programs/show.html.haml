@@ -14,7 +14,7 @@
   .span-7.last.properties
     %dl.properties
       %dt Start Date
-      %dd= @program.start_date
+      %dd= @program.start_date.strftime("%B %d")
       -if can? :create, Vendor
         %dlt= link_to "Create an New Vendor", new_site_vendor_path(@program.site)
   .span-24.prepend-top

@@ -1,13 +1,14 @@
-<%= render 'layouts/myssp_header' %>
-<div id="active_admin_content">
-  <div id="main_content_wrapper">
+
+<%= form_for(@screen_info[:payment]) do |r| %>
+    <div id="active_admin_content" class="without_sidebar">
+  <div id="main_content_wrapper" >
      <div id="main_content">
-        <%= render 'layouts/myssp_group_data' %>
-        <%= form_for(@screen_info[:payment]) do |r| %>
+
            <%= render 'shared/error_messages_payment' %>
            <div class="panel">
               <div class="panel_contents">
                  <div class="attributes_table liaison" id="attributes_table_liaison_3">
+                   <%= render 'layouts/myssp_group_data' %>
                     <% if current_admin_user.admin?  %>
                     <table border="0" cellspacing="0" cellpadding="0" >
                         <h3>Enter the payment details below.</h3>
