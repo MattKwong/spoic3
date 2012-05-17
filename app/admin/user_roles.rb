@@ -3,5 +3,5 @@ ActiveAdmin.register UserRole do
   controller.authorize_resource
   menu :if => proc{ can?(:read, UserRole) }, :parent => "Configuration"
 
-   show :title => :role_name
+   show :title => :name
 end
