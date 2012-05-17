@@ -6,9 +6,11 @@
     <bookmark url="file://$PROJECT_DIR$/app/views/layouts/_ops_layout.html.haml" line="53" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="">
+    <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="Corrected error in creating liaison logon; changed some formatting problem.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/programs.rb" afterPath="$PROJECT_DIR$/app/admin/programs.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/program.rb" afterPath="$PROJECT_DIR$/app/models/program.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/site.rb" afterPath="$PROJECT_DIR$/app/models/site.rb" />
     </list>
     <list id="6515e16b-01b0-44f6-bd49-9d9ce8271564" name="Failed commit: Default" comment="Added update of second payment fields in ScheduledGroup to payment controller code." />
     <ignored path="spoic3.iws" />
@@ -35,28 +37,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="edit.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/edit.html.erb">
+      <file leaf-file-name="program.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/program.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="104" selection-start="41" selection-end="41" vertical-scroll-proportion="-0.65384614">
+            <state line="156" column="44" selection-start="4336" selection-end="4336" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="liaisons_controller.rb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/controllers/liaisons_controller.rb">
+      <file leaf-file-name="site.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/models/site.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="69" selection-start="2009" selection-end="2009" vertical-scroll-proportion="0.42570952">
+            <state line="13" column="76" selection-start="438" selection-end="438" vertical-scroll-proportion="0.36288998">
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="..admin_users" pinned="false" current="false" current-in-tab="false">
-        <entry file="dbDummy://dbElement:/56df5c37/5f7321ab-36b9-48eb-912a-84148ea6d9d0/..admin_users">
-          <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
-            <state />
           </provider>
         </entry>
       </file>
@@ -89,14 +84,11 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/models/admin_user.rb" />
-        <option value="$PROJECT_DIR$/app/admin/churches.rb" />
         <option value="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/email_templates/schedule_confirmation.text.erb" />
         <option value="$PROJECT_DIR$/app/views/email_templates/schedule_change.text.erb" />
         <option value="$PROJECT_DIR$/public/javascripts/01.js" />
         <option value="$PROJECT_DIR$/app/models/admin_ability.rb" />
-        <option value="$PROJECT_DIR$/app/admin/programs.rb" />
         <option value="$PROJECT_DIR$/app/views/projects/show.html.haml" />
         <option value="$PROJECT_DIR$/app/views/staff_reports/_food_budget_items.html.haml" />
         <option value="$PROJECT_DIR$/app/views/programs/show.html.haml" />
@@ -104,6 +96,9 @@
         <option value="$PROJECT_DIR$/app/views/payment/new.html.erb" />
         <option value="$PROJECT_DIR$/app/views/scheduled_groups/edit.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/liaisons_controller.rb" />
+        <option value="$PROJECT_DIR$/app/models/site.rb" />
+        <option value="$PROJECT_DIR$/app/admin/programs.rb" />
+        <option value="$PROJECT_DIR$/app/models/program.rb" />
         <option value="$PROJECT_DIR$/Gemfile.lock" />
       </list>
     </option>
@@ -234,120 +229,6 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spoic3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ctab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scheduled_groups" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spoic3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ctab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="program_users" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spoic3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ctab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="payment" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spoic3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ctab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layouts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spoic3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ctab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="email_templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -378,6 +259,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1419,7 +1304,11 @@
       <created>1337287615179</created>
       <updated>1337287615180</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="Corrected error in creating liaison logon; changed some formatting problem.">
+      <created>1337287819015</created>
+      <updated>1337287819015</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1444,19 +1333,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3235955" sideWeight="0.99889505" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20955883" sideWeight="0.7157303" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28426966" sideWeight="0.80649114" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20955883" sideWeight="0.7269663" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28426966" sideWeight="0.80649114" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3251121" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3280899" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21494183" sideWeight="0.21516165" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36519608" sideWeight="0.7157303" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36519608" sideWeight="0.7269663" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39910814" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3741573" sideWeight="0.06556372" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2730337" sideWeight="0.93014705" order="2" side_tool="false" content_ui="tabs" x="77" y="500" width="1633" height="304" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2730337" sideWeight="0.93014705" order="2" side_tool="false" content_ui="tabs" x="77" y="500" width="1633" height="304" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32565284" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295964" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1549,6 +1438,79 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/admin/admin_users.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbElement:/56df5c37/5f7321ab-36b9-48eb-912a-84148ea6d9d0/..programs">
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/admin/project_categories.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/admin_users_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/adjustment.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/admin/programs.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="158" selection-end="158" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20120310180750_create_programs_table.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="20" selection-start="140" selection-end="140" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20120310184511_add_field_to_program_type.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20120310191614_add_abbr_to_sites.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbElement:/56df5c37/5f7321ab-36b9-48eb-912a-84148ea6d9d0/..sites">
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/program.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="156" column="44" selection-start="4336" selection-end="4336" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/program_type.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -1556,105 +1518,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/program.rb">
+    <entry file="file://$PROJECT_DIR$/app/admin/sites.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/budget/budget_summary.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="25.846153">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/projects/show.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="101" selection-start="1347" selection-end="1347" vertical-scroll-proportion="-1.7073643">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/programs/_budget_items.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/staff_reports/_food_budget_items.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="34" selection-start="166" selection-end="184" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/programs/show.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="58" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/_myssp_group_data.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/payment_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="61" selection-start="1351" selection-end="1351" vertical-scroll-proportion="1.3449367">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/payment/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/_myssp_header.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="90" selection-start="433" selection-end="433" vertical-scroll-proportion="-1.3449367">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/edit.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="104" selection-start="41" selection-end="41" vertical-scroll-proportion="-0.65384614">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbElement:/56df5c37/5f7321ab-36b9-48eb-912a-84148ea6d9d0/..admin_users">
-      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile.lock">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="204" column="39" selection-start="4871" selection-end="4871" vertical-scroll-proportion="0.42604503">
+        <state line="193" column="42" selection-start="4703" selection-end="4703" vertical-scroll-proportion="0.24199288">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/liaisons_controller.rb">
+    <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="69" selection-start="2009" selection-end="2009" vertical-scroll-proportion="0.42570952">
+        <state line="23" column="74" selection-start="477" selection-end="477" vertical-scroll-proportion="0.69572955">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/site.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="76" selection-start="438" selection-end="438" vertical-scroll-proportion="0.36288998">
           <folding />
         </state>
       </provider>

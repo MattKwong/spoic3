@@ -6,6 +6,7 @@ class Site < ActiveRecord::Base
   has_many :sessions
   has_many :admin_users
   has_many :vendors
+  has_many :programs
 
   accepts_nested_attributes_for :sessions
 

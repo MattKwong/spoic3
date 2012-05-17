@@ -44,7 +44,7 @@ class Program < ActiveRecord::Base
 
   scope :current, where(:active => true)
   scope :past, where(:active => false)
-  default_scope :include => :site, :order => 'end_date DESC, sites.name ASC'
+#  default_scope :include => :site, :order => 'end_date DESC, sites.name ASC'
   before_validation :set_name
 
   #TODO: The +100 is put in for testing and demonstrating. Needs to be removed in production.
