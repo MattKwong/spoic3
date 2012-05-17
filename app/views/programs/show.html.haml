@@ -20,7 +20,7 @@
   .span-24.prepend-top
     .group-header
       .plus-minus
-        = link_to image_tag('plusminus.png', :id => 'budget-toggle')
+        = link_to image_tag('plusminus.png', :id => 'budget-toggle'), "#"
       %h3 Budget
 
     .group-container
@@ -39,7 +39,7 @@
   .span-24.prepend-top
     .group-header
       .plus-minus
-        = link_to image_tag('plusminus.png', :id => 'food-snapshot-toggle')
+        = link_to image_tag('plusminus.png', :id => 'food-snapshot-toggle'), "#"
       %h3 Food Program Snapshot
     .group-container
       .index_as_table
@@ -62,7 +62,7 @@
   .span-24.prepend-top
     .group-header
       .plus-minus
-        = link_to image_tag('plusminus.png', :id => 'purchases-toggle')
+        = link_to image_tag('plusminus.png', :id => 'purchases-toggle'), "#"
       %h3 Purchases
     -# Need to add scope button here to limit list to the most recent n purchases
     -#= link_to 'Most recent 20', program_path(@program.id, :scope => '20')
@@ -76,7 +76,7 @@
   .span-24.prepend-top
     .group-header
       .plus-minus
-        = link_to image_tag('plusminus.png', :id => 'projects-toggle')
+        = link_to image_tag('plusminus.png', :id => 'projects-toggle'), "#"
       %h3 Projects
     .div#projects-info
       .group-container
@@ -97,7 +97,7 @@
   .span-24.prepend-top
     .group-header
       .plus-minus
-        = link_to image_tag('plusminus.png', :id => 'sessions-toggle')
+        = link_to image_tag('plusminus.png', :id => 'sessions-toggle'), "#"
       %h3 Sessions
     .div#sessions-info
       .group-container
@@ -120,7 +120,7 @@
   .span-24.prepend-top
     .group-header
       .plus-minus
-        = link_to image_tag('plusminus.png', :id => 'staff-toggle')
+        = link_to image_tag('plusminus.png', :id => 'staff-toggle'), "#"
       %h3 Staff
     .div#staff-info
       .group-container

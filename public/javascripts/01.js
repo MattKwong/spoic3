@@ -4,11 +4,13 @@ $(document).ready(function() {
      $("div#general-info").toggle("slow");
  });
 });
+
 $(document).ready(function() {
  $("img#plan-material-toggle").click(function() {
      $("div#plan-material-info").toggle("slow");
  });
 });
+
 $(document).ready(function() {
  $("img#plan-summary-toggle").click(function() {
      $("div#plan-material-summary").toggle("slow");
