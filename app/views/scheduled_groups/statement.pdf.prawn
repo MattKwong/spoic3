@@ -22,12 +22,12 @@ logopath = "#{::Rails.root.to_s}/public/images/logo.png"
     pdf.text "Period: #{@period_name} (#{@start_date.strftime("%m/%d/%y")} - #{@end_date.strftime("%m/%d/%y")})", :align => :right
     pdf.text "#{@church.city}, #{@church.state} #{@church.zip}"
     pdf.move_up(15)
-    pdf.text "Group Name: #{@scheduled_group.name}", :align => :right
+    pdf.text "Group Namez: #{@scheduled_group.name}", :align => :right
 
     pdf.move_down(30)
 
     pdf.table(@event_list, :header => true,
-            :column_widths => {0 => 80, 1 => 240, 2 => 100, 3 => 100 },
+            :column_widths => {0 => 80, 1 => 220, 2 => 100, 3 => 100 },
             :row_colors => ["F0F0F0", "FFFFCC"] ) do
             cells.size = 10
             row(0).style :align => :left
