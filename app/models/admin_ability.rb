@@ -5,7 +5,6 @@ class AdminAbility
   include CanCan::Ability
 
   def initialize(user)
-
     if user.liaison?
        liaison = Liaison.find(user.liaison_id)
 #      can :manage, Payment
