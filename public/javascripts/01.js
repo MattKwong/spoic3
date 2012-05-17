@@ -68,3 +68,19 @@ $(document).ready(function() {
 //   $("button#general-toggle").text("Hide Details");
 // });
 //});
+
+$(document).ready(function() {
+  $("input.group-change-button").attr("disabled", "disabled");
+});
+
+$(document).ready(function() {
+    $('#scheduled_group_current_youth').change(function() {
+        $("input[type=submit]").removeAttr("disabled");
+    });
+    $('#scheduled_group_current_counselors').change(function() {
+        $("input[type=submit]").removeAttr("disabled");
+    });
+    $('#scheduled_group_session_id').change(function() {
+        $("input[type=submit]").removeAttr("disabled");
+    });
+});
