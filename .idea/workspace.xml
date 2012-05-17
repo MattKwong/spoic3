@@ -65,7 +65,7 @@
       <file leaf-file-name="statement.pdf.prawn" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="25" selection-start="909" selection-end="909" vertical-scroll-proportion="0.7246892">
+            <state line="24" column="25" selection-start="909" selection-end="909" vertical-scroll-proportion="0.634103">
               <folding />
             </state>
           </provider>
@@ -1394,7 +1394,11 @@
       <created>1337296486831</created>
       <updated>1337296486831</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="Correct problem with user role">
+      <created>1337296753195</created>
+      <updated>1337296753195</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1422,7 +1426,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3235955" sideWeight="0.99889505" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20955883" sideWeight="0.7269663" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12867647" sideWeight="0.7269663" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28426966" sideWeight="0.80649114" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3251121" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3280899" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1629,7 +1633,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="25" selection-start="909" selection-end="909" vertical-scroll-proportion="0.7246892">
+        <state line="24" column="25" selection-start="909" selection-end="909" vertical-scroll-proportion="0.634103">
           <folding />
         </state>
       </provider>
