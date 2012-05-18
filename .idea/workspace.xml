@@ -8,7 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/liaisons_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/liaisons_controller.rb" />
     </list>
     <list id="6515e16b-01b0-44f6-bd49-9d9ce8271564" name="Failed commit: Default" comment="Added update of second payment fields in ScheduledGroup to payment controller code." />
     <ignored path="spoic3.iws" />
@@ -71,19 +71,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scheduled_groups_controller.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="scheduled_groups_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="564" column="90" selection-start="24053" selection-end="24053" vertical-scroll-proportion="0.4962963">
+            <state line="556" column="0" selection-start="23741" selection-end="23931" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="liaisons_controller.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="liaisons_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/liaisons_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="201" column="57" selection-start="8710" selection-end="8710" vertical-scroll-proportion="0.0">
+            <state line="128" column="58" selection-start="5162" selection-end="5162" vertical-scroll-proportion="0.3">
               <folding />
             </state>
           </provider>
@@ -142,7 +142,6 @@
         <option value="$PROJECT_DIR$/app/controllers/payment_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/payment/new.html.erb" />
         <option value="$PROJECT_DIR$/app/views/scheduled_groups/edit.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/liaisons_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/site.rb" />
         <option value="$PROJECT_DIR$/app/admin/programs.rb" />
         <option value="$PROJECT_DIR$/app/models/program.rb" />
@@ -152,6 +151,7 @@
         <option value="$PROJECT_DIR$/Gemfile.lock" />
         <option value="$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn" />
         <option value="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/liaisons_controller.rb" />
       </list>
     </option>
   </component>
@@ -1436,7 +1436,11 @@
       <created>1337302928020</created>
       <updated>1337302928020</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="Correct problem with user role">
+      <created>1337303671078</created>
+      <updated>1337303671078</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1662,16 +1666,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/liaisons_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="201" column="57" selection-start="8710" selection-end="8710" vertical-scroll-proportion="0.0">
+        <state line="556" column="0" selection-start="23741" selection-end="23931" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/liaisons_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="564" column="90" selection-start="24053" selection-end="24053" vertical-scroll-proportion="0.4962963">
+        <state line="128" column="58" selection-start="5162" selection-end="5162" vertical-scroll-proportion="0.3">
           <folding />
         </state>
       </provider>
