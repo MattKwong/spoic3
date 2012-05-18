@@ -30,7 +30,6 @@ class RosterItem < ActiveRecord::Base
 
   belongs_to :roster
 
-
   before_validation do
     self.state = self.state.upcase.first(2)
     end
