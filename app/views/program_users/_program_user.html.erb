@@ -2,6 +2,6 @@
   <td><%= can?(:read, program_user.admin_user) ?
                   link_to(program_user.admin_user.name, program_user.admin_user) : program_user.admin_user.name%></td>
   <td><%= mail_to program_user.admin_user.email, program_user.admin_user.email %></td>
-  <td><%= program_user.admin_user.email %></td>
+  <td><%= program_user.admin_user.phone %></td>
   <td><%= program_user.job.name %></td>
 </tr>

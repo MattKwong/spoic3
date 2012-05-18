@@ -101,7 +101,7 @@
       <file leaf-file-name="_program_user.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/program_users/_program_user.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="52" selection-start="354" selection-end="354" vertical-scroll-proportion="0.22580644">
+            <state line="7" column="49" selection-start="354" selection-end="354" vertical-scroll-proportion="0.22580644">
               <folding />
             </state>
           </provider>
@@ -1484,7 +1484,11 @@
       <created>1337304130436</created>
       <updated>1337304130436</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="Correct problem with user role">
+      <created>1337305695133</created>
+      <updated>1337305695133</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1721,7 +1725,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/program_users/_program_user.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="52" selection-start="354" selection-end="354" vertical-scroll-proportion="0.22580644">
+        <state line="7" column="49" selection-start="354" selection-end="354" vertical-scroll-proportion="0.22580644">
           <folding />
         </state>
       </provider>
