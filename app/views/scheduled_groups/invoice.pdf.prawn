@@ -35,7 +35,7 @@ prawn_document() do |pdf|
             column(1).style :align => :center
             column(2).style :align => :right
             column(3).style :align => :right
-        end
+          end
 
     pdf.move_down(60)
     pdf.text "If you have any questions about this invoice call the SSP office at 916-488-6441."

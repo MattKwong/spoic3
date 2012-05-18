@@ -8,6 +8,9 @@
   <component name="ChangeListManager">
     <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/scheduled_groups/invoice.html.erb" afterPath="$PROJECT_DIR$/app/views/scheduled_groups/invoice.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/scheduled_groups/invoice.pdf.prawn" afterPath="$PROJECT_DIR$/app/views/scheduled_groups/invoice.pdf.prawn" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn" afterPath="$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn" />
     </list>
     <list id="6515e16b-01b0-44f6-bd49-9d9ce8271564" name="Failed commit: Default" comment="Added update of second payment fields in ScheduledGroup to payment controller code." />
@@ -62,10 +65,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="statement.pdf.prawn" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="statement.pdf.prawn" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="25" selection-start="909" selection-end="909" vertical-scroll-proportion="0.634103">
+            <state line="36" column="54" selection-start="1402" selection-end="1402" vertical-scroll-proportion="-10.076923">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scheduled_groups_controller.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="184" column="51" selection-start="8322" selection-end="8322" vertical-scroll-proportion="-6.1002507">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="invoice.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/invoice.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="148" column="73" selection-start="8097" selection-end="8097" vertical-scroll-proportion="-67.34615">
               <folding />
             </state>
           </provider>
@@ -74,16 +95,7 @@
       <file leaf-file-name="invoice.pdf.prawn" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/invoice.pdf.prawn">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="4" selection-start="136" selection-end="136" vertical-scroll-proportion="-1.9615384">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="site.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/site.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="76" selection-start="438" selection-end="438" vertical-scroll-proportion="0.0">
+            <state line="29" column="85" selection-start="1302" selection-end="1302" vertical-scroll-proportion="-6.8076925">
               <folding />
             </state>
           </provider>
@@ -118,8 +130,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/public/javascripts/01.js" />
-        <option value="$PROJECT_DIR$/app/models/admin_ability.rb" />
         <option value="$PROJECT_DIR$/app/views/projects/show.html.haml" />
         <option value="$PROJECT_DIR$/app/views/staff_reports/_food_budget_items.html.haml" />
         <option value="$PROJECT_DIR$/app/views/programs/show.html.haml" />
@@ -134,6 +144,8 @@
         <option value="$PROJECT_DIR$/app/admin/user_roles.rb" />
         <option value="$PROJECT_DIR$/app/views/scheduled_groups/invoice.pdf.prawn" />
         <option value="$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn" />
+        <option value="$PROJECT_DIR$/app/views/scheduled_groups/invoice.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" />
       </list>
     </option>
   </component>
@@ -304,7 +316,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="payment" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1398,7 +1414,11 @@
       <created>1337296753195</created>
       <updated>1337296753195</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Correct problem with user role">
+      <created>1337297305609</created>
+      <updated>1337297305609</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1426,16 +1446,16 @@
     <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3235955" sideWeight="0.99889505" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12867647" sideWeight="0.7269663" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.063725494" sideWeight="0.54157305" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28426966" sideWeight="0.80649114" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3251121" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3280899" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21494183" sideWeight="0.21516165" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36519608" sideWeight="0.7269663" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36519608" sideWeight="0.54157305" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39910814" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3741573" sideWeight="0.06556372" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2730337" sideWeight="0.93014705" order="2" side_tool="false" content_ui="tabs" x="77" y="500" width="1633" height="304" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.45842695" sideWeight="0.93014705" order="2" side_tool="false" content_ui="tabs" x="77" y="500" width="1633" height="304" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32565284" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295964" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1528,34 +1548,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/adjustment.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/programs.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="158" selection-end="158" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20120310180750_create_programs_table.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="20" selection-start="140" selection-end="140" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20120310184511_add_field_to_program_type.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20120310191614_add_abbr_to_sites.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -1624,16 +1616,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/invoice.pdf.prawn">
+    <entry file="file://$PROJECT_DIR$/app/controllers/projects_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="4" selection-start="136" selection-end="136" vertical-scroll-proportion="-1.9615384">
+        <state line="14" column="2" selection-start="688" selection-end="688" vertical-scroll-proportion="-0.63497454">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/payment_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="25" selection-start="909" selection-end="909" vertical-scroll-proportion="0.634103">
+        <state line="36" column="54" selection-start="1402" selection-end="1402" vertical-scroll-proportion="-10.076923">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/invoice.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="148" column="73" selection-start="8097" selection-end="8097" vertical-scroll-proportion="-67.34615">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/invoice.pdf.prawn">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="85" selection-start="1302" selection-end="1302" vertical-scroll-proportion="-6.8076925">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="184" column="51" selection-start="8322" selection-end="8322" vertical-scroll-proportion="-6.1002507">
           <folding />
         </state>
       </provider>

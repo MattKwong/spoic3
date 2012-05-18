@@ -139,16 +139,16 @@
                             <tr>
                               <td><%= e[0].strftime("%m/%d/%y") %></td>
                               <td><%= e[1] %></td>
-                              <td><% unless e[4].nil? %>
-                                    <%= e[4] %>
-                                <% end %>
-                              </td>
                               <td><% unless e[2].nil? %>
                                     <%= e[2] %>
                                 <% end %>
                               </td>
                               <td><% unless e[3].nil? %>
                                     <%= e[3] %>
+                                <% end %>
+                              </td>
+                              <td><% unless e[4].nil? %>
+                                    <%= e[4] %>
                                 <% end %>
                               </td>
                             </tr>
