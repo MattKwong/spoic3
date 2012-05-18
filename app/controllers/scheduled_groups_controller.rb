@@ -555,7 +555,7 @@ private
     end
 
     payments.each do |p|
-      event = [p.payment_date.to_date, "Payment Received", shorten(p.payment_notes), "", number_to_currency(p.payment_amount)]
+      event = [p.payment_date.to_date, "Payment Received", shorten(p.payment_notes), "Blank", number_to_currency(p.payment_amount)]
       event_list << event
     end
 
