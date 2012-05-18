@@ -1,6 +1,6 @@
 class Item < ActiveRecord::Base
     attr_accessible :name, :base_unit, :default_taxed, :item_category_id, :item_type_id,
-                    :program_id, :budget_item_type_id, :description
+                    :program_id, :budget_item_type_id, :description, :untracked
 
     validates :base_unit, :name, :item_type_id, :budget_item_type_id, :item_category_id,
               :description, :presence => true
@@ -31,6 +31,8 @@ class Item < ActiveRecord::Base
     scope :gas, lambda {joins(:budget_item_type).where("budget_item_types.name = 'Gas'" ) }
     scope :other, lambda {joins(:budget_item_type).where("budget_item_types.name = 'Other'" ) }
 
+    scope :untracked, where(:untracked => true)
+    scope :tracked, where(:untracked => false)
     scope :master, where(:program_id => nil)
     scope :all_for_program, lambda {|program| where('program_id IS NULL OR program_id = ?', program.id) }
     scope :alphabetized, order("name")

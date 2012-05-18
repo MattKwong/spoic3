@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120517215928) do
+ActiveRecord::Schema.define(:version => 20120518214854) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer   "resource_id",   :null => false
@@ -263,6 +263,7 @@ ActiveRecord::Schema.define(:version => 20120517215928) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "budget_item_type_id"
+    t.boolean  "untracked"
   end
 
   create_table "job_types", :force => true do |t|
@@ -430,6 +431,7 @@ ActiveRecord::Schema.define(:version => 20120517215928) do
     t.integer  "project_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "untracked_percentage"
   end
 
   create_table "project_types", :force => true do |t|

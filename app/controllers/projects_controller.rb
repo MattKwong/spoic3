@@ -31,11 +31,20 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def calculate_cost
+  def calculate_tracked_cost
     items = MaterialItemEstimated.find_all_by_project_id(@project.id)
-    total_cost =0
-    items.each { |i| total_cost += i.cost(@project.program) }
-    total_cost
+    total_tracked_cost =0
+    items.each { |i| total_tracked_cost += i.cost(@project.program) }
+    total_tracked_cost
+  end
+
+  def calculate_cost
+    if @project.project_subtype.untracked_percentage == 100
+      0
+    else
+      calculated_cost = calculate_tracked_cost/(1 - @project.project_subtype.untracked_percentage)
+    end
+
   end
 
   def update_cost
