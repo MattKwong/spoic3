@@ -27,7 +27,7 @@ logopath = "#{::Rails.root.to_s}/public/images/logo.png"
     pdf.move_down(30)
 
     pdf.table(@event_list, :header => true,
-            :column_widths => {0 => 60, 1 => 150, 2 => 150, 3 => 90, 4 => 90 },
+            :column_widths => {0 => 60, 1 => 170, 2 => 150, 3 => 70, 4 => 70 },
             :row_colors => ["F0F0F0", "FFFFCC"] ) do
             cells.size = 10
             row(0).style :align => :left

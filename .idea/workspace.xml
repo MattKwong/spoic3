@@ -6,11 +6,9 @@
     <bookmark url="file://$PROJECT_DIR$/app/views/layouts/_ops_layout.html.haml" line="53" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="">
+    <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="Correct problem with user role">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/scheduled_groups/invoice.html.erb" afterPath="$PROJECT_DIR$/app/views/scheduled_groups/invoice.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/scheduled_groups/invoice.pdf.prawn" afterPath="$PROJECT_DIR$/app/views/scheduled_groups/invoice.pdf.prawn" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn" afterPath="$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn" />
     </list>
     <list id="6515e16b-01b0-44f6-bd49-9d9ce8271564" name="Failed commit: Default" comment="Added update of second payment fields in ScheduledGroup to payment controller code." />
@@ -65,19 +63,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="statement.pdf.prawn" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="statement.pdf.prawn" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="54" selection-start="1402" selection-end="1402" vertical-scroll-proportion="-10.076923">
+            <state line="32" column="75" selection-start="1224" selection-end="1224" vertical-scroll-proportion="0.4874372">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scheduled_groups_controller.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="scheduled_groups_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="184" column="51" selection-start="8322" selection-end="8322" vertical-scroll-proportion="-6.1002507">
+            <state line="184" column="51" selection-start="8322" selection-end="8322" vertical-scroll-proportion="97.36">
               <folding />
             </state>
           </provider>
@@ -140,12 +138,12 @@
         <option value="$PROJECT_DIR$/app/models/site.rb" />
         <option value="$PROJECT_DIR$/app/admin/programs.rb" />
         <option value="$PROJECT_DIR$/app/models/program.rb" />
-        <option value="$PROJECT_DIR$/Gemfile.lock" />
         <option value="$PROJECT_DIR$/app/admin/user_roles.rb" />
         <option value="$PROJECT_DIR$/app/views/scheduled_groups/invoice.pdf.prawn" />
-        <option value="$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn" />
         <option value="$PROJECT_DIR$/app/views/scheduled_groups/invoice.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn" />
+        <option value="$PROJECT_DIR$/Gemfile.lock" />
       </list>
     </option>
   </component>
@@ -1418,7 +1416,11 @@
       <created>1337297305609</created>
       <updated>1337297305609</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="Correct problem with user role">
+      <created>1337302263623</created>
+      <updated>1337302263623</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1581,13 +1583,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile.lock">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="193" column="42" selection-start="4703" selection-end="4703" vertical-scroll-proportion="1.9646302">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/site.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="76" selection-start="438" selection-end="438" vertical-scroll-proportion="0.0">
@@ -1630,13 +1625,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="54" selection-start="1402" selection-end="1402" vertical-scroll-proportion="-10.076923">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/invoice.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="148" column="73" selection-start="8097" selection-end="8097" vertical-scroll-proportion="-67.34615">
@@ -1653,7 +1641,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="184" column="51" selection-start="8322" selection-end="8322" vertical-scroll-proportion="-6.1002507">
+        <state line="184" column="51" selection-start="8322" selection-end="8322" vertical-scroll-proportion="97.36">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile.lock">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="49" selection-start="1136" selection-end="1136" vertical-scroll-proportion="0.3501144">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="75" selection-start="1224" selection-end="1224" vertical-scroll-proportion="0.4874372">
           <folding />
         </state>
       </provider>
