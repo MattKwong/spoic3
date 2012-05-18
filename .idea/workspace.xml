@@ -74,7 +74,7 @@
       <file leaf-file-name="scheduled_groups_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="556" column="0" selection-start="23741" selection-end="23931" vertical-scroll-proportion="0.0">
+            <state line="626" column="0" selection-start="27258" selection-end="27363" vertical-scroll-proportion="-11.08">
               <folding />
             </state>
           </provider>
@@ -83,7 +83,7 @@
       <file leaf-file-name="liaisons_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/liaisons_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="128" column="58" selection-start="5162" selection-end="5162" vertical-scroll-proportion="0.3">
+            <state line="357" column="15" selection-start="13756" selection-end="13756" vertical-scroll-proportion="0.8111111">
               <folding />
             </state>
           </provider>
@@ -1440,7 +1440,11 @@
       <created>1337303671078</created>
       <updated>1337303671078</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="Correct problem with user role">
+      <created>1337303976016</created>
+      <updated>1337303976016</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1668,14 +1672,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="556" column="0" selection-start="23741" selection-end="23931" vertical-scroll-proportion="0.0">
+        <state line="626" column="0" selection-start="27258" selection-end="27363" vertical-scroll-proportion="-11.08">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/liaisons_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="128" column="58" selection-start="5162" selection-end="5162" vertical-scroll-proportion="0.3">
+        <state line="357" column="15" selection-start="13756" selection-end="13756" vertical-scroll-proportion="0.8111111">
           <folding />
         </state>
       </provider>

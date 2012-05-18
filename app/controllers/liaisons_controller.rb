@@ -353,4 +353,11 @@ class LiaisonsController < ApplicationController
       end
     end
   end
+  def shorten(s)
+    limit = 40
+    if s.length > limit
+      s = s[0, limit] + '...'
+    end
+    s
+  end
 end
