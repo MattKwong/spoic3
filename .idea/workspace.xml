@@ -6,14 +6,9 @@
     <bookmark url="file://$PROJECT_DIR$/app/views/layouts/_ops_layout.html.haml" line="53" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="Correct problem with user role">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/material_item_delivereds_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/projects_controller.rb" />
-      <change type="DELETED" beforePath="C:\Users\Rick\railsprojects\ctab\app\controllers\scheduled_groups_controller_bak.rb" afterPath="" />
+    <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/dashboards.rb" afterPath="$PROJECT_DIR$/app/admin/dashboards.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/scheduled_group.rb" afterPath="$PROJECT_DIR$/app/models/scheduled_group.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn" afterPath="$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn" />
     </list>
     <list id="6515e16b-01b0-44f6-bd49-9d9ce8271564" name="Failed commit: Default" comment="Added update of second payment fields in ScheduledGroup to payment controller code." />
@@ -41,19 +36,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="statement.pdf.prawn" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="statement.pdf.prawn" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="56" selection-start="519" selection-end="519" vertical-scroll-proportion="-9.807693">
+            <state line="14" column="74" selection-start="492" selection-end="492" vertical-scroll-proportion="0.29528537">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scheduled_groups_controller.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="scheduled_groups_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="561" column="58" selection-start="23956" selection-end="23956" vertical-scroll-proportion="0.36658654">
+            <state line="557" column="86" selection-start="23852" selection-end="23852" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -155,13 +150,13 @@
         <option value="$PROJECT_DIR$/app/admin/user_roles.rb" />
         <option value="$PROJECT_DIR$/app/views/scheduled_groups/invoice.pdf.prawn" />
         <option value="$PROJECT_DIR$/app/views/scheduled_groups/invoice.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/liaisons_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/program_users/_program_user.html.erb" />
         <option value="$PROJECT_DIR$/app/models/scheduled_group.rb" />
         <option value="$PROJECT_DIR$/app/admin/dashboards.rb" />
-        <option value="$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn" />
         <option value="$PROJECT_DIR$/Gemfile.lock" />
+        <option value="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn" />
       </list>
     </option>
   </component>
@@ -1422,7 +1417,11 @@
       <created>1337305802735</created>
       <updated>1337305802735</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="Correct problem with user role">
+      <created>1337356575047</created>
+      <updated>1337356575047</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1449,6 +1448,7 @@
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3235955" sideWeight="0.99889505" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.063725494" sideWeight="0.54157305" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28426966" sideWeight="0.80649114" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3251121" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1465,7 +1465,6 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3280899" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="CSS Styles" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3277592" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3235955" sideWeight="0.99889505" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
@@ -1629,13 +1628,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="56" selection-start="519" selection-end="519" vertical-scroll-proportion="-9.807693">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile.lock">
       <provider selected="true" editor-type-id="text-editor">
         <state line="192" column="65" selection-start="4702" selection-end="4702" vertical-scroll-proportion="0.8331361">
@@ -1645,7 +1637,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="561" column="58" selection-start="23956" selection-end="23956" vertical-scroll-proportion="0.36658654">
+        <state line="557" column="86" selection-start="23852" selection-end="23852" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/statement.pdf.prawn">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="74" selection-start="492" selection-end="492" vertical-scroll-proportion="0.29528537">
           <folding />
         </state>
       </provider>

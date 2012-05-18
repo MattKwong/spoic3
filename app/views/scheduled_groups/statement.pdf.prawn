@@ -22,7 +22,7 @@ logopath = "#{::Rails.root.to_s}/public/images/logo.png"
     pdf.text "Period: #{@period_name} (#{@start_date.strftime("%m/%d/%y")} - #{@end_date.strftime("%m/%d/%y")})", :align => :right
     pdf.text "#{@church.city}, #{@church.state} #{@church.zip}"
     pdf.move_up(15)
-    pdf.text "Youth Group Name: #{@scheduled_group.name}", :align => :right
+    pdf.text "Group Name: #{@scheduled_group.name}", :align => :right
 
     pdf.move_down(30)
 
