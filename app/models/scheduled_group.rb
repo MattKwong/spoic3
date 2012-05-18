@@ -14,7 +14,6 @@ class ScheduledGroup < ActiveRecord::Base
   belongs_to :session_type, :foreign_key => :group_type_id
   has_one :roster
 
-#TODO: Validate referential integrity of liaison, session, churches and registration ids
   validates :name, :liaison_id, :session_id, :church_id, :registration_id, :group_type_id, :presence => true
   validates_numericality_of :liaison_id, :session_id, :church_id, :registration_id, :group_type_id,
                             :second_payment_total, :only_integer => true
