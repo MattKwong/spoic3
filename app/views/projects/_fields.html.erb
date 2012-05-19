@@ -10,6 +10,7 @@
     <%= form.input :telephone1, :label => "Primary phone" , :input_html => {:size => 30} %>
     <%= form.input :telephone2, :label => "Alternative phone", :input_html => {:size => 30} %>
     <%= form.input :project_type_id, :as => :select, :collection => ProjectType.all %>
+    <%= form.input :project_subtype_id, :as => :select, :collection => ProjectSubtype.all %>
     <%= form.input :description, :hint => "Give a short description of the project." %>
     <%= form.input :planned_start, :label => "Planned start date" %>
     <%= form.input :estimated_days, :label => "Estimated work days" %>

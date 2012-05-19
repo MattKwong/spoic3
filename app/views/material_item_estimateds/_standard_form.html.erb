@@ -1,7 +1,8 @@
 <% remote ||= false %>
+<% logger.debug @material_item_estimated.new_record? %>
 <%= semantic_form_for @material_item_estimated, :url => (@material_item_estimated.new_record? ?
-        project_material_item_estimateds_path(@material_item_estimated.project)
-                : new_material_item_estimated(@material_item_estimated.project )) do |form| %>
+        project_material_item_estimated_path(@program) : new_material_item_estimated(@material_item_estimated.project )) do |form| %>
+
   <%= form.inputs do %>
     <%= form.input :item, :include_blank => false, :collection => @standard_item_list,
                    :input_html => { :class => "jq-combo" }%>

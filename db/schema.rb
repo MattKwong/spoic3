@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120518214854) do
+ActiveRecord::Schema.define(:version => 20120519182708) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer   "resource_id",   :null => false
@@ -66,30 +67,30 @@ ActiveRecord::Schema.define(:version => 20120518214854) do
   end
 
   create_table "admin_users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "admin"
-    t.string   "name"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "liaison_id"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.integer  "site_id"
-    t.integer  "user_role_id"
-    t.string   "username"
-    t.string   "phone"
+    t.string    "email",                                 :default => "", :null => false
+    t.string    "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string    "reset_password_token"
+    t.timestamp "reset_password_sent_at"
+    t.timestamp "remember_created_at"
+    t.integer   "sign_in_count",                         :default => 0
+    t.timestamp "current_sign_in_at"
+    t.timestamp "last_sign_in_at"
+    t.string    "current_sign_in_ip"
+    t.string    "last_sign_in_ip"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.boolean   "admin"
+    t.string    "name"
+    t.string    "first_name"
+    t.string    "last_name"
+    t.integer   "liaison_id"
+    t.string    "confirmation_token"
+    t.timestamp "confirmed_at"
+    t.timestamp "confirmation_sent_at"
+    t.integer   "site_id"
+    t.integer   "user_role_id"
+    t.string    "username"
+    t.string    "phone"
   end
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
@@ -104,12 +105,12 @@ ActiveRecord::Schema.define(:version => 20120518214854) do
   end
 
   create_table "budget_items", :force => true do |t|
-    t.integer  "site_id"
-    t.integer  "budget_item_type_id"
-    t.decimal  "amount"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "program_id"
+    t.integer   "site_id"
+    t.integer   "budget_item_type_id"
+    t.decimal   "amount"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "program_id"
   end
 
   create_table "change_histories", :force => true do |t|
@@ -197,21 +198,21 @@ ActiveRecord::Schema.define(:version => 20120518214854) do
   end
 
   create_table "food_inventories", :force => true do |t|
-    t.integer  "program_id"
-    t.date     "date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "program_id"
+    t.date      "date"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "food_inventory_food_items", :force => true do |t|
-    t.integer  "food_inventory_id"
-    t.integer  "item_id"
-    t.string   "quantity"
-    t.decimal  "in_base_units"
-    t.decimal  "in_inventory"
-    t.decimal  "average_cost"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "food_inventory_id"
+    t.integer   "item_id"
+    t.string    "quantity"
+    t.decimal   "in_base_units"
+    t.decimal   "in_inventory"
+    t.decimal   "average_cost"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "group_checklist_statuses", :force => true do |t|
@@ -224,70 +225,70 @@ ActiveRecord::Schema.define(:version => 20120518214854) do
   end
 
   create_table "item_categories", :force => true do |t|
-    t.string   "name"
-    t.integer  "item_type_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "position"
+    t.string    "name"
+    t.integer   "item_type_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "position"
   end
 
   create_table "item_purchases", :force => true do |t|
-    t.integer  "item_id"
-    t.integer  "purchase_id"
-    t.decimal  "quantity"
-    t.string   "size"
-    t.string   "uom"
-    t.decimal  "price"
-    t.boolean  "taxable"
-    t.decimal  "total_base_units"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "item_id"
+    t.integer   "purchase_id"
+    t.decimal   "quantity"
+    t.string    "size"
+    t.string    "uom"
+    t.decimal   "price"
+    t.boolean   "taxable"
+    t.decimal   "total_base_units"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "item_types", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "item_category_id"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "item_category_id"
   end
 
   create_table "items", :force => true do |t|
-    t.integer  "program_id"
-    t.integer  "item_type_id"
-    t.string   "name"
-    t.string   "description"
-    t.string   "notes"
-    t.string   "base_unit"
-    t.boolean  "default_taxed"
-    t.integer  "item_category_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "budget_item_type_id"
-    t.boolean  "untracked"
+    t.integer   "program_id"
+    t.integer   "item_type_id"
+    t.string    "name"
+    t.string    "description"
+    t.string    "notes"
+    t.string    "base_unit"
+    t.boolean   "default_taxed"
+    t.integer   "item_category_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "budget_item_type_id"
+    t.boolean   "untracked"
   end
 
   create_table "job_types", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "jobs", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "job_type_id"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "job_type_id"
   end
 
   create_table "labor_items", :force => true do |t|
-    t.integer  "project_id"
-    t.integer  "recorded_by"
-    t.string   "team_name"
-    t.integer  "team_size"
-    t.decimal  "days_worked"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "session_id"
+    t.integer   "project_id"
+    t.integer   "recorded_by"
+    t.string    "team_name"
+    t.integer   "team_size"
+    t.decimal   "days_worked"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "session_id"
   end
 
   create_table "liaison_types", :force => true do |t|
@@ -323,23 +324,23 @@ ActiveRecord::Schema.define(:version => 20120518214854) do
   end
 
   create_table "material_item_delivereds", :force => true do |t|
-    t.integer  "item_id"
-    t.integer  "project_id"
-    t.decimal  "quantity"
-    t.string   "uom"
-    t.datetime "delivery_date"
-    t.integer  "delivered_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "item_id"
+    t.integer   "project_id"
+    t.decimal   "quantity"
+    t.string    "uom"
+    t.timestamp "delivery_date"
+    t.integer   "delivered_by"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "material_item_estimateds", :force => true do |t|
-    t.integer  "item_id"
-    t.integer  "project_id"
-    t.decimal  "quantity"
-    t.string   "uom"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "item_id"
+    t.integer   "project_id"
+    t.decimal   "quantity"
+    t.string    "uom"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "organizations", :force => true do |t|
@@ -399,86 +400,87 @@ ActiveRecord::Schema.define(:version => 20120518214854) do
   end
 
   create_table "program_users", :force => true do |t|
-    t.integer  "job_id"
-    t.integer  "program_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "job_id"
+    t.integer   "program_id"
+    t.integer   "user_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "programs", :force => true do |t|
-    t.integer  "site_id"
-    t.integer  "program_type_id"
-    t.boolean  "active"
-    t.string   "name"
-    t.string   "short_name"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "site_id"
+    t.integer   "program_type_id"
+    t.boolean   "active"
+    t.string    "name"
+    t.string    "short_name"
+    t.date      "start_date"
+    t.date      "end_date"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "project_categories", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name"
+    t.string    "description"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "project_subtypes", :force => true do |t|
-    t.string   "name"
-    t.string   "compound_name"
-    t.integer  "project_type_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.decimal  "untracked_percentage"
+    t.string    "name"
+    t.string    "compound_name"
+    t.integer   "project_type_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.decimal   "untracked_percentage"
   end
 
   create_table "project_types", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "project_category_id"
+    t.string    "name"
+    t.string    "description"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "project_category_id"
   end
 
   create_table "projects", :force => true do |t|
-    t.string   "name"
-    t.string   "beneficiary_name"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.string   "description"
-    t.string   "telephone1"
-    t.string   "telephone2"
-    t.text     "notes"
-    t.decimal  "actual_cost"
-    t.date     "planned_start"
-    t.date     "actual_start"
-    t.date     "planned_end"
-    t.date     "actual_end"
-    t.integer  "created_by"
-    t.integer  "updated_by"
-    t.integer  "project_type_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "program_id"
-    t.decimal  "estimated_days"
-    t.string   "stage"
+    t.string    "name"
+    t.string    "beneficiary_name"
+    t.string    "address1"
+    t.string    "address2"
+    t.string    "city"
+    t.string    "state"
+    t.string    "zip"
+    t.string    "description"
+    t.string    "telephone1"
+    t.string    "telephone2"
+    t.text      "notes"
+    t.decimal   "actual_cost"
+    t.date      "planned_start"
+    t.date      "actual_start"
+    t.date      "planned_end"
+    t.date      "actual_end"
+    t.integer   "created_by"
+    t.integer   "updated_by"
+    t.integer   "project_type_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "program_id"
+    t.decimal   "estimated_days"
+    t.string    "stage"
+    t.integer   "project_subtype_id"
   end
 
   create_table "purchases", :force => true do |t|
-    t.integer  "program_id"
-    t.integer  "vendor_id"
-    t.date     "date"
-    t.integer  "purchaser_id"
-    t.decimal  "total"
-    t.decimal  "tax"
-    t.string   "notes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "program_id"
+    t.integer   "vendor_id"
+    t.date      "date"
+    t.integer   "purchaser_id"
+    t.decimal   "total"
+    t.decimal   "tax"
+    t.string    "notes"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "registrations", :force => true do |t|
@@ -622,32 +624,32 @@ ActiveRecord::Schema.define(:version => 20120518214854) do
   end
 
   create_table "standard_items", :force => true do |t|
-    t.integer  "item_id"
-    t.string   "comments"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "project_subtype_id"
+    t.integer   "item_id"
+    t.string    "comments"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "project_subtype_id"
   end
 
   create_table "user_roles", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name"
+    t.string    "description"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "vendors", :force => true do |t|
-    t.integer  "site_id",    :null => false
-    t.string   "name",       :null => false
-    t.string   "address",    :null => false
-    t.string   "city",       :null => false
-    t.string   "state",      :null => false
-    t.string   "zip",        :null => false
-    t.string   "contact"
-    t.string   "phone"
-    t.string   "notes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "site_id",    :null => false
+    t.string    "name",       :null => false
+    t.string    "address",    :null => false
+    t.string    "city",       :null => false
+    t.string    "state",      :null => false
+    t.string    "zip",        :null => false
+    t.string    "contact"
+    t.string    "phone"
+    t.string    "notes"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
 end

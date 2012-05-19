@@ -3,9 +3,9 @@
 class ItemType < ActiveRecord::Base
 
   attr_accessible :name
-  has_many :items
+  #has_many :items
   has_many :item_category
-  validates :name, :item_category_id, :presence => true
+  validates :name,:presence => true
   validates :name, :uniqueness => true
 
 end

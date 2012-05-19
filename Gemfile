@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.1'
+gem 'rails', '3.0.12'
 gem 'jquery-rails'
-gem 'rake', '0.8.7'
+gem 'rake', '0.9.2.2'
 gem 'haml'
 gem 'formtastic',  '2.1.1'
 gem 'activeadmin'
