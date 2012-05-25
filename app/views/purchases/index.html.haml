@@ -25,11 +25,11 @@
               %td= purchase.total
               %td= link_to "view", purchase
 
-- if @purchases.size > 20
-  .paginator.append-bottom
-    %span.wrapper
-      = paginate @purchases
-.span-12.properties.last
-  %dl.properties
-    -if @program
-      %dlt= link_to "Add a New Purchase", new_program_purchase_path(@program)
+  - if @purchases.size > 20
+    .paginator.append-bottom
+      %span.wrapper
+        = paginate @purchases
+  .span-12.properties.last
+    %dl.properties
+      -if @program
+        %dlt= link_to "Add a New Purchase", new_program_purchase_path(@program)

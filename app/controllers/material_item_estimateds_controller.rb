@@ -9,6 +9,11 @@ class MaterialItemEstimatedsController < ApplicationController
   end
 
   def new
+    @project = Project.find(params[:id])
+    @title = "#{@project.program.short_name}:Planned Material for Project: #{@project.name}"
+    @material_item_estimated = MaterialItemDelivered.new
+    @material_item_estimated.quantity= 1
+    @material_item_estimated.project_id= @project.id
   end
 
   def update
@@ -30,7 +35,7 @@ class MaterialItemEstimatedsController < ApplicationController
 
   def create
     @material_item_estimated = MaterialItemEstimated.new(params[:material_item_estimated])
-    @material_item_estimated.project_id = @project.id
+    @project= @material_item_estimated.project
     if @material_item_estimated.save
       flash[:success] = "New planned item has been successfully created."
       redirect_to @project

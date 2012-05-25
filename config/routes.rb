@@ -64,6 +64,7 @@ Spoic3::Application.routes.draw do
 
   match "material_item_delivereds/add/:id", :to => 'material_item_delivereds#new', :as => 'deliver_project'
   match "material_item_delivereds", :to => 'material_item_delivereds#create', :as => 'add_material_item'
+  match "material_item_estimateds", :to => 'material_item_estimateds#create', :as => 'add_material_item_estimated'
   match "labor_item", :to => 'labor_items#create', :as => 'add_labor_item'
   match "labor_items/add/:id", :to => 'labor_items#new', :as =>'labor_project'
 

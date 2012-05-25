@@ -6,6 +6,8 @@
                                                                        Date.today), :unit => "$") %></td>
   <td ><%= number_to_currency(material_item_estimated.item.average_cost(material_item_estimated.project.program,
                                                                          Date.today) * material_item_estimated.quantity, :unit => "$") %></td>
+  <td><%= link_to "Edit", edit_material_item_estimated_path(material_item_estimated),  #:remote => true
+        %></td>
   <td><%= link_to "Remove", material_item_estimated_path(material_item_estimated), :method=>:delete, #:remote => true,
                   :confirm => "Are you sure you want to remove #{material_item_estimated.item}?", :title => "Confirm Delete" %></td>
 </tr>
