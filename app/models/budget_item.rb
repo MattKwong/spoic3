@@ -31,8 +31,8 @@ class BudgetItem < ActiveRecord::Base
   end
 
   def program_and_item_unique
-    if BudgetItem.find_by_budget_item_type_id_and_program_id(:budget_item_type_id, :site_id) then
-      errors.add(:site_id, "A budget item already exists for this program and item type. Updated the exiting item type instead.")
+    if BudgetItem.find_by_budget_item_type_id_and_program_id(:budget_item_type_id, :program_id) then
+      errors.add(:site_id, "A budget item already exists for this program and item type.")
     end
   end
 end

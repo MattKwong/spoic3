@@ -16,4 +16,12 @@ ActiveAdmin.register BudgetItem do
     end
       default_actions
   end
+  form do |f|
+     f.inputs "New Budget Item" do
+       f.input :budget_item_type, :include_blank => false
+       f.input :program, :include_blank => false
+       f.input :amount, :hint => "Enter the amount, including decimal point if needed, without a dollar sign."
+     end
+     f.buttons
+   end
 end
