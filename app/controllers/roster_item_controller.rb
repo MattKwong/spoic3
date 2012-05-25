@@ -10,7 +10,7 @@ class RosterItemController < ApplicationController
     @roster_item.group_id= params[:group_id]
     @title = "Add Participant Information"
     set_grade_list
-    @size_list = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
+    @size_list = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL']
     @youth_list = [["Youth", true], ["Counselor", false]]
     @disclosure_status_list = ['Received', 'Incomplete', 'Not Received']
     @covenant_status_list = ['Received', 'Incomplete', 'Not Received']
@@ -31,7 +31,7 @@ class RosterItemController < ApplicationController
     else
       @title = @page_title = 'Add New Participant Information'
       set_grade_list
-      @size_list = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
+      @size_list = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL']
       @youth_list = [["Youth", true], ["Counselor", false]]
       @disclosure_status_list = ['Not Received', 'Received', 'Incomplete' ]
       @covenant_status_list = ['Not Received', 'Received', 'Incomplete']

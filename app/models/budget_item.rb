@@ -6,7 +6,7 @@ class BudgetItem < ActiveRecord::Base
   validates :budget_item_type_id, :amount, :presence => true
   validates_numericality_of :amount, :greater_than_or_equal_to => 0, :decimal => true
 
-  validate :program_and_item_unique
+#  validate :program_and_item_unique
 
   validate :program_valid
   validate :item_valid
@@ -32,7 +32,7 @@ class BudgetItem < ActiveRecord::Base
 
   def program_and_item_unique
     if BudgetItem.find_by_budget_item_type_id_and_program_id(:budget_item_type_id, :program_id) then
-      errors.add(:site_id, "A budget item already exists for this program and item type.")
+      errors.add(:program_id, "A budget item already exists for this program and item type.")
     end
   end
 end
