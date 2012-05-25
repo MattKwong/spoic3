@@ -7,9 +7,7 @@ class AdminUser < ActiveRecord::Base
   belongs_to :site
   belongs_to :user_role
 
-# has_many :program_users, :dependent => :restrict
   has_many :programs, :through => :program_users
-
   has_many :purchases, :foreign_key => "purchaser_id", :dependent => :restrict
 
   # Setup accessible (or protected) attributes for your model
@@ -26,10 +24,8 @@ class AdminUser < ActiveRecord::Base
   end
 
   validates :email, :uniqueness => true
-  validates :username, :uniqueness => true
+  validates :username, :uniqueness => true, :allow_blank => true
   validates :first_name, :last_name, :presence => true
-
-
 
   validates_numericality_of :phone,
                       :message => 'Phone number must be 10 digits plus optional separators.',
@@ -175,15 +171,6 @@ class AdminUser < ActiveRecord::Base
     program_id
     #self.programs.where("end_date >= ?", Time.now).order('start_date ASC').first
   end
-
-#  def current_job
-##    self.program_users.find_by_program_id(self.current_program).job.name
-#  end
-
-#  def site_director_for?(program)
-#    self.program_users.joins(:job).where(:program_id=>program.id, :job_id => Job.find_by_name("Site Director").id).count == 1
-#  end
-
 
   private
   def create_name

@@ -1,0 +1,144 @@
+#active_admin_content
+  .group-header
+    .plus-minus
+      = link_to image_tag('plusminus.png', :id => 'general-toggle'), "#"
+    %h3 General Information
+  .span-24
+  .group-container.toggle-image#general-info
+    .span-6.properties
+      %dl.properties
+        %dt Name
+        %dd= @project.name
+        %dt Type and subtype
+        %dd= @project.project_subtype.compound_name
+        %dt Planner
+        %dd= @project.admin_user.name
+        %dt Description
+        %dd= @project.description
+
+    .span-6.properties
+      %dl.properties
+        %dt Beneficiary Name
+        %dd= @project.beneficiary_name
+        %dt Primary phone
+        %dd= @project.telephone1
+        %dt Description
+        %dd= @project.telephone2
+        %dt Address
+        %dd= @project.address1
+        %dt City and State
+        %dd= @project.city + ", " + @project.state + ' ' + @project.zip
+
+    .span-6.properties
+      %dl.properties
+        %dt Planned Start
+        %dd= @project.planned_start
+        %dt Planned End
+        %dd= @project.planned_end
+        %dt Planned Vol Days
+        %dd= @project.estimated_days
+        %dt Planned Cost
+        %dd= number_to_currency(@project.estimated_cost(@project.program))
+        %dt Planned $/Vol Day
+        -if !@project.estimated_days.nil?
+          %dd= number_to_currency(@project.estimated_cost(@project.program) / @project.estimated_days)
+        -else
+          %dd
+        %dlt= link_to "Edit General Information", edit_project_path(@project) if can? :edit, @project
+        %dt Current Stage
+        %dd= @project.stage
+    .span-6.last.properties
+      %dl.properties
+        %dt Actual Start
+        %dd= @project.actual_start
+        %dt  Last updated
+        %dd= "#{Date.today - @project.updated_at.to_date} days ago"
+        %dt Current Vol Days
+        %dd= @project.actual_days
+        %dt Current Cost
+        %dd= number_to_currency(@project.actual_cost(@project.program))
+        %dt Current $/Vol Day
+        -unless (@project.actual_days.nil? || @project.actual_days == 0)
+          %dd= number_to_currency(@project.actual_cost(@project.program) / @project.actual_days)
+        -else
+          %dd
+        -if can? :edit, @project
+          %dlt= link_to "Delete This Project", project_path(@project), {:method => :delete, :confirm => "Are you sure you want to delete this project? This cannot be undone." }
+        %dt Next Action
+        - if (can? :edit, @project) && @project.stage_new?
+          %dd= link_to "Submit for Review", project_review_path(@project)
+        - if (can? :approve, @project) && @project.stage_ready?
+          %dd= link_to "Approve", :path => project_review_path(@project)
+        - if (can? :edit, @project) && @project.stage_in_progress?
+          %dd= link_to "Close", :path => project_review_path(@project)
+
+    .span-24.last.prepend-top
+      .notes-area
+        %dl.properties
+          %dt Notes
+          %dd= @project.notes
+
+  .span-24.last.prepend-top
+    .group-header
+      .plus-minus
+        = link_to image_tag('plusminus.png', :id => 'plan-material-toggle'), "#"
+      %h3 Plan Materials
+
+  .group-container.toggle-image#plan-material-info
+    .span-12.last.prepend-top
+      -if can? :create, @project.material_item_estimateds.new
+        %h3 Add suggested items to project
+        - @material_item_estimated = MaterialItemEstimated.new
+        - @material_item_estimated.project_id= @project.id
+        = render 'material_item_estimateds/standard_form'
+
+    .span-12.last.prepend-top
+      -if can? :create, @project.material_item_estimateds.new
+        %h3 Add other items to project
+        - @material_item_estimated = MaterialItemEstimated.new
+        - @material_item_estimated.project_id= @project.id
+        = render 'material_item_estimateds/nonstandard_form'
+
+
+  .span-24.last.prepend-top
+    .group-header
+      .plus-minus
+        = link_to image_tag('plusminus.png', :id => 'plan-summary-toggle'), "#"
+      %h3 Planned Items Summary
+    = render 'material_item_estimateds/table', :material_item_estimateds => @project.material_item_estimateds
+
+  -if can? :create, @project.material_item_delivereds.new
+    .span-24.last.prepend-top
+      .group-header
+        .plus-minus
+          = link_to image_tag('plusminus.png', :id => 'deliver-material-toggle'), "#"
+        %h3 Record Deliveries and Returns
+      .group-container.toggle-image#deliver-material-info
+        .span-24.last.prepend-top
+          = render 'material_item_delivereds/fields'
+
+
+  .span-24.last.prepend-top
+    .group-header
+      .plus-minus
+        = link_to image_tag('plusminus.png', :id => 'deliveries-toggle'), "#"
+      %h3 Actual Deliveries
+    = render 'material_item_delivereds/table', :material_item_delivereds => @project.material_item_delivereds
+  -if can? :create, @project.labor_items.new
+    .span-24.last.prepend-top
+      .group-header
+        .plus-minus
+          = link_to image_tag('plusminus.png', :id => 'labor-item-toggle'), "#"
+        %h3 Add Volunteer Days
+      .group-container.toggle-image#labor-item-info
+        .span-24.last.prepend-top
+          = render 'labor_items/fields'
+
+  .span-24.last.prepend-top
+    .group-header
+      .plus-minus
+        = link_to image_tag('plusminus.png', :id => 'labor-toggle'), "#"
+      %h3 Volunteer Days
+    = render 'labor_items/table', :labor_items => @project.labor_items
+
+

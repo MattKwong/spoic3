@@ -1,37 +1,38 @@
-.span-8.properties.first
-  %dl.properties
-    %dt Vendor
-    %dd= @purchase.vendor.name
-    %dt Date
-    %dd= @purchase.date
-    %dt Purchaser
-    %dd= @purchase.purchaser.name
+#active_admin_content
+  .span-8.properties.first
+    %dl.properties
+      %dt Vendor
+      %dd= @purchase.vendor.name
+      %dt Date
+      %dd= @purchase.date
+      %dt Purchaser
+      %dd= @purchase.purchaser.name
 
-.span-8.properties
-  %dl.properties
-    %dt Total
-    %dd= number_to_currency(@purchase.total, :unit => "$")
-    %dt Accounted for
-    %dd#accounted_for= number_to_currency(@purchase.accounted_for)
-    %dt Unaccounted For
-    %dd#unaccounted_for= number_to_currency @purchase.unaccounted_for, :unit => "$"
-    %dlt= link_to "Edit General Purchase Information", edit_purchase_path(@purchase) if can? :edit, @purchase
-.span-8.last.properties
-  %dl.properties
-    %dt Tax
-    %dd= number_to_currency(@purchase.tax, :unit => "$")
-    %dt Effective tax rate
-    %dd= number_to_percentage(@purchase.effective_tax_rate * 100, :precision => 2)
-    %dt Actual Tax Rate
-    %dd#actual_tax_rate= number_to_percentage(@purchase.actual_tax_rate * 100, :precision => 2)
-    %dlt= link_to "Delete This Purchase", purchase_path(@purchase), {:method => :delete, :confirm => "Are you sure you want to delete this purchase? This cannot be undone." }
-.span-24.prepend-top
-  -if can? :create, @purchase.item_purchases.new
-    %h3 Add Item to Purchase
-    = render 'item_purchases/form', :item_purchase => @purchase.item_purchases.new#, :remote => true
+  .span-8.properties
+    %dl.properties
+      %dt Total
+      %dd= number_to_currency(@purchase.total, :unit => "$")
+      %dt Accounted for
+      %dd#accounted_for= number_to_currency(@purchase.accounted_for)
+      %dt Unaccounted For
+      %dd#unaccounted_for= number_to_currency @purchase.unaccounted_for, :unit => "$"
+      %dlt= link_to "Edit General Purchase Information", edit_purchase_path(@purchase) if can? :edit, @purchase
+  .span-8.last.properties
+    %dl.properties
+      %dt Tax
+      %dd= number_to_currency(@purchase.tax, :unit => "$")
+      %dt Effective tax rate
+      %dd= number_to_percentage(@purchase.effective_tax_rate * 100, :precision => 2)
+      %dt Actual Tax Rate
+      %dd#actual_tax_rate= number_to_percentage(@purchase.actual_tax_rate * 100, :precision => 2)
+      %dlt= link_to "Delete This Purchase", purchase_path(@purchase), {:method => :delete, :confirm => "Are you sure you want to delete this purchase? This cannot be undone." }
+  .span-24.prepend-top
+    -if can? :create, @purchase.item_purchases.new
+      %h3 Add Item to Purchase
+      = render 'item_purchases/form', :item_purchase => @purchase.item_purchases.new#, :remote => true
 
-.span-24.last.prepend-top
-  = render 'item_purchases/table', :item_purchases => @purchase.item_purchases
+  .span-24.last.prepend-top
+    = render 'item_purchases/table', :item_purchases => @purchase.item_purchases
 
 
 

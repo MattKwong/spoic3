@@ -18,7 +18,6 @@ class AdminUsersController < Admin::AdminUsersController
     if @user.staff?
       @user.skip_confirmation!
     end
-    logger.debug @user.inspect
     if @user.save
       flash[:notice] = "Successfully created user"
       redirect_to root_path

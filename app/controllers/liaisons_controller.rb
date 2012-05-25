@@ -58,6 +58,9 @@ class LiaisonsController < ApplicationController
     user.liaison_id = liaison.id
     user.name = liaison.name
     user.user_role_id = UserRole.find_by_name('Liaison').id
+    user.username = liaison.first_name + liaison.last_name + liaison.id.to_s
+    logger.debug liaison.inspect
+    logger.debug user.inspect
 
 #TODO: change logic to update the admin user record if one exists.
     unless user.save!

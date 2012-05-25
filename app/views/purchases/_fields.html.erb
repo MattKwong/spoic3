@@ -7,6 +7,10 @@
     <%= form.input :total, :input_html => { :size => 15 }, :hint => "Enter the total, including tax" %>
   <% end %>
   <% form.buttons do %>
-    <%= form.commit_button :label => "Create purchase" %>
+    <% if purchase.new_record? %>
+            <%= form.commit_button :label => "Create purchase" %>
+    <% else %>
+            <%= form.commit_button :label => "Update purchase" %>
+    <% end %>
 <% end %>
 <% end %>

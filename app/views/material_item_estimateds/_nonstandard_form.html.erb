@@ -1,6 +1,6 @@
 <% remote ||= false %>
 <%= semantic_form_for @material_item_estimated, :url => (@material_item_estimated.new_record? ?
-        add_material_item_estimated_path(@material_item_estimated.project) : new_material_item_estimated_path(@material_item_estimated.project )) do |form| %>
+        add_material_item_estimated_path(@material_item_estimated) : edit_material_item_estimated_path(@material_item_estimated )) do |form| %>
 
   <%= form.inputs do %>
     <%= form.input :item, :include_blank => false, :collection => @nonstandard_item_list,
