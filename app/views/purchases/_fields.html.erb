@@ -1,7 +1,8 @@
+<div id='active_admin_content'>
 <%= semantic_form_for purchase, :url => purchase.new_record? ? program_purchases_path(purchase.program) : purchase_path(purchase) do |form| %>
   <%= form.inputs do %>
     <%= form.input :vendor, :as => :select, :include_blank => false, :collection => purchase.program.site.vendors %>
-    <%= form.input :purchaser, :as => :select, :include_blank => false, :collection => purchase.program.admin_users %>
+    <%= form.input :purchaser, :as => :select, :include_blank => false, :collection => purchase.program.admin_users  %>
     <%= form.input :date %>
     <%= form.input :tax, :input_html => { :size => 15 }, :hint => "Enter the tax, in dollars" %>
     <%= form.input :total, :input_html => { :size => 15 }, :hint => "Enter the total, including tax" %>
@@ -14,3 +15,4 @@
     <% end %>
 <% end %>
 <% end %>
+</div>

@@ -3,5 +3,6 @@ class ProjectType < ActiveRecord::Base
   belongs_to :project_category
   has_many :projects_subtypes
   validates :name, :project_category_id, :presence => true
+  default_scope :order => 'name'
 
 end

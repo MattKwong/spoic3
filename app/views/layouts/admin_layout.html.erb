@@ -5,10 +5,11 @@
     <%= favicon_link_tag %>
     <%= csrf_meta_tag %>
     <%= render 'layouts/stylesheets' %>
-    <%= javascript_include_tag 'jquery.js' %>
-    <%= javascript_include_tag 'jquery-ui.js' %>
-    <%= javascript_include_tag '01.js' %>
-    <!--<%= javascript_include_tag :defaults %>-->
+
+    <!--<%= javascript_include_tag 'jquery.js' %>-->
+    <!--<%= javascript_include_tag 'jquery-ui.js' %>-->
+    <!--<%= javascript_include_tag '01.js' %>-->
+    <%= javascript_include_tag :all %>
 
   </head>
   <body class = logged_in>

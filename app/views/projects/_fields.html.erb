@@ -13,7 +13,7 @@
     <%= form.input :project_subtype_id, :as => :select, :collection => ProjectSubtype.all %>
     <%= form.input :description, :hint => "Give a short description of the project." %>
     <%= form.input :planned_start, :label => "Planned start date" %>
-    <%= form.input :estimated_days, :label => "Estimated work days" %>
+    <%= form.input :estimated_days, :label => "Estimated work days", :hint => "Enter the number of volunteer days (team size x number of days)." %>
     <%= form.input :planned_end, :label => "Planned completion date" %>
     <%= form.input :notes, label: "Project notes", :hint => "Use this area to record project notes." %>
   <% end %>

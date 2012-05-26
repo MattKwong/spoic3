@@ -11,8 +11,8 @@ ActiveAdmin.register ProjectSubtype do
   end
 
   form do |f|
-    f.inputs "User Details" do
-      f.input :project_type
+    f.inputs "Project Type Details" do
+      f.input :project_type, :include_blank => false
       f.input :name
       f.input :untracked_percentage, :hint => "This is the expected cost of untracked items as a percentage of the total."
     end

@@ -11,6 +11,7 @@ class PurchasesController < ApplicationController
   def new
     @page_title = "New Purchase"
     @purchase.program = @program
+    @purchase.purchaser = current_admin_user
     if @program.site.vendors.empty?
       flash[:notice] = "There are no vendors for #{@program.site.name}, please create one before creating a new purchase"
       redirect_to new_site_vendor_path(@program.site) 
@@ -21,6 +22,7 @@ class PurchasesController < ApplicationController
   def create
     @purchase.vendor_id = params[:purchase][:vendor_id]
     @purchase.purchaser_id = params[:purchase][:purchaser_id]
+
     if @purchase.save
       flash[:success] = "Purchase created"
       redirect_to @purchase
@@ -52,16 +54,21 @@ class PurchasesController < ApplicationController
   end
     
   def destroy
-    if @purchase.destroy
+
+    if @purchase.item_purchases.any?
+      flash[:error] = "Cannot delete purchase because items exist on it. Delete the individual items, then delete the purchase."
+      redirect_to @purchase
+    else if @purchase.destroy
       flash[:success] = "Purchase successfully deleted"
       if current_admin_user.field_staff?
-        redirect_to program_purchases_path(current_user.current_program)
+        redirect_to program_purchases_path(current_admin_user.current_program)
       else
         redirect_to purchases_path
       end
     else
       flash[:error] = "Delete failed"
       redirect_to @purchase
+    end
     end
   end
 end

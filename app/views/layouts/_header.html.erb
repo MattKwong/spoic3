@@ -62,13 +62,13 @@
                       <li><%= link_to "Items", program_items_path(current_admin_user.program_user.program) %></li>
                       <li><%= link_to "Purchases", program_purchases_path(current_admin_user.program_user.program) %></li>
                       <li><%= link_to "Reports", staff_reports_path %></li>
-                      <li><%= link_to "Projects", program_projects_path(current_admin_user.program_user.program) %></li>
-                      <li><%= link_to "Food Inventories", program_food_inventories_path(current_admin_user.program_user.program) %></li>
+                      <li><%= link_to "Projects", program_projects_path(current_admin_user.program_user.program)  if current_admin_user.construction? || current_admin_user.sd? %></li>
+                      <li><%= link_to "Food Inventories", program_food_inventories_path(current_admin_user.program_user.program) if current_admin_user.cook? || current_admin_user.sd?%></li>
                   </ul>
                 </li>
+                <li><%= link_to "Site Home", current_admin_user.program_user.program, %></li>
+
         <% end %>
-
-
         <% if signed_in? && current_admin_user.liaison? %>
             <li><%= link_to "MySSP", myssp_path(current_admin_user.liaison_id) %></li>
         <% end %>

@@ -5,21 +5,18 @@ class ItemPurchasesController < ApplicationController
 
   def new
     @title = "New Item Purchase"
+    @items_list = Hash[Item.all_for_program(item_purchase.purchase.program).map {|i| ["#{i.name} (base units: #{i.base_unit})", i.id]}]
+    logger.debug @items_list.inspect
   end
 
   def create
-
-       if @item_purchase.save
-        respond_to do |format|
-          format.html do
-            flash[:success] = "Added Item"
-            redirect_to purchase_path(@purchase)
-            end
-#          format.js
-        end
+      if @item_purchase.save
+        flash[:success] = "Added Item"
+        redirect_to purchase_path(@purchase)
       else
         @title = "Purchase Item"
-        flash[:error] = "Could not save item"
+        flash[:error] = @item_purchase.errors.first[1].humanize
+        @purchase
         redirect_to @purchase
       end
   end

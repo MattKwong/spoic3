@@ -41,6 +41,8 @@ Spoic3::Application.routes.draw do
     get :activation
   end
 
+  match "purchases/:id/delete" => 'purchases#destroy', :as => 'delete_purchase'
+
   match "items/new", :to => 'items#new', :as => 'add_item'
   resources :vendors #, :only => [:index]
   resources :purchases, :only => [:index]

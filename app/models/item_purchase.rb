@@ -25,7 +25,7 @@ class ItemPurchase < ActiveRecord::Base
   scope :alphabetized, lambda { |id| joins(:item).order("name") }
 
   def size_in_base_units
-    size.u / item.base_unit
+    size.u >> item.base_unit
   end
 
   def items_by_budget_item_type_id
