@@ -1,3 +1,4 @@
+<div id="active_admin_content">
 <%= semantic_form_for project, :url => project.new_record? ? program_projects_path(@program) : project_path(@project) do |form| %>
   <%= form.inputs do %>
     <%= form.input :name, :label => "Project name" , :input_html => {:size => 30} %>
@@ -19,3 +20,4 @@
   <% end %>
   <%= form.buttons %>
 <% end %>
+</div>

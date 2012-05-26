@@ -62,7 +62,7 @@ class ProjectsController < ApplicationController
     @page_title = "#{@project.name}"
     nonstandard_item_list = Hash[Item.materials.map {|i| [i.id, i.name]}]
     standard_item_list =
-        Hash[StandardItem.find_all_by_project_subtype_id(@project.project_type_id).map {|s| [s.item_id, "#{s.item.name} | Comments: #{s.comments}"]}]
+        Hash[StandardItem.find_all_by_project_subtype_id(@project.project_type_id).map {|s| [s.item_id, "#{s.item.name} (#{s.comments})"]}]
     existing_item_list = Hash[MaterialItemEstimated.find_all_by_project_id(@project.id).map {|e| [e.item_id, e.item.name]}]
 
     standard_item_list.each {|s| nonstandard_item_list.delete(s[0])}
@@ -122,5 +122,22 @@ class ProjectsController < ApplicationController
     redirect_to @project
   end
 
+  def destroy
+# We won't allow a project to be delete once materials or labor has been recorded against it.
+    logger.debug @project.inspect
+    logger.debug @project.program.inspect
+    if @project.labor_items.any? || @project.material_item_delivereds.any?
+      flash[:warning] = "This project cannot be deleted because either labor or materials have been recorded against it."
+      redirect_to program_project_path(@project.program)
+    else
+      if @project.destroy
+        flash[:notice] = "Successful deletion of project #{@project.name}."
+        redirect_to current_admin_user.program_user.program
+      else
+        flash[:error] = "An unknown problem prevented #{@project.name} from being deleted."
+        render :back
+      end
+    end
+  end
 
 end

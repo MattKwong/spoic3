@@ -6,6 +6,7 @@
     <%= form.input :item, :include_blank => false, :collection => @nonstandard_item_list,
                    :input_html => { :class => "jq-combo" }%>
     <%= form.input :quantity, :hint => "Enter the estimate for the quantity to be used.", :input_html => { :size => 4 } %>
+        <input type = "hidden" name="material_item_estimated[project_id]" value= <%= @material_item_estimated.project_id %> />
   <% end %>
   <%= form.buttons %>
 <% end %>

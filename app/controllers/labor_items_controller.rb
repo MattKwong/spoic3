@@ -3,7 +3,7 @@ class LaborItemsController < ApplicationController
   load_and_authorize_resource :program
   load_and_authorize_resource :project #, :through => :program, :shallow => true
   load_and_authorize_resource :labor_item, :through => :project, :shallow => true
-  before_filter :check_for_cancel, :only => [:create, :update]
+#  before_filter :check_for_cancel, :only => [:create, :update]
 
   def index
 

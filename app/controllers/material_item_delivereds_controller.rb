@@ -29,7 +29,7 @@ class MaterialItemDeliveredsController < ApplicationController
       flash[:success] = "New delivered item has been successfully created."
       redirect_to @project
     else
-      flash[:error] = "Errors prevented this record from being saved."
+      flash[:error] = "Material delivery could not be recorded because: " + @material_item_delivered.errors.first[1].humanize
       @title = "#{@project.program.short_name}: Material Delivery for Project: #{@project.name}"
       @item_list = Hash[@project.material_item_estimateds.map {|i| ["#{i.item.name}", i.item_id ]}]
       @user_list = Hash[@project.program.program_users.map {|u| ["#{u.admin_user.name}", u.admin_user.id ]}]

@@ -1,0 +1,9 @@
+<div id="active_admin_content">
+<%= semantic_form_for @material_item_estimated do |form| %>
+  <%= form.inputs do %>
+
+    <%= form.input :quantity, :hint => "Enter a new quantity. If you want to change the item, remove the unwanted item and add a new one." %>
+  <% end %>
+  <%= form.buttons %>
+<% end %>
+</div>

@@ -24,6 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def create
+    logger.debug @item.inspect
     if current_admin_user.staff?
       @item.program_id = current_admin_user.program_id
     end
@@ -32,6 +33,7 @@ class ItemsController < ApplicationController
       flash[:success] = "#{@item.name} created successfully"
       redirect_to :back
     else
+      flash[:error] = "A problem occurred in creating this item."
       @page_title = "New Item"
       render :new
     end
