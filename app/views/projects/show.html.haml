@@ -1,8 +1,8 @@
 #active_admin_content
   .group-header
-    .plus-minus
-      = link_to image_tag('plusminus.png', :id => 'general-toggle'), "#"
-    %h3 General Information
+    #general-toggle
+      -#= link_to image_tag('plusminus.png', :id => 'general-toggle'), "#"
+      %h3 General Information
   .span-24
   .group-container.toggle-image#general-info
     .span-6.properties
@@ -80,9 +80,9 @@
 
   .span-24.last.prepend-top
     .group-header
-      .plus-minus
-        = link_to image_tag('plusminus.png', :id => 'plan-material-toggle'), "#"
-      %h3 Plan Materials
+      #plan-material-toggle
+        -#= link_to image_tag('plusminus.png', :id => 'plan-material-toggle'), "#"
+        %h3 Plan Materials
 
   .group-container.toggle-image#plan-material-info
     .span-12.last.prepend-top
@@ -102,17 +102,17 @@
 
   .span-24.last.prepend-top
     .group-header
-      .plus-minus
-        = link_to image_tag('plusminus.png', :id => 'plan-summary-toggle'), "#"
-      %h3 Planned Items Summary
+      #plan-summary-toggle
+        -#= link_to image_tag('plusminus.png', :id => 'plan-summary-toggle'), "#"
+        %h3 Planned Items Summary
     = render 'material_item_estimateds/table', :material_item_estimateds => @project.material_item_estimateds
 
   -if can? :create, @project.material_item_delivereds.new
     .span-24.last.prepend-top
       .group-header
-        .plus-minus
-          = link_to image_tag('plusminus.png', :id => 'deliver-material-toggle'), "#"
-        %h3 Record Deliveries and Returns
+        #deliver-material-toggle
+          -#= link_to image_tag('plusminus.png', :id => 'deliver-material-toggle'), "#"
+          %h3 Record Deliveries and Returns
       .group-container.toggle-image#deliver-material-info
         .span-24.last.prepend-top
           = render 'material_item_delivereds/fields'
@@ -120,25 +120,25 @@
 
   .span-24.last.prepend-top
     .group-header
-      .plus-minus
-        = link_to image_tag('plusminus.png', :id => 'deliveries-toggle'), "#"
-      %h3 Actual Deliveries
+      #deliveries-toggle
+        -#= link_to image_tag('plusminus.png', :id => 'deliveries-toggle'), "#"
+        %h3 Actual Deliveries
     = render 'material_item_delivereds/table', :material_item_delivereds => @project.material_item_delivereds
   -if can? :create, @project.labor_items.new
     .span-24.last.prepend-top
       .group-header
-        .plus-minus
-          = link_to image_tag('plusminus.png', :id => 'labor-item-toggle'), "#"
-        %h3 Add Volunteer Days
+        #labor-item-toggle
+          -#= link_to image_tag('plusminus.png', :id => 'labor-item-toggle'), "#"
+          %h3 Add Volunteer Days
       .group-container.toggle-image#labor-item-info
         .span-24.last.prepend-top
           = render 'labor_items/fields'
 
   .span-24.last.prepend-top
     .group-header
-      .plus-minus
-        = link_to image_tag('plusminus.png', :id => 'labor-toggle'), "#"
-      %h3 Volunteer Days
+      #labor-toggle
+        -#= link_to image_tag('plusminus.png', :id => 'labor-toggle'), "#"
+        %h3 Volunteer Days
     = render 'labor_items/table', :labor_items => @project.labor_items
 
 

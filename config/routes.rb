@@ -34,7 +34,9 @@ Spoic3::Application.routes.draw do
     resources :purchases, :shallow => true do
       resources :item_purchases, :shallow => true
     end
-    resources :food_inventories, :shallow => true
+    resources :food_inventories, :shallow => true do
+      resources :food_inventory_food_items, :shallow => true
+    end
     resources :items, :shallow => true
     get :autocomplete_user_name
     get :autocomplete_item
@@ -53,6 +55,7 @@ Spoic3::Application.routes.draw do
   resources :material_item_delivereds, :only => [:index]
   resources :labor_items, :only => [:index]
   resources :standard_items
+
   match "material_item_estimated/add_standard/:id", :to => 'material_item_estimateds#add_standard', :as => 'add_standard_item'
 
   #reports
@@ -71,6 +74,8 @@ Spoic3::Application.routes.draw do
   match "material_item_estimateds", :to => 'material_item_estimateds#create', :as => 'add_material_item_estimated'
   match "labor_item", :to => 'labor_items#create', :as => 'add_labor_item'
   match "labor_items/add/:id", :to => 'labor_items#new', :as =>'labor_project'
+
+  #match "food_inventory_food_item/:id/new", :to => 'food_inventory_food_items#new', :as => 'add_food_inventory_food_item'
 
   match "move_stage/:id" => 'projects#move_stage', :as =>'project_review'
 

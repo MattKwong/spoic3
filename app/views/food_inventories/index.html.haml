@@ -24,7 +24,7 @@
               %td= number_to_currency(inventory.value_previously_in_inventory)
               %td= number_to_currency(inventory.value_in_inventory)
               %td= number_to_currency(inventory.value_consumed)
-              %td= link_to "view", inventory
+              %td= link_to "view/edit", inventory
 
   .paginator.prepend-top
     %span.wrapper
@@ -32,5 +32,5 @@
   .span-12.properties.last
     %dl.properties
       -if @food_inventories
-        %dlt= link_to "Record a Food Inventory", new_program_food_inventory_path(@program)
+        %dlt= link_to "Record a New Food Inventory", new_program_food_inventory_path(@program)
 

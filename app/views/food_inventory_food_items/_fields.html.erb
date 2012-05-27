@@ -1,0 +1,22 @@
+<div id="active_admin_content">
+<% remote ||= false %>
+<%= semantic_form_for @food_inventory_food_item,
+        :url => new_food_inventory_food_inventory_food_item_path(@food_inventory_food_item.food_inventory_id) do |form| %>
+  <%= form.inputs do %>
+    <h3><%= "Record Inventory Results: #{@food_inventory.date}" %></h3>
+    <%= form.input :item, :as => :select, :collection => Item.food.alphabetized,
+                            :include_blank => false,
+                           :input_html => { :class => "jq-combo" }%>
+    <p>We will display recent purchase,units and expected on-hand information for this item here.</p>
+          <!--This is currently not working...there is a routing problem-->
+    <%= form.input :quantity, :hint => "Input the amount of this item on hand in the appropriate units.",
+                   :input_html => { :size => 4 } %>
+    <input type = "hidden" name="food_inventory_food_item[project_id]" value= <%= @food_inventory_food_item.food_inventory_id %> />
+  <% end %>
+  <%= form.buttons %>
+<% end %>
+</div>
+
+<!--, :url => (@food_inventory_food_item.new_record? ?-->
+        <!---->
+                <!--: edit_food_inventory_food_item(@food_inventory_food_item))-->

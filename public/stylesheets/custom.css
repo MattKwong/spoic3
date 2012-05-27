@@ -366,3 +366,9 @@ div.tablewrapper {
   -webkit-border-bottom-right-radius: 3px;
   background-color: #9FBECD;
   margin-bottom: 1.4em; }
+
+.hover {
+    cursor: pointer;
+    color: #09c;
+
+}

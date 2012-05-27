@@ -1,70 +1,186 @@
-
 $(document).ready(function() {
- $("img#general-toggle").click(function() {
-     $("div#general-info").toggle("slow");
+ $("#general-toggle h3").click(function() {
+     $("div#general-info").toggle("fast");
  });
 });
 
 $(document).ready(function() {
- $("img#plan-material-toggle").click(function() {
-     $("div#plan-material-info").toggle("slow");
+$("#general-toggle h3").hover(function() {
+$(this).addClass('hover');
+}, function() {
+$(this).removeClass('hover');
  });
 });
 
 $(document).ready(function() {
- $("img#plan-summary-toggle").click(function() {
-     $("div#plan-material-summary").toggle("slow");
+ $("#plan-material-toggle h3").click(function() {
+     $("div#plan-material-info").toggle("fast");
+ });
+});
+
+$(document).ready(function() {
+$("#plan-material-toggle h3").hover(function() {
+$(this).addClass('hover');
+}, function() {
+$(this).removeClass('hover');
+ });
+});
+
+$(document).ready(function() {
+ $("#plan-summary-toggle h3").click(function() {
+     $("div#plan-material-summary").toggle("fast");
+ });
+});
+
+$(document).ready(function() {
+$("#plan-summary-toggle h3").hover(function() {
+$(this).addClass('hover');
+}, function() {
+$(this).removeClass('hover');
+ });
+});
+
+$(document).ready(function() {
+ $("#deliveries-toggle h3").click(function() {
+     $("div#deliveries-info").toggle("fast");
+ });
+});
+
+$(document).ready(function() {
+$("#deliveries-toggle h3").hover(function() {
+$(this).addClass('hover');
+}, function() {
+$(this).removeClass('hover');
+ });
+});
+
+$(document).ready(function() {
+ $("#labor-toggle h3").click(function() {
+     $("div#labor-info").toggle("fast");
+ });
+});
+
+$(document).ready(function() {
+$("#labor-toggle h3").hover(function() {
+$(this).addClass('hover');
+}, function() {
+$(this).removeClass('hover');
+ });
+});
+
+$(document).ready(function() {
+ $("#labor-item-toggle h3").click(function() {
+     $("div#labor-item-info").toggle("fast");
+ });
+});
+
+$(document).ready(function() {
+$("#labor-item-toggle h3").hover(function() {
+$(this).addClass('hover');
+}, function() {
+$(this).removeClass('hover');
+ });
+});
+
+$(document).ready(function() {
+ $("#deliver-material-toggle h3").click(function() {
+     $("div#deliver-material-info").toggle("fast");
  });
 });
 $(document).ready(function() {
- $("img#deliveries-toggle").click(function() {
-     $("div#deliveries-info").toggle("slow");
+$("#deliver-material-toggle h3").hover(function() {
+$(this).addClass('hover');
+}, function() {
+$(this).removeClass('hover');
  });
 });
 $(document).ready(function() {
- $("img#labor-toggle").click(function() {
-     $("div#labor-info").toggle("slow");
+ $("#budget-toggle h3").click(function() {
+     $("tbody#budget-info").toggle("fast");
  });
 });
+
 $(document).ready(function() {
- $("img#deliver-material-toggle").click(function() {
-     $("div#deliver-material-info").toggle("slow");
+$("#budget-toggle h3").hover(function() {
+$(this).addClass('hover');
+}, function() {
+$(this).removeClass('hover');
  });
 });
+
 $(document).ready(function() {
- $("img#budget-toggle").click(function() {
-     $("tbody#budget-info").toggle("slow");
+  $("#food-snapshot-toggle h3").click(function() {
+     $("tbody#food-snapshot-info").toggle("fast");
  });
 });
+
 $(document).ready(function() {
-  $("img#food-snapshot-toggle").click(function() {
-     $("tbody#food-snapshot-info").toggle("slow");
+$("#food-snapshot-toggle h3").hover(function() {
+$(this).addClass('hover');
+}, function() {
+$(this).removeClass('hover');
  });
 });
+
 $(document).ready(function() {
-  $("img#projects-toggle").click(function() {
-     $("div#projects-info").toggle("slow");
+  $("#projects-toggle h3").click(function() {
+     $("div#projects-info").toggle("fast");
  });
 });
+
 $(document).ready(function() {
-  $("img#purchases-toggle").click(function() {
-     $("div#purchases-info").toggle("slow");
+$("#projects-toggle h3").hover(function() {
+$(this).addClass('hover');
+}, function() {
+$(this).removeClass('hover');
  });
 });
+
 $(document).ready(function() {
-  $("img#sessions-toggle").click(function() {
-     $("div#sessions-info").toggle("slow");
+  $("#purchases-toggle h3").click(function() {
+     $("div#purchases-info").toggle("fast");
  });
 });
+
 $(document).ready(function() {
-  $("img#staff-toggle").click(function() {
-     $("div#staff-info").toggle("slow");
+$("#purchases-toggle h3").hover(function() {
+$(this).addClass('hover');
+}, function() {
+$(this).removeClass('hover');
+ });
+});
+
+$(document).ready(function() {
+  $("#sessions-toggle h3").click(function() {
+     $("div#sessions-info").toggle("fast");
+ });
+});
+
+$(document).ready(function() {
+$("#sessions-toggle h3").hover(function() {
+$(this).addClass('hover');
+}, function() {
+$(this).removeClass('hover');
+ });
+});
+
+$(document).ready(function() {
+  $("#staff-toggle h3").click(function() {
+     $("div#staff-info").toggle("fast");
+ });
+});
+
+$(document).ready(function() {
+$("#staff-toggle h3").hover(function() {
+$(this).addClass('hover');
+}, function() {
+$(this).removeClass('hover');
  });
 });
 
 //$(document).ready(function() {
 // $("button#general-toggle").click(function() {
-//   $("div#general-info").toggle("slow");
+//   $("div#general-info").toggle("fast");
 //   $("button#general-toggle").text("Hide Details");
 // });
 //});
