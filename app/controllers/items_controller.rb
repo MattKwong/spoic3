@@ -18,13 +18,12 @@ class ItemsController < ApplicationController
 
   def new
     @page_title = "New Item"
-    logger.debug @page_title
     @item = Item.new
     @item.program_id= @program.id if @program
   end
 
   def create
-    logger.debug @item.inspect
+
     if current_admin_user.staff?
       @item.program_id = current_admin_user.program_id
     end
@@ -61,7 +60,7 @@ class ItemsController < ApplicationController
     #@menu_actions = []
     #@menu_actions << {:name => "edit", :path => edit_item_path(@item)} if can? :edit, @item
     #@purchases = @item.item_purchases.accessible_by(current_ability).includes(:purchase).order('purchases.date ASC')
-    num = (@item.item_purchases.map {|p| p.total_base_units * p.price_per_base_unit.abs }).sum
+    num = (@item.item_purchases.map {|p| p.total_base_units * p.price_per_base_unit.scalar }).sum
     denom = (@item.item_purchases.map &:total_base_units).sum
     @avg_price = num / denom if denom != 0
     @inventories = @item.food_inventory_food_items.accessible_by(current_ability).includes(:food_inventory => :program).order('food_inventories.date ASC')

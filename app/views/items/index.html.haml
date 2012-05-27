@@ -15,7 +15,7 @@
           %th Actions
           %th
       %tbody
-        - @items.each do |item|
+        - @items.alphabetized.each do |item|
           %tr
             %td= item
             %td= item.program unless item.program.nil?

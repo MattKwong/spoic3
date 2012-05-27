@@ -8,7 +8,7 @@ class JobType < ActiveRecord::Base
   end
 
   def cook?
-    name == "Cook"
+    name == "Cook" || "Food"
   end
 
   def slc?
