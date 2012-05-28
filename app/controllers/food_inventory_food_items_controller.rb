@@ -9,6 +9,16 @@ class FoodInventoryFoodItemsController < ApplicationController
     @food_inventory_food_item.food_inventory_id= @food_inventory.id
   end
 
+  def update_item_info
+    item = Item.find(params[:id])
+    @base_unit = item.base_unit
+    if last_inventory = FoodInventoryFoodItem.find_all_by_item_id(item.id).any?
+      @last_inventory_date = last_inventory.created_at
+      @last_inventory = last_inventory.quantity
+    end
+    render :partial => "item_info", :locals => {:base_unit => @base_unit}
+  end
+
   def create
     @food_inventory_food_item  = FoodInventoryFoodItem.new(params[:food_inventory_food_item])
     @food_inventory_food_item.food_inventory_id = params[:food_inventory_food_item]

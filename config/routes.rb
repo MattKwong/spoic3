@@ -44,7 +44,7 @@ Spoic3::Application.routes.draw do
   end
 
   match "purchases/:id/delete" => 'purchases#destroy', :as => 'delete_purchase'
-
+  match 'food_inventories/:food_inventory_id/food_inventory_food_items/update_item_info/:id', :to => 'food_inventory_food_items#update_item_info'
   match "items/new", :to => 'items#new', :as => 'add_item'
   resources :vendors #, :only => [:index]
   resources :purchases, :only => [:index]

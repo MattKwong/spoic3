@@ -178,13 +178,6 @@ $(this).removeClass('hover');
  });
 });
 
-//$(document).ready(function() {
-// $("button#general-toggle").click(function() {
-//   $("div#general-info").toggle("fast");
-//   $("button#general-toggle").text("Hide Details");
-// });
-//});
-
 $(document).ready(function() {
   $("input.group-change-button").attr("disabled", "disabled");
 });
@@ -198,5 +191,13 @@ $(document).ready(function() {
     });
     $('#scheduled_group_session_id').change(function() {
         $("input[type=submit]").removeAttr("disabled");
+    });
+});
+
+$(document).ready(function() {
+    $("#itemDropdown").change(function(){
+        $.get("update_item_info/"+$("#itemDropdown").val(),
+        function(data){ $("#item_info_table").html(data); }
+        );
     });
 });

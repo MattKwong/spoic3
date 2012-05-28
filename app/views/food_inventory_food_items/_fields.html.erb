@@ -5,9 +5,9 @@
         <%= form.inputs do %>
             <h3><%= "Record Inventory Results: #{@food_inventory.date}" %></h3>
             <%= form.input :item_id, :as => :select, :collection => Item.food.alphabetized,
-                   :include_blank => false, :input_html => { :class => "jq-combo" }%>
-            <p>We will display recent purchase,units and expected on-hand information for this item here.</p>
-          <!--This is currently not working...there is a routing problem-->
+                   :include_blank => false, :input_html => { :id => "itemDropdown", :class => "jq-combo" }%>
+
+            <div id="item_info_table"><p>We will display recent purchase,units and expected on-hand information for this item here.</p></div>
             <%= form.input :quantity, :hint => "Input the amount of this item on hand in the appropriate units.",
                    :input_html => { :size => 4 } %>
         <% end %>
