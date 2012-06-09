@@ -11,6 +11,10 @@
     <%= form.input :taxable, :hint => "Indicate if this item is taxable" %>
   <% end %>
     <% form.buttons do %>
-     <%= form.commit_button :label => "Add item to purchase" %>
+      <% if @edit_flag %>
+        <%= form.commit_button :label => "Update item" %>
+      <% else %>
+        <%= form.commit_button :label => "Add item to purchase" %>
+      <% end %>
  <% end %>
 <% end %>

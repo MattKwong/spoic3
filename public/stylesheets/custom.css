@@ -25,7 +25,7 @@
 .span-22 {width:870px;}
 .span-23 {width:910px;}
 .span-24 {width:950px;margin-right:0;}
-div.prepend-top, .prepend-top {margin-top:1.5em;}
+div.prepend-top, .prepend-top {margin-top:1.5em; float: left; clear: left;}
 dl {margin:0 0 1.5em 0;}
 dl dt {font-weight:bold;}
 dd {margin-left:1.5em;}

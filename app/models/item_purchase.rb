@@ -22,7 +22,8 @@ class ItemPurchase < ActiveRecord::Base
 
 
   scope :taxable, where(:taxable => true)
-  scope :alphabetized, lambda { |id| joins(:item).order("name") }
+#  scope :alphabetized, lambda { |id| joins(:item).order("name") }
+  scope :alphabetized, joins(:item).order('items.name')
 
   def size_in_base_units
     size.u >> item.base_unit

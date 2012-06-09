@@ -4,25 +4,29 @@
       %dt Site
       %dd= @program.site.name
 
-  .span-7.properties
-    %dl.properties
       %dt Program Type
       %dd= @program.program_type.name
-      -if can? :create, Item
-        %dlt= link_to "Create an New Item", new_program_item_path(@program)
-
-  .span-7.last.properties
+  .span-8.properties
     %dl.properties
       %dt Start Date
       %dd= @program.start_date.strftime("%B %d")
       -if can? :create, Vendor
         %dlt= link_to "Create an New Vendor", new_site_vendor_path(@program.site)
+
+  .span-8.properties
+    %dl.properties
+      -if can? :create, Item
+        %dlt= link_to "Create an New Item", new_program_item_path(@program)
+      -if can? :create, Project
+        %dlt= link_to "Create an New Project", new_program_project_path(@program)
+  %br
+  %br
+  %p
   .span-24.prepend-top
     .group-header
       #budget-toggle
         -#= link_to image_tag('plusminus.png', :id => 'budget-toggle'), "#"
         %h3 Budget
-
     .group-container
       .index_as_table
         %table

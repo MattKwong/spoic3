@@ -26,8 +26,9 @@ class Ability
  # Need to restrict purchases to program
 
   if user.field_staff?
-     program_id = user.program_id
-     program = Program.find(program_id)
+      program = ProgramUser.find_by_user_id(user.id).program
+     program_id = program.id
+#     program = Program.find(program_id)
       can :index, Vendor, :site_id => program.site_id
       can :manage, Vendor, :site_id => program.site_id
       can [:see_vendors_for], Site, :id => program.site.id
@@ -35,7 +36,8 @@ class Ability
       can [:read, :see_purchases_for, :see_food_inventories_for, :see_projects_for, :report], Program,
           :id => program_id
       can :index, Item
-      can :manage, Item, :program_id => program.id
+      can [:edit, :create, :delete], Item, :id => '485'
+
       can :read, Item
       can :manage, Program, :id => program_id
       can :manage, Purchase, :program_id => program_id
@@ -51,6 +53,7 @@ class Ability
      if user.construction? || user.sd?
         can :read, StandardItem
         can [:read, :create, :destroy, :update], Project, :program_id => program.id
+        #can [:read, :create, :destroy, :update], Item, :program_id => program.id
         can [:read, :create, :destroy, :update], LaborItem, :project => { :program_id => program_id }
         can [:read, :create, :destroy, :update], MaterialItemDelivered, :project => { :program_id => program_id }
         can [:read, :create, :destroy, :update], MaterialItemEstimated, :project => { :program_id => program_id }

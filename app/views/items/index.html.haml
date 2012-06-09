@@ -1,8 +1,8 @@
 #active_admin_content
-  - if @items
-    .paginator.append-bottom
-      %span.wrapper
-        = paginate @items
+  -#- if @items
+  -#  .paginator.append-bottom
+  -#    %span.wrapper
+  -#      = paginate @items
   .table_as_index
     %table.index_table
       %thead
@@ -12,8 +12,9 @@
           %th Category
           %th Base Unit
           %th Taxed?
-          %th Actions
-          %th
+          %th Untracked?
+          %th{:colspan => 2} Actions
+
       %tbody
         - @items.alphabetized.each do |item|
           %tr
@@ -22,8 +23,9 @@
             %td= item.item_category
             %td= item.base_unit
             %td= item.default_taxed ? "Yes" : "No"
+            %td= item.untracked ? "Yes" : "No"
             %td= link_to "View", item
-            -if can? :edit, Item
+            -if can? :manage, Item
               %td= link_to "Edit", edit_item_path(item)
 - if @items
   .paginator.prepend-top

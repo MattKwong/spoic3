@@ -1,13 +1,31 @@
 class ItemPurchasesController < ApplicationController
   load_and_authorize_resource :purchase
   load_and_authorize_resource :item_purchase, :through => :purchase, :shallow => true
-  layout '_ops_layout'
+  layout 'admin_layout'
 
   def new
     @title = "New Item Purchase"
     @items_list = Hash[Item.all_for_program(item_purchase.purchase.program).map {|i| ["#{i.name} (base units: #{i.base_unit})", i.id]}]
     logger.debug @items_list.inspect
   end
+
+  def edit
+    @item_purchase= ItemPurchase.find(params[:id])
+    @edit_flag = true
+    @page_title = "Editing #{@item_purchase.item.name} in purchase #{@item_purchase.purchase.vendor.name} #{@item_purchase.purchase.date}}"
+  end
+
+
+  def update
+    if @item_purchase.update_attributes(params[:item_purchase])
+      flash[:success] = "Purchase item updated successfully"
+      redirect_to @item_purchase.purchase
+    else
+      @page_title = "Editing #{@item_purchase.item.name} in purchase #{@item_purchase.purchase.vendor.name} #{@item_purchase.purchase.date}}"
+      render :edit
+    end
+  end
+
 
   def create
       if @item_purchase.save
