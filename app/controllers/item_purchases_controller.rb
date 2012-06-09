@@ -5,8 +5,8 @@ class ItemPurchasesController < ApplicationController
 
   def new
     @title = "New Item Purchase"
-    @items_list = Hash[Item.all_for_program(item_purchase.purchase.program).map {|i| ["#{i.name} (base units: #{i.base_unit})", i.id]}]
-    logger.debug @items_list.inspect
+#    @items_list = Hash[Item.all_for_program(item_purchase.purchase.program).map {|i| ["#{i.name} (base units: #{i.base_unit})", i.id]}]
+    param[:filter => 0]
   end
 
   def edit

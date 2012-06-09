@@ -201,3 +201,13 @@ $(document).ready(function() {
         );
     });
 });
+
+$(document).ready(function() {
+    $("#item-filter").change(function(){
+        $location.reload();
+    });
+});
+
+$('#something').click(function() {
+  location.reload();
+});
