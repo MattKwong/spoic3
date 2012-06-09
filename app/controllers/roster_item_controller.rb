@@ -52,7 +52,6 @@ class RosterItemController < ApplicationController
   def edit
     @page_title = 'Edit Participant Information'
     @roster_item = RosterItem.find(params[:id])
-    @title = "Edit Participant Information"
     set_grade_list
     @size_list = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL']
     @youth_list = [["Youth", true], ["Counselor", false]]
@@ -67,7 +66,6 @@ class RosterItemController < ApplicationController
       flash[:notice] = "Roster item has been successfully updated."
       redirect_to show_roster_path(@roster_item.roster_id)
     else
-      logger.debug flash[1].inspect
       flash[:error] = "Unexpected problem occurred updating this entry."
       @page_title = 'Edit Participant Information'
       @roster_item = RosterItem.find(params[:id])

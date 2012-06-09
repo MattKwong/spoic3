@@ -1,6 +1,6 @@
 class ScheduledGroup < ActiveRecord::Base
 
-  attr_accessible :name,:comments, :current_counselors, :current_youth,
+  attr_accessible :name, :comments, :current_counselors, :current_youth,
                   :current_total, :liaison_id, :scheduled_priority,
                   :session_id, :church_id, :registration_id, :group_type_id, :second_payment_date,
                   :second_payment_total
