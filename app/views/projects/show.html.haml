@@ -28,7 +28,8 @@
         %dd= @project.address1
         %dt City and State
         %dd= @project.city + ", " + @project.state + ' ' + @project.zip
-
+        -if can? :create, Item
+          %dlt= link_to "Create an New Item", new_program_item_path(@project.program)
     .span-6.properties
       %dl.properties
         %dt Planned Start

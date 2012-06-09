@@ -60,16 +60,19 @@ class ProjectsController < ApplicationController
 
   def show
     @page_title = "#{@project.name}"
-    nonstandard_item_list = Hash[Item.materials.map {|i| [i.id, i.name]}]
+    nonstandard_item_list = Hash[Item.materials.tracked.alphabetized.map {|i| [i.id, i.name]}]
     standard_item_list =
-        Hash[StandardItem.find_all_by_project_subtype_id(@project.project_type_id).map {|s| [s.item_id, "#{s.item.name} (#{s.comments})"]}]
+        Hash[StandardItem.find_all_by_project_subtype_id(@project.project_subtype_id).map {|s| [s.item_id, "#{s.item.name} (#{s.comments})"]}]
     existing_item_list = Hash[MaterialItemEstimated.find_all_by_project_id(@project.id).map {|e| [e.item_id, e.item.name]}]
 
     standard_item_list.each {|s| nonstandard_item_list.delete(s[0])}
     existing_item_list.each {|s| nonstandard_item_list.delete(s[0])}
     existing_item_list.each {|s| standard_item_list.delete(s[0])}
     @nonstandard_item_list = nonstandard_item_list.invert
+    logger.debug @nonstandard_item_list.inspect
+
     @standard_item_list = standard_item_list.invert
+    logger.debug @standard_item_list.inspect
     @existing_item_list = existing_item_list.invert
     @item_list = Hash[@project.material_item_estimateds.map {|i| ["#{i.item.name}", i.item_id ]}]
     @user_list = Hash[@project.program.program_users.map {|u| ["#{u.admin_user.name}", u.admin_user.id ]}]

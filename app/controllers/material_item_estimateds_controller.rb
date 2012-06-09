@@ -49,7 +49,6 @@ class MaterialItemEstimatedsController < ApplicationController
   def create
     @material_item_estimated = MaterialItemEstimated.new(params[:material_item_estimated])
     @project= @material_item_estimated.project
-    logger.debug @project
     if @material_item_estimated.save
       flash[:success] = "New planned item has been successfully created."
       redirect_to @project
