@@ -8,6 +8,7 @@
     <thead>
       <tr>
         <th>Vendor Name </th>
+        <th>Address </th>
         <th>Contact</th>
         <th>Phone</th>
       </tr>
@@ -16,7 +17,9 @@
       <%= render :partial => 'vendor', :collection => vendors %>
     </tbody>
   </table>
-
+  <% if can? :create, Vendor %>
+        <%= link_to "Create a New Vendor", new_site_vendor_path(@site) %>
+  <% end %>
 </div>
 </div>
 </div>

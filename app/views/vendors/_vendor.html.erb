@@ -1,5 +1,6 @@
 <tr>
   <td><%= link_to vendor.name, vendor_path(vendor) %></td>
+  <td><%= vendor.address + ', ' + vendor.city + ', ' + vendor.state + ' ' + vendor.zip %></td>
   <td><%= vendor.contact %></td>
   <td><%= format_phone(vendor.phone) %></td>
 </tr>

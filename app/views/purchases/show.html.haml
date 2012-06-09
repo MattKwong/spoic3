@@ -28,7 +28,7 @@
       %dt Actual Tax Rate
       %dd#actual_tax_rate= number_to_percentage(@purchase.actual_tax_rate * 100, :precision => 2)
       %dlt= link_to "Edit General Purchase Information", edit_purchase_path(@purchase) if can? :edit, @purchase
-      %dlt= link_to "Delete This Purchase", purchase_path(@purchase), {:method => :delete, :confirm => "Are you sure you want to delete this purchase? This cannot be undone." }
+    %dlt= link_to "Delete This Purchase", purchase_path(@purchase), {:method => :delete, :confirm => "Are you sure you want to delete this purchase? This cannot be undone." }
   .span-24.last.prepend-top
     = render 'item_purchases/table', :item_purchases => @purchase.item_purchases.alphabetized
 

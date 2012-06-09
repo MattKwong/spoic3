@@ -50,4 +50,25 @@ class VendorsController < ApplicationController
       render :edit
     end
   end
+ 
+  def destroy
+    @site = current_admin_user.site_id
+    logger.debug @site
+    if @vendor.purchases.any?
+      flash[:error] = "Cannot delete vendor because purchases from it exist."
+      redirect_to @vendor
+    else
+      if @vendor.destroy
+        flash[:success] = "Vendor successfully deleted"
+        if current_admin_user.field_staff?
+          redirect_to site_vendors_path(@site)
+        else
+          redirect_to vendors_path
+        end
+      else
+        flash[:error] = "Delete failed for unknown reason"
+        redirect_to @vendor
+      end
+    end
+  end
 end

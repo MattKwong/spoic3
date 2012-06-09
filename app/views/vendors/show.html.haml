@@ -11,7 +11,10 @@
         #{@vendor.city}, #{@vendor.state} #{@vendor.zip}
       %dt Total Spent
       %dd= number_to_currency((@vendor.purchases.all.map &:total).sum )
-
+      -if can? :edit, Vendor
+        %dlt= link_to "Edit Vendor", edit_vendor_path(@vendor)
+      -if (can? :delete, Vendor) && !@purchases.any?
+        %dlt= link_to "Delete This Vendor", vendor_path(@vendor), {:method => :delete, :confirm => "Are you sure you want to delete this vendor? This cannot be undone." }
   .span-10.description
     %dl
       %dt Map

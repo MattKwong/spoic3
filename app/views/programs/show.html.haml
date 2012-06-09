@@ -11,14 +11,14 @@
       %dt Start Date
       %dd= @program.start_date.strftime("%B %d")
       -if can? :create, Vendor
-        %dlt= link_to "Create an New Vendor", new_site_vendor_path(@program.site)
+        %dlt= link_to "Create a New Vendor", new_site_vendor_path(@program.site)
 
   .span-8.properties
     %dl.properties
       -if can? :create, Item
-        %dlt= link_to "Create an New Item", new_program_item_path(@program)
+        %dlt= link_to "Create a New Item", new_program_item_path(@program)
       -if can? :create, Project
-        %dlt= link_to "Create an New Project", new_program_project_path(@program)
+        %dlt= link_to "Create a New Project", new_program_project_path(@program)
   %br
   %br
   %p
