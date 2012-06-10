@@ -207,11 +207,15 @@ $(document).ready(function() {
 //        $location.reload();
 //    });
 //});
-
 $(document).ready(function() {
  $("#recorded-items-toggle h3").click(function() {
      $("div#recorded-items-info").toggle("fast");
  });
+});
+
+
+$(document).ready(function() {
+ $("#recorded-items-toggle h3").trigger('click');
 });
 
 $(document).ready(function() {
