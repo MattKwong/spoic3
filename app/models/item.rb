@@ -35,7 +35,7 @@ class Item < ActiveRecord::Base
     scope :master, where(:program_id => nil)
     scope :all_for_program, lambda {|program| where('program_id IS NULL OR program_id = ?', program.id) }
     scope :alphabetized, order("name")
-
+    scope :all_for_program_by_type, lambda {|program, type| where('(program_id IS NULL OR program_id = ?) AND item_type_id = ?', program.id, type) }
     scope :search_by_name, lambda { |q| (q ? where(["name Like ?", '%' + q + '%']) : {} ) }
 
 

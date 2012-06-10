@@ -27,7 +27,7 @@ class Ability
 
   if user.field_staff?
       program = ProgramUser.find_by_user_id(user.id).program
-     program_id = program.id
+      program_id = program.id
 #     program = Program.find(program_id)
       can :index, Vendor, :site_id => program.site_id
       can :manage, Vendor, :site_id => program.site_id
@@ -36,7 +36,7 @@ class Ability
       can [:read, :see_purchases_for, :see_food_inventories_for, :see_projects_for, :report], Program,
           :id => program_id
       can :index, Item
-      can [:edit, :create, :delete], Item, :id => '485'
+      can [:edit, :create, :delete], Item, :program_id => program_id
 
       can :read, Item
       can :manage, Program, :id => program_id

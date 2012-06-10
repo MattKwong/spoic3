@@ -34,7 +34,14 @@ class PurchasesController < ApplicationController
 
   def show
     @page_title = "#{@purchase.vendor.name} #{@purchase.date}"
-    @filter = 0
+    @item_type = params[:item_type]
+
+    if @item_type.nil? || @item_type == 0
+      @items = Item.all_for_program(@purchase.program).alphabetized
+    else
+      @items = Item.all_for_program_by_type(@purchase.program, @item_type).alphabetized
+    end
+    logger.debug @item_type.inspect
     if( @purchase.program.food_inventories.where(:date => @purchase.date).count != 0)
       flash.now[:notice] = "An inventory already exists for this date.  Any items added to this purchase will be treated as being purchased after the inventory was taken"
     end

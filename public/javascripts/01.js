@@ -207,7 +207,3 @@ $(document).ready(function() {
         $location.reload();
     });
 });
-
-$('#something').click(function() {
-  location.reload();
-});

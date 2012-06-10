@@ -6,7 +6,8 @@ class ItemPurchasesController < ApplicationController
   def new
     @title = "New Item Purchase"
 #    @items_list = Hash[Item.all_for_program(item_purchase.purchase.program).map {|i| ["#{i.name} (base units: #{i.base_unit})", i.id]}]
-    param[:filter => 0]
+    @items = Item.all_for_program(item_purchase.purchase.program)
+
   end
 
   def edit
@@ -28,14 +29,15 @@ class ItemPurchasesController < ApplicationController
 
 
   def create
+    @item_type = params[:item_type]
       if @item_purchase.save
-        flash[:success] = "Added Item"
-        redirect_to purchase_path(@purchase)
+        flash[:success] = "Successfully added item!"
+        redirect_to purchase_path(:id => @purchase.id, :item_type => @item_type )
       else
         @title = "Purchase Item"
         flash[:error] = @item_purchase.errors.first[1].humanize
-        @purchase
-        redirect_to @purchase
+#        @purchase
+        render @purchase
       end
   end
 

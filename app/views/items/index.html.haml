@@ -25,7 +25,7 @@
             %td= item.default_taxed ? "Yes" : "No"
             %td= item.untracked ? "Yes" : "No"
             %td= link_to "View", item
-            -if can? :manage, Item
+            -if can? :edit, item
               %td= link_to "Edit", edit_item_path(item)
 - if @items
   .paginator.prepend-top

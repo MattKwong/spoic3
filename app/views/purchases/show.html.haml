@@ -30,12 +30,22 @@
       %dlt= link_to "Edit General Purchase Information", edit_purchase_path(@purchase) if can? :edit, @purchase
     %dlt= link_to "Delete This Purchase", purchase_path(@purchase), {:method => :delete, :confirm => "Are you sure you want to delete this purchase? This cannot be undone." }
   .span-24.last.prepend-top
+    %h3 Items Recorded On This Purchase
     = render 'item_purchases/table', :item_purchases => @purchase.item_purchases.alphabetized
 
   .span-24.prepend-top
     -if can? :create, @purchase.item_purchases.new
       %h3 Add Item to Purchase
-      = render 'item_purchases/form', :item_purchase => @purchase.item_purchases.new#, :remote => true
+      .span-24
+        Filter item list:
+        = link_to "All", purchase_path(:id => @purchase.id, :item_type => 0)
+        = link_to "Food", purchase_path(:id => @purchase.id, :item_type => 1)
+        = link_to "Kithen Equip", purchase_path(:id => @purchase.id, :item_type => 2)
+        = link_to "Tools", purchase_path(:id => @purchase.id, :item_type => 3)
+        = link_to "Bldg Materials", purchase_path(:id => @purchase.id, :item_type => 4)
+        = link_to "Fees", purchase_path(:id => @purchase.id, :item_type => 5)
+
+        = render 'item_purchases/form', :item_purchase => @purchase.item_purchases.new, :item_type => @item_type
 
 
 

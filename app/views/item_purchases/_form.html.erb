@@ -1,21 +1,22 @@
 <% remote ||= false %>
-<%= semantic_form_for item_purchase, :url => (item_purchase.new_record? ? purchase_item_purchases_path(item_purchase.purchase)
-                : item_purchase ) do |form| %>
-  <%= form.inputs do %>
 
+<%= semantic_form_for item_purchase, :url => (item_purchase.new_record? ? purchase_item_purchases_path(item_purchase.purchase,
+                :item_type => @item_type) : item_purchase(:item_type => @item_type)) do |form| %>
+  <%= form.inputs do %>
     <%= form.input :item, :as => :select, :include_blank => false,
-                   :collection => (Item.all_for_program(item_purchase.purchase.program).alphabetized.map {|i| ["#{i.name} (base units: #{i.base_unit})", i.id]}),
+                   :collection => @items.map {|i| ["#{i.name} (base units: #{i.base_unit})", i.id]},
                    :input_html => { :class => "jq-combo" }%>
     <%= form.input :quantity, :hint => "Enter the number of the selected item that was bought. Example: If you purchased two bags of oranges, enter 2" %>
     <%= form.input :price, :hint => "Enter the price each for the selected item" %>
     <%= form.input :size, :label => "Package Size", :hint => "Enter the size of the package of the item. Example: If each bag of oranges weighs 10 pounds, enter '10 lbs'" %>
     <%= form.input :taxable, :hint => "Indicate if this item is taxable" %>
+    <%= @item_type %>
   <% end %>
-    <% form.buttons do %>
+    <%= form.actions do %>
       <% if @edit_flag %>
         <%= form.commit_button :label => "Update item" %>
       <% else %>
-        <%= form.commit_button :label => "Add item to purchase" %>
+        <%= form.commit_button :label => "Add item to purchase", :item_type => 3 %>
       <% end %>
  <% end %>
 <% end %>
