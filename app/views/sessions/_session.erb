@@ -1,5 +1,6 @@
 <tr id="session<%= session.id %>" >
-  <td><%= session.name %></td>
+  <td><%= link_to session.name, sched_program_session_path(:id => current_admin_user.id,
+                            :session => session.id), :hint => 'Click to see attending churches' %></td>
   <td><%= session.period.start_date.strftime("%a %b #{session.period.start_date.day.ordinalize}") %></td>
   <td><%= session.period.end_date.strftime("%a %b #{session.period.end_date.day.ordinalize}") %></td>
   <td><%= session.session_type.name %></td>

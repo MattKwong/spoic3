@@ -1,5 +1,5 @@
 class ScheduledGroupsController < ApplicationController
-#  skip_authorize_resource :only => :program_session
+  skip_authorize_resource :only => :program_session
   authorize_resource
   require 'csv'
   require 'erb'
@@ -8,10 +8,12 @@ class ScheduledGroupsController < ApplicationController
   layout 'admin_layout'
 
   def program_session
+
     session = Session.find(params[:session])
     @groups = ScheduledGroup.find_all_by_session_id(session.id)
     @session_week = Period.find(session.period.id).name
     @session_site = Site.find(session.site_id).name
+    @page_title = "Groups Scheduled for #{@session_week} #{@session_site}"
   end
 
   def confirmation       # before the confirmation screen

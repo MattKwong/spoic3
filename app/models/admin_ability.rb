@@ -27,6 +27,12 @@ class AdminAbility
     end
 
     if user.staff?
+      can :read, Liaison
+      can :read, Church
+      can :read, ScheduledGroup
+      can :read, Session
+      can :read, Period
+      can :read, Site
       can :index, Vendor #, :site_id => user.program_user.program.site_id
       can :manage, Vendor #, :site_id => user.program_user.program.site_id
       can :index, Item

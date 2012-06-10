@@ -37,8 +37,12 @@ class Ability
           :id => program_id
       can :index, Item
       can [:edit, :create, :delete], Item, :program_id => program_id
-
+      can :read, Church
+      can :read, Liaison
+      can :read, ScheduledGroup
       can :read, Item
+      can :read, Roster
+      can :read, RosterItem
       can :manage, Program, :id => program_id
       can :manage, Purchase, :program_id => program_id
       can :report, Program
