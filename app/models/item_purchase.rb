@@ -17,8 +17,8 @@ class ItemPurchase < ActiveRecord::Base
   scope :by_budget_line_type, lambda { |id| joins(:item).where("budget_item_type_id = ?", id) }
 
   before_save :update_base_units, :unless => :skip_calculations?
-  after_save :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }
-  after_destroy :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }
+  #after_save :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }
+  #after_destroy :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }
 
 
   scope :taxable, where(:taxable => true)

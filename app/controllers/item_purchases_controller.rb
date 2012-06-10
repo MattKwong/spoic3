@@ -12,6 +12,9 @@ class ItemPurchasesController < ApplicationController
 
   def edit
     @item_purchase= ItemPurchase.find(params[:id])
+    logger.debug @item_purchase.inspect
+    @items = Item.find_all_by_id(@item_purchase.item_id)
+    logger.debug @items.inspect
     @edit_flag = true
     @page_title = "Editing #{@item_purchase.item.name} in purchase #{@item_purchase.purchase.vendor.name} #{@item_purchase.purchase.date}}"
   end

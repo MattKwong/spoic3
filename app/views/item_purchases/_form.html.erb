@@ -1,7 +1,7 @@
 <% remote ||= false %>
 
 <%= semantic_form_for item_purchase, :url => (item_purchase.new_record? ? purchase_item_purchases_path(item_purchase.purchase,
-                :item_type => @item_type) : item_purchase(:item_type => @item_type)) do |form| %>
+                :item_type => @item_type) : item_purchase_path(:item_type => @item_type)) do |form| %>
   <%= form.inputs do %>
     <%= form.input :item, :as => :select, :include_blank => false,
                    :collection => @items.map {|i| ["#{i.name} (base units: #{i.base_unit})", i.id]},

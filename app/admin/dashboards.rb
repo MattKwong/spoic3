@@ -6,7 +6,7 @@ ActiveAdmin::Dashboards.build do
      section "Recent System Activity" do
       table_for Activity.order("activity_date desc").limit(100) do
         column :activity_date do |activity|
-          activity.activity_date.in_time_zone("Pacific Time (US & Canada)").strftime("%b %d, %Y %l:%M %p")
+    activity.activity_date.in_time_zone("Pacific Time (US & Canada)").strftime("%b %d, %Y %l:%M %p")
         end
         column :user_name
         column :activity_type

@@ -10,6 +10,7 @@
             %th Consumed
             %th Avg Cost
             %th Total Consumed Cost
+            %th Actions
 
         %tbody
           = render food_inventory_food_items
@@ -22,4 +23,5 @@
             %th
             %th
             %th= number_to_currency (food_inventory_food_items .map &:total_price).sum
+            %th
       %dlt= link_to "Record an Inventoried Item", new_food_inventory_food_inventory_food_item_path(params[:id])

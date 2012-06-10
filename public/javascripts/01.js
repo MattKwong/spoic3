@@ -201,9 +201,23 @@ $(document).ready(function() {
         );
     });
 });
+//
+//$(document).ready(function() {
+//    $("#item-filter").change(function(){
+//        $location.reload();
+//    });
+//});
 
 $(document).ready(function() {
-    $("#item-filter").change(function(){
-        $location.reload();
-    });
+ $("#recorded-items-toggle h3").click(function() {
+     $("div#recorded-items-info").toggle("fast");
+ });
+});
+
+$(document).ready(function() {
+$("#recorded-items-toggle h3").hover(function() {
+$(this).addClass('hover');
+}, function() {
+$(this).removeClass('hover');
+ });
 });

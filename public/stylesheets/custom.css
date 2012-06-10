@@ -370,5 +370,8 @@ div.tablewrapper {
 .hover {
     cursor: pointer;
     color: #09c;
-
 }
+td.inventory-table {
+    width: 20%;
+}
+

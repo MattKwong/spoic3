@@ -12,11 +12,23 @@ class FoodInventoryFoodItemsController < ApplicationController
   def update_item_info
     item = Item.find(params[:id])
     @base_unit = item.base_unit
-    if last_inventory = FoodInventoryFoodItem.find_all_by_item_id(item.id).any?
-      @last_inventory_date = last_inventory.created_at
-      @last_inventory = last_inventory.quantity
+    last_inventory = FoodInventoryFoodItem.find_all_by_item_id(item.id)
+    if last_inventory.count > 0
+      @last_inventory_date = last_inventory.first.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%b %d @ %I:%M %p")
+      @last_inventory_amount = last_inventory.first.quantity
+    else
+      @last_inventory_date = "None"
+      @last_inventory_amount = "None"
     end
-    render :partial => "item_info", :locals => {:base_unit => @base_unit}
+    last_purchase = ItemPurchase.find_all_by_item_id(item.id)
+    if last_purchase.count > 0
+      @last_purchase_date = last_purchase.first.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%b %d @ %I:%M %p")
+      @last_purchase_amount = last_purchase.first.quantity
+    else
+      @last_purchase_date = "None"
+      @last_purchase_amount = "None"
+    end
+    render :partial => "item_info" #, :locals => {:base_unit => @base_unit}
   end
 
   def create
@@ -32,4 +44,16 @@ class FoodInventoryFoodItemsController < ApplicationController
       render :new
     end
   end
+
+  def destroy
+    @food_inventory_food_item = FoodInventoryFoodItem.find(params[:id])
+    return_path = food_inventory_path(@food_inventory_food_item.food_inventory_id)
+    if @food_inventory_food_item.destroy
+      flash[:success] = "#{@food_inventory_food_item.item} removed successfully from this inventory."
+      redirect_to return_path
+    else
+      flash[:error] = "Could not remove #{@food_inventory_food_item.item}"
+   end
+  end
+
 end

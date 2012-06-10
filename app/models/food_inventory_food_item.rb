@@ -15,7 +15,7 @@
 #
 
 class FoodInventoryFoodItem < ActiveRecord::Base
-  attr_accessible :item_id, :quantity
+  attr_accessible :item_id, :quantity, :food_inventory_id
 
   belongs_to :item
   belongs_to :food_inventory
@@ -24,15 +24,15 @@ class FoodInventoryFoodItem < ActiveRecord::Base
   validates :item_id, :presence => true
   validate :validate_units
   # validates :quantity, :presence => true
-
+  default_scope :order =>  'created_at DESC'
   scope :for_item, lambda {|food_item| where('item_id = ?', food_item.id) }
   scope :for_program, lambda { |program| includes(:food_inventory).where('food_inventories.program_id = ?', program.id) }
   scope :after, lambda { |date| includes(:food_inventory).where('food_inventories.date >= ?', date) }
 
   # action callbacks
   before_save :update_calculated_fields, :unless => :skip_calculations?
-  after_save :update_derived_fields, :unless => Proc.new {|item| item.skip_calculations? || item.skip_derivations? }
-  after_destroy :update_derived_fields, :unless => Proc.new {|item| item.skip_calculations? || item.skip_derivations? }
+#  after_save :update_derived_fields, :unless => Proc.new {|item| item.skip_calculations? || item.skip_derivations? }
+#  after_destroy :update_derived_fields, :unless => Proc.new {|item| item.skip_calculations? || item.skip_derivations? }
 
   def consumed
     in_inventory - in_base_units

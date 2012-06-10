@@ -31,6 +31,6 @@
       = paginate @food_inventories
   .span-12.properties.last
     %dl.properties
-      -if @food_inventories
+      -if @program
         %dlt= link_to "Record a New Food Inventory", new_program_food_inventory_path(@program)
 

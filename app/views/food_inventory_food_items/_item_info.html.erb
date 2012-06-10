@@ -1,13 +1,21 @@
-<table>
+<table >
   <tr>
-    <td>Last Inventory Amount:</td>
-    <td id="last-inventory"><%= @last_inventory %></td>
+    <td class="inventory-table">Last Inventory Date:</td>
+    <td id="last-inventory-date"><%= @last_inventory_date %></td>
+  </tr>
+  <tr>
+    <td class="inventory-table">Last Inventory Amount:</td>
+    <td id="last-inventory"><%= @last_inventory_amount %></td>
   </tr>
   <tr>
     <td>Base Units:</td>
-    <td id="base-unit"><%= @base_units %></td>
+    <td id="base-unit"><%= @base_unit %></td>
   </tr>
     <td>Last Purchase Date:</td>
-    <td id="last-inventory-date"><%= @last_inventory_date %></td>
+    <td id="last-purchase-date"><%= @last_purchase_date %></td>
+  </tr>
+  </tr>
+    <td>Last Purchase Quantity:</td>
+    <td id="last-purchase-amount"><%= @last_purchase_amount %></td>
   </tr>
 </table>
