@@ -10,10 +10,10 @@ ActiveAdmin.register Registration do
       link_to r.name, schedule_request_path(:id => r.id),
         :title => "Click to schedule this group"
     end
-
-    column :liaison_id do |liaison|
-      link_to liaison.liaison.name, admin_liaison_path(liaison.liaison_id)
-    end
+    column :liaison_id
+    #column :liaison_id do |liaison|
+    #  link_to liaison.liaison.name, admin_liaison_path(liaison.liaison_id)
+    #end
     #column :church_id do |church|
     #  link_to church.church.name, admin_church_path(church.church_id)
     #end
