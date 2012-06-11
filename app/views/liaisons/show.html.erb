@@ -9,7 +9,7 @@
               <table id = "church_info" border="0" cellspacing="0" cellpadding="0" >
                   <tr><td>Church Name</td>
                     <td>
-                      <% if can? :edit, @screen_info[:liaison].id %>
+                      <% if can? :edit, @screen_info[:liaison] %>
                         <%= link_to @screen_info[:church_info].name,
                                                  edit_church_path(:id => @screen_info[:liaison].church_id,
                                                  :liaison_id => @screen_info[:liaison].id) %>
@@ -56,7 +56,7 @@
             <!--</div>-->
 <!--Current Schedule Section -->
 <div class="panel">
-  <% if can? :edit, @screen_info[:liaison].id %>
+  <% if can? :edit, @screen_info[:liaison] %>
     <h3>Current Schedule Group Information</h3>
   <% else %>
       <h3>Current Schedule Group Information - be sure to pay attention when there are multiple groups!</h3>
@@ -72,7 +72,7 @@
                     <th>Site</th>
                     <th>Week</th>
                     <th>Participant Info</th>
-                    <% if can? :edit, @screen_info[:liaison].id %>
+                    <% if can? :edit, @screen_info[:liaison] %>
                       <th>Balance</th>
                       <th>Payment</th>
                       <% if can? :create, Adjustment %><th>Adjust</th><% end %>
@@ -82,7 +82,7 @@
             <tbody><% @screen_info[:group_info].each do |g| %>
                 <tr>
                     <td>
-                      <% if can? :edit, g.id %>
+                      <% if can? :edit, g %>
                         <%= link_to g.name, edit_scheduled_group_path(g.id),
                              :title => 'Click to make changes to this group'%>
                       <% else %>
@@ -98,14 +98,14 @@
                                     :title => "Starts on #{Period.find(s.period_id).start_date.strftime("%m/%d/%y")
                                     } and ends on #{Period.find(s.period_id).end_date.strftime("%m/%d/%y")}" %></td>
                     <td>
-                      <% if can? :edit, g.id %>
+                      <% if can? :edit, g %>
                           <%= link_to "Update Roster", show_roster_path(g.roster_id),
                                     :title => "Click to update the participant rosters." %></td>
                       <% else %>
                           <%= link_to "View Roster", show_roster_path(g.roster_id) %>
                       <% end %>
                     </td>
-                    <% if can? :edit, g.id %>
+                    <% if can? :edit, g %>
                         <td><%= link_to number_to_currency(@screen_info[:invoice_info][i][:current_balance]),
                                     invoice_path(g.id), :title => "Click to review and print your current invoice." %></td>
                         <td><%= link_to "Make Payment", record_payment_path(:group_id => g.id),
@@ -124,7 +124,7 @@
     </div>
 </div>
 <!--Downloads Section -->
-      <% if can? :edit, @screen_info[:liaison].id %>
+      <% if can? :edit, @screen_info[:liaison] %>
             <div class="panel">
                 <h3>Download Documents</h3>
                 <div class="panel_contents">
@@ -146,7 +146,7 @@
             </div>
       <% end %>
 <!--Checklist Section -->
-      <% if can? :edit, @screen_info[:liaison].id %>
+      <% if can? :edit, @screen_info[:liaison] %>
           <% if @screen_info[:group_info].size > 0 %>
               <div class="panel">
                 <h3>Checklist</h3>
@@ -183,7 +183,7 @@
         </div>
 
 <!--Liaison Sidebar Section -->
-  <% if can? :edit, @screen_info[:liaison].id %>
+  <% if can? :edit, @screen_info[:liaison] %>
     <div id="sidebar">
         <div class="sidebar_section panel" id="liaison information_sidebar_section">
             <h3>Liaison Information</h3>
@@ -196,7 +196,7 @@
                             </tr>
                             <tr>
                                 <td><%= link_to "Edit Liaison Information",
-                                        edit_liaison_path(:id => @screen_info[:liaison].id) %></td>
+                                        edit_liaison_path(:id => @screen_info[:liaison]) %></td>
                                 <% if signed_in? && current_admin_user.admin? %>
                                   <td><%= mail_to @screen_info[:liaison].email1, "Email #{@screen_info[:liaison].first_name}",
                                                         :subject => "SSP Information" %></td>

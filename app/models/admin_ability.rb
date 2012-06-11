@@ -16,6 +16,7 @@ class AdminAbility
       if groups then
         can [:manage], ScheduledGroup, :liaison_id => user.liaison_id
         groups.each do |group|
+          can [:manage], group, :liaison_id => user.liaison_id
           roster = Roster.find_by_group_id(group.id)
           can :manage, Roster, :id => group.roster_id
           can :manage, RosterItem, :roster_id => group.roster_id

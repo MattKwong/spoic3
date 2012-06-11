@@ -3,7 +3,7 @@ ActiveAdmin.register Registration do
   controller.authorize_resource
   menu :if => proc{ can?(:read, Registration) }, :label => "Requests", :parent => "Groups"
 
-  scope :unscheduled, :default => true #, :label => "All Unscheduled"
+#  scope :unscheduled, :default => true #, :label => "All Unscheduled"
 
  index :title => "Registration Requests" do
     column :name do |r|
