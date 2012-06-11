@@ -1,12 +1,3 @@
-<!--<div id="title_bar">-->
-    <!--<div id="titlebar_left">-->
-        <!--<span class="breadcrumb">-->
-            <!--<a href="/admin">Admin</a>-->
-            <!--<span class="breadcrumb_sep">/</span>-->
-        <!--</span>-->
-        <!--<h2 id="page_title">Groups Scheduled for <%= @session_week %> <%= @session_site %></h2>-->
-    <!--</div>-->
-<!--</div>-->
     <div id="active_admin_content"  class="with_sidebar">
         <div id="main_content_wrapper">
             <div id="main_content">
@@ -31,8 +22,14 @@
                         <tbody>
                             <% @groups.each do |r| %>
                                 <tr>
-                                    <td><%= linik_to r.name,  %></td>
-                                    <td><%= link_to Liaison.find(r.liaison_id).name, admin_liaison_path(r.liaison_id) %></td>
+                                    <td><%= r.name %></td>
+                                    <td>
+                                      <% if can? :edit, r.id %>
+                                        <%= link_to Liaison.find(r.liaison_id).name, admin_liaison_path(r.liaison_id) %>
+                                      <% else %>
+                                        <%= link_to Liaison.find(r.liaison_id).name, liaison_path(r.liaison_id) %>
+                                      <% end %>
+                                    </td>
                                     <td><%= link_to Church.find(r.church_id).name, admin_church_path(r.church.id)%></td>
                                     <td><%= r.current_youth %></td>
                                     <td><%= r.current_counselors %></td>
@@ -41,10 +38,10 @@
                                     <% total_youth += r.current_youth %>
                                     <% total_counselors += r.current_counselors %>
                                     <% grand_total += r.current_total %>
-                                    <% if signed_in? && current_admin_user.admin? %>                                        </tr>
+                                    <% if signed_in? && current_admin_user.admin? %>
                                       <td><%= link_to "Move this group", admin_scheduled_group_path(:id => r.id) %></td>
                                     <% end %>
-
+                                </tr>
                             <% end %>
                         </tbody>
                         <tfoot>
@@ -55,6 +52,7 @@
                               <td><%= total_youth %></td>
                               <td><%= total_counselors %></td>
                               <td><%= grand_total %></td>
+                              <td></td>
                             </tr>
                         </tfoot>
                       </table>

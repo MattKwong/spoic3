@@ -20,7 +20,11 @@ class LiaisonsController < ApplicationController
 
   def show
     liaison = Liaison.find(params[:id])
-    @page_title = "MySSP Information Portal. Welcome, #{liaison.first_name}!"
+    if can? :edit, liaison
+      @page_title = "MySSP Information Portal. Welcome, #{liaison.first_name}!"
+    else
+      @page_title = "Information Abouts Groups Led By: #{liaison.name}"
+    end
     church = Church.find(liaison.church_id)
     registrations = Registration.find_all_by_liaison_id(liaison.id) || []
     groups = ScheduledGroup.find_all_by_liaison_id(liaison.id)

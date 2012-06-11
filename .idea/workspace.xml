@@ -9,12 +9,10 @@
     <list default="true" id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="Collapse item purchase details on page load.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/ability.rb" afterPath="$PROJECT_DIR$/app/models/ability.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/liaisons_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/liaisons_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/admin_ability.rb" afterPath="$PROJECT_DIR$/app/models/admin_ability.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/session.rb" afterPath="$PROJECT_DIR$/app/models/session.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/liaisons/show.html.erb" afterPath="$PROJECT_DIR$/app/views/liaisons/show.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/scheduled_groups/program_session.html.erb" afterPath="$PROJECT_DIR$/app/views/scheduled_groups/program_session.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/sessions/_session.erb" afterPath="$PROJECT_DIR$/app/views/sessions/_session.erb" />
     </list>
     <list id="6515e16b-01b0-44f6-bd49-9d9ce8271564" name="Failed commit: Default" comment="Added update of second payment fields in ScheduledGroup to payment controller code." />
     <ignored path="spoic3.iws" />
@@ -41,64 +39,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="_session.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/sessions/_session.erb">
+      <file leaf-file-name="show.html.erb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/liaisons/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="100" selection-start="613" selection-end="613" vertical-scroll-proportion="-5.8846154">
-              <folding />
+            <state line="51" column="128" selection-start="2826" selection-end="2826" vertical-scroll-proportion="0.125">
+              <folding>
+                <marker date="1339390379010" expanded="true" signature="86:9310" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="114:9295" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="138:1511" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="180:1502" placeholder="do ... end" />
+                <marker date="1339390379010" expanded="true" signature="253:1491" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="324:1478" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="408:1461" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="432:975" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="477:970" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="504:942" placeholder="if ... end" />
+                <marker date="1339390379010" expanded="true" signature="2278:2991" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="2320:2820" placeholder="do ... end" />
+                <marker date="1339390379010" expanded="true" signature="3010:6608" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="3274:6601" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="3333:6590" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="3353:3931" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="3374:3910" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="3658:3886" placeholder="if ... end" />
+                <marker date="1339390379010" expanded="true" signature="3805:3856" placeholder="if ... end" />
+                <marker date="1339390379010" expanded="true" signature="3962:6573" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="3997:6563" placeholder="do ... end" />
+                <marker date="1339390379010" expanded="true" signature="4026:6543" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="4051:4384" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="4078:4356" placeholder="if ... end" />
+                <marker date="1339390379010" expanded="true" signature="4570:4843" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="4868:5148" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="5173:5404" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="5606:6486" placeholder="if ... end" />
+                <marker date="1339390379010" expanded="true" signature="5656:5861" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="5890:6084" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="6113:6456" placeholder="if ... end" />
+                <marker date="1339390379010" expanded="true" signature="6175:6351" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="6645:7558" placeholder="if ... end" />
+                <marker date="1339390379010" expanded="true" signature="6719:7544" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="6808:7525" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="6879:7502" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="6908:7109" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="7141:7473" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="7204:7438" placeholder="do ... end" />
+                <marker date="1339390379010" expanded="true" signature="7597:9278" placeholder="if ... end" />
+                <marker date="1339390379010" expanded="true" signature="7654:9262" placeholder="if ... end" />
+                <marker date="1339390379010" expanded="true" signature="7727:9244" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="7807:9225" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="7878:9202" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="7910:8372" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="7943:8339" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="8057:8206" placeholder="do ... end" />
+                <marker date="1339390379010" expanded="true" signature="8404:9173" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="8437:9138" placeholder="for ... end" />
+                <marker date="1339390379010" expanded="true" signature="8524:9102" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="8655:8856" placeholder="for ... end" />
+                <marker date="1339390379010" expanded="true" signature="9350:11746" placeholder="if ... end" />
+                <marker date="1339390379010" expanded="true" signature="9750:10790" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="9783:9939" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="9972:10757" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="10009:10148" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="10185:10721" placeholder="if ... end" />
+                <marker date="1339390379010" expanded="true" signature="10268:10450" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="10532:10681" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="11235:11669" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="11271:11636" placeholder="..." />
+                <marker date="1339390379010" expanded="true" signature="11348:11597" placeholder="do ... end" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ability.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/ability.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="79" selection-start="1844" selection-end="1844" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin_ability.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/admin_ability.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="51" selection-start="1113" selection-end="1113" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="show_schedule.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/registration/show_schedule.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="66" selection-start="2120" selection-end="2120" vertical-scroll-proportion="-4.769231">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="registration_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/registration_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="179" column="62" selection-start="6550" selection-end="6550" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scheduled_groups_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="74" selection-start="616" selection-end="616" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="program_session.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="program_session.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/program_session.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="61" selection-start="1532" selection-end="1532" vertical-scroll-proportion="0.13972603">
+            <state line="54" column="34" selection-start="2969" selection-end="2969" vertical-scroll-proportion="-10.961538">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="liaisons_controller.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/liaisons_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="47" column="129" selection-start="1696" selection-end="1696" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -128,8 +153,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/config/routes.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/food_inventory_food_items_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/food_inventory_food_items/_food_inventory_food_item.html.haml" />
         <option value="$PROJECT_DIR$/app/views/programs/_budget_items.erb" />
         <option value="$PROJECT_DIR$/app/views/item_purchases/_table.html.erb" />
@@ -140,10 +163,12 @@
         <option value="$PROJECT_DIR$/app/views/item_purchases/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/models/session.rb" />
         <option value="$PROJECT_DIR$/app/views/sessions/_session.erb" />
-        <option value="$PROJECT_DIR$/app/models/admin_ability.rb" />
         <option value="$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/ability.rb" />
+        <option value="$PROJECT_DIR$/app/models/admin_ability.rb" />
         <option value="$PROJECT_DIR$/app/views/scheduled_groups/program_session.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/liaisons_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/liaisons/show.html.erb" />
       </list>
     </option>
   </component>
@@ -186,6 +211,94 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane />
+        <subPane subId="Non-Project Files" />
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="All">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="spoic3">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="spoic3">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="public">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="spoic3">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="public">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="stylesheets">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="spoic3">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="public">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="javascripts">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="spoic3">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT=".idea">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -340,28 +453,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="scheduled_groups" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spoic3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ctab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="registration" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -407,6 +498,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="programs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spoic3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ctab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="liaisons" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -489,42 +602,6 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spoic3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ctab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spoic3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ctab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -538,94 +615,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane />
-        <subPane subId="Non-Project Files" />
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <subPane subId="All">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="spoic3">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="spoic3">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="public">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="spoic3">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="public">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="stylesheets">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="spoic3">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="public">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="javascripts">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="spoic3">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT=".idea">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Favorites" />
     </panes>
   </component>
@@ -633,15 +622,15 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="116" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="123" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="122" />
-    <property name="recentsLimit" value="10" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="recentsLimit" value="10" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="122" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/controllers" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="126" />
     <property name="RakeTaksPopup.undocumentedIncluded" value="false" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="921" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="126" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="923" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="921" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="124" />
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="121" />
@@ -656,8 +645,8 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="options.lastSelected" value="org.jetbrains.plugins.ruby.settings.RubyIdeSdkConfigurable" />
-    <property name="options.searchVisible" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -977,15 +966,6 @@
         <option name="RakeTask" enabled="false" />
       </method>
     </configuration>
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Remote">
-      <JSRemoteDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
-        <option name="fileUrl" />
-      </JSRemoteDebuggerConfigurationSettings>
-      <method>
-        <option name="RakeTask" enabled="false" />
-      </method>
-    </configuration>
     <configuration default="true" type="CucumberRunConfigurationType" factoryName="Cucumber">
       <predefined_log_file id="RUBY_CUCUMBER" enabled="true" />
       <module name="" />
@@ -1013,6 +993,15 @@
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="CUCUMBER_RUNNER_PATH" VALUE="" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_RUNNER" VALUE="false" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="SETTINGS_VERSION" VALUE="2" />
+      <method>
+        <option name="RakeTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Remote">
+      <JSRemoteDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSRemoteDebuggerConfigurationSettings>
       <method>
         <option name="RakeTask" enabled="false" />
       </method>
@@ -1722,7 +1711,11 @@
       <created>1339369149784</created>
       <updated>1339369149784</updated>
     </task>
-    <option name="localTasksCounter" value="121" />
+    <task id="LOCAL-00121" summary="Site director view of church, liaison, schedule and roster information. In progress.">
+      <created>1339372400845</created>
+      <updated>1339372400845</updated>
+    </task>
+    <option name="localTasksCounter" value="122" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1749,13 +1742,12 @@
     <frame x="-8" y="-8" width="1380" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3235955" sideWeight="0.99889505" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.005319149" sideWeight="0.71710527" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28289473" sideWeight="0.80649114" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.005319149" sideWeight="0.5707237" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28289473" sideWeight="0.80649114" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3251121" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42927632" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27941176" sideWeight="0.24719101" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24848025" sideWeight="0.71710527" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2530395" sideWeight="0.5707237" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39910814" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24448529" sideWeight="0.23258427" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3741573" sideWeight="0.06556372" order="7" side_tool="true" content_ui="tabs" />
@@ -1766,6 +1758,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="CSS Styles" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3277592" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3235955" sideWeight="0.99889505" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
@@ -1809,7 +1802,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Collapse item purchase details on page load." />
+    <option name="LAST_COMMIT_MESSAGE" value="Site director view of church, liaison, schedule and roster information. In progress." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1822,7 +1815,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Gem modifications." />
     <MESSAGE value="Work to solve bundler problems." />
     <MESSAGE value="Testing and tweeking - final before production!" />
     <MESSAGE value="Corrected minor bugs before deployment" />
@@ -1847,118 +1839,166 @@
     <MESSAGE value="Changes and enhancements to food inventory processes. Created button to hide growing list of purchase items on a purchase." />
     <MESSAGE value="Edited Gemfile.lock" />
     <MESSAGE value="Collapse item purchase details on page load." />
+    <MESSAGE value="Site director view of church, liaison, schedule and roster information. In progress." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/purchases/show.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="62" selection-start="1577" selection-end="1577" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/items/_item.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/items/_table.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="35" selection-start="327" selection-end="327" vertical-scroll-proportion="-10.538462">
-          <folding />
-        </state>
+        <state line="18" column="35" selection-start="327" selection-end="327" vertical-scroll-proportion="-10.538462" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/items/show.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="0" selection-start="3012" selection-end="3012" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="89" column="0" selection-start="3012" selection-end="3012" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/item_purchases/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/item_purchases/_item_purchase.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/item_purchases/_form.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="46" selection-start="1257" selection-end="1257" vertical-scroll-proportion="0.65102637">
-          <folding />
-        </state>
+        <state line="21" column="46" selection-start="1257" selection-end="1257" vertical-scroll-proportion="0.65102637" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/session.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="57" selection-start="579" selection-end="579" vertical-scroll-proportion="0.5714286">
+        <state line="14" column="57" selection-start="579" selection-end="579" vertical-scroll-proportion="0.5714286" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/churches/edit.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="73" selection-start="1511" selection-end="1511" vertical-scroll-proportion="0.8896104" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/registration/show_schedule.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="66" selection-start="2120" selection-end="2120" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/registration_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="179" column="62" selection-start="6550" selection-end="6550" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/admin_ability.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="51" selection-start="1113" selection-end="1113" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="179" column="62" selection-start="6550" selection-end="6550" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/scheduled_groups_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="74" selection-start="616" selection-end="616" vertical-scroll-proportion="0.0">
+        <state line="15" column="74" selection-start="616" selection-end="616" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/admin_ability.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="0" selection-start="1033" selection-end="1237" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/ability.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="79" selection-start="1844" selection-end="1844" vertical-scroll-proportion="0.0">
+        <state line="48" column="48" selection-start="1919" selection-end="1919" vertical-scroll-proportion="0.8982036">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/sessions/_session.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="100" selection-start="613" selection-end="613" vertical-scroll-proportion="-5.8846154">
+        <state line="9" column="18" selection-start="613" selection-end="613" vertical-scroll-proportion="0.46646342">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/registration/show_schedule.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/liaisons_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="66" selection-start="2120" selection-end="2120" vertical-scroll-proportion="-4.769231">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/churches/edit.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="73" selection-start="1511" selection-end="1511" vertical-scroll-proportion="0.8896104">
+        <state line="47" column="129" selection-start="1696" selection-end="1696" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/scheduled_groups/program_session.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="61" selection-start="1532" selection-end="1532" vertical-scroll-proportion="0.13972603">
+        <state line="54" column="34" selection-start="2969" selection-end="2969" vertical-scroll-proportion="-10.961538">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/liaisons/show.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="128" selection-start="2826" selection-end="2826" vertical-scroll-proportion="0.125">
+          <folding>
+            <marker date="1339390379010" expanded="true" signature="86:9310" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="114:9295" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="138:1511" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="180:1502" placeholder="do ... end" />
+            <marker date="1339390379010" expanded="true" signature="253:1491" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="324:1478" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="408:1461" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="432:975" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="477:970" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="504:942" placeholder="if ... end" />
+            <marker date="1339390379010" expanded="true" signature="2278:2991" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="2320:2820" placeholder="do ... end" />
+            <marker date="1339390379010" expanded="true" signature="3010:6608" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="3274:6601" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="3333:6590" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="3353:3931" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="3374:3910" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="3658:3886" placeholder="if ... end" />
+            <marker date="1339390379010" expanded="true" signature="3805:3856" placeholder="if ... end" />
+            <marker date="1339390379010" expanded="true" signature="3962:6573" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="3997:6563" placeholder="do ... end" />
+            <marker date="1339390379010" expanded="true" signature="4026:6543" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="4051:4384" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="4078:4356" placeholder="if ... end" />
+            <marker date="1339390379010" expanded="true" signature="4570:4843" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="4868:5148" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="5173:5404" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="5606:6486" placeholder="if ... end" />
+            <marker date="1339390379010" expanded="true" signature="5656:5861" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="5890:6084" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="6113:6456" placeholder="if ... end" />
+            <marker date="1339390379010" expanded="true" signature="6175:6351" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="6645:7558" placeholder="if ... end" />
+            <marker date="1339390379010" expanded="true" signature="6719:7544" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="6808:7525" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="6879:7502" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="6908:7109" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="7141:7473" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="7204:7438" placeholder="do ... end" />
+            <marker date="1339390379010" expanded="true" signature="7597:9278" placeholder="if ... end" />
+            <marker date="1339390379010" expanded="true" signature="7654:9262" placeholder="if ... end" />
+            <marker date="1339390379010" expanded="true" signature="7727:9244" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="7807:9225" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="7878:9202" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="7910:8372" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="7943:8339" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="8057:8206" placeholder="do ... end" />
+            <marker date="1339390379010" expanded="true" signature="8404:9173" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="8437:9138" placeholder="for ... end" />
+            <marker date="1339390379010" expanded="true" signature="8524:9102" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="8655:8856" placeholder="for ... end" />
+            <marker date="1339390379010" expanded="true" signature="9350:11746" placeholder="if ... end" />
+            <marker date="1339390379010" expanded="true" signature="9750:10790" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="9783:9939" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="9972:10757" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="10009:10148" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="10185:10721" placeholder="if ... end" />
+            <marker date="1339390379010" expanded="true" signature="10268:10450" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="10532:10681" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="11235:11669" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="11271:11636" placeholder="..." />
+            <marker date="1339390379010" expanded="true" signature="11348:11597" placeholder="do ... end" />
+          </folding>
         </state>
       </provider>
     </entry>

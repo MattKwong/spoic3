@@ -30,6 +30,8 @@ class AdminAbility
       can :read, Liaison
       can :read, Church
       can :read, ScheduledGroup
+      can :read, Roster
+      can :read, RosterItem
       can :read, Session
       can :read, Period
       can :read, Site
