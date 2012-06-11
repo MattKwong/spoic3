@@ -20,21 +20,21 @@ class Registration < ActiveRecord::Base
 
    validates :name, :requested_youth, :requested_counselors, :presence => true
    validates_numericality_of :requested_youth, :requested_counselors,
-                             :only_integer => true, :greater_than => 0
+                             :only_integer => true, :greater_than_or_equal_to  => 1
 
 
  #TODO: Test that the requested totals don't exceed the limit which is currently 30'
 
   with_options :if => :step2? do |registration|
     registration.validates_presence_of :request1
-    registration.validates_numericality_of :request1, :only_integer => true, :greater_than => 0, :message => "must be valid request"
+    registration.validates_numericality_of :request1, :only_integer => true, :greater_than_or_equal_to  => 1, :message => "must be valid request"
     registration.validate :request_sequence, :message => "All requests must be made in order."
     registration.validate :check_for_duplicate_choices, :message => "You may not select the same session twice."
   end
 
   with_options :if => :step3? do |registration|
     registration.validates_presence_of :amount_paid, :payment_method
-    registration.validates_numericality_of :amount_paid, :greater_than => 0
+    registration.validates_numericality_of :amount_paid, :greater_than_or_equal_to  => 1
   end
 
   private
