@@ -39,7 +39,7 @@ class Item < ActiveRecord::Base
     scope :search_by_name, lambda { |q| (q ? where(["name Like ?", '%' + q + '%']) : {} ) }
 
 
-    after_save :rebase_units
+#    after_save :rebase_units
 
     def food?
       self.budget_item_type.name == "Food"

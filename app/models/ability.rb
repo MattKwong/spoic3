@@ -41,6 +41,7 @@ class Ability
       can :read, Liaison
       can :read, ScheduledGroup
       can :read, Item
+      can :manage, Item, :program_id => program_id
       can :read, Roster
       can :read, RosterItem
       can :manage, Program, :id => program_id

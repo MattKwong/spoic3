@@ -1,7 +1,8 @@
 <div id="active_admin_content">
   <%= semantic_form_for item do |form| %>
   <%= form.inputs do %>
-    <%= form.input :name, :input_html => { :size => 35 } %>
+    <%= form.input :name, :input_html => { :id => 'newItemField', :size => 35 } %>
+    <div id="similar_items_table"></div>
     <%= form.input :description, :input_html => { :size => 35 } %>
 
     <%= form.input :item_type, :as => :radio, :hint => "Select the broad grouping that the item falls into." %>

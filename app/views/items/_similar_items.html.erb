@@ -1,0 +1,23 @@
+
+<table>
+  <% if @similar_items_list.empty? %>
+      <h4>Similar Item Check: No similar items were found.</h4>
+  <% else %>
+      <h4><%= "Similar Item Check:#{@similar_items_list.count} similar items were found." %></h4>
+    <thead>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Base Unit</th>
+    </thead>
+    <tbody>
+        <% @similar_items_list.each do |i| %>
+            <tr>
+              <td><%= i.name %></td>
+              <td><%= i.description %></td>
+              <td><%= i.base_unit %></td>
+
+            </tr>
+        <% end %>
+    </tbody>
+  <% end %>
+</table>

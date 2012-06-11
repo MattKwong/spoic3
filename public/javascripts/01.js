@@ -201,6 +201,15 @@ $(document).ready(function() {
         );
     });
 });
+
+$(document).ready(function() {
+    $("#newItemField").change(function(){
+        $.get("show_similar_items?newValue="+$("#newItemField").val(),
+        function(data){ $("#similar_items_table").html(data); }
+        );
+    });
+});
+
 //
 //$(document).ready(function() {
 //    $("#item-filter").change(function(){

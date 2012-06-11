@@ -45,7 +45,10 @@ Spoic3::Application.routes.draw do
 
   match "purchases/:id/delete" => 'purchases#destroy', :as => 'delete_purchase'
   match "food_inventory_food_items/:id/delete" => 'food_inventory_food_items#destroy', :as => 'delete_item_inventory'
+#Routes for jquery calls
   match 'food_inventories/:food_inventory_id/food_inventory_food_items/update_item_info/:id', :to => 'food_inventory_food_items#update_item_info'
+  match 'programs/:program_id/items/show_similar_items', :to => 'items#show_similar_items'
+
   match "items/new", :to => 'items#new', :as => 'add_item'
   resources :vendors #, :only => [:index]
   resources :purchases, :only => [:index]
