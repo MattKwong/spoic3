@@ -1,0 +1,36 @@
+.tablewrapper
+  %table
+    %thead
+      %tr
+        %th Item
+        %th Description
+        %th Base Units
+        %th Last Purchased On
+        %th Amount Purchased
+        %th Last Inventory Date
+        %th Amount Counted
+        %th Weekly Consumption
+        %th Maximum Expected
+        %th Expected (Max less consumption)
+        %th Today's Count
+    -if @inventory_list.any?
+      %tbody
+        -@inventory_list.each do |i|
+          %tr
+            %td= i[:item_name]
+            %td= i[:item_description]
+            %td= i[:base_unit]
+            %td= i[:last_purchased_on]
+            %td= i[:amount_purchased]
+            %td= i[:last_inventory_date]
+            %td= i[:last_inventory_amount]
+            -if i[:weekly_consumption]
+              %td= "%.1f" % i[:weekly_consumption] + " " + i[:base_unit]
+            -else
+              %td
+            %td= i[:maximum_expected]
+            -if i[:weekly_consumption]
+              %td= "%.1f" % (i[:maximum_expected] - i[:weekly_consumption])
+            -else
+              %td
+            %td

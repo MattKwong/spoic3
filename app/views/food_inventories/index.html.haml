@@ -29,8 +29,13 @@
   .paginator.prepend-top
     %span.wrapper
       = paginate @food_inventories
-  .span-12.properties.last
+  .span-8.properties.last
     %dl.properties
       -if @program
         %dlt= link_to "Record a New Food Inventory", new_program_food_inventory_path(@program)
+
+  .span-8.properties.last
+    %dl.properties
+      -if @program
+        %dlt= link_to "Run an Inventory Prep Report", inventory_prep_report_path(@program)
 

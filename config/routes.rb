@@ -69,7 +69,7 @@ Spoic3::Application.routes.draw do
   get "staff_reports/food_budget/:id", :controller => :staff_reports, :action => :food_budget, :as => 'food_budget_report'
   get "staff_reports/food_consumption/:id", :controller => :staff_reports, :action => :food_consumption, :as => 'food_consumption_report'
   get "staff_reports/session/:id", :controller => :staff_reports, :action => :session, :as => 'session_report'
-
+  get "food_inventories/:program_id/inventory_prep_report", :controller => :food_inventories, :action => 'inventory_prep_report', :as => 'inventory_prep_report'
 
   match "material_item_delivereds/add/:id", :to => 'material_item_delivereds#new', :as => 'deliver_project'
   match "material_item_delivereds", :to => 'material_item_delivereds#create', :as => 'add_material_item'

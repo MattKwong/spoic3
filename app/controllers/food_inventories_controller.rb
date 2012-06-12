@@ -1,5 +1,6 @@
 class FoodInventoriesController < ApplicationController
   layout 'admin_layout'
+
   load_and_authorize_resource :program
   load_and_authorize_resource :food_inventory, :through => :program, :shallow => true
 
@@ -70,4 +71,43 @@ class FoodInventoriesController < ApplicationController
     end
   end
 
+  def inventory_prep_report
+    @page_title = "Inventory Prep Report As Of #{Time.now.in_time_zone("Pacific Time (US & Canada)").strftime("%b %d @ %I:%M %p")}"
+    @inventory_list = Array.new
+    @program = Program.find(params[:program_id])
+    Item.food.each do |i|
+      inventories = FoodInventoryFoodItem.find_all_by_item_id(i.id)
+      purchases = ItemPurchase.find_all_by_item_id(i.id)
+
+      if inventories.any? || purchases.any?
+        list_item = Hash.new
+        list_item.store(:item_name, i.name)
+        list_item.store(:item_description, i.description)
+        list_item.store(:base_unit, i.base_unit)
+        if purchases.any?
+          list_item.store(:last_purchased_on, purchases.last.purchase.date)
+          list_item.store(:amount_purchased, purchases.last.quantity)
+          purchases_since_start = i.program_purchases(@program)
+        end
+        if inventories.any?
+          list_item.store(:last_inventory_date, inventories.last.food_inventory.date)
+          list_item.store(:last_inventory_amount, inventories.last.quantity)
+        end
+        if inventories.any? && purchases.any?
+          weeks_since_start = (Time.now.to_date - @program.first_session_start)/7
+          if weeks_since_start != 0
+            ave_consumption = (purchases_since_start - inventories.last.in_base_units)/weeks_since_start
+            list_item.store(:weekly_consumption, ave_consumption )
+          end
+          purchases_since_last_inventory = i.purchases_between(@program, inventories.last.food_inventory.date, Time.now.to_date)
+          purchased_since_last_inventory = (purchases_since_last_inventory.map &:total_base_units).sum
+          list_item.store(:maximum_expected, inventories.last.in_base_units + purchased_since_last_inventory)
+        end
+
+        @inventory_list << list_item
+      end
+    end
+
+    render "inventory_prep_report"
+  end
 end
