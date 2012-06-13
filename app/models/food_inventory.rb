@@ -27,6 +27,7 @@ class FoodInventory < ActiveRecord::Base
   scope :before, lambda { |date| where('date < ?', date) }
   default_scope :order => 'date ASC'
 
+
   def total_spent
     (food_inventory_food_items.map &:total_price).sum
   end

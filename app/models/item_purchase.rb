@@ -11,19 +11,20 @@ class ItemPurchase < ActiveRecord::Base
   validates :price, :presence => true
   validates :taxable, :inclusion => [true, false]
   validates :size, :presence => true
-
   validate :validate_units
 
   scope :by_budget_line_type, lambda { |id| joins(:item).where("budget_item_type_id = ?", id) }
-
-  before_save :update_base_units, :unless => :skip_calculations?
-  #after_save :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }
-  #after_destroy :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }
-
-
+  scope :for_program, lambda { |program| joins(:purchase).where('program_id = ?', program) }
+  scope :for_item, lambda { |item| joins(:item).where('item_id = ?', item) }
   scope :taxable, where(:taxable => true)
-#  scope :alphabetized, lambda { |id| joins(:item).order("name") }
   scope :alphabetized, joins(:item).order('items.name')
+
+#  scope :alphabetized, lambda { |id| joins(:item).order("name") }
+#  #after_save :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }
+  #after_destroy :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }
+  before_save :update_base_units, :unless => :skip_calculations?
+
+
 
   def size_in_base_units
     size.u >> item.base_unit

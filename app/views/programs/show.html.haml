@@ -6,19 +6,26 @@
 
       %dt Program Type
       %dd= @program.program_type.name
-  .span-8.properties
-    %dl.properties
       %dt Start Date
       %dd= @program.start_date.strftime("%B %d")
-      -if can? :create, Vendor
-        %dlt= link_to "Create a New Vendor", new_site_vendor_path(@program.site)
-
   .span-8.properties
     %dl.properties
       -if can? :create, Item
         %dlt= link_to "Create a New Item", new_program_item_path(@program)
       -if can? :create, Project
         %dlt= link_to "Create a New Project", new_program_project_path(@program)
+      -if can? :create, Vendor
+        %dlt= link_to "Create a New Vendor", new_site_vendor_path(@program.site)
+
+  .span-8.properties
+    %dl.properties
+      -if can? :create, FoodInventory
+        %dlt= link_to "Create a New Food Inventory", new_program_food_inventory_path(@program)
+      -if can? :create, FoodInventory
+        %dlt= link_to "Run an Inventory Prep Report", inventory_prep_report_path(@program)
+      -if can? :create, Purchase
+        %dlt= link_to "Create a New Purchase", new_program_purchase_path(@program)
+
   %br
   %br
   %p
@@ -132,6 +139,4 @@
               %th Phone
               %th Job
           = render @program.program_users.order("job_id")
-
-
 

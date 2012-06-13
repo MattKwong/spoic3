@@ -76,38 +76,63 @@ class FoodInventoriesController < ApplicationController
     @inventory_list = Array.new
     @program = Program.find(params[:program_id])
     Item.food.each do |i|
-      inventories = FoodInventoryFoodItem.find_all_by_item_id(i.id)
-      purchases = ItemPurchase.find_all_by_item_id(i.id)
-
-      if inventories.any? || purchases.any?
+      inventories = FoodInventoryFoodItem.for_program(@program).find_all_by_item_id(i.id)#.order('food_inventories.date ASC')
+  #   purchases = ItemPurchase.joins(:purchases).where('item_id = ? and purchases.program_id = ?', i.id, @program.id)
+      purchases = ItemPurchase.for_program(@program).find_all_by_item_id(i.id)
+      if inventories.any? || purchases.any? #Either exist
         list_item = Hash.new
         list_item.store(:item_name, i.name)
         list_item.store(:item_description, i.description)
         list_item.store(:base_unit, i.base_unit)
-        if purchases.any?
+
+      #only purchases - we set the purchase info only
+        if purchases.any? # && !inventories.any?
           list_item.store(:last_purchased_on, purchases.last.purchase.date)
-          list_item.store(:amount_purchased, purchases.last.quantity)
-          purchases_since_start = i.program_purchases(@program)
+          list_item.store(:amount_purchased, (purchases.last.quantity.to_s + ' of ' + purchases.last.size))
         end
-        if inventories.any?
+        if inventories.any? # && !purchases.any?
+        #Only inventory - set the inventory information, set the purchase info to 'none', Weekly consumption
+        #is blank and expected amounts are last inventoried amount
           list_item.store(:last_inventory_date, inventories.last.food_inventory.date)
           list_item.store(:last_inventory_amount, inventories.last.quantity)
+          list_item.store(:maximum_expected, inventories.last.quantity)
+#          list_item.store(:purchased_since_last_inventory, i.purchased_for_program(@program, inventories.last.food_inventory.date, Time.now.to_date))
         end
         if inventories.any? && purchases.any?
-          weeks_since_start = (Time.now.to_date - @program.first_session_start)/7
+        #Both exist. Inventory and purchase fields were already set above. All we need to calculate is
+        #weekly consumption and expected amount
+          purchases_since_start = i.program_purchases(@program)
+          weeks_since_start = ((Time.now.to_date) - @program.first_session_start)/7
           if weeks_since_start != 0
             ave_consumption = (purchases_since_start - inventories.last.in_base_units)/weeks_since_start
             list_item.store(:weekly_consumption, ave_consumption )
           end
           purchases_since_last_inventory = i.purchases_between(@program, inventories.last.food_inventory.date, Time.now.to_date)
+          logger.debug purchases_since_last_inventory.inspect
           purchased_since_last_inventory = (purchases_since_last_inventory.map &:total_base_units).sum
           list_item.store(:maximum_expected, inventories.last.in_base_units + purchased_since_last_inventory)
+          list_item.store(:purchased_since_last_inventory, purchased_since_last_inventory)
         end
 
         @inventory_list << list_item
       end
     end
 
+    @inventory_list_values = Array.new
+
+    @inventory_list.each do |i|
+      temp = Array.new
+      temp[0] = i[:item_name]
+      temp[1] = i[:item_description]
+      temp[2] = i[:base_unit]
+      @inventory_list_values << temp
+      logger.debug @inventory_list_values.inspect
+      #@inventory_list_values[j, 1] = i[:item_description]
+      #@inventory_list_values[j, 2] = i[:base_unit]
+      logger.debug @inventory_list_values.inspect
+
+    end
+    logger.debug @inventory_list_values.inspect
     render "inventory_prep_report"
   end
 end

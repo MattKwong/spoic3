@@ -7,6 +7,7 @@ class FoodInventoryFoodItemsController < ApplicationController
     @page_title = "Record Inventory Results"
     @food_inventory_food_item = FoodInventoryFoodItem.new
     @food_inventory_food_item.food_inventory_id= @food_inventory.id
+    logger.debug @food_inventory.inspect
   end
 
   def update_item_info
@@ -33,7 +34,7 @@ class FoodInventoryFoodItemsController < ApplicationController
 
   def create
     @food_inventory_food_item  = FoodInventoryFoodItem.new(params[:food_inventory_food_item])
-    @food_inventory_food_item.food_inventory_id = params[:food_inventory_food_item]
+    @food_inventory_food_item.food_inventory_id = params[:food_inventory_id]
     @food_inventory = FoodInventory.find(params[:food_inventory_id])
     if @food_inventory_food_item.save
       flash[:success] = "Inventory results for #{@food_inventory_food_item.item.name} have been successfully recorded."
