@@ -24,7 +24,8 @@ class MaterialItemDeliveredsController < ApplicationController
 #    logger.debug @project
     if @material_item_delivered.save
       if @project.actual_start.nil?
-        @project.update_project_start(@material_item_delivered.delivery_date)
+        @project.actual_start = @material_item_delivered.delivery_date
+        @project.save
       end
       flash[:success] = "New delivered item has been successfully created."
       redirect_to @project
@@ -42,7 +43,7 @@ class MaterialItemDeliveredsController < ApplicationController
 
   def destroy
     @material_item_delivered = MaterialItemDelivered.find(params[:id])
-        return_path = project_path(@material_item_delivered.project_id)
+        @project = @material_item_delivered.project
         if @material_item_delivered.destroy
           flash[:success] = "This delivery was successfully deleted."
 

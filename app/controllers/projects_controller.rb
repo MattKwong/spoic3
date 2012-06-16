@@ -44,14 +44,13 @@ class ProjectsController < ApplicationController
     else
       calculated_cost = calculate_tracked_cost/(1 - @project.project_subtype.untracked_percentage)
     end
-
   end
 
   def update_cost
     @project.update_attribute(:estimated_cost, calculate_cost)
   end
 
-  def edit
+    def edit
     @page_title = "Editing #{@project.name}"
   end
 

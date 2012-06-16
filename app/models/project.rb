@@ -99,4 +99,5 @@ end
       total += i.cost(program)}
     total
   end
+
 end
