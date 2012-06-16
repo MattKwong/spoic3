@@ -69,6 +69,7 @@ class Session < ActiveRecord::Base
     if ending_inventory.nil?
       ending_inventory = program.food_inventories.where('date = ? ', period.end_date.to_date - 1).last
     end
+    logger.debug period.end_date.to_date - 1
     logger.debug ending_inventory.inspect
     if ending_inventory.nil?
       ending_inventory_value = starting_inventory_value
