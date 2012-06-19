@@ -1,0 +1,49 @@
+<div class="panel">
+    <h3><%= link_to "Download Report as CSV", request.parameters.merge({:format => :csv}) %></h3>
+    <div class="panel_contents">
+        <table border="0" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th>Church Name</th>
+                    <th>Site</th>
+                    <th>Week</th>
+                    <th>Youth registered:</th>
+                    <th>Adults registered:</th>
+                    <th>Group total:</th>
+                    <th>X-Small</th>
+                    <th>Small</th>
+                    <th>Medium</th>
+                    <th>Large</th>
+                    <th>X-Large</th>
+                    <th>XX-Large</th>
+                    <th>XXX-Large</th>
+                    <th>Total Ordered</th>
+                    <th>Order Discrepancy</th>
+                </tr>
+            </thead>
+            <tbody><% @groups.each do |g| %>
+
+                    <td><%= g[:church_name] %></td>
+                    <td><%= g[:site] %></td>
+                    <td><%= g[:week] %></td>
+                    <td><%= g[:youth] %></td>
+                    <td><%= g[:counselors] %></td>
+                    <td><%= g[:youth] + g[:counselors] %></td>
+                    <td><%= g[:number_xsmall] %></td>
+                    <td><%= g[:number_small] %></td>
+                    <td><%= g[:number_medium] %></td>
+                    <td><%= g[:number_large] %></td>
+                    <td><%= g[:number_xlarge] %></td>
+                    <td><%= g[:number_xx] %></td>
+                    <td><%= g[:number_xxx] %></td>
+                    <td><%= g[:total_ordered] %></td>
+                    <td><%= g[:discrepancy] %></td>
+                </tr>
+            <% end %>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+

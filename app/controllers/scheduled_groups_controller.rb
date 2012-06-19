@@ -230,6 +230,15 @@ class ScheduledGroupsController < ApplicationController
     end
   end
 
+  def tshirt_report
+    @groups = build_tshirt_report
+    @page_title = 'T-Shirt Report'
+    respond_to do |format|
+      format.csv { create_csv("tshirt-orders-#{Time.now.strftime("%Y%m%d")}.csv") }
+      format.html { @title = 'T-Shirt Order Report'}
+    end
+  end
+
 
 private
 
@@ -315,6 +324,75 @@ private
     invoices << invoice
   end
     invoices
+  end
+
+  def build_tshirt_report
+
+    groups = []
+
+    ScheduledGroup.all.each do |g|
+      church = Church.find(g.church_id)
+      discrepancy_value = total_ordered = number_xsmall = number_small = number_medium = number_large = number_xlarge = number_xx = number_xxx = 0
+      begin
+        roster = Roster.find_by_group_id(g.id)
+        logger.debug roster.inspect
+        roster_items = RosterItem.find_all_by_roster_id(roster.id)
+        roster_items.each do |r|
+        #roster_items.each do |r|
+          logger.debug r.shirt_size
+          case r.shirt_size
+            when "XS"
+              number_xsmall += 1
+            when "S"
+              number_small += 1
+            when "M"
+              number_medium += 1
+            when "L"
+              number_large += 1
+            when "XL"
+              number_xlarge += 1
+            when "XXL"
+              number_xx += 1
+            when "XXXL"
+              number_xxx += 1
+            else puts "Unknown size encountered: #{r.shirt_size}"
+          end
+        end
+      rescue
+        puts "No roster found for #{church.name}"
+      end
+      total_ordered = number_xsmall + number_small + number_medium + number_large + number_xlarge + number_xx + number_xxx
+      discrepancy_value = g.current_counselors + g.current_youth - total_ordered
+      if discrepancy_value == 0
+        discrepancy = "None"
+      else if discrepancy_value > 0
+        discrepancy = discrepancy_value.to_s + " t-shirt orders are missing."
+        else
+          discrepancy = discrepancy_value.to_s + " too many t-shirts were ordered."
+        end
+      end
+
+      group = {:church_name => trim(church.name),
+                    :group_id => g.id,
+                    :site => g.session.site.name,
+                    :period_name => g.session.period.name,
+                    :youth => g.current_youth,
+                    :counselors => g.current_counselors,
+                    :total_registered => g.current_counselors + g.current_youth,
+                    :number_small => number_small,
+                    :number_xsmall => number_xsmall,
+                    :number_medium => number_medium,
+                    :number_large => number_large,
+                    :number_xlarge => number_xlarge,
+                    :number_xx => number_xx,
+                    :number_xxx => number_xxx,
+                    :total_ordered => total_ordered,
+                    :discrepancy => discrepancy }
+    logger.debug group.inspect
+    groups << group
+  end
+    groups
+
   end
 
   def trim(s)

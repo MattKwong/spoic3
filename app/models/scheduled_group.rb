@@ -4,7 +4,7 @@ class ScheduledGroup < ActiveRecord::Base
                   :current_total, :liaison_id, :scheduled_priority,
                   :session_id, :church_id, :registration_id, :group_type_id, :second_payment_date,
                   :second_payment_total
-
+  default_scope :include => :church, :order => 'churches.name'
   has_many :payments
   has_many :change_histories
   has_many :adjustments
