@@ -14,7 +14,7 @@
 #  tax          :decimal(, )
 
 class Purchase < ActiveRecord::Base
-  attr_accessible :date, :total, :tax
+  attr_accessible :date, :total, :tax, :purchase_type
 
   validates :program_id, :presence => true
   validates :vendor_id, :presence => true
@@ -22,6 +22,7 @@ class Purchase < ActiveRecord::Base
   validates :total, :presence => true
   validates :tax, :presence => true
   validates :date, :presence => true
+  validates_inclusion_of :purchase_type, :in => ['Credit', 'Cash']
   validate :date_range
 
   belongs_to :program
@@ -35,7 +36,7 @@ class Purchase < ActiveRecord::Base
   scope :after, lambda { |date| where('date > ?', date) }
   scope :before, lambda { |date| where('date <=', date) }
 
-  default_scope :order => 'date ASC'
+  default_scope :order => 'date DESC'
 
   def to_s
     "#{vendor.name} #{date}"

@@ -1,7 +1,7 @@
-- if @purchases.size > 20
-  .paginator.append-bottom
-    %span.wrapper
-      = paginate @purchases
+-#- if @purchases.size > 20
+-#  .paginator.append-bottom
+-#    %span.wrapper
+-#      = paginate @purchases.order(:date)
 
 #active_admin_content
   .index_content
@@ -14,6 +14,7 @@
             %th Vendor
             %th Date
             %th Purchaser
+            %th Purchase Type
             %th Total Spent
             %th Total Accounted For
             %th{:colspan => 2} Actions
@@ -25,15 +26,16 @@
               %td= link_to purchase.vendor, purchase.vendor
               %td= purchase.date.strftime("%b %d, %Y")
               %td= purchase.purchaser
+              %td= purchase.purchase_type
               %td= number_to_currency purchase.total, :unit => "&dollar;"
               %td= number_to_currency purchase.accounted_for, :unit => "&dollar;"
               %td= link_to "View", purchase
               %td= link_to "Delete", delete_purchase_path(purchase.id), :action => :delete, :confirm => "Are you sure you want to delete this?"
 
-  - if @purchases.size > 20
-    .paginator.append-bottom
-      %span.wrapper
-        = paginate @purchases
+  -#- if @purchases.size > 20
+  -#  .paginator.append-bottom
+  -#    %span.wrapper
+  -#      = paginate @purchases
   .span-12.properties.last
     %dl.properties
       -if @program

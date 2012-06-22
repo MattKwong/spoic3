@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120519182708) do
+ActiveRecord::Schema.define(:version => 20120622050615) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer   "resource_id",   :null => false
@@ -265,6 +265,7 @@ ActiveRecord::Schema.define(:version => 20120519182708) do
     t.timestamp "updated_at"
     t.integer   "budget_item_type_id"
     t.boolean   "untracked"
+    t.decimal   "default_cost"
   end
 
   create_table "job_types", :force => true do |t|
@@ -481,6 +482,7 @@ ActiveRecord::Schema.define(:version => 20120519182708) do
     t.string    "notes"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.string    "purchase_type"
   end
 
   create_table "registrations", :force => true do |t|

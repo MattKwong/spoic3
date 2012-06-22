@@ -5,6 +5,7 @@
     <div id="similar_items_table"></div>
     <%= form.input :description, :input_html => { :size => 35 } %>
 
+    <%= form.input :default_cost, :hint => "This value will be ignored after actual purchases have been made. Enter without dollar sign." %>
     <%= form.input :item_type, :as => :radio, :hint => "Select the broad grouping that the item falls into." %>
     <%= form.input :item_category, :hint => "Select the category that best describes the item." %>
     <%= form.input :budget_item_type, :as => :radio, :hint => "Purchases of this item will be charged to this budget line" %>

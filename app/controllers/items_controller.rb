@@ -92,21 +92,23 @@ class ItemsController < ApplicationController
   end
 
   def show_similar_items
+    if current_admin_user.program_id > 0
+      @program = Program.find(current_admin_user.program_id)
+    end
+
     words = params[:newValue].gsub(/ or /i, ",").split(" ").map(&:strip).reject(&:empty?)
     words = words.reject { |w| w.size < 4}
     @similar_items_list = []
     words.each do |w|
-      list1 = Item.search_by_name(w)
-      list2 = Item.search_by_name(w.first(w.size - 1))
+      if @program
+        list1 = Item.all_for_program(@program).search_by_name(w)
+        list2 = Item.all_for_program(@program).search_by_name(w.first(w.size - 1))
+      else
+        list1 = Item.search_by_name(w)
+        list2 = Item.search_by_name(w.first(w.size - 1))
+      end
       @similar_items_list = @similar_items_list | list1 | list2
     end
-    logger.debug words.inspect
-    logger.debug @similar_items_list.inspect
-    #test_value1 = params[:newValue]
-    #test_value2 = test_value1.first(test_value1.size - 1)
-    #list1 = Item.search_by_name(test_value1)
-    #list2 = Item.search_by_name(test_value2)
-    #@similar_items_list = list1 & list2
     render :partial => "similar_items"
   end
 end

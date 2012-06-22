@@ -6,6 +6,7 @@ ActiveAdmin.register Item do
 form do |f|
   f.inputs "Item Details" do
     f.input :program, :hint => "To be left blank if this item is being input for all sites"
+    f.input :default_cost, :hint => "This value will be ignored after actual purchases have been made. Enter without dollar sign."
     f.input :item_type, :include_blank => false, :hint => "The highest level classification of an item."
     f.input :item_category, :include_blank => false, :hint => "The classification of the item within this type."
     f.input :budget_item_type, :include_blank => false, :hint => "The budget against which a purchase of this item will be charged."

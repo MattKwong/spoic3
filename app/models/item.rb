@@ -1,6 +1,6 @@
 class Item < ActiveRecord::Base
     attr_accessible :name, :base_unit, :default_taxed, :item_category_id, :item_type_id,
-                    :program_id, :budget_item_type_id, :description, :untracked, :notes
+                    :program_id, :budget_item_type_id, :description, :untracked, :notes, :default_cost
 
     validates :base_unit, :name, :item_type_id, :budget_item_type_id, :item_category_id,
               :description, :presence => true
@@ -76,7 +76,10 @@ class Item < ActiveRecord::Base
     end
 
     def construction_onhand(program)
+      p = program_purchases(program) - program_deliveries(program)
+      logger.debug p.to_s
       program_purchases(program) - program_deliveries(program)
+
     end
 
     def in_inventory_for(program)
@@ -91,9 +94,17 @@ class Item < ActiveRecord::Base
 
     def average_cost(program, date)
       p = purchases_between(program, program.start_date, program.end_date)
-      num = (p.inject(0) {|t, i| t += i.quantity * i.price })
-      denom = ( p.inject(0) {|t,i| t += i.total_base_units})
-      denom == 0 ? 0 : num/denom
+      if p.any?
+        num = (p.inject(0) {|t, i| t += i.quantity * i.price })
+        denom = ( p.inject(0) {|t,i| t += i.total_base_units})
+        denom == 0 ? 0 : num/denom
+      else
+        if self.default_cost.nil?
+          0
+        else
+          self.default_cost
+        end
+      end
     end
 
     def in_inventory_for_program_at(program, date)

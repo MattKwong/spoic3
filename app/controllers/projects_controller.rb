@@ -59,7 +59,8 @@ class ProjectsController < ApplicationController
 
   def show
     @page_title = "#{@project.name}"
-    nonstandard_item_list = Hash[Item.materials.tracked.alphabetized.map {|i| [i.id, i.name]}]
+
+    nonstandard_item_list = Hash[Item.materials.all_for_program(@project.program).tracked.alphabetized.map {|i| [i.id, i.name]}]
     standard_item_list =
         Hash[StandardItem.find_all_by_project_subtype_id(@project.project_subtype_id).map {|s| [s.item_id, "#{s.item.name} (#{s.comments})"]}]
     existing_item_list = Hash[MaterialItemEstimated.find_all_by_project_id(@project.id).map {|e| [e.item_id, e.item.name]}]

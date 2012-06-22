@@ -2,6 +2,7 @@
 <td><%= link_to purchase.vendor.name, purchase %></td>
   <td><%= purchase.date %></td>
   <td><%= purchase.purchased_by %></td>
+  <td><%= purchase.purchase_type %></td>
   <td>$<%= '%.2f' % purchase.total %></td>
   <td>$<%= '%.2f' % purchase.tax %></td>
   <td>$<%= '%.2f' % purchase.accounted_for %></td>

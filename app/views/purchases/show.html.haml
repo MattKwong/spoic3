@@ -7,6 +7,8 @@
       %dd= @purchase.date
       %dt Purchaser
       %dd= @purchase.purchaser.name
+      %dt Purchase Type
+      %dd= @purchase.purchase_type
       -if can? :delete, @purchase
         %dlt= link_to "Delete This Purchase", purchase_path(@purchase), {:method => :delete, :confirm => "Are you sure you want to delete this purchase? This cannot be undone." }
   .span-8.properties

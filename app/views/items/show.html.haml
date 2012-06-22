@@ -28,6 +28,10 @@
         %dd
           = "#{number_to_currency(@avg_price)} #{@item.base_unit}" if @avg_price
           = "N/A" unless @avg_price
+        %dt Default Cost
+        %dd
+          = "#{number_to_currency(@item.default_cost)}" unless @avg_price
+          = "N/A" if @avg_price
         %dt Total Consumed
         %dd
           = sprintf '%.2f', (@item.food_inventory_food_items.map &:consumed).sum
