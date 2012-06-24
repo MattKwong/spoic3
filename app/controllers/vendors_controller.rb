@@ -53,7 +53,7 @@ class VendorsController < ApplicationController
  
   def destroy
     @site = current_admin_user.site_id
-    logger.debug @site
+    #logger.debug @site
     if @vendor.purchases.any?
       flash[:error] = "Cannot delete vendor because purchases from it exist."
       redirect_to @vendor

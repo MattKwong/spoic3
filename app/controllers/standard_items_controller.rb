@@ -11,7 +11,7 @@
   end
 
   def show
-    logger.debug @project.inspect
+    #logger.debug @project.inspect
     @standard_item = StandardItem.find(params[:id])
   end
 

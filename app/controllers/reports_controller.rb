@@ -36,7 +36,7 @@ class ReportsController < ApplicationController
       Church.first.attributes.each do |k, v|
         @headers << k.camelize
       end
-      logger.debug @headers.inspect
+      #logger.debug @headers.inspect
       return @headers
   end
 
@@ -56,7 +56,7 @@ class ReportsController < ApplicationController
           end
           @rows << row
       end
-      logger.debug @rows
+      #logger.debug @rows
       return @rows
   end
 
@@ -64,7 +64,7 @@ class ReportsController < ApplicationController
 
       @headers = []
       @headers << "Liaison Name" << "Church" << "Liaison Email"
-      logger.debug @headers.inspect
+      #logger.debug @headers.inspect
       return @headers
   end
 

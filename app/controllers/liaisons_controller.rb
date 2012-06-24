@@ -7,7 +7,7 @@ class LiaisonsController < ApplicationController
   end
 
   def update
-    logger.debug @liaison.inspect
+    #logger.debug @liaison.inspect
     if @liaison.update_attributes(params[:liaison])
       flash[:success] = "Successful update of liaison information"
       redirect_to myssp_path(@liaison.id)
@@ -63,8 +63,8 @@ class LiaisonsController < ApplicationController
     user.name = liaison.name
     user.user_role_id = UserRole.find_by_name('Liaison').id
     user.username = liaison.first_name + liaison.last_name + liaison.id.to_s
-    logger.debug liaison.inspect
-    logger.debug user.inspect
+    #logger.debug liaison.inspect
+    #logger.debug user.inspect
 
 #TODO: change logic to update the admin user record if one exists.
     unless user.save!

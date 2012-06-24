@@ -7,7 +7,7 @@ class FoodInventoryFoodItemsController < ApplicationController
     @page_title = "Record Inventory Results"
     @food_inventory_food_item = FoodInventoryFoodItem.new
     @food_inventory_food_item.food_inventory_id= @food_inventory.id
-    logger.debug @food_inventory.inspect
+    #logger.debug @food_inventory.inspect
   end
 
   def update_item_info

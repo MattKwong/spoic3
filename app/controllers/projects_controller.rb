@@ -125,8 +125,8 @@ class ProjectsController < ApplicationController
 
   def destroy
 # We won't allow a project to be delete once materials or labor has been recorded against it.
-    logger.debug @project.inspect
-    logger.debug @project.program.inspect
+#    logger.debug @project.inspect
+#    logger.debug @project.program.inspect
     if @project.labor_items.any? || @project.material_item_delivereds.any?
       flash[:warning] = "This project cannot be deleted because either labor or materials have been recorded against it."
       redirect_to program_project_path(@project.program)

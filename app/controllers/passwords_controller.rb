@@ -61,7 +61,7 @@ class PasswordsController < Devise::PasswordsController
   end
 
   def log_activity(time, activity_type, activity_details, id, name, user_role)
-    logger.debug resource.inspect
+    #logger.debug resource.inspect
     a = Activity.new
     a.activity_date = time
     a.activity_type = activity_type

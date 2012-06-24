@@ -23,7 +23,7 @@ class ProgramsController < ApplicationController
       @active_programs = Program.find(program_user.program_id)
     else
       @active_programs = Program.current
-      logger.debug @active_programs
+      #logger.debug @active_programs
     end
   end
 

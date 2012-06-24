@@ -335,11 +335,11 @@ private
       discrepancy_value = total_ordered = number_xsmall = number_small = number_medium = number_large = number_xlarge = number_xx = number_xxx = 0
       begin
         roster = Roster.find_by_group_id(g.id)
-        logger.debug roster.inspect
+        #logger.debug roster.inspect
         roster_items = RosterItem.find_all_by_roster_id(roster.id)
         roster_items.each do |r|
         #roster_items.each do |r|
-          logger.debug r.shirt_size
+        #  logger.debug r.shirt_size
           case r.shirt_size
             when "XS"
               number_xsmall += 1
@@ -388,7 +388,7 @@ private
                     :number_xxx => number_xxx,
                     :total_ordered => total_ordered,
                     :discrepancy => discrepancy }
-    logger.debug group.inspect
+    #logger.debug group.inspect
     groups << group
   end
     groups

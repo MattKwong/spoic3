@@ -147,13 +147,11 @@ class FoodInventoriesController < ApplicationController
 
 
       @inventory_list_values << temp
-      logger.debug @inventory_list_values.inspect
-      #@inventory_list_values[j, 1] = i[:item_description]
-      #@inventory_list_values[j, 2] = i[:base_unit]
-      logger.debug @inventory_list_values.inspect
+      #logger.debug @inventory_list_values.inspect
+      #logger.debug @inventory_list_values.inspect
 
     end
-    logger.debug @inventory_list_values.inspect
+    #logger.debug @inventory_list_values.inspect
     render "inventory_prep_report"
   end
 end
