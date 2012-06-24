@@ -7,8 +7,8 @@
     <%= form.input :name %>
     <%= form.input :address %>
     <%= form.input :city, :input_html => { :size => 25 } %>
-    <%= form.input :state, :input_html => { :size => 3 } %>
-    <%= form.input :zip, :input_html => { :size => 6 } %>
+    <%= form.input :state, :input_html => { :maxlength => 2 } %>
+    <%= form.input :zip, :input_html => { :maxlength => 5 } %>
     <%= form.input :contact %>
     <%= form.input :phone, :input_html => { :size => 25 } %>
     <%= form.input :notes %>

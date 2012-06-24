@@ -26,6 +26,7 @@ class Item < ActiveRecord::Base
 
     scope :food, lambda {joins(:budget_item_type).where("budget_item_types.name = 'Food'" ) }
     scope :materials, lambda {joins(:budget_item_type).where("budget_item_types.name = 'Materials'" ) }
+    scope :materials_and_tools, lambda {joins(:budget_item_type).where("budget_item_types.name = 'Materials' OR budget_item_types.name = 'Tools'" ) }
     scope :tools, lambda {joins(:budget_item_type).where("budget_item_types.name = 'Tools'" ) }
     scope :gas, lambda {joins(:budget_item_type).where("budget_item_types.name = 'Gas'" ) }
     scope :other, lambda {joins(:budget_item_type).where("budget_item_types.name = 'Other'" ) }

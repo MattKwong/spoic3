@@ -3,6 +3,14 @@
   -#  .paginator.append-bottom
   -#    %span.wrapper
   -#      = paginate @items
+  .span-24
+    Filter item list:
+    = link_to "All", items_path(:item_type => 0)
+    = link_to "Food", items_path(:item_type => 1)
+    = link_to "Kithen Equip", items_path(:item_type => 2)
+    = link_to "Tools", items_path(:item_type => 3)
+    = link_to "Bldg Materials", items_path(:item_type => 4)
+    = link_to "Fees", items_path(:item_type => 5)
   .table_as_index
     %table.index_table
       %thead
@@ -16,18 +24,20 @@
           %th{:colspan => 2} Actions
 
       %tbody
-        - @items.alphabetized.each do |item|
-          %tr
-            %td= item
-            %td= item.program unless item.program.nil?
-            %td= item.item_category
-            %td= item.base_unit
-            %td= item.default_taxed ? "Yes" : "No"
-            %td= item.untracked ? "Yes" : "No"
-            %td= link_to "View", item
-            -if can? :edit, item
-              %td= link_to "Edit", edit_item_path(item)
-- if @items
+        - if @items.any?
+          - @items.alphabetized.each do |item|
+            %tr
+              %td= item
+              %td= item.program unless item.program.nil?
+              %td= item.item_category
+              %td= item.base_unit
+              %td= item.default_taxed ? "Yes" : "No"
+              %td= item.untracked ? "Yes" : "No"
+              %td= link_to "View", item
+              -if can? :edit, item
+                %td= link_to "Edit", edit_item_path(item)
+- logger.debug @items.count
+- if @items.count > 25
   .paginator.prepend-top
     %span.wrapper
       = paginate @items

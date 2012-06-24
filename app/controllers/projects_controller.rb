@@ -69,10 +69,8 @@ class ProjectsController < ApplicationController
     existing_item_list.each {|s| nonstandard_item_list.delete(s[0])}
     existing_item_list.each {|s| standard_item_list.delete(s[0])}
     @nonstandard_item_list = nonstandard_item_list.invert
-    logger.debug @nonstandard_item_list.inspect
 
     @standard_item_list = standard_item_list.invert
-    logger.debug @standard_item_list.inspect
     @existing_item_list = existing_item_list.invert
     @item_list = Hash[@project.material_item_estimateds.map {|i| ["#{i.item.name}", i.item_id ]}]
     @user_list = Hash[@project.program.program_users.map {|u| ["#{u.admin_user.name}", u.admin_user.id ]}]
