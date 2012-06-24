@@ -75,7 +75,7 @@ class FoodInventoriesController < ApplicationController
     @page_title = "Inventory Prep Report As Of #{Time.now.in_time_zone("Pacific Time (US & Canada)").strftime("%b %d @ %I:%M %p")}"
     @inventory_list = Array.new
     @program = Program.find(params[:program_id])
-    Item.food.each do |i|
+    Item.food.alphabetized.each do |i|
       inventories = FoodInventoryFoodItem.for_program(@program).find_all_by_item_id(i.id)#.order('food_inventories.date ASC')
   #   purchases = ItemPurchase.joins(:purchases).where('item_id = ? and purchases.program_id = ?', i.id, @program.id)
       purchases = ItemPurchase.for_program(@program).find_all_by_item_id(i.id)
@@ -108,7 +108,7 @@ class FoodInventoriesController < ApplicationController
             list_item.store(:weekly_consumption, ave_consumption )
           end
           purchases_since_last_inventory = i.purchases_between(@program, inventories.last.food_inventory.date, Time.now.to_date)
-          logger.debug purchases_since_last_inventory.inspect
+
           purchased_since_last_inventory = (purchases_since_last_inventory.map &:total_base_units).sum
           list_item.store(:maximum_expected, inventories.last.in_base_units + purchased_since_last_inventory)
           list_item.store(:purchased_since_last_inventory, purchased_since_last_inventory)
@@ -120,11 +120,32 @@ class FoodInventoriesController < ApplicationController
 
     @inventory_list_values = Array.new
 
+    @inventory_list_values << ["Item Name", "Description", "Base Unit", "Last Purchased On", "Amount Purchased",
+        "Last Inventoried On", "Amount Counted", "Purchased Since Last Inv", "Weekly Consumption", "Max Expected",
+        "Expected", "Today's Count"]
+
     @inventory_list.each do |i|
       temp = Array.new
       temp[0] = i[:item_name]
       temp[1] = i[:item_description]
       temp[2] = i[:base_unit]
+      temp[3] = i[:last_purchased_on]
+      temp[4] = i[:amount_purchased]
+      temp[5] = i[:last_inventory_date]
+      temp[6] = i[:last_inventory_amount]
+      temp[7] = i[:purchased_since_last_inventory]
+      if i[:weekly_consumption]
+        temp[8] = "%.1f" % i[:weekly_consumption]
+      end
+      temp[9] = i[:maximum_expected]
+      if i[:weekly_consumption]
+        temp[10] = "%.1f" % (i[:maximum_expected] - i[:weekly_consumption])
+      else
+        temp[10] = ""
+      end
+      temp[11] = ""
+
+
       @inventory_list_values << temp
       logger.debug @inventory_list_values.inspect
       #@inventory_list_values[j, 1] = i[:item_description]

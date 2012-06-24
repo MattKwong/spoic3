@@ -54,7 +54,7 @@ class Ability
         can [:read, :create, :destroy, :update], FoodInventory, :program_id => program.id
         can [:read, :create, :destroy, :update], FoodInventoryFoodItem, :food_inventory =>
             { :program_id => program_id }
-        can [:inventory_prep_report]
+        can [:inventory_prep_report], FoodInventory
       end
      if user.construction? || user.sd?
         can :read, StandardItem

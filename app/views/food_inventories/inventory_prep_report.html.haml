@@ -1,3 +1,4 @@
+= link_to "Print this report", inventory_prep_report_path(:format => "pdf")
 .tablewrapper
   %table
     %thead
@@ -10,7 +11,6 @@
         %th Last Inventory Date
         %th Amount Counted
         %th Purchased Since Last Inventory
-
         %th Weekly Consumption
         %th Maximum Expected
         %th Expected (Max less consumption)
@@ -31,9 +31,12 @@
               %td= "%.1f" % i[:weekly_consumption] + " " + i[:base_unit]
             -else
               %td
-            %td= i[:maximum_expected]
             -if i[:weekly_consumption]
-              %td= "%.1f" % (i[:maximum_expected] - i[:weekly_consumption])
+              %td= "%.1f" % i[:maximum_expected] + " " + i[:base_unit]
+            -else
+              %td
+            -if i[:weekly_consumption]
+              %td= "%.1f" % (i[:maximum_expected] - i[:weekly_consumption]) + " " + i[:base_unit]
             -else
               %td
             %td
