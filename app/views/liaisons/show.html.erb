@@ -54,7 +54,32 @@
                     <!--</table>-->
                 <!--</div>-->
             <!--</div>-->
-<!--Current Schedule Section -->
+                        <% if cannot? :edit, @screen_info[:liaison] %>
+        <div class="panel">
+          <%= form_for(@screen_info[:liaison]) do |r| %>
+              <h3>Liaison Details</h3>
+              <div class="panel_contents">
+                <div class="attributes_table church" >
+                  <table  border="0" cellspacing="0" cellpadding="0" >
+                    <tr><td>Name</td>
+                      <td>
+                        <%= @screen_info[:liaison].name %>
+                      </td></tr>
+                    <tr><td>Email Address</td><td><%= mail_to @screen_info[:liaison].email1,
+                                                              @screen_info[:liaison].email1, :subject => "SSP Information" %></td></tr>
+                    <tr><td>Alternative Email</td><td><%= mail_to @screen_info[:liaison].email2 %></td></tr>
+                    <tr><td>Cell Phone</td><td><%= @screen_info[:liaison].cell_phone %></td></tr>
+                    <tr><td>Work Phone</td><td><%= @screen_info[:liaison].work_phone %></td></tr>
+                    <tr><td>Home Phone</td><td><%= @screen_info[:liaison].home_phone %></td></tr>
+                    <tr><td>Fax</td><td><%= @screen_info[:liaison].fax %></td></tr>
+                  </table>
+                </div>
+              </div>
+          <% end %>
+        </div>
+
+    <% end %>
+    <!--Current Schedule Section -->
 <div class="panel">
   <% if can? :edit, @screen_info[:liaison] %>
     <h3>Current Schedule Group Information</h3>
@@ -199,7 +224,7 @@
                                         edit_liaison_path(:id => @screen_info[:liaison]) %></td>
                                 <% if signed_in? && current_admin_user.admin? %>
                                   <td><%= mail_to @screen_info[:liaison].email1, "Email #{@screen_info[:liaison].first_name}",
-                                                        :subject => "SSP Information" %></td>
+                                                            :subject => "SSP Information" %></td>
                                 <% else %>
                                   <td><%= mail_to 'admin@sierraserviceproject.org', "Email SSP",
                                                         :subject => "SSP Question" %></td>
@@ -226,9 +251,8 @@
                     </div>
                 </div>
             </div>
-<% end %>
-        </div>
-
-
+  <% end %> <!-- Of Liaison Sidebar Section -->
+</div>
+<!-- Liaison information section for field staff -->
 
 </div>
