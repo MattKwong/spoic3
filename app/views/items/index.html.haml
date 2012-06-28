@@ -1,8 +1,8 @@
 #active_admin_content
-  -#- if @items
-  -#  .paginator.append-bottom
-  -#    %span.wrapper
-  -#      = paginate @items
+  - if @items
+    .paginator.append-bottom
+      %span.wrapper
+        = paginate @items
   .span-24
     Filter item list:
     = link_to "All", items_path(:item_type => 0)

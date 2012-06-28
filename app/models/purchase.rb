@@ -14,7 +14,7 @@
 #  tax          :decimal(, )
 
 class Purchase < ActiveRecord::Base
-  attr_accessible :date, :total, :tax, :purchase_type
+  attr_accessible :vendor_id, :purchaser_id, :date, :total, :tax, :purchase_type
 
   validates :program_id, :presence => true
   validates :vendor_id, :presence => true
