@@ -86,7 +86,7 @@ class Project < ActiveRecord::Base
     (labor_items.map &:actual_days).sum
   end
 
-  def estimated_cost(program)
+  def estimated_cost
     total = 0
     material_item_estimateds.each  {|i|
       total += i.cost(program)}
@@ -96,7 +96,7 @@ class Project < ActiveRecord::Base
     total += untracked
   end
 
-  def actual_cost(program)
+  def actual_cost
     total = 0
     material_item_delivereds.each  {|i|
       total += i.cost(program)}

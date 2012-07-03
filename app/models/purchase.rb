@@ -22,7 +22,7 @@ class Purchase < ActiveRecord::Base
   validates :total, :presence => true
   validates :tax, :presence => true
   validates :date, :presence => true
-  validates_inclusion_of :purchase_type, :in => ['Credit', 'Cash']
+  validates_inclusion_of :purchase_type, :in => ['Credit', 'Gift Card', 'Cash']
   validate :date_range
 
   belongs_to :program

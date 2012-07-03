@@ -32,8 +32,8 @@
             %td= project.planned_start
             %td= project.actual_start
             %td= project.planned_end
-            %td= number_to_currency(project.estimated_cost(project.program))
-            %td= number_to_currency(project.actual_cost(project.program))
+            %td= number_to_currency(project.estimated_cost)
+            %td= number_to_currency(project.actual_cost)
             %td= project.estimated_days
             %td= project.actual_days
 

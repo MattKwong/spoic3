@@ -39,10 +39,10 @@
         %dt Estimated Vol Days
         %dd= @project.estimated_days
         %dt Estimated Cost
-        %dd= number_to_currency(@project.estimated_cost(@project.program))
+        %dd= number_to_currency(@project.estimated_cost)
         %dt Estimated $/Vol Day
         -if !@project.estimated_days.nil?
-          %dd= number_to_currency(@project.estimated_cost(@project.program) / @project.estimated_days)
+          %dd= number_to_currency(@project.estimated_cost / @project.estimated_days)
         -else
           %dd
         %dlt= link_to "Edit General Information", edit_project_path(@project) if can? :edit, @project
@@ -57,10 +57,10 @@
         %dt Current Vol Days
         %dd= @project.actual_days
         %dt Current Cost
-        %dd= number_to_currency(@project.actual_cost(@project.program))
+        %dd= number_to_currency(@project.actual_cost)
         %dt Current $/Vol Day
         -unless (@project.actual_days.nil? || @project.actual_days == 0)
-          %dd= number_to_currency(@project.actual_cost(@project.program) / @project.actual_days)
+          %dd= number_to_currency(@project.actual_cost / @project.actual_days)
         -else
           %dd
         -if can? :edit, @project
