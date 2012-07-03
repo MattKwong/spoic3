@@ -69,9 +69,9 @@
         - if (can? :edit, @project) && @project.stage_new?
           %dd= link_to "Submit for Review", project_review_path(@project)
         - if (can? :approve, @project) && @project.stage_ready?
-          %dd= link_to "Approve", :path => project_review_path(@project)
+          %dd= link_to "Approve", project_review_path(@project)
         - if (can? :edit, @project) && @project.stage_in_progress?
-          %dd= link_to "Close", :path => project_review_path(@project)
+          %dd= link_to "Close", project_review_path(@project)
 
     .span-24.last.prepend-top
       .notes-area
