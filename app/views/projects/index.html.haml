@@ -11,7 +11,7 @@
           -if @program.nil?
             %th= "Program"
           %th Name
-          %th Type
+          %th Type and Untracked Percentage
           %th Stage
           %th Planned Start Date
           %th Actual Start Date
@@ -27,7 +27,7 @@
             -if @program.nil?
               %td= link_to project.program, program_projects_path(project.program)
             %td= link_to project.name, project
-            %td= project.project_subtype.compound_name
+            %td= "#{project.project_subtype.name} (#{project.project_subtype.untracked_percentage}% untracked)"
             %td= project.stage
             %td= project.planned_start
             %td= project.actual_start

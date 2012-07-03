@@ -9,8 +9,8 @@
       %dl.properties
         %dt Name
         %dd= @project.name
-        %dt Type and subtype
-        %dd= @project.project_subtype.compound_name
+        %dt Type and Untracked %
+        %dd= "#{@project.project_subtype.name} (#{@project.project_subtype.untracked_percentage}% untracked)"
         %dt Planner
         %dd= @project.admin_user.name
         %dt Description
@@ -22,7 +22,7 @@
         %dd= @project.beneficiary_name
         %dt Primary phone
         %dd= @project.telephone1
-        %dt Description
+        %dt Alt Phone
         %dd= @project.telephone2
         %dt Address
         %dd= @project.address1
@@ -32,15 +32,15 @@
           %dlt= link_to "Create an New Item", new_program_item_path(@project.program)
     .span-6.properties
       %dl.properties
-        %dt Planned Start
+        %dt Estimated Start
         %dd= @project.planned_start
-        %dt Planned End
+        %dt Estimated End
         %dd= @project.planned_end
-        %dt Planned Vol Days
+        %dt Estimated Vol Days
         %dd= @project.estimated_days
-        %dt Planned Cost
+        %dt Estimated Cost
         %dd= number_to_currency(@project.estimated_cost(@project.program))
-        %dt Planned $/Vol Day
+        %dt Estimated $/Vol Day
         -if !@project.estimated_days.nil?
           %dd= number_to_currency(@project.estimated_cost(@project.program) / @project.estimated_days)
         -else

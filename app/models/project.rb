@@ -89,15 +89,22 @@ class Project < ActiveRecord::Base
   def estimated_cost(program)
     total = 0
     material_item_estimateds.each  {|i|
-    total += i.cost(program)}
-    total
-end
+      total += i.cost(program)}
+#    logger.debug total.to_s
+    untracked = total * project_subtype.untracked_percentage / 100
+#    logger.debug untracked.to_s
+    total += untracked
+  end
 
   def actual_cost(program)
     total = 0
     material_item_delivereds.each  {|i|
       total += i.cost(program)}
-    total
+#    logger.debug total.to_s
+    untracked = total * project_subtype.untracked_percentage / 100
+#    logger.debug untracked.to_s
+    total += untracked
+
   end
 
 end
