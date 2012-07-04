@@ -26,4 +26,31 @@ ActiveAdmin.register Project do
     column :actual_days #, :sortable => :actual_days do |p| p.actual_days end
 
   end
+  csv do
+    column :name
+    column :beneficiary_name
+    column ("Project Subtype") do |p| p.project_subtype.name end
+    column "Untracked Percentage" do |project|
+      project.project_subtype.untracked_percentage
+    end
+    column :address1
+    column :address2
+    column :city
+    column :state
+    column :zip
+    column :description
+    column :telephone1
+    column :telephone2
+    column :notes
+    column :estimated_days
+    column :planned_start
+    column :actual_start
+    column :planned_end
+    column :actual_end
+    column :created_by
+    column :estimated_cost
+    column :actual_cost
+    column :estimated_days
+    column :actual_days
+  end
 end
