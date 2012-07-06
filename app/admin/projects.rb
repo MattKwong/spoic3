@@ -16,7 +16,6 @@ ActiveAdmin.register Project do
       project.program.name
     end
     column :stage
-#TODO: A problem still exists with sorting by estimated_cost and actual_days
     column "Estimated Start", :planned_start
     column :actual_start
     column :actual_end

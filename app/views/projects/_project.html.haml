@@ -1,0 +1,40 @@
+- total_estimated_cost = total_actual_cost = total_projects = total_estimated_days = total_actual_days = 0
+- @program.projects.each do |project|
+  %tr
+    -  total_projects += 1
+    %td= link_to project.name, project
+    %td= project.project_subtype.name
+    %td= project.planned_start
+    %td= project.stage
+    %td= number_to_currency(project.estimated_cost)
+    - total_estimated_cost += project.estimated_cost
+    %td= number_to_currency(project.actual_cost)
+    - total_actual_cost += project.actual_cost
+    %td= number_to_currency(project.estimated_cost - project.actual_cost)
+    %td= project.estimated_days
+    - total_estimated_days += project.estimated_days
+    %td= project.actual_days
+    - total_actual_days += project.actual_days
+    %td= project.estimated_days - project.actual_days
+
+%tfoot
+  %tr
+    %th Project Count
+    %th= total_projects
+    %th{:colspan => 2, :style => "text-align:right;"} Program Totals:
+    %th= number_to_currency total_estimated_cost
+    %th= number_to_currency total_actual_cost
+    %th= number_to_currency total_estimated_cost - total_actual_cost
+    %th= total_estimated_days
+    %th= total_actual_days
+    %th= total_estimated_days - total_actual_days
+  %tr
+    %th{:style => "text-align:right;"} Total budget:
+    %th= number_to_currency BudgetItem.for_program(@program).materials.first.amount
+    %th{:colspan => 2} Budget Remaining:
+    %th= number_to_currency BudgetItem.for_program(@program).materials.first.amount - total_actual_cost
+    %th Planned Cost/Day
+    %th= number_to_currency total_estimated_cost / total_estimated_days unless total_estimated_days == 0
+    %th Actual Cost/Day
+    %th= total_actual_days == 0 ? 0 : (number_to_currency total_actual_cost / total_actual_days)
+    %th{:colspan => 2}

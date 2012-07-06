@@ -26,6 +26,7 @@ $(this).removeClass('hover');
  });
 });
 
+
 $(document).ready(function() {
  $("#plan-summary-toggle h3").click(function() {
      $("div#plan-material-summary").toggle("fast");
@@ -107,6 +108,9 @@ $(this).addClass('hover');
 $(this).removeClass('hover');
  });
 });
+$(document).ready(function() {
+    $("#budget-toggle h3").trigger('click');
+});
 
 $(document).ready(function() {
   $("#food-snapshot-toggle h3").click(function() {
@@ -121,10 +125,12 @@ $(this).addClass('hover');
 $(this).removeClass('hover');
  });
 });
-
+$(document).ready(function() {
+    $("#food-snapshot-toggle h3").trigger('click');
+});
 $(document).ready(function() {
   $("#projects-toggle h3").click(function() {
-     $("div#projects-info").toggle("fast");
+     $("tbody#projects-info").toggle("fast");
  });
 });
 
@@ -135,7 +141,9 @@ $(this).addClass('hover');
 $(this).removeClass('hover');
  });
 });
-
+$(document).ready(function() {
+    $("#projects-toggle h3").trigger('click');
+});
 $(document).ready(function() {
   $("#purchases-toggle h3").click(function() {
      $("div#purchases-info").toggle("fast");
@@ -151,6 +159,10 @@ $(this).removeClass('hover');
 });
 
 $(document).ready(function() {
+    $("#purchases-toggle h3").trigger('click');
+});
+
+$(document).ready(function() {
   $("#sessions-toggle h3").click(function() {
      $("div#sessions-info").toggle("fast");
  });
@@ -162,6 +174,9 @@ $(this).addClass('hover');
 }, function() {
 $(this).removeClass('hover');
  });
+});
+$(document).ready(function() {
+    $("#sessions-toggle h3").trigger('click');
 });
 
 $(document).ready(function() {
@@ -176,6 +191,9 @@ $(this).addClass('hover');
 }, function() {
 $(this).removeClass('hover');
  });
+});
+$(document).ready(function() {
+    $("#staff-toggle h3").trigger('click');
 });
 
 $(document).ready(function() {

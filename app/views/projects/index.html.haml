@@ -1,9 +1,9 @@
 #active_admin_content
-  - if @projects.size > 20
-    .paginator.append-bottom
-      %span.wrapper
-        = paginate @projects
-
+  -#- if @projects.size > 30
+  -#  .paginator.append-top
+  -#    %span.wrapper
+  -#      = paginate @projects
+  = paginate @projects
   .index_as_table
     %table.index_table
       %thead
@@ -37,7 +37,7 @@
             %td= project.estimated_days
             %td= project.actual_days
 
-  - if @projects.size > 20
+  - if @projects.size > 30
     .paginator.append-bottom
       %span.wrapper
         = paginate @projects

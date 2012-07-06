@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
     unless @program.nil?
       @menu_actions = [{:name => "New", :path => new_program_project_path(@program) }] if can? :create, Project
     end
-    @projects = @projects.order('planned_start ASC').page params[:page]
+    @projects = @projects.order('planned_start ASC').page(params[:page]).per(10)
   end
 
   def new

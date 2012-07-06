@@ -17,6 +17,7 @@ class BudgetItem < ActiveRecord::Base
   scope :tools, lambda {joins(:budget_item_type).where("budget_item_types.name = 'Tools'" ) }
   scope :gas, lambda {joins(:budget_item_type).where("budget_item_types.name = 'Gas'" ) }
   scope :other, lambda {joins(:budget_item_type).where("budget_item_types.name = 'Other'" ) }
+  scope :for_program, lambda { |program| where(:program_id => program.id) }
 
   def budget_item_food
     BudgetItemType.find(self.budget_item_type_id).name == "Food"

@@ -1,9 +1,9 @@
--#- if @purchases.size > 20
--#  .paginator.append-bottom
--#    %span.wrapper
--#      = paginate @purchases.order(:date)
-
 #active_admin_content
+  - if @purchases.size > 5
+    .paginator.append-top
+      %span.wrapper
+        = paginate @purchases
+
   .index_content
     .index_as_table
       %table.index_table
@@ -11,26 +11,24 @@
           %tr
             - unless @program
               %th Program
-            %th Vendor
+            %th Purchase
             %th Date
             %th Purchaser
             %th Purchase Type
             %th Total Spent
             %th Total Accounted For
-            %th{:colspan => 2} Actions
+
         %tbody
           - @purchases.each do |purchase|
             %tr
               - unless @program
                 %td= link_to purchase.program, program_purchases_path(purchase.program)
-              %td= link_to purchase.vendor, purchase.vendor
+              %td= link_to purchase.to_s, purchase
               %td= purchase.date.strftime("%b %d, %Y")
               %td= purchase.purchaser
               %td= purchase.purchase_type
               %td= number_to_currency purchase.total, :unit => "&dollar;"
               %td= number_to_currency purchase.accounted_for, :unit => "&dollar;"
-              %td= link_to "View", purchase
-              %td= link_to "Delete", delete_purchase_path(purchase.id), :action => :delete, :confirm => "Are you sure you want to delete this?"
 
   -#- if @purchases.size > 20
   -#  .paginator.append-bottom
