@@ -15,6 +15,7 @@ gem 'fastercsv'
 gem 'rspec-rails', :group => [:development, :test]
 gem 'rails3-jquery-autocomplete'
 gem 'ruby-units'
+gem 'breadcrumbs_on_rails'
 
 group :production, :staging do
   gem "pg"
