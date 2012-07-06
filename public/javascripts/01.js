@@ -234,3 +234,11 @@ $(this).addClass('hover');
 $(this).removeClass('hover');
  });
 });
+
+$(document).ready(function() {
+    $("#purchase_scopes").click(function(){
+        $.get("limit_purchases?scope="+$("#purchase_scopes").val(),
+            function(data){ $("#similar_items_table").html(data); }
+        );
+    });
+});

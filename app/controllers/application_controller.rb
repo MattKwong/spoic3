@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery :only => [:create, :update]
-
+  add_breadcrumb "Home", '/'
  def after_sign_in_path_for(resource)
  #this overrides the default method in the devise library
 

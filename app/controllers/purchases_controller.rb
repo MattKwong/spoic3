@@ -17,6 +17,8 @@ class PurchasesController < ApplicationController
       redirect_to new_site_vendor_path(@program.site) 
     end
     @purchase.date = Date.today
+    add_breadcrumb "New Purchase", @new_purchase_path
+    logger.debug @breadcrumbs
   end
 
   def create

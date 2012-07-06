@@ -20,7 +20,7 @@ ActiveAdmin.register Project do
     column "Estimated Start", :planned_start
     column :actual_start
     column :actual_end
-    column :estimated_cost#, :sortable => :estimated_cost do |p| number_to_currency p.estimated_cost end
+    column :estimated_cost do |p| number_to_currency p.estimated_cost end
     column :actual_cost, :sortable => :actual_cost do |p| number_to_currency p.actual_cost end
     column :estimated_days
     column :actual_days #, :sortable => :actual_days do |p| p.actual_days end

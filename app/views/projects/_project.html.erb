@@ -1,6 +1,7 @@
 <tr>
   <td><%= link_to project.name, project %></td>
   <td><%= project.project_subtype.compound_name %></td>
+  <td><%= project.planned_start %></td>
   <td><%= project.stage %></td>
   <td><%= number_to_currency(project.estimated_cost) %></td>
   <td><%= number_to_currency(project.actual_cost) %></td>

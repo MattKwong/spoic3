@@ -28,13 +28,28 @@ class ProgramsController < ApplicationController
   end
 
   def show
+
+    @scope = params[:scope]
     @page_title = @program.name
     @sessions = @program.to_current
     @budget_type_id = BudgetItemType.find_by_name('Food').id
     @menu_actions = []
-    unless params[:scope].nil? || params[:scope] == 'All'
-      @purchases = Purchases.last(20)
+    case @scope
+      when 'All', nil
+        @scoped_purchases = Purchase.for_program(@program).all
+      when 'past7'
+        @scoped_purchases = Purchase.for_program(@program).past_week
+      when 'food'
+        @scoped_purchases = Purchase.for_program(@program).food
+     when 'material'
+        @scoped_purchases = Purchase.for_program(@program).material
+     when 'not_food_material'
+        @scoped_purchases = Purchase.for_program(@program).not_food_material
     end
+
+    #unless params[:scope].nil? || params[:scope] == 'All'
+    #  @purchases = Purchases.last(20)
+    #end
 #    @menu_actions << {:name => "Edit", :path => edit_program_path(@program)} if can? :edit, @program
 #    @menu_actions << {:name => "New Purchase", :path => new_program_purchase_path(@program)} if can? :crate, @program.purchases.new
   end

@@ -37,6 +37,7 @@ class Purchase < ActiveRecord::Base
   scope :before, lambda { |date| where('date <=', date) }
 
   default_scope :order => 'date DESC'
+  scope :past_week, where('date > ?', Date.today - 7)
 
   def to_s
     "#{vendor.name} #{date}"
