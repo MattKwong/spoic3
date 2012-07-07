@@ -6,6 +6,7 @@ class PurchasesController < ApplicationController
   def index
     redirect_to program_purchases_path(current_user.current_program) if (@program.nil? && cannot?(:manage, Purchase))
     @page_title = @program.nil? ? "Purchases" : "Purchases for #{@program}"
+    @purchases = Purchase.for_program(@program).order(:date).page params[:page]
   end
 
   def new
@@ -18,7 +19,6 @@ class PurchasesController < ApplicationController
     end
     @purchase.date = Date.today
     add_breadcrumb "New Purchase", @new_purchase_path
-    logger.debug @breadcrumbs
   end
 
   def create
@@ -42,10 +42,6 @@ class PurchasesController < ApplicationController
       @items = Item.all_for_program(@purchase.program).alphabetized
     else
       @items = Item.all_for_program_by_type(@purchase.program, @item_type).alphabetized
-    end
-    #logger.debug @item_type.inspect
-    if( @purchase.program.food_inventories.where(:date => @purchase.date).count != 0)
-      flash.now[:notice] = "An inventory already exists for this date.  Any items added to this purchase will be treated as being purchased after the inventory was taken"
     end
   end
 

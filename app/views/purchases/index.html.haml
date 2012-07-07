@@ -1,8 +1,5 @@
 #active_admin_content
-  - if @purchases.size > 5
-    .paginator.append-top
-      %span.wrapper
-        = paginate @purchases
+  = paginate @purchases
 
   .index_content
     .index_as_table
@@ -16,7 +13,7 @@
             %th Purchaser
             %th Purchase Type
             %th Total Spent
-            %th Total Accounted For
+            %th Unaccounted
 
         %tbody
           - @purchases.each do |purchase|
@@ -28,7 +25,7 @@
               %td= purchase.purchaser
               %td= purchase.purchase_type
               %td= number_to_currency purchase.total, :unit => "&dollar;"
-              %td= number_to_currency purchase.accounted_for, :unit => "&dollar;"
+              %td= number_to_currency purchase.unaccounted_for, :unit => "&dollar;"
 
   -#- if @purchases.size > 20
   -#  .paginator.append-bottom

@@ -1,5 +1,5 @@
 <tr item_purchase_id="<%= item_purchase.id %>" >
-  <td><%= item_purchase.item.name %></td>
+  <td><%= link_to item_purchase.item.name, item_purchase.item %></td>
   <td><%= item_purchase.quantity %></td>
   <td><%= number_to_currency(item_purchase.price, :unit => "$") %></td>
   <td><%= number_to_currency(item_purchase.total_price, :unit => "$") %></td>
