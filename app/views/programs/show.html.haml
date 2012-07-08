@@ -1,4 +1,3 @@
-= !current_admin_user.cook?
 #active_admin_content
   .span-8.properties
     %dl
@@ -32,7 +31,6 @@
   .span-24.prepend-top
     .group-header
       #budget-toggle
-        -#= link_to image_tag('plusminus.png', :id => 'budget-toggle'), "#"
         %h3 Budget
     .group-container
       .index_as_table
@@ -50,7 +48,6 @@
     .span-24.prepend-top
       .group-header
         #food-snapshot-toggle
-          -#= link_to image_tag('plusminus.png', :id => 'food-snapshot-toggle'), "#"
           %h3 Food Program Snapshot
       .group-container
         .index_as_table
@@ -75,8 +72,8 @@
       .group-header
         #projects-toggle
           %h3 Projects
-    .div
-      .group-container
+    .group-container
+      .index_as_table
         %table
           %thead
             %tr
