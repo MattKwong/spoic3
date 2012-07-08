@@ -10,6 +10,7 @@ class Session < ActiveRecord::Base
   default_scope :include => :period, :order => 'periods.start_date'
   attr_accessible :name, :period_id, :site_id, :payment_schedule_id, :session_type_id, :program_id
   scope :by_budget_line_type, lambda { |id| joins(:item).where("budget_item_type_id = ?", id) }
+  scope :to_date, lambda { joins(:period).where("start_date <= ?", Date.today) }
 
   def session_type_junior_high?
     if session_type.name == 'Summer Junior High'
@@ -52,6 +53,7 @@ class Session < ActiveRecord::Base
 
   def session_food_consumption
     #Find an inventory at the end of the previous session
+    logger.debug "In food consumption calc"
     starting_inventory = program.food_inventories.where('date = ? ', period.start_date.to_date - 1).last
 
     if starting_inventory.nil?
@@ -63,20 +65,21 @@ class Session < ActiveRecord::Base
     else
       starting_inventory_value = starting_inventory.value_in_inventory
     end
-
+    logger.debug starting_inventory.inspect
+    logger.debug starting_inventory_value.inspect
     #Find an inventory at the last day of the session
+
     ending_inventory = program.food_inventories.where('date = ? ', period.end_date.to_date).last
     if ending_inventory.nil?
       ending_inventory = program.food_inventories.where('date = ? ', period.end_date.to_date - 1).last
     end
-    logger.debug period.end_date.to_date - 1
-    logger.debug ending_inventory.inspect
     if ending_inventory.nil?
       ending_inventory_value = starting_inventory_value
     else
       ending_inventory_value = ending_inventory.value_in_inventory
     end
-
+    logger.debug ending_inventory.inspect
+    logger.debug ending_inventory_value.to_i.inspect
     starting_inventory_value + session_food_purchased - ending_inventory_value
 
   end

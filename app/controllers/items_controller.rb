@@ -78,9 +78,9 @@ class ItemsController < ApplicationController
 
   def show
     @page_title = @item.name
-    #@menu_actions = []
-    #@menu_actions << {:name => "edit", :path => edit_item_path(@item)} if can? :edit, @item
-    #@purchases = @item.item_purchases.accessible_by(current_ability).includes(:purchase).order('purchases.date ASC')
+    if current_admin_user.program_id > 0
+      @program = Program.find(current_admin_user.program_id)
+    end
     num = (@item.item_purchases.map {|p| p.total_base_units * p.price_per_base_unit.scalar }).sum
     denom = (@item.item_purchases.map &:total_base_units).sum
     @avg_price = num / denom if denom != 0

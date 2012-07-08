@@ -1,3 +1,4 @@
+= !current_admin_user.cook?
 #active_admin_content
   .span-8.properties
     %dl
@@ -45,7 +46,7 @@
               %th Amount Remaining
           %tbody#budget-info
             = render 'budget_items'
-  - unless current_admin_user.construction?
+  - if !current_admin_user.construction?
     .span-24.prepend-top
       .group-header
         #food-snapshot-toggle
@@ -69,49 +70,42 @@
             %tbody#food-snapshot-info
               = render 'staff_reports/food_budget_items'
 
+  -if !current_admin_user.cook?
+    .span-24.prepend-top
+      .group-header
+        #projects-toggle
+          %h3 Projects
+    .div
+      .group-container
+        %table
+          %thead
+            %tr
+              %th Project Name
+              %th Type
+              %th Start Date
+              %th Stage
+              %th Estimated Cost
+              %th Actual Cost
+              %th Amount Remaining
+              %th Estimated Days
+              %th Actual Days
+              %th Remaining Days
+          %tbody#projects-info
+            = render 'projects/project', :projects => @program.projects
+
   .span-24.prepend-top
     .group-header
       #purchases-toggle
         -#= link_to image_tag('plusminus.png', :id => 'purchases-toggle'), "#"
         %h3 Purchases
 
-    -# Need to add scope button here to limit list to the most recent n purchases
-    -#= link_to 'Most recent 20', program_path(@program.id, :scope => '20')
-    -#= link_to 'All', '/'
-
     #purchases-info
       %h4#purchase_scopes
         = link_to 'Past 7 Days', program_path(@program.id, :scope => 'past7')
-        = link_to 'Food Only', program_path(@program.id), :scope => 'food'
-        = link_to 'Materials Only'
-        = link_to 'No food or materials'
+        -#= link_to 'Food Only', program_path(@program.id), :scope => 'food'
         = link_to 'All'
       .group-container
         = render 'purchases/table', :purchases => @scoped_purchases
-
-    - unless current_admin_user.cook?
-      .span-24.prepend-top
-      .group-header
-        #projects-toggle
-          -#= link_to image_tag('plusminus.png', :id => 'projects-toggle'), "#"
-          %h3 Projects
-      .div
-        .group-container
-          %table
-            %thead
-              %tr
-                %th Project Name
-                %th Type
-                %th Start Date
-                %th Stage
-                %th Estimated Cost
-                %th Actual Cost
-                %th Amount Remaining
-                %th Estimated Days
-                %th Actual Days
-                %th Remaining Days
-            %tbody#projects-info
-              = render 'projects/project', :projects => @program.projects
 
   .span-24.prepend-top
     .group-header

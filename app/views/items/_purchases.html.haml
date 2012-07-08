@@ -1,0 +1,32 @@
+.span-24.prepend-top
+  %h3 Purchases
+  .index_as_table
+    %table.index_table
+      %thead
+        %tr
+          %th Program
+          %th Date
+          %th Purchase
+          %th Vendor
+          %th Purchaser
+          %th Number Purchased
+          %th Size Purchased
+          %th Price Per
+          %th Qty in Base Units
+          %th Price per Base Unit
+      %tbody
+        - items.each do |purchase_item|
+          %tr
+            %td= purchase_item.purchase.program
+            %td= purchase_item.purchase.date
+            %td= link_to purchase_item.purchase, purchase_item.purchase
+            %td= purchase_item.purchase.vendor
+            %td= purchase_item.purchase.purchaser
+            %td= purchase_item.quantity
+            %td= purchase_item.size
+            %td= number_to_currency(purchase_item.price)
+            %td #{purchase_item.total_base_units} #{@item.base_unit}
+            %td #{number_to_currency(purchase_item.price_per_base_unit.scalar)} / #{@item.base_unit}
+        - unless items.any?
+          %tr
+            %td{:colspan => 4, :style => 'text-align: center;'} No Purchases

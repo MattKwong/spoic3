@@ -39,56 +39,30 @@
         -if can? :edit, @item
           %dlt= link_to "Delete Item", item_path(@item.id), :method => :delete, :confirm => "Are you sure you want to delete this item? This action cannot be undone."
 
-  .span-24.prepend-top
-    %h3 Purchases
-    .index_as_table
-      %table.index_table
-        %thead
-          %tr
-            %th Program
-            %th Date
-            %th Purchase
-            %th Vendor
-            %th Purchaser
-            %th Number Purchased
-            %th Size Purchased
-            %th Price Per
-            %th Qty in Base Units
-            %th Price per Base Unit
-        %tbody
-          - @item.item_purchases.each do |purchase_item|
-            %tr
-              %td= purchase_item.purchase.program
-              %td= purchase_item.purchase.date
-              %td= link_to purchase_item.purchase, purchase_item.purchase
-              %td= purchase_item.purchase.vendor
-              %td= purchase_item.purchase.purchaser
-              %td= purchase_item.quantity
-              %td= purchase_item.size
-              %td= number_to_currency(purchase_item.price)
-              %td #{purchase_item.total_base_units} #{@item.base_unit}
-              %td #{number_to_currency(purchase_item.price_per_base_unit.scalar)} / #{@item.base_unit}
-          - unless @item.item_purchases.any?
-            %tr
-              %td{:colspan => 4, :style => 'text-align: center;'} No Purchases
+  -if @program
+    = render 'purchases', :items => @item.item_purchases.for_program(@program)
+  -else
+    = render 'purchases', :items => @item.item_purchases
 
-  .span-24.prepend-top
-    %h3 Inventories
-    .index_as_table
-      %table.index_table
-        %thead
-          %tr
-            %th Program
-            %th Date
-            %th Consumed
-            %th Total Price
-        %tbody
-          - @item.food_inventory_food_items.each do |inventory|
+
+  -if @item.food?
+    .span-24.prepend-top
+      %h3 Inventories
+      .index_as_table
+        %table.index_table
+          %thead
             %tr
-              %td= inventory.food_inventory.program
-              %td= inventory.food_inventory.date
-              %td #{sprintf '%.2f', inventory.consumed} #{@item.base_unit}
-              %td= number_to_currency(inventory.total_consumed_cost)
-        - unless @item.food_inventory_food_items.any?
-          %tr
-            %td{:colspan => 4, :style => 'text-align: center;'} No Inventories
+              %th Program
+              %th Date
+              %th Consumed
+              %th Total Price
+          %tbody
+            - @item.food_inventory_food_items.each do |inventory|
+              %tr
+                %td= inventory.food_inventory.program
+                %td= inventory.food_inventory.date
+                %td #{sprintf '%.2f', inventory.consumed} #{@item.base_unit}
+                %td= number_to_currency(inventory.total_consumed_cost)
+          - unless @item.food_inventory_food_items.any?
+            %tr
+              %td{:colspan => 4, :style => 'text-align: center;'} No Inventories
