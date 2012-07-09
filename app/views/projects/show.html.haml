@@ -121,7 +121,7 @@
     .group-header
       #deliveries-toggle
         %h3 Actual Deliveries
-    = render 'material_item_delivereds/table', :material_item_delivereds => @project.material_item_delivereds
+    = render 'material_item_delivereds/table', :material_item_delivereds => @project.material_item_delivereds, :from => "project_show"
 
   -if can? :create, @project.labor_items.new
     .span-24.last.prepend-top

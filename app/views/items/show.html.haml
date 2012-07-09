@@ -48,7 +48,10 @@
             = @item.base_unit
         -else
           %dd
-            = sprintf '%.2f', (@item.material_item_delivereds.for_program(@program).map &:quantity).sum
+            -if @program
+              = sprintf '%.2f', (@item.material_item_delivereds.for_program(@program).map &:quantity).sum
+            -else
+              = sprintf '%.2f', (@item.material_item_delivereds.map &:quantity).sum
             = @item.base_unit
         -if can? :edit, @item
           %dlt= link_to "Delete Item", item_path(@item.id), :method => :delete, :confirm => "Are you sure you want to delete this item? This action cannot be undone."
@@ -98,4 +101,7 @@
     .span-24.last.prepend-top
       .group-header
         %h3 Actual Deliveries
-      = render 'material_item_delivereds/table', :material_item_delivereds => MaterialItemDelivered.for_item_program(@item.id, @program.id), :from => "item_show"
+      -if @program
+        = render 'material_item_delivereds/table', :material_item_delivereds => MaterialItemDelivered.for_item_program(@item.id, @program.id), :from => "item_show"
+      -else
+        = render 'material_item_delivereds/table', :material_item_delivereds => MaterialItemDelivered.find_all_by_item_id(@item.id), :from => "item_show"
