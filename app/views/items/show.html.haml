@@ -1,3 +1,4 @@
+
 #active_admin_content
   .group-container-clear
     .span-8.properties
@@ -22,8 +23,13 @@
 
     .span-8.last.properties
       %dl
-        %dt Total Purchased
-        %dd #{(@item.item_purchases.map &:total_base_units).sum} #{@item.base_unit}
+        - if @program
+          %dt= "Total Purchased for #{@program.name}"
+          %dd #{(@item.item_purchases.for_program(@program).map &:total_base_units).sum} #{@item.base_unit}
+        -else
+          %dt= "Total Purchased for all programs"
+          %dd #{(@item.item_purchases.map &:total_base_units).sum} #{@item.base_unit}
+
         %dt Average Price
         %dd
           = "#{number_to_currency(@avg_price)} #{@item.base_unit}" if @avg_price
@@ -32,10 +38,18 @@
         %dd
           = "#{number_to_currency(@item.default_cost)}" unless @avg_price
           = "N/A" if @avg_price
-        %dt Total Consumed
-        %dd
-          = sprintf '%.2f', (@item.food_inventory_food_items.map &:consumed).sum
-          = @item.base_unit
+        %dt= @item.food? ? "Total Consumed" : "Total Used"
+        -if @item.food?
+          %dd
+            -if @program
+              = sprintf '%.2f', (@item.food_inventory_food_items.for_program(@program).map &:consumed).sum
+            -else
+              = sprintf '%.2f', (@item.food_inventory_food_items(@program).map &:consumed).sum
+            = @item.base_unit
+        -else
+          %dd
+            = sprintf '%.2f', (@item.material_item_delivereds.for_program(@program).map &:quantity).sum
+            = @item.base_unit
         -if can? :edit, @item
           %dlt= link_to "Delete Item", item_path(@item.id), :method => :delete, :confirm => "Are you sure you want to delete this item? This action cannot be undone."
 
@@ -57,12 +71,31 @@
               %th Consumed
               %th Total Price
           %tbody
-            - @item.food_inventory_food_items.each do |inventory|
+            -if @program
+              - @item.food_inventory_food_items.for_program(@program).each do |inventory|
+                %tr
+                  %td= inventory.food_inventory.program
+                  %td= inventory.food_inventory.date
+                  %td #{sprintf '%.2f', inventory.consumed} #{@item.base_unit}
+                  %td= number_to_currency(inventory.total_consumed_cost)
+            -else
+              - @item.food_inventory_food_items.each do |inventory|
+                %tr
+                  %td= inventory.food_inventory.program
+                  %td= inventory.food_inventory.date
+                  %td #{sprintf '%.2f', inventory.consumed} #{@item.base_unit}
+                  %td= number_to_currency(inventory.total_consumed_cost)
+          -if @program
+            - unless @item.food_inventory_food_items.for_program(@program).any?
               %tr
-                %td= inventory.food_inventory.program
-                %td= inventory.food_inventory.date
-                %td #{sprintf '%.2f', inventory.consumed} #{@item.base_unit}
-                %td= number_to_currency(inventory.total_consumed_cost)
-          - unless @item.food_inventory_food_items.any?
-            %tr
-              %td{:colspan => 4, :style => 'text-align: center;'} No Inventories
+                %td{:colspan => 4, :style => 'text-align: center;'} No Inventories
+          -else
+            - unless @item.food_inventory_food_items.any?
+              %tr
+                %td{:colspan => 4, :style => 'text-align: center;'} No Inventories
+
+  -if @item.materials?
+    .span-24.last.prepend-top
+      .group-header
+        %h3 Actual Deliveries
+      = render 'material_item_delivereds/table', :material_item_delivereds => MaterialItemDelivered.for_item_program(@item.id, @program.id), :from => "item_show"

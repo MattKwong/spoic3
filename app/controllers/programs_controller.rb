@@ -23,7 +23,6 @@ class ProgramsController < ApplicationController
       @active_programs = Program.find(program_user.program_id)
     else
       @active_programs = Program.current
-      #logger.debug @active_programs
     end
   end
 
@@ -33,7 +32,7 @@ class ProgramsController < ApplicationController
     @page_title = @program.name
     @sessions = @program.to_current
     @budget_type_id = BudgetItemType.find_by_name('Food').id
-    @menu_actions = []
+
     case @scope
       when 'All', nil
         @scoped_purchases = Purchase.for_program(@program).all
@@ -46,12 +45,6 @@ class ProgramsController < ApplicationController
      when 'not_food_material'
         @scoped_purchases = Purchase.for_program(@program).not_food_material
     end
-
-    #unless params[:scope].nil? || params[:scope] == 'All'
-    #  @purchases = Purchases.last(20)
-    #end
-#    @menu_actions << {:name => "Edit", :path => edit_program_path(@program)} if can? :edit, @program
-#    @menu_actions << {:name => "New Purchase", :path => new_program_purchase_path(@program)} if can? :crate, @program.purchases.new
   end
 
   def edit

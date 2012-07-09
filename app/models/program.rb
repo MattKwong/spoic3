@@ -26,6 +26,20 @@ class Program < ActiveRecord::Base
   validate :start_date_before_end_date
   validate :start_date_not_in_past
 
+  def total_days
+    total = 0
+    sessions.each do |session|
+      session.scheduled_groups.each do|group|
+        if session.session_type_junior_high?
+          total += 3.5 * group.current_total
+        else
+          total += 4.5 * group.current_total
+        end
+      end
+    end
+    total
+  end
+
   def start_date_before_end_date
     unless start_date.nil? or end_date.nil?
       unless start_date < end_date

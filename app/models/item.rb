@@ -46,6 +46,10 @@ class Item < ActiveRecord::Base
       self.budget_item_type.name == "Food"
     end
 
+    def materials?
+      self.budget_item_type.materials?
+    end
+
     def to_s
       name
     end

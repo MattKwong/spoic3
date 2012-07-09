@@ -82,7 +82,6 @@
   .span-24.last.prepend-top
     .group-header
       #plan-material-toggle
-        -#= link_to image_tag('plusminus.png', :id => 'plan-material-toggle'), "#"
         %h3 Plan Materials
 
   .group-container.toggle-image#plan-material-info
@@ -112,7 +111,6 @@
     .span-24.last.prepend-top
       .group-header
         #deliver-material-toggle
-          -#= link_to image_tag('plusminus.png', :id => 'deliver-material-toggle'), "#"
           %h3 Record Deliveries and Returns
       .group-container.toggle-image#deliver-material-info
         .span-24.last.prepend-top
@@ -122,9 +120,9 @@
   .span-24.last.prepend-top
     .group-header
       #deliveries-toggle
-        -#= link_to image_tag('plusminus.png', :id => 'deliveries-toggle'), "#"
         %h3 Actual Deliveries
     = render 'material_item_delivereds/table', :material_item_delivereds => @project.material_item_delivereds
+
   -if can? :create, @project.labor_items.new
     .span-24.last.prepend-top
       .group-header

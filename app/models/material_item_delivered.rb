@@ -5,6 +5,9 @@ class MaterialItemDelivered < ActiveRecord::Base
   belongs_to :item
   belongs_to :admin_user, :foreign_key => :delivered_by
 
+  scope :for_program, lambda { |program| includes(:project).where('projects.program_id = ?', program.id) }
+  scope :for_item_program, lambda { |item_id, program_id| includes(:project).where('projects.program_id = ? and item_id = ?', program_id, item_id) }
+
   validates :item_id, :project_id, :quantity, :delivered_by, :presence => true
   validates_numericality_of :quantity, :decimal => true
   validate :quantity_cannot_be_zero, :quantity_cannot_be_greater_than_on_hand
@@ -34,7 +37,7 @@ class MaterialItemDelivered < ActiveRecord::Base
     quantity < 0
   end
 
-  def net_delivered(project)
+  def net_delivered(item, project)
     total = 0
     MaterialItemDelivered.find_all_by_item_id_and_project_id(item, project).each {|m| total += m.quantity}
     total

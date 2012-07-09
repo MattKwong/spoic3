@@ -31,10 +31,11 @@
   %tr
     %th{:style => "text-align:right;"} Total budget:
     %th= number_to_currency BudgetItem.for_program(@program).materials.first.amount
-    %th{:colspan => 2} Budget Remaining:
+    %th Budget Remaining:
     %th= number_to_currency BudgetItem.for_program(@program).materials.first.amount - total_actual_cost
+    %th Budgeted Cost/Day
+    %th= number_to_currency BudgetItem.for_program(@program).materials.first.amount / @program.total_days
     %th Planned Cost/Day
     %th= number_to_currency total_estimated_cost / total_estimated_days unless total_estimated_days == 0
     %th Actual Cost/Day
     %th= total_actual_days == 0 ? 0 : (number_to_currency total_actual_cost / total_actual_days)
-    %th{:colspan => 2}

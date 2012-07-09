@@ -10,4 +10,8 @@ class BudgetItemType < ActiveRecord::Base
   def food?
     self.name == "Food"
   end
+
+  def materials?
+    self.name == "Materials"
+  end
 end
