@@ -9,7 +9,9 @@
     = link_to "Food", items_path(:item_type => 1)
     = link_to "Kithen Equip", items_path(:item_type => 2)
     = link_to "Tools", items_path(:item_type => 3)
-    = link_to "Bldg Materials", items_path(:item_type => 4)
+    = link_to "Bldg Materials - All", items_path(:item_type => 4)
+    = link_to "Bldg Materials - Tracked", items_path(:item_type => 41)
+    = link_to "Bldg Materials - Untracked", items_path(:item_type => 42)
     = link_to "Fees", items_path(:item_type => 5)
   .table_as_index
     %table.index_table
@@ -21,21 +23,25 @@
           %th Base Unit
           %th Taxed?
           %th Untracked?
-          %th{:colspan => 2} Actions
+          %th On Hand
 
       %tbody
         - if @items.any?
           - @items.alphabetized.each do |item|
             %tr
-              %td= item
+              %td= link_to item.name, item
               %td= item.program unless item.program.nil?
               %td= item.item_category
               %td= item.base_unit
               %td= item.default_taxed ? "Yes" : "No"
               %td= item.untracked ? "Yes" : "No"
-              %td= link_to "View", item
-              -if can? :edit, item
-                %td= link_to "Edit", edit_item_path(item)
+              -if @program && item.materials?
+                %td= item.construction_onhand(@program)
+              -if @program && item.food?
+                %td= item.in_inventory_for(@program)
+              -#%td= link_to "View", item
+              -#-if can? :edit, item
+              -#  %td= link_to "Edit", edit_item_path(item)
 - if @items.count > 25
   .paginator.prepend-top
     %span.wrapper

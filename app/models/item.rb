@@ -37,6 +37,7 @@ class Item < ActiveRecord::Base
     scope :all_for_program, lambda {|program| where('program_id IS NULL OR program_id = ?', program.id) }
     scope :alphabetized, order("name")
     scope :all_for_program_by_type, lambda {|program, type| where('(program_id IS NULL OR program_id = ?) AND item_type_id = ?', program.id, type) }
+    scope :all_by_item_type, lambda {|type| where('item_type_id = ?', type) }
     scope :search_by_name, lambda { |q| (q ? where(["name Like ?", '%' + q + '%']) : {} ) }
 
 
@@ -81,14 +82,19 @@ class Item < ActiveRecord::Base
     end
 
     def construction_onhand(program)
-      p = program_purchases(program) - program_deliveries(program)
-      logger.debug p.to_s
       program_purchases(program) - program_deliveries(program)
-
     end
 
     def in_inventory_for(program)
      in_inventory_for_program_at(program, Date.today)
+    end
+
+    def in_inventory
+      total = 0
+      Program.active.each do |p|
+        total += in_inventory_for(p)
+      end
+      total
     end
 
     def purchased_for_program(program, start_date, end_date)

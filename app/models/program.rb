@@ -25,6 +25,7 @@ class Program < ActiveRecord::Base
 
   validate :start_date_before_end_date
   validate :start_date_not_in_past
+  scope :active, where(:active => true)
 
   def total_days
     total = 0

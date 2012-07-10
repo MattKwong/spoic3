@@ -9,32 +9,59 @@ class ItemsController < ApplicationController
     end
 
     if params[:item_type].nil? || params[:item_type] == "0"
-      if current_admin_user.admin?
-        @items = Item.accessible_by(current_ability).page params[:page]
-      else if current_admin_user.sd?
-        @items = Item.accessible_by(current_ability).page params[:page]
-      else if current_admin_user.construction_admin? || current_admin_user.construction?
-        @items = Item.materials.accessible_by(current_ability).page params[:page]
-      else if current_admin_user.food_admin? || current_admin_user.cook?
-        @items = Item.food.accessible_by(current_ability).page params[:page]
-      end
-      end
-      end
+      if @program
+        @items = Item.all_for_program(@program).page params[:page]
+      else
+        @items = Item.alphabetized.page params[:page]
       end
     else
-      if current_admin_user.admin?
-        @items = Item.accessible_by(current_ability).where('item_type_id = ?', params[:item_type]).page params[:page]
-      else if  current_admin_user.sd?
-        @items = Item.accessible_by(current_ability).all_for_program_by_type(@program, params[:item_type]).page params[:page]
-      else if current_admin_user.construction_admin? || current_admin_user.construction?
-        @items = Item.materials_and_tools.accessible_by(current_ability).all_for_program_by_type(@program, params[:item_type]).page params[:page]
-      else if current_admin_user.food_admin? || current_admin_user.cook?
-        @items = Item.food.accessible_by(current_ability).all_for_program_by_type(@program, params[:item_type]).page params[:page]
-      end
-      end
-      end
+      if params[:item_type] == '41' #Tracked materials
+        if @program
+          @items = Item.materials.tracked.page params[:page]
+        else
+          @items = Item.materials.tracked.alphabetized.page params[:page]
+        end
+      else
+        if params[:item_type] == '42' #Untracked materials
+          if @program
+            @items = Item.materials.untracked.page params[:page]
+          else
+            @items = Item.materials.untracked.alphabetized.page params[:page]
+          end
+        else
+          if @program
+            @items = Item.all_for_program_by_type(@program, params[:item_type]).page params[:page]
+          else
+            @items = Item.all_by_item_type(params[:item_type]).alphabetized.page params[:page]
+          end
+        end
       end
     end
+    #  current_admin_user.admin?
+    #    @items = Item.accessible_by(current_ability).page params[:page]
+    #  else if current_admin_user.sd?
+    #    @items = Item.accessible_by(current_ability).page params[:page]
+    #  else if current_admin_user.construction_admin? || current_admin_user.construction?
+    #    @items = Item.materials.accessible_by(current_ability).page params[:page]
+    #  else if current_admin_user.food_admin? || current_admin_user.cook?
+    #    @items = Item.food.accessible_by(current_ability).page params[:page]
+    #  end
+    #  end
+    #  end
+    #  end
+    #else
+    #  if current_admin_user.admin?
+    #    @items = Item.accessible_by(current_ability).where('item_type_id = ?', params[:item_type]).page params[:page]
+    #  else if  current_admin_user.sd?
+    #    @items = Item.accessible_by(current_ability).all_for_program_by_type(@program, params[:item_type]).page params[:page]
+    #  else if current_admin_user.construction_admin? || current_admin_user.construction?
+    #    @items = Item.materials_and_tools.accessible_by(current_ability).all_for_program_by_type(@program, params[:item_type]).page params[:page]
+    #  else if current_admin_user.food_admin? || current_admin_user.cook?
+    #    @items = Item.food.accessible_by(current_ability).all_for_program_by_type(@program, params[:item_type]).page params[:page]
+    #  end
+    #  end
+    #  end
+    #  end
   end
 
   def new
