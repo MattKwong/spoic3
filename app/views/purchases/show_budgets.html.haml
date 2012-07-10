@@ -1,0 +1,51 @@
+#active_admin_content
+  .span-8.properties.first
+    %dl.properties
+      %dt Vendor
+      %dd= @purchase.vendor.name
+      %dt Date
+      %dd= @purchase.date
+      %dt Purchaser
+      %dd= @purchase.purchaser.name
+      %dt Purchase Type
+      %dd= @purchase.purchase_type
+  .span-8.properties
+    %dl.properties
+      %dt Total
+      %dd= number_to_currency(@purchase.total, :unit => "$")
+      %dt Accounted for
+      %dd#accounted_for= number_to_currency(@purchase.accounted_for)
+      %dt Unaccounted For
+      %dd#unaccounted_for= number_to_currency @purchase.unaccounted_for, :unit => "$"
+
+  .span-8.last.properties
+    %dl.properties
+      %dt Tax
+      %dd= number_to_currency(@purchase.tax, :unit => "$")
+      %dt Effective tax rate
+      %dd= number_to_percentage(@purchase.effective_tax_rate * 100, :precision => 2)
+      %dt Actual Tax Rate
+      %dd#actual_tax_rate= number_to_percentage(@purchase.actual_tax_rate * 100, :precision => 2)
+      %dlt= link_to "Edit General Purchase Information", edit_purchase_path(@purchase) if can? :edit, @purchase
+
+
+
+  .span-24.last.prepend-top
+    .group-header
+      %h3 Budget Item Split For This Purchase
+    .index_as_table
+      %table.index_table
+        %thead
+          %tr
+            %th Budget Item name
+            %th Amount
+        %tbody
+          - @purchase.budget_types.each do |i|
+            %tr
+              %td= i
+              %td= number_to_currency(@purchase.amount_by_type(i), :unit => '$')
+
+  .span-24.last.prepend-top
+    .group-header
+      %h3 Items Recorded On This Purchase
+    = render 'item_purchases/table', :item_purchases => @purchase.item_purchases.alphabetized

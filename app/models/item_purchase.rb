@@ -20,11 +20,10 @@ class ItemPurchase < ActiveRecord::Base
   scope :alphabetized, joins(:item).order('items.name')
 
 #  scope :alphabetized, lambda { |id| joins(:item).order("name") }
-#  #after_save :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }
-  #after_destroy :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }
+#  after_save :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }
+#  after_destroy :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }
+
   before_save :update_base_units, :unless => :skip_calculations?
-
-
 
   def size_in_base_units
     size.u >> item.base_unit

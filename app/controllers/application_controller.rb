@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
      liaison = Liaison.find(resource.liaison_id)
      church = Church.find(liaison.church_id)
      if church.nil? #the liaison is unassigned to a church, so he/she can't do anything
-       log_activity(Time.now, "Invaild Login", "Unassigned to church - logged off", resource.id, resource.name, resource.user_role)     #redirect_to :back
+       log_activity(Time.now, "Invalid Login", "Unassigned to church - logged off", resource.id, resource.name, resource.user_role)     #redirect_to :back
        destroy_admin_user_session_path #log out
      else
        log_activity(Time.now, "Liaison Login", "Logged on to system", resource.id, resource.name, resource.user_role)

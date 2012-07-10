@@ -24,6 +24,14 @@ ActiveAdmin.register Purchase do
     column :tax do |purchase| number_to_currency purchase.tax end
     column :unaccounted_for, :sortable => false do |purchase| number_to_currency purchase.unaccounted_for end
 
+
+    column "Budget Type" do |purchase|
+      if purchase.budget_type == "Split"
+        link_to "Split Receipt", purchase_budget_path(purchase.id)
+      else
+        purchase.budget_type
+      end
+    end
   end
 
   csv do

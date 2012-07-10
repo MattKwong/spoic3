@@ -45,6 +45,17 @@ class PurchasesController < ApplicationController
     end
   end
 
+  def show_budgets
+    @page_title = "#{@purchase.vendor.name} #{@purchase.date}"
+#    @item_type = params[:item_type]
+
+#    if @item_type.nil? || @item_type == "0"
+      @items = Item.all_for_program(@purchase.program).alphabetized
+#    else
+#      @items = Item.all_for_program_by_type(@purchase.program, @item_type).alphabetized
+#    end
+  end
+
   def edit
     @page_title = "Editing #{@purchase.vendor} #{@purchase.date}"
   end

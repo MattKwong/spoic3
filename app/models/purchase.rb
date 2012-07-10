@@ -40,6 +40,23 @@ class Purchase < ActiveRecord::Base
 #  default_scope :order => 'date DESC'
   scope :past_week, where('date > ?', Date.today - 7)
 
+  def budget_type
+    if budget_types.count > 1
+      "Split"
+    else
+      budget_types[0]
+    end
+  end
+
+  def budget_types
+    count = 0
+    types = Array.new
+    item_purchases.each do |ip|
+      types << ip.item.budget_item_type.name
+    end
+    types.uniq
+  end
+
   def to_s
     "#{vendor.name} #{date}"
   end
@@ -56,6 +73,12 @@ class Purchase < ActiveRecord::Base
     budget_item_id = BudgetItemType.find_by_name('Food').id
     (item_purchases.by_budget_line_type(budget_item_id).map &:total_price_with_tax).sum
   end
+
+  def amount_by_type(budget_item_type_name)
+    budget_item_id = BudgetItemType.find_by_name(budget_item_type_name).id
+    (item_purchases.by_budget_line_type(budget_item_id).map &:total_price_with_tax).sum
+  end
+
 
   def effective_tax_rate
     tax / total
