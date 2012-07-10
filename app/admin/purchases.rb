@@ -44,5 +44,6 @@ ActiveAdmin.register Purchase do
     column :total
     column :tax
     column :unaccounted_for do |p| '%.2f' % p.unaccounted_for end
+    column :budget_type
   end
 end
