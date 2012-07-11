@@ -92,6 +92,7 @@ class ItemsController < ApplicationController
   end
 
   def update
+
     @item.attributes = params[:item]
  #   authorize! :update, @item
     if(@item.save)

@@ -1,6 +1,7 @@
 class Item < ActiveRecord::Base
-    attr_accessible :name, :base_unit, :default_taxed, :item_category_id, :item_type_id,
+    attr_accessible :name, :default_taxed, :item_category_id, :item_type_id,
                     :program_id, :budget_item_type_id, :description, :untracked, :notes, :default_cost
+    attr_protected :base_unit
 
     validates :base_unit, :name, :item_type_id, :budget_item_type_id, :item_category_id,
               :description, :presence => true
@@ -22,7 +23,7 @@ class Item < ActiveRecord::Base
     has_many :food_inventory_food_items, :dependent => :restrict
     has_many :food_inventories, :through => :food_inventory_food_items
     has_many :material_item_delivereds, :dependent => :restrict
-    has_many :material_item_estimateds, :dependent => :restrict
+    has_many :standard_items, :dependent => :restrict
 
     scope :food, lambda {joins(:budget_item_type).where("budget_item_types.name = 'Food'" ) }
     scope :materials, lambda {joins(:budget_item_type).where("budget_item_types.name = 'Materials'" ) }

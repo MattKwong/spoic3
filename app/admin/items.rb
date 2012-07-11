@@ -14,9 +14,8 @@ form do |f|
     f.input :name
     f.input :base_unit, :hint => "Input lbs, oz, ft, gal, etc. Use 'Each' for things like items of lumber or tools."
     f.input :description
-    f.input :default_taxed, :hint => "Check if this item is normally taxed (shouldl normally be checked for construction items and unchecked for food."
+    f.input :default_taxed, :hint => "Check if this item is normally taxed (should normally be checked for construction items and unchecked for food."
     f.input :untracked, :hint => "Check only if this is a low-value item that will not be tracked."
-
     f.input :notes
   end
   f.buttons
