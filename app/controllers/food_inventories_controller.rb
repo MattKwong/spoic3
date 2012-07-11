@@ -72,12 +72,12 @@ class FoodInventoriesController < ApplicationController
   end
 
   def inventory_prep_report
-    @page_title = "Inventory Prep Report As Of #{Time.now.in_time_zone("Pacific Time (US & Canada)").strftime("%b %d @ %I:%M %p")}"
-    @inventory_list = Array.new
     @program = Program.find(params[:program_id])
+    @page_title = "Inventory Prep Report As Of #{Time.now.in_time_zone("Pacific Time (US & Canada)").strftime("%b %d @ %I:%M %p")}: #{@program.name}"
+    @inventory_list = Array.new
+
     Item.food.alphabetized.each do |i|
-      inventories = FoodInventoryFoodItem.for_program(@program).find_all_by_item_id(i.id)#.order('food_inventories.date ASC')
-  #   purchases = ItemPurchase.joins(:purchases).where('item_id = ? and purchases.program_id = ?', i.id, @program.id)
+      inventories = FoodInventoryFoodItem.for_program(@program).find_all_by_item_id(i.id)
       purchases = ItemPurchase.for_program(@program).find_all_by_item_id(i.id)
       if inventories.any? || purchases.any? #Either exist
         list_item = Hash.new
@@ -90,6 +90,7 @@ class FoodInventoriesController < ApplicationController
           list_item.store(:last_purchased_on, purchases.last.purchase.date)
           list_item.store(:amount_purchased, (purchases.last.quantity.to_s + ' of ' + purchases.last.size))
         end
+
         if inventories.any? # && !purchases.any?
         #Only inventory - set the inventory information, set the purchase info to 'none', Weekly consumption
         #is blank and expected amounts are last inventoried amount
@@ -98,6 +99,7 @@ class FoodInventoriesController < ApplicationController
           list_item.store(:maximum_expected, inventories.last.quantity)
 #          list_item.store(:purchased_since_last_inventory, i.purchased_for_program(@program, inventories.last.food_inventory.date, Time.now.to_date))
         end
+
         if inventories.any? && purchases.any?
         #Both exist. Inventory and purchase fields were already set above. All we need to calculate is
         #weekly consumption and expected amount
@@ -113,7 +115,6 @@ class FoodInventoriesController < ApplicationController
           list_item.store(:maximum_expected, inventories.last.in_base_units + purchased_since_last_inventory)
           list_item.store(:purchased_since_last_inventory, purchased_since_last_inventory)
         end
-
         @inventory_list << list_item
       end
     end

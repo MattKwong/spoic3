@@ -15,7 +15,7 @@
 #
 
 class FoodInventoryFoodItem < ActiveRecord::Base
-  attr_accessible :item_id, :quantity, :food_inventory_id
+  attr_accessible :item_id, :quantity, :food_inventory_id, :in_inventory
 
   belongs_to :item
   belongs_to :food_inventory

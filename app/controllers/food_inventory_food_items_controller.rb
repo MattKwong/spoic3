@@ -11,9 +11,11 @@ class FoodInventoryFoodItemsController < ApplicationController
   end
 
   def update_item_info
+    @program = FoodInventory.find(params[:food_inventory_id]).program
+    logger.debug @program
     item = Item.find(params[:id])
     @base_unit = item.base_unit
-    last_inventory = FoodInventoryFoodItem.find_all_by_item_id(item.id)
+    last_inventory = FoodInventoryFoodItem.for_program(@program).find_all_by_item_id(item.id)
     if last_inventory.count > 0
       @last_inventory_date = last_inventory.first.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%b %d @ %I:%M %p")
       @last_inventory_amount = last_inventory.first.quantity
@@ -21,7 +23,7 @@ class FoodInventoryFoodItemsController < ApplicationController
       @last_inventory_date = "None"
       @last_inventory_amount = "None"
     end
-    last_purchase = ItemPurchase.find_all_by_item_id(item.id)
+    last_purchase = ItemPurchase.for_program(@program).find_all_by_item_id(item.id)
     if last_purchase.count > 0
       @last_purchase_date = last_purchase.first.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%b %d @ %I:%M %p")
       @last_purchase_amount = last_purchase.first.quantity
