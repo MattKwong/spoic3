@@ -1,9 +1,9 @@
 #active_admin_content
-  - if @items
-    .paginator.append-bottom
-      %span.wrapper
-        = paginate @items
-  .span-24
+  -#- if @items
+  -#  .paginator.append-bottom
+  -#    %span.wrapper
+  = paginate @items
+  .span-24.prepend-top
     Filter item list:
     = link_to "All", items_path(:item_type => 0)
     = link_to "Food", items_path(:item_type => 1)
@@ -13,7 +13,7 @@
     = link_to "Bldg Materials - Tracked", items_path(:item_type => 41)
     = link_to "Bldg Materials - Untracked", items_path(:item_type => 42)
     = link_to "Fees", items_path(:item_type => 5)
-  .table_as_index
+  .table_as_index.prepend-top
     %table.index_table
       %thead
         %tr
@@ -42,8 +42,8 @@
               -#%td= link_to "View", item
               -#-if can? :edit, item
               -#  %td= link_to "Edit", edit_item_path(item)
-- if @items.count > 25
-  .paginator.prepend-top
-    %span.wrapper
-      = paginate @items
+-#- if @items.count > 25
+-#  .paginator.prepend-top
+-#    %span.wrapper
+-#      = paginate @items
 

@@ -1,7 +1,7 @@
 
 #active_admin_content
   .group-container-clear
-    .span-8.properties
+    .span-7.properties
       %dl
         %dt Name
         %dd= @item.name
@@ -10,7 +10,7 @@
         %dt Type
         %dd= @item.item_type.name
 
-    .span-8.properties
+    .span-7.properties
       %dl
         %dt Category
         %dd= @item.item_category.name
@@ -29,7 +29,7 @@
         -if can? :edit, @item
           %dlt= link_to "Edit Item", edit_item_path(@item)
 
-    .span-8.last.properties
+    .span-7.last.properties
       %dl
         - if @program
           %dt= "Total Purchased for #{@program.site.name}"
@@ -96,6 +96,7 @@
           %thead
             %tr
               %th Program
+              %th Inventory
               %th Date
               %th Consumed
               %th Total Price
@@ -104,6 +105,7 @@
               - @item.food_inventory_food_items.for_program(@program).each do |inventory|
                 %tr
                   %td= inventory.food_inventory.program
+                  %td= link_to inventory.food_inventory.name, inventory.food_inventory
                   %td= inventory.food_inventory.date
                   %td #{sprintf '%.2f', inventory.consumed} #{@item.base_unit}
                   %td= number_to_currency(inventory.total_consumed_cost)
@@ -111,6 +113,7 @@
               - @item.food_inventory_food_items.each do |inventory|
                 %tr
                   %td= inventory.food_inventory.program
+                  %td= link_to inventory.food_inventory.name, inventory.food_inventory
                   %td= inventory.food_inventory.date
                   %td #{sprintf '%.2f', inventory.consumed} #{@item.base_unit}
                   %td= number_to_currency(inventory.total_consumed_cost)

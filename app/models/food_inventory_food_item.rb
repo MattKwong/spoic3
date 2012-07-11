@@ -30,7 +30,7 @@ class FoodInventoryFoodItem < ActiveRecord::Base
   scope :for_program, lambda { |program| includes(:food_inventory).where('food_inventories.program_id = ?', program.id) }
 
   scope :after, lambda { |date| includes(:food_inventory).where('food_inventories.date >= ?', date) }
-
+  scope :alphabetized, :include => :item, :order => 'items.name'
   # action callbacks
   before_save :update_calculated_fields, :unless => :skip_calculations?
 #  after_save :update_derived_fields, :unless => Proc.new {|item| item.skip_calculations? || item.skip_derivations? }

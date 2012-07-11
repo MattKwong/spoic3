@@ -26,9 +26,12 @@ class FoodInventory < ActiveRecord::Base
   scope :for_program, lambda { |program| where('program_id ?', program.id) }
   scope :after, lambda { |date| where('date >= ?', date) }
   scope :before, lambda { |date| where('date < ?', date) }
+
   default_scope :order => 'date ASC'
 
-
+  def name
+    Program.find(program_id).name + " " + date.strftime("%m/%d")
+  end
   def total_spent
     (food_inventory_food_items.map &:total_price).sum
   end
