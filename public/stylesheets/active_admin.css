@@ -339,7 +339,9 @@ th, td, caption {
         display: none;
         padding: 3px 0px 5px 0;
         list-style: none;
-        z-index: 1010; }
+        z-index: 1010;
+}
+
         #header ul#tabs > li ul li {
           margin: 0px; }
           #header ul#tabs > li ul li a {
@@ -352,7 +354,12 @@ th, td, caption {
             -webkit-border-radius: 0;
             -moz-border-radius: 0;
             border-radius: 0; }
-  #header #utility_nav {
+
+#header {
+    position: inherit;
+}
+
+#header #utility_nav {
     color: #aaa;
     float: right;
     display: inline-block;
@@ -364,6 +371,7 @@ th, td, caption {
       text-decoration: none; }
     #header #utility_nav a:hover {
       color: #fff; }
+
 
 form {
   /* Reset margins & Padding */

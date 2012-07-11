@@ -34,9 +34,8 @@ body.logged_in .flash {
     border-bottom: 1px solid #4D7194;
   height: 20px;
   overflow: visible;
-  position: relative;
+  position: inherit;
   padding: 9px 30px;
-  position: relative;
   z-index: 900; }
 
 #header ul#tabs > ul.second_level {
