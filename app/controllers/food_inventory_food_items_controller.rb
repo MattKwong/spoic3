@@ -23,10 +23,10 @@ class FoodInventoryFoodItemsController < ApplicationController
       @last_inventory_date = "None"
       @last_inventory_amount = "None"
     end
-    last_purchase = ItemPurchase.for_program(@program).find_all_by_item_id(item.id)
+    last_purchase = ItemPurchase.for_program(@program).by_date.find_all_by_item_id(item.id)
     if last_purchase.count > 0
-      @last_purchase_date = last_purchase.first.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%b %d @ %I:%M %p")
-      @last_purchase_amount = last_purchase.first.quantity
+      @last_purchase_date = last_purchase.last.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%b %d @ %I:%M %p")
+      @last_purchase_amount = last_purchase.last.quantity
     else
       @last_purchase_date = "None"
       @last_purchase_amount = "None"

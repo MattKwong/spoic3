@@ -18,8 +18,9 @@ class ItemPurchase < ActiveRecord::Base
   scope :for_item, lambda { |item| joins(:item).where('item_id = ?', item) }
   scope :taxable, where(:taxable => true)
   scope :alphabetized, joins(:item).order('items.name')
+  scope :by_date, joins(:purchase).order('purchases.date')
 
-#  scope :alphabetized, lambda { |id| joins(:item).order("name") }
+
 #  after_save :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }
 #  after_destroy :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }
 
