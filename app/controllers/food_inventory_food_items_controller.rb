@@ -12,7 +12,7 @@ class FoodInventoryFoodItemsController < ApplicationController
 
   def update_item_info
     @program = FoodInventory.find(params[:food_inventory_id]).program
-    logger.debug @program
+
     item = Item.find(params[:id])
     @base_unit = item.base_unit
     last_inventory = FoodInventoryFoodItem.for_program(@program).find_all_by_item_id(item.id)
