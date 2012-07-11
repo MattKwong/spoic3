@@ -57,9 +57,9 @@ private
     a.activity_date = Time.now
     a.activity_type = activity_type
     a.activity_details = activity_details
-    a.user_id = 1 #@current_admin_user.id
-    a.user_name = "Name" #@current_admin_user.name
-    a.user_role = "Liaison" #@current_admin_user.user_role
+    a.user_id = current_admin_user.id
+    a.user_name = current_admin_user.name
+    a.user_role = current_admin_user.user_role
     unless a.save!
       flash[:error] = "Unknown problem occurred logging a transaction."
     end
