@@ -59,7 +59,9 @@ class ProjectsController < ApplicationController
 
   def show
     @page_title = "#{@project.name}"
-
+    if session[:program]
+      add_breadcrumb Program.find(session[:program]).name, program_path(session[:program])
+    end
     nonstandard_item_list = Hash[Item.materials.all_for_program(@project.program).tracked.alphabetized.map {|i| [i.id, i.name]}]
     standard_item_list =
         Hash[StandardItem.find_all_by_project_subtype_id(@project.project_subtype_id).map {|s| [s.item_id, "#{s.item.name} (#{s.comments})"]}]

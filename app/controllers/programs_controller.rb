@@ -28,6 +28,11 @@ class ProgramsController < ApplicationController
 
   def show
 
+    if current_admin_user.admin?
+      session[:program] = @program.id
+    #  #logger.debug session[:program].inspect
+    end
+
     @scope = params[:scope]
     @page_title = @program.name
     @sessions = @program.to_current

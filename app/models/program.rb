@@ -147,7 +147,7 @@ class Program < ActiveRecord::Base
 
   def first_session_id
     s = self.sessions.sort {|a,b| a.period.start_date <=> b.period.start_date }
-    logger.debug s.inspect
+    #logger.debug s.inspect
     s.first.id
   end
   def last_session_id

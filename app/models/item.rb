@@ -129,7 +129,7 @@ class Item < ActiveRecord::Base
     end
 
     def cost_of_inventory(program, date)
-      logger.debug "#{in_inventory_for_program_at(program, date)} #{base_unit}"
+      #logger.debug "#{in_inventory_for_program_at(program, date)} #{base_unit}"
       cost_of(program, date, "#{in_inventory_for_program_at(program, date)} #{base_unit}").scalar
 
     end

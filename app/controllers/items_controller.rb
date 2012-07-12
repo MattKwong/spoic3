@@ -4,6 +4,9 @@ class ItemsController < ApplicationController
 
   def index
     @page_title = "Items"
+    if session[:program]
+      add_breadcrumb Program.find(session[:program]).name, program_path(session[:program])
+    end
     if current_admin_user.program_id > 0
       @program = Program.find(current_admin_user.program_id)
     end
@@ -106,6 +109,9 @@ class ItemsController < ApplicationController
 
   def show
     @page_title = @item.name
+    if session[:program]
+      add_breadcrumb Program.find(session[:program]).name, program_path(session[:program])
+    end
     if current_admin_user.program_id > 0
       @program = Program.find(current_admin_user.program_id)
     end
