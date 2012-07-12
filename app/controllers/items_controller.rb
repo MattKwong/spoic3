@@ -95,9 +95,9 @@ class ItemsController < ApplicationController
   end
 
   def update
-
+    params[:item].delete("base_unit")
     @item.attributes = params[:item]
- #   authorize! :update, @item
+
     if(@item.save)
       flash[:success] = "#{@item.name} successfully updated"
       redirect_to items_path

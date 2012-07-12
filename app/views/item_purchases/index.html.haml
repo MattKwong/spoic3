@@ -9,9 +9,9 @@
             - unless @program
               %th Program
             %th Purchase
-            %th Purchase Date
-            %th Vendor
-            %th Purchaser
+            %th= sortable "purchases.date", "Purchase Date"
+            %th= sortable "purchases.vendor_id", "Vendor"
+            %th= sortable "purchases.purchaser_id", "Purchaser"
             %th Purchase Type
             %th Item
             %th Quantity Purchase

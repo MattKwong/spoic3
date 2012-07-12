@@ -1,4 +1,5 @@
 class ItemPurchasesController < ApplicationController
+  helper_method :sort_column, :sort_direction
   load_and_authorize_resource :purchase
   load_and_authorize_resource :item_purchase, :through => :purchase, :shallow => true
   layout 'admin_layout'
@@ -24,7 +25,7 @@ class ItemPurchasesController < ApplicationController
     @program = Program.find(params[:program_id])
     @budget_type = BudgetItemType.find(params[:id])
     @page_title = "#{@budget_type.name} Budget Purchases - #{@program.site.name}"
-    @item_purchases = ItemPurchase.by_budget_line_type(@budget_type.id).for_program(@program).page params[:page]
+    @item_purchases = ItemPurchase.by_budget_line_type(@budget_type.id).for_program(@program).order(sort_column + ' ' + sort_direction).page params[:page]
   end
 
   def update
@@ -59,9 +60,14 @@ class ItemPurchasesController < ApplicationController
     else
       flash[:error] = "Could not remove #{@item_purchase.item}"
     end
-#    respond_to do |format|
-#      format.html { redirect_to @purchase }
-##      format.js { flash.discard }
-#    end
+  end
+
+private
+  def sort_column
+    params[:sort] || "name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
   end
 end

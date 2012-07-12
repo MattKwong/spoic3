@@ -1,7 +1,6 @@
 class Item < ActiveRecord::Base
-    attr_accessible :name, :default_taxed, :item_category_id, :item_type_id,
+    attr_accessible :name, :default_taxed, :item_category_id, :item_type_id, :base_unit,
                     :program_id, :budget_item_type_id, :description, :untracked, :notes, :default_cost
-    attr_protected :base_unit
 
     validates :base_unit, :name, :item_type_id, :budget_item_type_id, :item_category_id,
               :description, :presence => true

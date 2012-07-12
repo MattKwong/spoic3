@@ -9,7 +9,7 @@ module ApplicationHelper
 
 # return the title of each page
 	def title
-		base_title = "Sierra Service Project Online Information Center"
+		base_title = "SSP Online Information Center"
 		if @title.nil?
 			base_title
 		else
@@ -23,6 +23,15 @@ module ApplicationHelper
 
   def format_phone(phone)
     "(#{phone[0..2]}) #{phone[3..5]}-#{phone[6..9]}"
+  end
+
+  def sortable(column, title = nil)
+    title ||= column.titleize
+    logger.debug column
+    logger.debug sort_column
+    css_class = (column == sort_column) ? "sorted-#{sort_direction}" : "sortable"
+    direction = (sort_column &&  sort_direction == "asc") ? "desc" : "asc"
+    link_to title, {:sort => column, :direction => direction}, {:class => css_class}
   end
 
 end
