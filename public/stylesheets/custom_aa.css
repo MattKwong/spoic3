@@ -635,3 +635,20 @@ body.logged_in .flash {
     /*text-shadow: 0 1px 0 #FAFAFA;*/
     top: 0px;
 }
+table.index_table th a.sortable {
+    background: url("/images/active_admin/orderable.png") no-repeat 0 4px;
+    padding-left: 13px; }
+table.index_table th a.sorted-asc {
+    background: url("/images/active_admin/orderable.png") no-repeat 0 4px;
+    background-position: 0 -27px;
+    padding-left: 13px;}
+table.index_table th a.sorted-desc {
+    background: url("/images/active_admin/orderable.png") no-repeat 0 4px;
+    background-position: 0 -56px;
+    padding-left: 13px;}
+table.index_table th.sorted-asc, table.index_table th.sorted-desc {
+    background: #e2e2e2;
+    background: -webkit-gradient(linear, left top, left bottom, from(#e2e2e2), to(#d2d4d6));
+    background: -moz-linear-gradient(-90deg, #e2e2e2, #d2d4d6);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#e2e2e2, endColorstr=#d2d4d6);
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#e2e2e2, endColorstr=#d2d4d6); }
