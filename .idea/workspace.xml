@@ -63,10 +63,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="purchases_controller.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="purchases_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/purchases_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="75" selection-start="1222" selection-end="1222" vertical-scroll-proportion="0.97470486">
+            <state line="34" column="75" selection-start="1222" selection-end="1222" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gemfile.lock" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Gemfile.lock">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="216" column="56" selection-start="5141" selection-end="5141" vertical-scroll-proportion="0.6306914">
               <folding />
             </state>
           </provider>
@@ -105,7 +114,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/food_inventories/show.html.haml" />
         <option value="$PROJECT_DIR$/app/models/food_inventory.rb" />
         <option value="$PROJECT_DIR$/app/models/food_inventory_food_item.rb" />
         <option value="$PROJECT_DIR$/app/views/food_inventory_food_items/_food_inventory_food_item.html.haml" />
@@ -121,6 +129,7 @@
         <option value="$PROJECT_DIR$/app/controllers/projects_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/items_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/purchases_controller.rb" />
+        <option value="$PROJECT_DIR$/Gemfile.lock" />
       </list>
     </option>
   </component>
@@ -1690,7 +1699,11 @@
       <created>1342053056435</created>
       <updated>1342053056435</updated>
     </task>
-    <option name="localTasksCounter" value="165" />
+    <task id="LOCAL-00165" summary="Changed site title to SSP from Sierra Service Project to save space.">
+      <created>1342053082161</created>
+      <updated>1342053082161</updated>
+    </task>
+    <option name="localTasksCounter" value="166" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1777,7 +1790,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created return breadcrumb to main site page." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed site title to SSP from Sierra Service Project to save space." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1808,23 +1821,18 @@
     <MESSAGE value="Added ability for Meghan to identify split receipts." />
     <MESSAGE value="    Added budget_type to purchases csv output." />
     <MESSAGE value="Correct error in inventory item info display." />
-    <MESSAGE value="Changed site title to SSP from Sierra Service Project to save space." />
     <MESSAGE value="Changed custom_aa to make @header position:inherit to correct menu display problem." />
     <MESSAGE value="Disabled updating of base_unit" />
     <MESSAGE value="Created links from inventory to item detail, sorted inventory by item name." />
     <MESSAGE value="Corrected error in retrieval of last purchase when adding inventory item." />
     <MESSAGE value="Added admin name to Adjustment log entry." />
     <MESSAGE value="Created return breadcrumb to main site page." />
+    <MESSAGE value="Changed site title to SSP from Sierra Service Project to save space." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/food_inventory_food_items/_food_inventory_food_item.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="46" selection-start="568" selection-end="568" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/item_purchase.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="75" selection-start="729" selection-end="729" vertical-scroll-proportion="0.019953052">
@@ -1923,7 +1931,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/purchases_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="75" selection-start="1222" selection-end="1222" vertical-scroll-proportion="0.97470486">
+        <state line="34" column="75" selection-start="1222" selection-end="1222" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile.lock">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="216" column="56" selection-start="5141" selection-end="5141" vertical-scroll-proportion="0.6306914">
           <folding />
         </state>
       </provider>
