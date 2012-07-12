@@ -1,0 +1,36 @@
+#active_admin_content
+  = paginate @item_purchases
+
+  .index_content
+    .index_as_table
+      %table.index_table
+        %thead
+          %tr
+            - unless @program
+              %th Program
+            %th Purchase
+            %th Purchase Date
+            %th Vendor
+            %th Purchaser
+            %th Purchase Type
+            %th Item
+            %th Quantity Purchase
+            %th Base Units
+            %th Price
+            %th Total Price
+
+        %tbody
+          - @item_purchases.each do |item_purchase|
+            %tr
+              - unless @program
+                %td= link_to item_purchase.purchase.program, program_purchases_path(item_purchase.purchase.program)
+              %td= link_to item_purchase.purchase.to_s, item_purchase.purchase
+              %td= item_purchase.purchase.date.strftime("%b %d, %Y")
+              %td= item_purchase.purchase.vendor.name
+              %td= item_purchase.purchase.purchaser
+              %td= item_purchase.purchase.purchase_type
+              %td= link_to item_purchase.item.name, item_purchase.item
+              %td= item_purchase.quantity
+              %td= item_purchase.item.base_unit
+              %td= number_to_currency item_purchase.price, :unit => "&dollar;"
+              %td= number_to_currency item_purchase.total_price, :unit => "&dollar;"

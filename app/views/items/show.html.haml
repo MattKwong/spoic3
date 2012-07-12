@@ -9,11 +9,13 @@
         %dd= @item.description
         %dt Type
         %dd= @item.item_type.name
-
-    .span-7.properties
-      %dl
         %dt Category
         %dd= @item.item_category.name
+        %dt Budget Item Type
+        %dd= @item.budget_item_type.name
+    .span-7.properties
+      %dl
+
         %dt Unit
         %dd= @item.base_unit
         %dt Default Taxed

@@ -19,6 +19,13 @@ class ItemPurchasesController < ApplicationController
     @page_title = "Editing #{@item_purchase.item.name} in purchase #{@item_purchase.purchase.vendor.name} #{@item_purchase.purchase.date}}"
   end
 
+  def index
+#    redirect_to program_purchases_path(current_user.current_program) if (@program.nil? && cannot?(:manage, Purchase))
+    @program = Program.find(params[:program_id])
+    @budget_type = BudgetItemType.find(params[:id])
+    @page_title = "#{@budget_type.name} Budget Purchases - #{@program.site.name}"
+    @item_purchases = ItemPurchase.by_budget_line_type(@budget_type.id).for_program(@program).page params[:page]
+  end
 
   def update
     if @item_purchase.update_attributes(params[:item_purchase])

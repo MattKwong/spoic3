@@ -1,6 +1,6 @@
-<% @program.budget_items.each do |item| %>
+<% @program.budget_items.alphabetized.each do |item| %>
 <tr>
-  <td><%= @program.budget_item_name(item.budget_item_type_id) %></td>
+  <td><%= link_to @program.budget_item_name(item.budget_item_type_id), item_purchases_path(@program.id, item.budget_item_type_id) %></td>
   <td><%= number_to_currency @program.budget_item_budgeted(item.budget_item_type_id) %></td>
   <td><%= number_to_currency @program.budget_item_spent(item.budget_item_type_id) %></td>
   <td><%= number_to_currency @program.budget_item_spent_with_tax(item.budget_item_type_id) %></td>

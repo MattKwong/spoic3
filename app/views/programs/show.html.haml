@@ -1,5 +1,5 @@
 #active_admin_content
-  .span-8.properties
+  .span-7.properties
     %dl
       %dt Site
       %dd= @program.site.name
@@ -7,7 +7,7 @@
       %dd= @program.program_type.name
       %dt Start Date
       %dd= @program.start_date.strftime("%B %d")
-  .span-8.properties
+  .span-7.properties
     %dl.properties
       -if can? :create, Item
         %dlt= link_to "Create a New Item", new_program_item_path(@program)
@@ -16,7 +16,7 @@
       -if can? :create, Vendor
         %dlt= link_to "Create a New Vendor", new_site_vendor_path(@program.site)
 
-  .span-8.properties
+  .span-7.properties
     %dl.properties
       -if can? :create, FoodInventory
         %dlt= link_to "Create a New Food Inventory", new_program_food_inventory_path(@program)

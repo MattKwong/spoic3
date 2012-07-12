@@ -14,7 +14,9 @@ class ItemPurchase < ActiveRecord::Base
   validate :validate_units
 
   scope :by_budget_line_type, lambda { |id| joins(:item).where("budget_item_type_id = ?", id) }
-  scope :for_program, lambda { |program| joins(:purchase).where('program_id = ?', program) }
+  scope :for_program, lambda { |program| joins(:purchase).where('purchases.program_id = ?', program) }
+  scope :for_program_budget_line_type, lambda { |program_id, budget_line_id| joins(:purchase).where('purchase.program_id = ?', program_id) }
+
   scope :for_item, lambda { |item| joins(:item).where('item_id = ?', item) }
   scope :taxable, where(:taxable => true)
   scope :alphabetized, joins(:item).order('items.name')

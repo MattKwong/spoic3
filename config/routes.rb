@@ -43,6 +43,7 @@ Spoic3::Application.routes.draw do
     get :activation
   end
 
+  match "item_purchases/:program_id/index/:id" => 'item_purchases#index', :as => 'item_purchases'
   match "purchases/:id/delete" => 'purchases#destroy', :as => 'delete_purchase'
   match "food_inventory_food_items/:id/delete" => 'food_inventory_food_items#destroy', :as => 'delete_item_inventory'
 #Routes for jquery calls

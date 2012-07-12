@@ -4,7 +4,7 @@
   <td><%= number_to_currency(item_purchase.price, :unit => "$") %></td>
   <td><%= number_to_currency(item_purchase.total_price, :unit => "$") %></td>
   <td><%= 'Yes' if item_purchase.taxable?%></td>
-  <!--<td><%= item_purchase.size %></td>-->
+  <td><%= item_purchase.item.budget_item_type.name %></td>
   <!--<td><%= item_purchase.item.base_unit %></td>-->
   <td><%= item_purchase.size_in_base_units %></td>
   <td><%= item_purchase.total_size_in_base_units %></td>
