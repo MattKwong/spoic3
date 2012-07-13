@@ -9,12 +9,9 @@
     <list id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="Collapse item purchase details on page load." />
     <list id="6515e16b-01b0-44f6-bd49-9d9ce8271564" name="Failed commit: Default" comment="Added update of second payment fields in ScheduledGroup to payment controller code." />
     <list default="true" id="e869ade2-2c0f-42bd-b5a5-3ff2c24839cd" name="Gemfile changes" comment="Changed site title to SSP from Sierra Service Project to save space.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/staff_reports/budget.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/staff_reports/consumption.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/staff_reports/inventory.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/staff_reports/show.html.haml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/item.rb" afterPath="$PROJECT_DIR$/app/models/item.rb" />
     </list>
     <ignored path="spoic3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,10 +46,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.haml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="show.html.haml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/staff_reports/show.html.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="93" selection-start="998" selection-end="998" vertical-scroll-proportion="0.71543086">
+            <state line="21" column="0" selection-start="998" selection-end="998" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -85,10 +82,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="item.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="item.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/item.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="124" column="15" selection-start="4663" selection-end="4663" vertical-scroll-proportion="0.0">
+            <state line="122" column="76" selection-start="4579" selection-end="4579" vertical-scroll-proportion="0.36831275">
               <folding />
             </state>
           </provider>
@@ -167,12 +164,12 @@
         <option value="$PROJECT_DIR$/app/views/purchases/_fields.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/admin_layout_alt.html.erb" />
         <option value="$PROJECT_DIR$/app/views/staff_reports/session.html.haml" />
-        <option value="$PROJECT_DIR$/app/views/staff_reports/show.html.haml" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/views/staff_reports/food_consumption.html.haml" />
-        <option value="$PROJECT_DIR$/app/models/item.rb" />
         <option value="$PROJECT_DIR$/app/controllers/staff_reports_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/staff_reports/food_reconciliation.html.haml" />
+        <option value="$PROJECT_DIR$/app/views/staff_reports/show.html.haml" />
+        <option value="$PROJECT_DIR$/app/models/item.rb" />
       </list>
     </option>
   </component>
@@ -1868,7 +1865,11 @@
       <created>1342216252991</created>
       <updated>1342216252991</updated>
     </task>
-    <option name="localTasksCounter" value="177" />
+    <task id="LOCAL-00177" summary="Food reconciliation report.">
+      <created>1342216471315</created>
+      <updated>1342216471315</updated>
+    </task>
+    <option name="localTasksCounter" value="178" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1893,14 +1894,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3235955" sideWeight="0.99889505" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.041666668" sideWeight="0.611236" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28089887" sideWeight="0.80649114" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3247191" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27941176" sideWeight="0.24719101" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24142157" sideWeight="0.611236" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24142157" sideWeight="0.611236" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39910814" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24448529" sideWeight="0.23258427" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3741573" sideWeight="0.06556372" order="7" side_tool="true" content_ui="tabs" />
@@ -2066,18 +2067,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/item_purchase.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="66" selection-start="349" selection-end="349" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/item.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="124" column="15" selection-start="4663" selection-end="4663" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/staff_reports_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="31" column="64" selection-start="1165" selection-end="1165" vertical-scroll-proportion="0.0">
@@ -2085,9 +2074,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/staff_reports/food_reconciliation.html.haml">
+    <entry file="file://$PROJECT_DIR$/app/views/staff_reports/show.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="83" selection-start="2527" selection-end="2527" vertical-scroll-proportion="0.0">
+        <state line="21" column="0" selection-start="998" selection-end="998" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -2099,9 +2088,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/staff_reports/show.html.haml">
+    <entry file="file://$PROJECT_DIR$/app/views/staff_reports/food_reconciliation.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="93" selection-start="998" selection-end="998" vertical-scroll-proportion="0.71543086">
+        <state line="48" column="83" selection-start="2527" selection-end="2527" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/item_purchase.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="66" selection-start="349" selection-end="349" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/item.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="122" column="76" selection-start="4579" selection-end="4579" vertical-scroll-proportion="0.36831275">
           <folding />
         </state>
       </provider>

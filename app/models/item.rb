@@ -116,9 +116,11 @@ class Item < ActiveRecord::Base
     end
 
     def purchased_for_program(program, start_date, end_date)
-      purchases_between(program, start_date, end_date).inject(0) do |total, purchase|
-        temp =  purchase.quantity * purchase.size.u
+      total = 0
+      purchases_between(program, start_date, end_date).each do |purchase|
+        total +=  purchase.total_base_units
       end
+      total
     end
 
     def purchased_for_program_value(program, start_date, end_date)
