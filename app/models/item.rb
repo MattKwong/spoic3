@@ -94,13 +94,22 @@ class Item < ActiveRecord::Base
     end
 
     def in_inventory_for(program)
-     in_inventory_for_program_at(program, Date.today)
+      t = in_inventory_for_program_at(program, Date.today)
+      logger.debug program.name
+      logger.debug t.inspect
+      t
     end
 
     def in_inventory
       total = 0
       Program.active.each do |p|
-        total += in_inventory_for(p)
+        #logger.debug total.inspect
+        t = in_inventory_for(p)
+        #logger.debug t.inspect
+        total += t
+      end
+      if (total.class == Unit)
+        total = total.scalar
       end
       total
     end
@@ -128,15 +137,20 @@ class Item < ActiveRecord::Base
 
     def in_inventory_for_program_at(program, date)
       last_inventory = last_inventory_for_program_at_date(program, date)
+      logger.debug last_inventory.inspect
       if last_inventory.nil?
-        (purchases_between(program, program.start_date, date).map &:total_size_in_base_units).sum
+        r = (purchases_between(program, program.start_date, date).map &:total_size_in_base_units).sum
+        #logger.debug "Purchases between..."
+        #logger.debug r.inspect
       else
         purchase = (purchases_between(program, last_inventory.food_inventory.date, date).map &:total_size_in_base_units).sum
         unless purchase == 0
           purchase = purchase.scalar
         end
-        last_inventory.in_base_units + purchase
+        r = last_inventory.in_base_units + purchase
+        #logger.debug r.inspect
       end
+      r
     end
 
     def cost_of_inventory(program, date)

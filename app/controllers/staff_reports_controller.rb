@@ -33,8 +33,14 @@ class StaffReportsController < ApplicationController
   end
 
   def session
-    @program = Program.find(params[:id])
-    @page_title = "Food Costs by Session: #{@program}"
+    program_id = current_admin_user.program_id
+    if program_id == 0
+      @program = Program.current
+      @page_title = "Food Costs by Session: #{@program}"
+    else
+      @program = Program.find(current_admin_user.program_id)
+      @page_title = "Food Costs by for all sessions"
+    end
   end
 
   protected

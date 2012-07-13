@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <%= favicon_link_tag %>
+
+    <%= render 'layouts/stylesheets' %>
+
+    <script src = https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js></script>
+
+    <!--<%= javascript_include_tag 'jquery.js' %>-->
+    <!--<%= javascript_include_tag 'jquery-ui.js' %>-->
+    <!--<%= javascript_include_tag '01.js' %>-->
+    <%= javascript_include_tag :all %>
+
+  </head>
+  <body class = logged_in>
+  <div class="wrapper">
+	<%= render 'layouts/header' %>
+    <div id = "title_bar">
+
+      <div id="titlebar_left">
+        <div id="logo" width=100px><%= link_to image_tag('logo.png', :alt => "Sierra Service Project", :width => 75, :height => 75),
+                    "http://www.sierraserviceproject.org", :title => "Go to SSP Website" %></div>
+        <span class="breadcrumb">
+           <!--<a href="/">Home</a>-->
+           <!--<span class="breadcrumb_sep">/</span>-->
+            <%= render_breadcrumbs %>
+        </span>
+        <h2 id="page_title"><%= @page_title %></h2>
+      </div>
+    </div>
+    <div class="flashes">
+      <% if flash.count > 0 %>
+        <% flash.each do |key, value| %>
+           <% if key.to_s == 'notice' %>
+             <div class="flash flash_notice"><%= value %></div>
+           <% else %>
+             <div class="flash flash_error"><%= value %></div>
+           <% end %>
+        <% end %>
+      <% end %>
+    </div>
+	<section class="round container">
+        <div id="main_content_wrapper">
+          <div id="main_content">
+            <%= yield %>
+          </div>
+        </div>
+    </section>
+  </div>
+  <%= render 'layouts/footer' %>
+    <%= debug(params) if Rails.env.development? %>
+
+  </body>
+</html>
