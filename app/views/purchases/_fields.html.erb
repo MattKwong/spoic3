@@ -3,7 +3,7 @@
   <%= form.inputs do %>
     <%= form.input :vendor, :as => :select, :include_blank => false, :collection => purchase.program.site.vendors %>
     <%= form.input :purchaser, :as => :select, :include_blank => false, :collection => purchase.program.admin_users  %>
-    <%= form.input :purchase_type, :as => :select, :include_blank => false, :collection => ['Credit', 'Gift Card', 'Cash'],
+    <%= form.input :purchase_type, :as => :select, :include_blank => false, :collection => ['Credit', 'Gift Card', 'Cash', 'Return', 'Mixed'],
             :hint => "Specify either cash, gift card or credit(debit) purchase." %>
     <%= form.input :date %>
     <%= form.input :tax, :input_html => { :size => 15 }, :hint => "Enter the tax, in dollars. Omit dollar sign and commas." %>
