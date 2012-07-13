@@ -21,6 +21,7 @@
               %th= inventory.date.strftime("%b %d")
             %th Total Consumed Amount
             %th Total Consumed Cost
+            %th Discrepancy
         %tbody
           - total_inventory_value_at_cost = total_purchased_for_program = total_total_consumed_cost = 0
           - @items.each do |item|
@@ -41,9 +42,11 @@
               %td= "%.2f" % (all_inv.map &:consumed).sum
               %td= number_to_currency((all_inv.map &:total_consumed_cost).sum)
               - total_total_consumed_cost += (all_inv.map &:total_consumed_cost).sum
+              %td= number_to_currency (item.purchased_for_program_value(@program, @program.start_date, @date) - item.inventory_value_at_cost(@program, @date) - (all_inv.map &:total_consumed_cost).sum)
           %tfoot
             %th{:colspan => 4}
             %th= number_to_currency(total_inventory_value_at_cost)
             %th= number_to_currency(total_purchased_for_program)
             %th{:colspan => @inventories.length + 2}
             %th= number_to_currency(total_total_consumed_cost)
+            %th= number_to_currency(total_purchased_for_program - total_inventory_value_at_cost - total_total_consumed_cost)
