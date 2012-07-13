@@ -1,0 +1,21 @@
+#active_admin_content
+  .index_content
+    .index_as_table
+      %table.index_table
+        %thead
+          %tr
+            %th Program
+            %th Food Reconciliation
+            %th Food Inventory
+            %th Food Budget
+            %th Food Consumption
+            %th Weekly Food Cost
+        %tbody
+          - @programs.each do |program|
+            %tr
+              %td= program
+              %td= link_to "view", url_for(:controller => :staff_reports, :action => :food_reconciliation, :id => program.id)
+              %td= link_to "view", url_for(:controller => :staff_reports, :action => :food_inventory, :id => program.id)
+              %td= link_to "view", url_for(:controller => :staff_reports, :action => :food_budget, :id => program.id)
+              %td= link_to "view", url_for(:controller => :staff_reports, :action => :food_consumption, :id => program.id)
+              %td= link_to "view", url_for(:controller => :staff_reports, :action => :session, :id => program.id)
