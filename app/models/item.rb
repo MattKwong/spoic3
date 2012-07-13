@@ -150,6 +150,9 @@ class Item < ActiveRecord::Base
         r = last_inventory.in_base_units + purchase
         #logger.debug r.inspect
       end
+      if r.class == Unit
+        r = r.scalar
+      end
       r
     end
 
