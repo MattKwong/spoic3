@@ -77,6 +77,7 @@ class FoodInventoriesController < ApplicationController
     @inventory_list = Array.new
 
     Item.food.alphabetized.each do |i|
+#    Item.for_program_budget_line_type(@program, 2).each do |i|
       inventories = FoodInventoryFoodItem.for_program(@program).find_all_by_item_id(i.id)
       purchases = ItemPurchase.for_program(@program).find_all_by_item_id(i.id)
       if inventories.any? || purchases.any? #Either exist
@@ -103,17 +104,24 @@ class FoodInventoriesController < ApplicationController
         if inventories.any? && purchases.any?
         #Both exist. Inventory and purchase fields were already set above. All we need to calculate is
         #weekly consumption and expected amount
-          purchases_since_start = i.program_purchases(@program)
+          purchases_since_start = i.program_purchases_in_base_units(@program)
           weeks_since_start = ((Time.now.to_date) - @program.first_session_start)/7
           if weeks_since_start != 0
             ave_consumption = (purchases_since_start - inventories.last.in_base_units)/weeks_since_start
             list_item.store(:weekly_consumption, ave_consumption )
           end
+          logger.debug weeks_since_start.inspect
+          logger.debug purchases_since_start.to_s.inspect
+          logger.debug inventories.last.in_base_units.to_s.inspect
+          logger.debug ("%.1f" % ave_consumption).inspect
           purchases_since_last_inventory = i.purchases_between(@program, inventories.last.food_inventory.date, Time.now.to_date)
-
-          purchased_since_last_inventory = (purchases_since_last_inventory.map &:total_base_units).sum
+          if purchases_since_last_inventory.any?
+            purchased_since_last_inventory = (purchases_since_last_inventory.map &:total_size_in_base_units).sum.scalar
+          else
+            purchased_since_last_inventory = 0
+          end
           list_item.store(:maximum_expected, inventories.last.in_base_units + purchased_since_last_inventory)
-          list_item.store(:purchased_since_last_inventory, purchased_since_last_inventory)
+          list_item.store(:purchased_since_last_inventory, "%.1f" % (purchased_since_last_inventory))
         end
         @inventory_list << list_item
       end

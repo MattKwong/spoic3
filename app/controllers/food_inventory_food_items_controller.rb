@@ -27,6 +27,7 @@ class FoodInventoryFoodItemsController < ApplicationController
     if last_purchase.count > 0
       @last_purchase_date = last_purchase.last.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%b %d @ %I:%M %p")
       @last_purchase_amount = last_purchase.last.quantity
+      @last_purchase_in_base_units = last_purchase.last.total_base_units
     else
       @last_purchase_date = "None"
       @last_purchase_amount = "None"

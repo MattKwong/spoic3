@@ -25,7 +25,7 @@
             %td= purchase_item.quantity
             %td= purchase_item.size
             %td= number_to_currency(purchase_item.price)
-            %td #{purchase_item.total_base_units} #{@item.base_unit}
+            %td #{purchase_item.total_size_in_base_units}
             %td #{number_to_currency(purchase_item.price_per_base_unit.scalar)} / #{@item.base_unit}
         - unless items.any?
           %tr

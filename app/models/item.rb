@@ -75,6 +75,13 @@ class Item < ActiveRecord::Base
       total
     end
 
+  def program_purchases_in_base_units(program)
+      p = item_purchases.joins(:purchase).where('purchases.program_id = ?', program.id)
+      total = 0
+      p.each {|i| total += i.total_base_units }
+      total
+    end
+
     def program_deliveries(program)
       p = material_item_delivereds.joins(:project).where('projects.program_id = ?', program.id)
       total = 0
@@ -122,9 +129,13 @@ class Item < ActiveRecord::Base
     def in_inventory_for_program_at(program, date)
       last_inventory = last_inventory_for_program_at_date(program, date)
       if last_inventory.nil?
-        (purchases_between(program, program.start_date, date).map &:total_base_units).sum
+        (purchases_between(program, program.start_date, date).map &:total_size_in_base_units).sum
       else
-        last_inventory.in_base_units + (purchases_between(program, last_inventory.food_inventory.date, date).map &:total_base_units).sum
+        purchase = (purchases_between(program, last_inventory.food_inventory.date, date).map &:total_size_in_base_units).sum
+        unless purchase == 0
+          purchase = purchase.scalar
+        end
+        last_inventory.in_base_units + purchase
       end
     end
 
@@ -137,12 +148,11 @@ class Item < ActiveRecord::Base
     # returns the price per base unit.  The value returned is unitless
     def cost_of(program, date, quantity, excluded = 0)
       item_purchases = purchases_between(program, program.start_date, date).order('date DESC')
-      # food_item_purchases = Purchase.for_program(program).after(program.start_date).before(date).order('date DESC')
 
       costs = []
-      quantity = quantity.unit.to(base_unit).abs
+      quantity = quantity.unit.to(base_unit)#.abs
       unless excluded == 0
-        excluded = excluded.unit.to(base_unit).abs
+        excluded = excluded.unit.to(base_unit)#.abs
       end
 
       item_purchases.each do |food_item_purchase|
@@ -153,13 +163,12 @@ class Item < ActiveRecord::Base
           amount_available -= to_debit
         end
 
-        if quantity > 0
+        if quantity.abs > 0
           to_debit = [quantity, amount_available].min
           quantity -= to_debit
           costs << [to_debit, food_item_purchase.price_per_base_unit]
         end
       end
-
       denom = (costs.collect {|e| e[0] }).sum
       num = (costs.inject(0) { |result, element| result + element[0].unit * element[1] })
       denom == 0 ? 0.u : num / denom

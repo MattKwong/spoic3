@@ -35,10 +35,10 @@
       %dl
         - if @program
           %dt= "Total Purchased for #{@program.site.name}"
-          %dd #{(@item.item_purchases.for_program(@program).map &:total_base_units).sum} #{@item.base_unit}
+          %dd #{(@item.item_purchases.for_program(@program).map &:total_size_in_base_units).sum}
         -else
           %dt= "Total Purchased for all programs"
-          %dd #{(@item.item_purchases.map &:total_base_units).sum} #{@item.base_unit}
+          %dd #{(@item.item_purchases.map &:total_size_in_base_units).sum}
 
 
         -if @program

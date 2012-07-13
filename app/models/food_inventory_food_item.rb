@@ -15,7 +15,7 @@
 #
 
 class FoodInventoryFoodItem < ActiveRecord::Base
-  attr_accessible :item_id, :quantity, :food_inventory_id, :in_inventory
+  attr_accessible :item_id, :quantity, :food_inventory_id, :in_inventory, :average_cost
 
   belongs_to :item
   belongs_to :food_inventory
@@ -108,6 +108,7 @@ class FoodInventoryFoodItem < ActiveRecord::Base
 
   def update_average_cost
     self.average_cost = item.cost_of(food_inventory.program, food_inventory.date, consumed_units, quantity)
+
   end
 
   def validate_units
