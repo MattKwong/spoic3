@@ -67,6 +67,7 @@ class Item < ActiveRecord::Base
     def purchases_between(program, start_date, end_date)
       item_purchases.joins(:purchase).where('purchases.program_id = ? AND purchases.date >= ? AND purchases.date < ?', program.id, start_date, end_date)
     end
+
 #These methods are used to calculate the current on hand quantities of construction materials
     def program_purchases(program)
       p = item_purchases.joins(:purchase).where('purchases.program_id = ?', program.id)
@@ -120,6 +121,14 @@ class Item < ActiveRecord::Base
       end
     end
 
+    def purchased_for_program_value(program, start_date, end_date)
+      total = 0
+      purchases_between(program, start_date, end_date).each do |purchase|
+        total +=  purchase.price * purchase.quantity
+      end
+      total
+    end
+
     def average_cost(program, date)
       p = purchases_between(program, program.start_date, program.end_date)
       if p.any?
@@ -159,10 +168,16 @@ class Item < ActiveRecord::Base
     def cost_of_inventory(program, date)
       #logger.debug "#{in_inventory_for_program_at(program, date)} #{base_unit}"
       cost_of(program, date, "#{in_inventory_for_program_at(program, date)} #{base_unit}").scalar
-
     end
 
-    # returns the price per base unit.  The value returned is unitless
+    def inventory_value_at_cost(program, date)
+      average_cost(program, date) * in_inventory_for_program_at(program, date)
+
+      #logger.debug "#{in_inventory_for_program_at(program, date)} #{base_unit}"
+ #     cost_of(program, date, "#{in_inventory_for_program_at(program, date)} #{base_unit}").scalar
+    end
+
+    # returns the price per base unit.  The value returned is unitless. This should be the average cost.
     def cost_of(program, date, quantity, excluded = 0)
       item_purchases = purchases_between(program, program.start_date, date).order('date DESC')
 

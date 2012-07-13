@@ -7,8 +7,8 @@
             %th
             %th
             %th{:colspan => @inventories.length, :style => "text-align:center;"} Amount Consumed Since Prior Inventory
-            %th Total Consumed Amount
-            %th Total Consumed Cost
+            %th
+            %th
         %thead
           %tr
             %th Food Item
@@ -27,5 +27,5 @@
                 %td= "%.2f" % inv.consumed unless inv.nil?
               - all_inv = food_item.food_inventory_food_items.for_program(@program)
               %td= "%.2f" % (all_inv.map &:consumed).sum
-              %td= number_to_currency((all_inv.map &:total_price).sum)
+              %td= number_to_currency((all_inv.map &:total_consumed_cost).sum)
 

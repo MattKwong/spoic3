@@ -11,11 +11,12 @@
             %th Total Cost
             %th Cost/ Person/ Day
         %tbody
-          - @program.sessions.each do |session|
-            %tr
-              %td= session.name
-              %td= session.scheduled_adults
-              %td= session.scheduled_youth
-              %td= session.volunteer_days
-              %td= number_to_currency(session.total_cost)
-              %td= number_to_currency(session.cost_per_day)
+          - @program.each do |p|
+            -p.sessions.each do |session|
+              %tr
+                %td= session.name
+                %td= session.scheduled_adults
+                %td= session.scheduled_youth
+                %td= session.volunteer_days
+                %td= number_to_currency(session.total_cost)
+                %td= number_to_currency(session.cost_per_day)
