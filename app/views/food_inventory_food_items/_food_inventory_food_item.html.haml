@@ -3,7 +3,7 @@
   %td= "%.2f" % food_inventory_food_item.item.in_inventory_for_program_at(food_inventory_food_item.food_inventory.program, food_inventory_food_item.food_inventory.date)
   %td= food_inventory_food_item.quantity
   %td= "%.2f" % (food_inventory_food_item.item.in_inventory_for_program_at(food_inventory_food_item.food_inventory.program, food_inventory_food_item.food_inventory.date) - food_inventory_food_item.quantity.unit.scalar)
-  %td= number_to_currency(food_inventory_food_item.average_cost) 
-  %td= number_to_currency(food_inventory_food_item.total_consumed_cost)
+  -#%td= number_to_currency(food_inventory_food_item.average_cost)
+  -#%td= number_to_currency(food_inventory_food_item.total_consumed_cost)
   %td= link_to "Delete", delete_item_inventory_path(food_inventory_food_item.id), :action => :delete, :confirm => "Are you sure you want to delete this?"
 
