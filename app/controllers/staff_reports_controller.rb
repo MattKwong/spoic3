@@ -2,6 +2,7 @@ class StaffReportsController < ApplicationController
   layout 'admin_layout_alt'
   before_filter :get_program, :except => :show
 #  load_and_authorize_resource
+  require 'csv'
 
   def show
     @page_title = "Food Reports"
