@@ -36,12 +36,13 @@ class FoodInventoryFoodItemsController < ApplicationController
   end
 
   def create
+    @program = FoodInventory.find(params[:food_inventory_id]).program
     @food_inventory_food_item  = FoodInventoryFoodItem.new(params[:food_inventory_food_item])
     @food_inventory_food_item.food_inventory_id = params[:food_inventory_id]
     @food_inventory = FoodInventory.find(params[:food_inventory_id])
     if @food_inventory_food_item.save
       flash[:success] = "Inventory results for #{@food_inventory_food_item.item.name} have been successfully recorded."
-      redirect_to @food_inventory
+      redirect_to new_food_inventory_food_inventory_food_item_path(params[:food_inventory_id])
     else
       flash[:warning] = "Errors prevented from being saved: #{@food_inventory_food_item.errors.first[0].to_s} #{@food_inventory_food_item.errors.first[1].humanize}."
       @page_title = "#{@food_inventory.program.name} #{@food_inventory.date}: Record inventory Results"

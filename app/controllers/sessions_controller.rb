@@ -23,6 +23,7 @@ class SessionsController < Devise::SessionsController
   # DELETE /resource/sign_out
   def destroy
     signed_in = signed_in?(resource_name)
+    logger.debug resource_name.inspect
     redirect_path = after_sign_out_path_for(resource_name)
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
     set_flash_message :notice, :signed_out if signed_in

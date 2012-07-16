@@ -16,12 +16,6 @@ class FoodInventoriesController < ApplicationController
 
   def show
     @page_title = "#{@food_inventory.date} Food Inventory"
-    @menu_actions = []
-    @menu_actions << {:name => "Edit", :path => edit_food_inventory_path(@food_inventory) } if can? :edit, @food_inventory
-    @menu_actions << {:name => "Delete",
-      :path => food_inventory_path(@food_inventory), 
-      :method => :delete, 
-      :confirm => "Are you sure you want to delete this inventory? This cannot be undone." } if can? :destroy, @food_inventory
     if @food_inventory.program.purchases.where(:date => @food_inventory.date).count != 0
       flash.now[:notice] = "There is a purchase recorded for this date.  This inventory will be treated as before any purchases on #{@food_inventory.date}"
     end
