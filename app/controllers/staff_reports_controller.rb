@@ -25,19 +25,29 @@ class StaffReportsController < ApplicationController
     @date = (Date.parse(params[:date]) if params[:date]) || Date.today
 #For testing
 #    @date = (Date.parse(params[:date]) if params[:date]) || "07/08/2012".to_date
-    @items = Item.food.all_for_program(@program).alphabetized.first(25)
-    assemble_items
+#    @items = Item.food.all_for_program(@program).alphabetized.first(25)
+    @items = assemble_items(@program, @date)
     @budget_type_id = BudgetItemType.find_by_name('Food').id
     @inventories = @program.food_inventories
   end
 
-  def assemble_items
+  def assemble_items(program, date)
     report_items = Array.new
-    @items.each do |i|
-      item = {:name => i.name}
+    Item.food.all_for_program(program).each do |item|
+      all_inv = item.food_inventory_food_items.for_program(program)
+      item = {:name => item.name, :total_purchased => item.purchased_for_program(program, program.start_date, date),
+              :current_in_inventory => item.in_inventory_for_program_at(program, date),
+              :base_unit => item.base_unit, :average_cost => item.average_cost(program, date),
+              :value_at_cost => item.inventory_value_at_cost(program, date),
+              :purchased_for_program => item.purchased_for_program_value(program, program.start_date, date),
+              :consumed => (all_inv.map &:consumed).sum,
+              :total_consumed_cost => (all_inv.map &:total_consumed_cost).sum
+      }
       report_items << item
     end
     logger.debug report_items.inspect
+    #remove zero items
+    report_items
   end
 
   def food_budget

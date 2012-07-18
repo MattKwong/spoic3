@@ -26,23 +26,24 @@
           - total_inventory_value_at_cost = total_purchased_for_program = total_total_consumed_cost = 0
           - @items.each do |item|
             %tr
-              %td= link_to item.name, item
-              %td= "%.2f" % (item.purchased_for_program @program, @program.start_date, @date)
-              %td= "%.2f %s" % [item.in_inventory_for_program_at(@program, @date), item.base_unit]
-              %td= number_to_currency(item.average_cost(@program, @date))
-              %td= number_to_currency(item.inventory_value_at_cost(@program, @date))
-              -  total_inventory_value_at_cost += item.inventory_value_at_cost(@program, @date)
-              %td= number_to_currency(item.purchased_for_program_value(@program, @program.start_date, @date))
-              - total_purchased_for_program += item.purchased_for_program_value(@program, @program.start_date, @date)
-              %td= item.base_unit
-              - @inventories.each do |inventory|
-                - inv = inventory.food_inventory_food_items.for_item(item).first
-                %td= "%.2f" % inv.consumed unless inv.nil?
-              - all_inv = item.food_inventory_food_items.for_program(@program)
-              %td= "%.2f" % (all_inv.map &:consumed).sum
-              %td= number_to_currency((all_inv.map &:total_consumed_cost).sum)
-              - total_total_consumed_cost += (all_inv.map &:total_consumed_cost).sum
-              %td= number_to_currency (item.purchased_for_program_value(@program, @program.start_date, @date) - item.inventory_value_at_cost(@program, @date) - (all_inv.map &:total_consumed_cost).sum)
+              %td= link_to item[:name] #need to add item reference (id or object)
+              %td= "%.2f" % item[:total_purchased]
+              %td= "%.2f %s" % [item[:current_in_inventory], item[:base_unit]]
+              %td= number_to_currency(item[:average_cost])
+              %td= number_to_currency(item[:value_at_cost])
+              -  total_inventory_value_at_cost += item[:value_at_cost]
+              %td= number_to_currency(item[:purchased_for_program])
+              - total_purchased_for_program += item[:purchased_for_program]
+              %td= item[:base_unit]
+              -#- @inventories.each do |inventory|
+              -#  - inv = inventory.food_inventory_food_items.for_item(item).first
+              -#  %td= "%.2f" % inv.consumed unless inv.nil?
+              -#- all_inv = item.food_inventory_food_items.for_program(@program)
+              %td
+              %td= "%.2f" % item[:consumed]
+              %td= number_to_currency(item[:total_consumed_cost])
+              - total_total_consumed_cost += item[:total_consumed_cost]
+              %td
           %tfoot
             %th{:colspan => 4}
             %th= number_to_currency(total_inventory_value_at_cost)
