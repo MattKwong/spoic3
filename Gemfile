@@ -17,6 +17,8 @@ gem 'rails3-jquery-autocomplete'
 gem 'ruby-units'
 gem 'breadcrumbs_on_rails'
 
+gem "rack-timeout"
+
 group :production, :staging do
   gem "pg"
 end

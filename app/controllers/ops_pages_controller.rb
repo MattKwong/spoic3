@@ -7,6 +7,10 @@ class OpsPagesController < ApplicationController
     @page_title = "SSP Food Cost Tracking"
   end
 
+  def timeout
+    @page_title = "System Timeout Error"
+  end
+
   def construction
     @page_title = "SSP Construction Cost Tracking"
   end

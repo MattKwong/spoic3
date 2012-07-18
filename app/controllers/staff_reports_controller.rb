@@ -25,9 +25,19 @@ class StaffReportsController < ApplicationController
     @date = (Date.parse(params[:date]) if params[:date]) || Date.today
 #For testing
 #    @date = (Date.parse(params[:date]) if params[:date]) || "07/08/2012".to_date
-    @items = Item.food.all_for_program(@program).alphabetized
+    @items = Item.food.all_for_program(@program).alphabetized.first(25)
+    assemble_items
     @budget_type_id = BudgetItemType.find_by_name('Food').id
     @inventories = @program.food_inventories
+  end
+
+  def assemble_items
+    report_items = Array.new
+    @items.each do |i|
+      item = {:name => i.name}
+      report_items << item
+    end
+    logger.debug report_items.inspect
   end
 
   def food_budget

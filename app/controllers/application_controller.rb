@@ -1,7 +1,15 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery :only => [:create, :update]
   add_breadcrumb "Home", '/'
- def after_sign_in_path_for(resource)
+
+  rescue_from Timeout::Error, :with => :rescue_from_timeout
+
+  protected
+
+  def rescue_from_timeout(exception)
+    # code to handle the issue
+  end
+  def after_sign_in_path_for(resource)
  #this overrides the default method in the devise library
 
    program_user = ProgramUser.find_by_user_id(resource.id)
@@ -68,5 +76,11 @@ class ApplicationController < ActionController::Base
       redirect_to '/admin'
          end
     end
+  end
+
+  private
+  def rescue_from_timeout(exception)
+    log_activity(Time.now, "Error", "System timeout error", @current_admin_user.id, current_admin_user.name, "")
+    redirect_to timeout_error_path
   end
 end
