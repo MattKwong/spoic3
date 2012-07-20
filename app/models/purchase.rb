@@ -35,10 +35,11 @@ class Purchase < ActiveRecord::Base
   scope :for_program, lambda { |program| where(:program_id => program.id) }
   scope :after, lambda { |date| where('date > ?', date) }
   scope :before, lambda { |date| where('date <=', date) }
-  #scope :incomplete, where('unaccounted_for > 0.01')
 
 #  default_scope :order => 'date DESC'
   scope :past_week, where('date > ?', Date.today - 7)
+  scope :newest_first, :order => 'date DESC'
+  scope :alphabetized, lambda {joins(:vendor).order('vendor.name') }
 
   def budget_type
     if budget_types.count > 1
@@ -68,7 +69,9 @@ class Purchase < ActiveRecord::Base
   def unaccounted_for
     total - accounted_for
   end
-
+  def unaccounted_for_abs
+    unaccounted_for.abs
+  end
   def food_item_total
     budget_item_id = BudgetItemType.find_by_name('Food').id
     (item_purchases.by_budget_line_type(budget_item_id).map &:total_price_with_tax).sum

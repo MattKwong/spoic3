@@ -6,8 +6,8 @@
           %tr
             %th{:colspan => 7}
             %th{:colspan => @inventories.length, :style => "text-align:center;"} Amount Consumed Since Prior Inventory
-            %th
-            %th
+            %th{:colspan => 3}
+
         %thead
           %tr
             %th Item Name
@@ -26,7 +26,7 @@
           - total_inventory_value_at_cost = total_purchased_for_program = total_total_consumed_cost = 0
           - @items.each do |item|
             %tr
-              %td= link_to item[:name] #need to add item reference (id or object)
+              %td= link_to item[:name], item[:item]
               %td= "%.2f" % item[:total_purchased]
               %td= "%.2f %s" % [item[:current_in_inventory], item[:base_unit]]
               %td= number_to_currency(item[:average_cost])
@@ -35,15 +35,15 @@
               %td= number_to_currency(item[:purchased_for_program])
               - total_purchased_for_program += item[:purchased_for_program]
               %td= item[:base_unit]
-              -#- @inventories.each do |inventory|
-              -#  - inv = inventory.food_inventory_food_items.for_item(item).first
-              -#  %td= "%.2f" % inv.consumed unless inv.nil?
-              -#- all_inv = item.food_inventory_food_items.for_program(@program)
-              %td
-              %td= "%.2f" % item[:consumed]
-              %td= number_to_currency(item[:total_consumed_cost])
-              - total_total_consumed_cost += item[:total_consumed_cost]
-              %td
+              - item[:inventories].each do |inventory|
+                - if inventory.nil?
+                  %td
+                -else
+                  %td= "%.1f " % inventory
+              %td= "%.1f " % item[:all_inventories]
+              %td= number_to_currency(item[:all_inventories] * item[:average_cost])
+              - total_total_consumed_cost += (item[:all_inventories] * item[:average_cost])
+              %td= number_to_currency(item[:purchased_for_program] - item[:value_at_cost] - item[:all_inventories] * item[:average_cost]  )
           %tfoot
             %th{:colspan => 4}
             %th= number_to_currency(total_inventory_value_at_cost)

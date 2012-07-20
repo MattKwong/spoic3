@@ -3,6 +3,13 @@
   -#  .paginator.append-bottom
   -#    %span.wrapper
   = paginate @items
+  .span-7.properties
+    %dl
+      -if can? :create, Item
+        -if @program
+          %dlt= link_to "Create a New Item", new_program_item_path(@program)
+        -else
+          %dlt= link_to "Create a New Item", new_admin_item_path
   .span-24.prepend-top
     Filter item list:
     = link_to "All", items_path(:item_type => 0)

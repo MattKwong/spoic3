@@ -11,6 +11,8 @@ class Item < ActiveRecord::Base
     validate :validate_name
 
     before_save :strip_units_scalar
+    before_save :downcase_units
+
 
     belongs_to :program
     belongs_to :item_category
@@ -96,9 +98,6 @@ class Item < ActiveRecord::Base
 
     def in_inventory_for(program)
       t = in_inventory_for_program_at(program, Date.today)
-      logger.debug program.name
-      logger.debug t.inspect
-      t
     end
 
     def in_inventory
@@ -148,7 +147,6 @@ class Item < ActiveRecord::Base
 
     def in_inventory_for_program_at(program, date)
       last_inventory = last_inventory_for_program_at_date(program, date)
-      logger.debug last_inventory.inspect
       if last_inventory.nil?
         r = (purchases_between(program, program.start_date, date).map &:total_size_in_base_units).sum
         #logger.debug "Purchases between..."
@@ -159,7 +157,6 @@ class Item < ActiveRecord::Base
           purchase = purchase.scalar
         end
         r = last_inventory.in_base_units + purchase
-        #logger.debug r.inspect
       end
       if r.class == Unit
         r = r.scalar
@@ -230,7 +227,9 @@ class Item < ActiveRecord::Base
     end
 
     private
-
+    def downcase_units
+      base_unit = self.base_unit.downcase
+    end
     def rebase_units
       self.item_purchases.includes(:purchase).order('purchases.date ASC').each do |item|
         item.skip_derivations = true

@@ -30,6 +30,11 @@
           = "N/A" if @avg_price
         -if can? :edit, @item
           %dlt= link_to "Edit Item", edit_item_path(@item)
+        -if can? :create, Item
+          -if @program
+            %dlt= link_to "Create a New Item", new_program_item_path(@program)
+          -else
+            %dlt= link_to "Create a New Item", new_admin_item_path
 
     .span-7.last.properties
       %dl

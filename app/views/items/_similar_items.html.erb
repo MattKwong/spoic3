@@ -12,7 +12,7 @@
     <tbody>
         <% @similar_items_list.each do |i| %>
             <tr>
-              <td><%= i.name %></td>
+              <td><%= link_to i.name, i %></td>
               <td><%= i.description %></td>
               <td><%= i.base_unit %></td>
 

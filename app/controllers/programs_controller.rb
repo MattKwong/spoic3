@@ -40,15 +40,19 @@ class ProgramsController < ApplicationController
 
     case @scope
       when 'All', nil
-        @scoped_purchases = Purchase.for_program(@program).all
+        @scoped_purchases = Purchase.for_program(@program).newest_first
       when 'past7'
-        @scoped_purchases = Purchase.for_program(@program).past_week
-      when 'food'
-        @scoped_purchases = Purchase.for_program(@program).food
-     when 'material'
-        @scoped_purchases = Purchase.for_program(@program).material
-     when 'not_food_material'
-        @scoped_purchases = Purchase.for_program(@program).not_food_material
+        @scoped_purchases = Purchase.for_program(@program).past_week.newest_first
+      when 'unaccounted'
+        @scoped_purchases = Purchase.for_program(@program).all.sort{ |a,b| b.unaccounted_for.abs <=> a.unaccounted_for.abs}
+      when 'alphabetized'
+        @scoped_purchases = Purchase.for_program(@program).all.sort{ |a,b| b.unaccounted_for.abs <=> a.unaccounted_for.abs}
+     # when 'food'
+     #   @scoped_purchases = Purchase.for_program(@program).food
+     #when 'material'
+     #   @scoped_purchases = Purchase.for_program(@program).material
+     #when 'not_food_material'
+     #   @scoped_purchases = Purchase.for_program(@program).not_food_material
     end
   end
 

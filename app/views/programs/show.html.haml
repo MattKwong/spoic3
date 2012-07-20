@@ -99,7 +99,7 @@
     #purchases-info
       %h4#purchase_scopes
         = link_to 'Past 7 Days', program_path(@program.id, :scope => 'past7')
-        -#= link_to 'Food Only', program_path(@program.id), :scope => 'food'
+        = link_to 'With Unaccounted', program_path(@program.id, :scope => 'unaccounted')
         = link_to 'All'
       .group-container
         = render 'purchases/table', :purchases => @scoped_purchases

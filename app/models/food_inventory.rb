@@ -23,7 +23,7 @@ class FoodInventory < ActiveRecord::Base
   validates :date, :presence => true
   validates_uniqueness_of :date, :scope => :program_id, :message => "An inventory already exists on this date"
 
-  scope :for_program, lambda { |program| where('program_id ?', program.id) }
+  scope :for_program, lambda { |program| where('program_id = ?', program.id) }
   scope :after, lambda { |date| where('date >= ?', date) }
   scope :before, lambda { |date| where('date < ?', date) }
 
