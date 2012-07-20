@@ -16,7 +16,7 @@ gem 'rspec-rails', :group => [:development, :test]
 gem 'rails3-jquery-autocomplete'
 gem 'ruby-units'
 gem 'breadcrumbs_on_rails'
-
+gem 'newrelic_rpm'
 gem "rack-timeout"
 
 group :production, :staging do
