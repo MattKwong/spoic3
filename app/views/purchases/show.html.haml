@@ -2,7 +2,7 @@
   .span-8.properties.first
     %dl.properties
       %dt Vendor
-      %dd= @purchase.vendor.name
+      %dd=link_to @purchase.vendor.name, @purchase.vendor
       %dt Date
       %dd= @purchase.date
       %dt Purchaser

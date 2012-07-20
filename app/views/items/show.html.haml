@@ -22,7 +22,7 @@
         %dd= @item.default_taxed ? "Yes" : "No"
         %dt Average Price
         %dd
-          = "#{number_to_currency(@avg_price)} #{@item.base_unit}" if @avg_price
+          = "#{number_to_currency(@avg_price)}/#{@item.base_unit}" if @avg_price
           = "N/A" unless @avg_price
         %dt Default Cost
         %dd
@@ -40,22 +40,25 @@
       %dl
         - if @program
           %dt= "Total Purchased for #{@program.site.name}"
-          %dd #{(@item.item_purchases.for_program(@program).map &:total_size_in_base_units).sum}
+          -total_purchased = (@item.item_purchases.for_program(@program).map &:total_size_in_base_units).sum
         -else
           %dt= "Total Purchased for all programs"
-          %dd #{(@item.item_purchases.map &:total_size_in_base_units).sum}
-
+          -total_purchased =(@item.item_purchases.map &:total_size_in_base_units).sum
+        %dd= total_purchased
 
         -if @program
           %dt= @item.food? ? "Total in inventory at #{@program.site.name}" : "Total on hand in #{@program.site.name}"
         -else
           %dt= @item.food? ? "Total in inventory for all sites" : "Total on hand at all sites"
+
         -if !@item.materials?
           %dd
             -if @program
-              = sprintf '%.2f', @item.in_inventory_for(@program)
+              -in_inventory = @item.in_inventory_for(@program)
+              = sprintf '%.2f', in_inventory
             -else
-              = sprintf '%.2f', @item.in_inventory
+              -in_inventory = @item.in_inventory
+              = sprintf '%.2f', in_inventory
             = @item.base_unit
         -else
           %dd
@@ -68,7 +71,7 @@
         -if @item.food?
           -if @program
             %dt= "Total Consumed for #{@program.site.name}"
-            %dd= sprintf '%.2f', (@item.food_inventory_food_items.for_program(@program).map &:consumed).sum
+            %dd= sprintf '%.2f %s', (total_purchased.unit.scalar - in_inventory.unit.scalar), @item.base_unit
           -else
             %dt Total Consumed
             %dd
@@ -84,6 +87,27 @@
             %dt Total Consumed for all sites
             %dd
               = sprintf '%.2f', (@item.material_item_delivereds.map &:quantity).sum
+              = @item.base_unit
+
+        -if @item.food?
+          -if @program
+            %dt= "Total Consumed Cost for #{@program.site.name}"
+            %dd= number_to_currency((total_purchased.unit.scalar - in_inventory.unit.scalar) * @avg_price) if @avg_price
+          -else
+            %dt Total Consumed Cost
+            %dd
+              = number_to_currency((@item.food_inventory_food_items.map &:consumed).sum *  @avg_price) if @avg_price
+              = @item.base_unit
+        -else
+          -if @program
+            %dt= "Total Used Cost #{@program.site.name}"
+            %dd
+              = number_to_currency((@item.material_item_delivereds.for_program(@program).map &:quantity).sum  * @avg_price) if @avg_price
+              = @item.base_unit
+          -else
+            %dt Total Consumed Cost for all sites
+            %dd
+              = number_to_currency((@item.material_item_delivereds.map &:quantity).sum * @avg_price) if @avg_price
               = @item.base_unit
 
         -if can? :edit, @item
@@ -103,10 +127,9 @@
           %thead
             %tr
               %th Program
-              %th Inventory
+              %th Inventory Name
               %th Date
-              %th Consumed
-              %th Total Price
+              %th Amount Counted
           %tbody
             -if @program
               - @item.food_inventory_food_items.for_program(@program).each do |inventory|
@@ -114,16 +137,16 @@
                   %td= inventory.food_inventory.program
                   %td= link_to inventory.food_inventory.name, inventory.food_inventory
                   %td= inventory.food_inventory.date
-                  %td #{sprintf '%.2f', inventory.consumed} #{@item.base_unit}
-                  %td= number_to_currency(inventory.total_consumed_cost)
+                  %td #{inventory.quantity}
+                  -#%td= number_to_currency(inventory.total_consumed_cost)
             -else
               - @item.food_inventory_food_items.each do |inventory|
                 %tr
                   %td= inventory.food_inventory.program
                   %td= link_to inventory.food_inventory.name, inventory.food_inventory
                   %td= inventory.food_inventory.date
-                  %td #{sprintf '%.2f', inventory.consumed} #{@item.base_unit}
-                  %td= number_to_currency(inventory.total_consumed_cost)
+                  %td #{inventory.quantity}
+                  -#%td= number_to_currency(inventory.total_consumed_cost)
           -if @program
             - unless @item.food_inventory_food_items.for_program(@program).any?
               %tr

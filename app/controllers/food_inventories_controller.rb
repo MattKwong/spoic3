@@ -104,10 +104,7 @@ class FoodInventoriesController < ApplicationController
             ave_consumption = (purchases_since_start - inventories.last.in_base_units)/weeks_since_start
             list_item.store(:weekly_consumption, ave_consumption )
           end
-          logger.debug weeks_since_start.inspect
-          logger.debug purchases_since_start.to_s.inspect
-          logger.debug inventories.last.in_base_units.to_s.inspect
-          logger.debug ("%.1f" % ave_consumption).inspect
+
           purchases_since_last_inventory = i.purchases_between(@program, inventories.last.food_inventory.date, Time.now.to_date)
           if purchases_since_last_inventory.any?
             purchased_since_last_inventory = (purchases_since_last_inventory.map &:total_size_in_base_units).sum.scalar
@@ -117,7 +114,10 @@ class FoodInventoriesController < ApplicationController
           list_item.store(:maximum_expected, inventories.last.in_base_units + purchased_since_last_inventory)
           list_item.store(:purchased_since_last_inventory, "%.1f" % (purchased_since_last_inventory))
         end
-        @inventory_list << list_item
+        # Skip items where the last inventory is zero and no purchases have been made since then.
+        unless (list_item[:purchased_since_last_inventory] == "0.0") && (list_item[:last_inventory_amount].unit.scalar == 0)
+          @inventory_list << list_item
+        end
       end
     end
 
