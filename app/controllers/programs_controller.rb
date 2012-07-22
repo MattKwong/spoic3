@@ -60,6 +60,17 @@ class ProgramsController < ApplicationController
     @page_title = "Editing: #{@program.name}"
   end
 
+  def get_budget_items
+    @budget_items = @program.budget_items
+    logger.debug @budget_items.inspect
+    render :partial => "budget_items"
+  end
+
+  def get_budget_items
+    @budget_items = @program.budget_items
+    render :partial => "budget_items"
+  end
+
   def update
     if @program.update_attributes(params[:program])
       flash[:success] = "#{@program.name} updated successfully"

@@ -6,9 +6,6 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def rescue_from_timeout(exception)
-    # code to handle the issue
-  end
   def after_sign_in_path_for(resource)
  #this overrides the default method in the devise library
 
@@ -79,7 +76,7 @@ class ApplicationController < ActionController::Base
   end
 
   private
-  def rescue_from_timeout(exception)
+  def rescue_from_timeout
     log_activity(Time.now, "Error", "System timeout error", @current_admin_user.id, current_admin_user.name, "")
     redirect_to timeout_error_path
   end

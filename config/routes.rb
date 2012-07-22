@@ -52,6 +52,8 @@ Spoic3::Application.routes.draw do
 #Routes for jquery calls
   match 'food_inventories/:food_inventory_id/food_inventory_food_items/update_item_info/:id', :to => 'food_inventory_food_items#update_item_info'
   match 'programs/:program_id/items/show_similar_items', :to => 'items#show_similar_items'
+  match 'programs/:program_id/items/get_item_categories', :to => 'items#get_item_categories'
+  match 'programs/:program_id/get_budget_items', :to => 'programs#get_budget_items'
 
   match "items/new", :to => 'items#new', :as => 'add_item'
   resources :vendors #, :only => [:index]

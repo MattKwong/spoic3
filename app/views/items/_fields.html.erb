@@ -4,15 +4,17 @@
     <%= form.input :name, :input_html => { :id => 'newItemField', :size => 35 } %>
     <div id="similar_items_table"></div>
     <%= form.input :description, :input_html => { :size => 35 } %>
-
     <%= form.input :default_cost, :hint => "This value will be ignored after actual purchases have been made. Enter without dollar sign." %>
-    <%= form.input :item_type, :as => :radio, :hint => "Select the broad grouping that the item falls into." %>
-    <%= form.input :item_category, :hint => "Select the category that best describes the item." %>
-    <%= form.input :budget_item_type, :as => :radio, :hint => "Purchases of this item will be charged to this budget line" %>
     <%= form.input :base_unit, :hint => "Enter the base units for this item. This is the unit that the item will always be expressed in. Most every unit of volume, mass is valid.  Use 'each' to specify a unitless measure.", :input_html => { :size => 6 } %>
     <%= form.input :default_taxed, :hint => "Whether or not tax will be applied to this item.  Can be overridden on each purchase" %>
     <br>
     <%= form.input :untracked, :hint => "Check this box if this is a low-value item which will not be tracked to specific projects." %>
+
+    <%= form.input :item_type, :hint => "Select the broad grouping that the item falls into.", :input_html => { :id => 'itemType' }  %>
+    <div id="item_category_form"></div>
+    <%= form.input :item_category, :hint => "Select the category that best describes the item." %>
+    <%= form.input :budget_item_type, :as => :radio, :hint => "Purchases of this item will be charged to this budget line" %>
+
   <% end %>
   <%= form.buttons %>
 <% end %>

@@ -166,4 +166,8 @@ class ItemsController < ApplicationController
     end
     render :partial => "similar_items"
   end
+
+  def get_item_categories
+    render :partial => "item_category_form"
+  end
 end

@@ -95,11 +95,19 @@ $(this).addClass('hover');
 $(this).removeClass('hover');
  });
 });
+
 $(document).ready(function() {
- $("#budget-toggle h3").click(function() {
+$("#budget-toggle h3").click(function() {
      $("tbody#budget-info").toggle("fast");
- });
 });
+});
+
+//$(document).ready(function() {
+// $("#budget-toggle h3").click(function() {
+//     $.get("get_budget_items",
+//     function(data){ $("#budget_info").html(data); });
+//    });
+//});
 
 $(document).ready(function() {
 $("#budget-toggle h3").hover(function() {
@@ -108,6 +116,7 @@ $(this).addClass('hover');
 $(this).removeClass('hover');
  });
 });
+
 $(document).ready(function() {
     $("#budget-toggle h3").trigger('click');
 });
@@ -141,6 +150,7 @@ $(this).addClass('hover');
 $(this).removeClass('hover');
  });
 });
+
 $(document).ready(function() {
     $("#projects-toggle h3").trigger('click');
 });
@@ -230,6 +240,15 @@ $(document).ready(function() {
 
 //
 //$(document).ready(function() {
+//    $("#itemType").change(function(){
+//        $.get("get_item_categories?newValue="+$("#itemType").val(),
+//        function(data){ $("#item_category_form").html(data); }
+//        );
+//    });
+//});
+
+//
+//$(document).ready(function() {
 //    $("#item-filter").change(function(){
 //        $location.reload();
 //    });
@@ -253,10 +272,10 @@ $(this).removeClass('hover');
  });
 });
 
-$(document).ready(function() {
-    $("#purchase_scopes").click(function(){
-        $.get("limit_purchases?scope="+$("#purchase_scopes").val(),
-            function(data){ $("#similar_items_table").html(data); }
-        );
-    });
-});
+//$(document).ready(function() {
+//    $("#purchase_scopes").click(function(){
+//        $.get("limit_purchases?scope="+$("#purchase_scopes").val(),
+//            function(data){ $("#similar_items_table").html(data); }
+//        );
+//    });
+//});

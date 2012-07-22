@@ -9,6 +9,7 @@ class OpsPagesController < ApplicationController
 
   def timeout
     @page_title = "System Timeout Error"
+    #@exception = exception
   end
 
   def construction

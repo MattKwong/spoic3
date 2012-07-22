@@ -55,6 +55,12 @@ class Session < ActiveRecord::Base
   def session_food_consumption
     #Find an inventory at the end of the previous session
     #logger.debug "In food consumption calc"
+
+    starting_inventory_value + session_food_purchased - ending_inventory_value
+
+  end
+
+  def starting_inventory_value
     starting_inventory = program.food_inventories.where('date = ? ', period.start_date.to_date - 1).last
 
     if starting_inventory.nil?
@@ -62,27 +68,24 @@ class Session < ActiveRecord::Base
     end
 
     if starting_inventory.nil?
-      starting_inventory_value = 0
+      0
     else
-      starting_inventory_value = starting_inventory.value_in_inventory
+      starting_inventory.value_in_inventory
     end
-    #logger.debug starting_inventory.inspect
-    #logger.debug starting_inventory_value.inspect
+  end
+  def ending_inventory_value
     #Find an inventory at the last day of the session
-
     ending_inventory = program.food_inventories.where('date = ? ', period.end_date.to_date).last
     if ending_inventory.nil?
       ending_inventory = program.food_inventories.where('date = ? ', period.end_date.to_date - 1).last
     end
     if ending_inventory.nil?
-      ending_inventory_value = starting_inventory_value
+      starting_inventory_value
     else
-      ending_inventory_value = ending_inventory.value_in_inventory
+      ending_inventory.value_in_inventory
     end
     #logger.debug ending_inventory.inspect
     #logger.debug ending_inventory_value.to_i.inspect
-    starting_inventory_value + session_food_purchased - ending_inventory_value
-
   end
 
   def session_start_date
