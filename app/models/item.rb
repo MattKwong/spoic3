@@ -149,8 +149,6 @@ class Item < ActiveRecord::Base
       last_inventory = last_inventory_for_program_at_date(program, date)
       if last_inventory.nil?
         r = (purchases_between(program, program.start_date, date).map &:total_size_in_base_units).sum
-        #logger.debug "Purchases between..."
-        #logger.debug r.inspect
       else
         purchase = (purchases_between(program, last_inventory.food_inventory.date, date).map &:total_size_in_base_units).sum
         unless purchase == 0

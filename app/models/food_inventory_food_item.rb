@@ -66,8 +66,8 @@ class FoodInventoryFoodItem < ActiveRecord::Base
 
   def update_calculated_fields
     update_base_units
-    update_in_inventory
-    update_average_cost
+    #update_in_inventory
+    #update_average_cost
   end
 
   def update_derived_fields
