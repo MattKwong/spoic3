@@ -36,10 +36,10 @@ class Session < ActiveRecord::Base
   def session_food_purchased
     #if this session is the first in the program, we need to pick up all purchases made prior to the session as well.
     if id == program.first_session_id
-      purchases = program.purchases.where('date < ?', period.end_date)
+      purchases = program.purchases.where('date < ?', period.end_date.to_date)
     else
-      purchases = program.purchases.where('date >= ? AND date < ?',
-                                  period.start_date, period.end_date)
+      purchases = program.purchases.where('date > ? AND date < ?',
+                                  period.start_date.to_date - 1, period.end_date.to_date + 1)
     end
 
     budget_type = BudgetItemType.find_by_name("Food").id
@@ -49,7 +49,7 @@ class Session < ActiveRecord::Base
   end
 
   def cumulative_food_purchased
-    program.purchases.where('date < ? ', period.end_date).inject(0) { |t, p| t += p.food_item_total }
+    program.purchases.where('date < ? ', period.end_date.to_date).inject(0) { |t, p| t += p.food_item_total }
   end
 
   def session_food_consumption
@@ -68,6 +68,10 @@ class Session < ActiveRecord::Base
     end
 
     if starting_inventory.nil?
+      starting_inventory = program.food_inventories.where('date = ? ', period.start_date.to_date).last
+    end
+
+    if starting_inventory.nil?
       0
     else
       starting_inventory.value_in_inventory
@@ -78,6 +82,9 @@ class Session < ActiveRecord::Base
     ending_inventory = program.food_inventories.where('date = ? ', period.end_date.to_date).last
     if ending_inventory.nil?
       ending_inventory = program.food_inventories.where('date = ? ', period.end_date.to_date - 1).last
+    end
+    if ending_inventory.nil?
+      ending_inventory = program.food_inventories.where('date = ? ', period.end_date.to_date + 1).last
     end
     if ending_inventory.nil?
       starting_inventory_value
