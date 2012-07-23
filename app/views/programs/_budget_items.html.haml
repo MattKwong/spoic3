@@ -1,0 +1,24 @@
+.group-container
+  .index_as_table
+    %table
+      %thead
+        %tr
+          %th Category
+          %th Budgeted
+          %th Spent to Date
+          %th Spent to Date with Tax
+          %th Amount Remaining
+      %tbody
+      -@budget_items.alphabetized.each do |item|
+        %tr
+          %td= link_to @program.budget_item_name(item.budget_item_type_id), item_purchases_path(@program.id, item.budget_item_type_id)
+          %td= number_to_currency @program.budget_item_budgeted(item.budget_item_type_id)
+          %td= number_to_currency @program.budget_item_spent(item.budget_item_type_id)
+          %td= number_to_currency @program.budget_item_spent_with_tax(item.budget_item_type_id)
+          %td= number_to_currency @program.budget_item_remaining(item.budget_item_type_id)
+      %tr
+        %td Totals
+        %td= number_to_currency @program.budget_item_budgeted_total
+        %td= number_to_currency @program.budget_item_spent_total
+        %td= number_to_currency @program.budget_item_spent_with_tax_total
+        %td= number_to_currency @program.budget_item_remaining_total

@@ -32,78 +32,31 @@
     .group-header
       #budget-toggle
         %h3 Budget
-    .group-container
-      .index_as_table
-        %table
-          %thead
-            %tr
-              %th Category
-              %th Budgeted
-              %th Spent to Date
-              %th Spent to Date with Tax
-              %th Amount Remaining
-          %tbody#budget-info
-            = render 'budget_items'
+    #budget-info
+      -#= render 'budget_items'
+
   - if !current_admin_user.construction?
     .span-24.prepend-top
       .group-header
         #food-snapshot-toggle
           %h3 Food Program Snapshot
-      .group-container
-        .index_as_table
-          %table
-            %thead
-              %tr
-                %th Session
-                %th Start Date
-                %th Session Participants
-                %th Cumulative Participants
-                %th Session Purchases
-                %th Cumulative Purchases
-                %th Session Consumed
-                %th End of Session Inventory
-                %th Cumulative Consumed
-                %th Session Consumed Cost/Participant
-                %th Program Consumed Cost/Participant
-            %tbody#food-snapshot-info
-              = render 'staff_reports/food_budget_items'
+      #food-snapshot-info
+
 
   -if !current_admin_user.cook?
     .span-24.prepend-top
       .group-header
         #projects-toggle
           %h3 Projects
-    .group-container
-      .index_as_table
-        %table
-          %thead
-            %tr
-              %th Project Name
-              %th Type
-              %th Start Date
-              %th Stage
-              %th Estimated Cost
-              %th Actual Cost
-              %th Amount Remaining
-              %th Estimated Days
-              %th Actual Days
-              %th Remaining Days
-          %tbody#projects-info
-            = render 'projects/project', :projects => @program.projects
+    #projects-info
 
   .span-24.prepend-top
     .group-header
       #purchases-toggle
-        -#= link_to image_tag('plusminus.png', :id => 'purchases-toggle'), "#"
         %h3 Purchases
 
     #purchases-info
-      %h4#purchase_scopes
-        = link_to 'Past 7 Days', program_path(@program.id, :scope => 'past7')
-        = link_to 'With Unaccounted', program_path(@program.id, :scope => 'unaccounted')
-        = link_to 'All'
-      .group-container
-        = render 'purchases/table', :purchases => @scoped_purchases
+
 
   .span-24.prepend-top
     .group-header
@@ -111,18 +64,7 @@
         -#= link_to image_tag('plusminus.png', :id => 'sessions-toggle'), "#"
         %h3 Sessions
     .div#sessions-info
-      .group-container
-        %table
-          %thead
-            %tr
-              %th
-              %th Start Date
-              %th End Date
-              %th Type
-              %th Scheduled Adults
-              %th Scheduled Youth
-              %th Total
-          = render @program.sessions
+
 
   .span-24.prepend-top
     .group-header
@@ -130,13 +72,5 @@
         -#= link_to image_tag('plusminus.png', :id => 'staff-toggle'), "#"
         %h3 Staff
     .div#staff-info
-      .group-container
-        %table
-          %thead
-            %tr
-              %th Staff Name
-              %th Email
-              %th Phone
-              %th Job
-          = render @program.program_users.order("job_id")
+
 

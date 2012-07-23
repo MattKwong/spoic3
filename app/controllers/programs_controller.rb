@@ -35,9 +35,33 @@ class ProgramsController < ApplicationController
 
     @scope = params[:scope]
     @page_title = @program.name
-    @sessions = @program.to_current
+
     @budget_type_id = BudgetItemType.find_by_name('Food').id
 
+  end
+
+  def edit
+    @page_title = "Editing: #{@program.name}"
+  end
+
+  def get_budget_items
+    @budget_items = @program.budget_items
+    render :partial => "budget_items"
+  end
+
+  def get_food_items
+    @sessions ||= @program.to_current
+    @budget_type_id ||= BudgetItemType.find_by_name('Food').id
+    render :partial => "food_items"
+  end
+
+  def get_projects_items
+
+    render :partial => "projects_items"
+  end
+
+  def get_purchases_items
+    @scope ||= 'past7'
     case @scope
       when 'All', nil
         @scoped_purchases = Purchase.for_program(@program).newest_first
@@ -47,28 +71,18 @@ class ProgramsController < ApplicationController
         @scoped_purchases = Purchase.for_program(@program).all.sort{ |a,b| b.unaccounted_for.abs <=> a.unaccounted_for.abs}
       when 'alphabetized'
         @scoped_purchases = Purchase.for_program(@program).all.sort{ |a,b| b.unaccounted_for.abs <=> a.unaccounted_for.abs}
-     # when 'food'
-     #   @scoped_purchases = Purchase.for_program(@program).food
-     #when 'material'
-     #   @scoped_purchases = Purchase.for_program(@program).material
-     #when 'not_food_material'
-     #   @scoped_purchases = Purchase.for_program(@program).not_food_material
     end
+    render :partial => "purchases_items"
   end
 
-  def edit
-    @page_title = "Editing: #{@program.name}"
+  def get_sessions_items
+
+    render :partial => "sessions_items"
   end
 
-  def get_budget_items
-    @budget_items = @program.budget_items
-    logger.debug @budget_items.inspect
-    render :partial => "budget_items"
-  end
+  def get_staff_items
 
-  def get_budget_items
-    @budget_items = @program.budget_items
-    render :partial => "budget_items"
+    render :partial => "staff_items"
   end
 
   def update

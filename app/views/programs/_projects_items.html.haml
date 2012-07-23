@@ -1,0 +1,17 @@
+.group-container
+  .index_as_table
+    %table
+      %thead
+        %tr
+          %th Project Name
+          %th Type
+          %th Start Date
+          %th Stage
+          %th Estimated Cost
+          %th Actual Cost
+          %th Amount Remaining
+          %th Estimated Days
+          %th Actual Days
+          %th Remaining Days
+      %tbody
+        = render 'projects/project', :projects => @program.projects

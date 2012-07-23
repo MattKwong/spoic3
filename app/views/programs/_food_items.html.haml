@@ -1,0 +1,18 @@
+.group-container
+  .index_as_table
+    %table
+      %thead
+        %tr
+          %th Session
+          %th Start Date
+          %th Session Participants
+          %th Cumulative Participants
+          %th Session Purchases
+          %th Cumulative Purchases
+          %th Session Consumed
+          %th End of Session Inventory
+          %th Cumulative Consumed
+          %th Session Consumed Cost/Participant
+          %th Program Consumed Cost/Participant
+      %tbody
+        = render 'staff_reports/food_budget_items'

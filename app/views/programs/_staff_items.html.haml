@@ -1,0 +1,9 @@
+.group-container
+  %table
+    %thead
+      %tr
+        %th Staff Name
+        %th Email
+        %th Phone
+        %th Job
+    = render @program.program_users.order("job_id")
