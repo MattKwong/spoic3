@@ -9,24 +9,9 @@
     <list id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="Collapse item purchase details on page load." />
     <list id="6515e16b-01b0-44f6-bd49-9d9ce8271564" name="Failed commit: Default" comment="Added update of second payment fields in ScheduledGroup to payment controller code." />
     <list default="true" id="e869ade2-2c0f-42bd-b5a5-3ff2c24839cd" name="Gemfile changes" comment="New gemfile.lock">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/items/_item_category_form.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jquery.cookie.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/items_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/items_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/ops_pages_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/ops_pages_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/programs_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/programs_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/session.rb" afterPath="$PROJECT_DIR$/app/models/session.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/items/_fields.html.erb" afterPath="$PROJECT_DIR$/app/views/items/_fields.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/items/_similar_items.html.erb" afterPath="$PROJECT_DIR$/app/views/items/_similar_items.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/admin_layout.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/admin_layout.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/ops_pages/timeout.html.haml" afterPath="$PROJECT_DIR$/app/views/ops_pages/timeout.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/programs/show.html.haml" afterPath="$PROJECT_DIR$/app/views/programs/show.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/staff_reports/_food_budget_items.html.haml" afterPath="$PROJECT_DIR$/app/views/staff_reports/_food_budget_items.html.haml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/newrelic.yml" afterPath="$PROJECT_DIR$/config/newrelic.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/01.js" afterPath="$PROJECT_DIR$/public/javascripts/01.js" />
     </list>
     <ignored path="spoic3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,33 +37,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="routes.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/routes.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="93" column="9" selection-start="4813" selection-end="4813" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="34" selection-start="2897" selection-end="2897" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ops_pages_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/ops_pages_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="30" selection-start="255" selection-end="255" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="show.html.haml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/programs/show.html.haml">
           <provider selected="true" editor-type-id="text-editor">
@@ -100,16 +58,43 @@
       <file leaf-file-name="_table.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/programs/_table.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="5.8846154">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_program.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="_program.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/programs/_program.html.erb">
           <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="setup_mail.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/initializers/setup_mail.rb">
+          <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="timeout.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/initializers/timeout.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="46" selection-start="37" selection-end="37" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="newrelic.yml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/newrelic.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="88" selection-start="1377" selection-end="1377" vertical-scroll-proportion="0.85427135">
               <folding />
             </state>
           </provider>
@@ -173,7 +158,6 @@
         <option value="$PROJECT_DIR$/app/controllers/items_controller.rb" />
         <option value="$PROJECT_DIR$/public/javascripts/01.js" />
         <option value="$PROJECT_DIR$/app/views/programs/_budget_items.erb" />
-        <option value="$PROJECT_DIR$/config/newrelic.yml" />
         <option value="$PROJECT_DIR$/app/controllers/programs_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/ops_pages_controller.rb" />
         <option value="$PROJECT_DIR$/config/initializers/timeout.rb" />
@@ -182,6 +166,7 @@
         <option value="$PROJECT_DIR$/app/views/staff_reports/_food_budget_items.html.haml" />
         <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/ops_pages/timeout.html.haml" />
+        <option value="$PROJECT_DIR$/config/newrelic.yml" />
       </list>
     </option>
   </component>
@@ -195,8 +180,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1380" />
-    <option name="height" value="744" />
+    <option name="width" value="1696" />
+    <option name="height" value="1026" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -224,94 +209,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane />
-        <subPane subId="Non-Project Files" />
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <subPane subId="All">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="spoic3">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="spoic3">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="public">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="spoic3">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="public">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="stylesheets">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="spoic3">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="public">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="javascripts">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="spoic3">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT=".idea">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -373,6 +270,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spoic3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ctab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="initializers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -574,6 +489,94 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane />
+        <subPane subId="Non-Project Files" />
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="All">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="spoic3">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="spoic3">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="public">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="spoic3">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="public">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="stylesheets">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="spoic3">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="public">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="javascripts">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="spoic3">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT=".idea">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="RailsProjectView">
         <subPane>
           <PATH>
@@ -591,15 +594,15 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="116" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="123" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
-    <property name="recentsLimit" value="10" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="122" />
+    <property name="recentsLimit" value="10" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/controllers" />
-    <property name="RakeTaksPopup.undocumentedIncluded" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="126" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="923" />
+    <property name="RakeTaksPopup.undocumentedIncluded" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="921" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="923" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="124" />
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="121" />
@@ -614,8 +617,8 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="options.lastSelected" value="preferences.keymap" />
-    <property name="dynamic.classpath" value="false" />
     <property name="options.searchVisible" value="true" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -944,6 +947,15 @@
         <option name="RakeTask" enabled="false" />
       </method>
     </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Remote">
+      <JSRemoteDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSRemoteDebuggerConfigurationSettings>
+      <method>
+        <option name="RakeTask" enabled="false" />
+      </method>
+    </configuration>
     <configuration default="true" type="CucumberRunConfigurationType" factoryName="Cucumber">
       <predefined_log_file id="RUBY_CUCUMBER" enabled="true" />
       <module name="" />
@@ -971,15 +983,6 @@
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="CUCUMBER_RUNNER_PATH" VALUE="" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_RUNNER" VALUE="false" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="SETTINGS_VERSION" VALUE="2" />
-      <method>
-        <option name="RakeTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Remote">
-      <JSRemoteDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
-        <option name="fileUrl" />
-      </JSRemoteDebuggerConfigurationSettings>
       <method>
         <option name="RakeTask" enabled="false" />
       </method>
@@ -1149,23 +1152,23 @@
       <method />
     </configuration>
     <list size="17">
-      <item index="0" class="java.lang.String" itemvalue="RSpec.All Requests" />
-      <item index="1" class="java.lang.String" itemvalue="RSpec.All Tests" />
-      <item index="2" class="java.lang.String" itemvalue="Rails.Development: spoic3" />
-      <item index="3" class="java.lang.String" itemvalue="Rails.Production: spoic3" />
-      <item index="4" class="java.lang.String" itemvalue="Rake.spec" />
-      <item index="5" class="java.lang.String" itemvalue="Rake.test" />
-      <item index="6" class="java.lang.String" itemvalue="JavaScript Debug.confirmation.html.erb" />
-      <item index="7" class="java.lang.String" itemvalue="Rake.db:rollback" />
-      <item index="8" class="java.lang.String" itemvalue="Rake.db:create" />
-      <item index="9" class="java.lang.String" itemvalue="Rake.db:schema:dump" />
-      <item index="10" class="java.lang.String" itemvalue="Rake.db:drop" />
-      <item index="11" class="java.lang.String" itemvalue="Rake.db:version" />
-      <item index="12" class="java.lang.String" itemvalue="Rake.update_liaisons" />
-      <item index="13" class="java.lang.String" itemvalue="Query Language Console.Default" />
-      <item index="14" class="java.lang.String" itemvalue="Rake.routes" />
-      <item index="15" class="java.lang.String" itemvalue="Rake.db:migrate" />
-      <item index="16" class="java.lang.String" itemvalue="RSpec.church_spec" />
+      <item index="0" class="java.lang.String" itemvalue="Rake.db:rollback" />
+      <item index="1" class="java.lang.String" itemvalue="Rake.db:create" />
+      <item index="2" class="java.lang.String" itemvalue="Rake.db:schema:dump" />
+      <item index="3" class="java.lang.String" itemvalue="Rake.db:drop" />
+      <item index="4" class="java.lang.String" itemvalue="Rake.db:version" />
+      <item index="5" class="java.lang.String" itemvalue="Rake.update_liaisons" />
+      <item index="6" class="java.lang.String" itemvalue="Query Language Console.Default" />
+      <item index="7" class="java.lang.String" itemvalue="Rake.routes" />
+      <item index="8" class="java.lang.String" itemvalue="Rake.db:migrate" />
+      <item index="9" class="java.lang.String" itemvalue="RSpec.church_spec" />
+      <item index="10" class="java.lang.String" itemvalue="RSpec.All Requests" />
+      <item index="11" class="java.lang.String" itemvalue="RSpec.All Tests" />
+      <item index="12" class="java.lang.String" itemvalue="Rails.Development: spoic3" />
+      <item index="13" class="java.lang.String" itemvalue="Rails.Production: spoic3" />
+      <item index="14" class="java.lang.String" itemvalue="Rake.spec" />
+      <item index="15" class="java.lang.String" itemvalue="Rake.test" />
+      <item index="16" class="java.lang.String" itemvalue="JavaScript Debug.confirmation.html.erb" />
     </list>
     <configuration default="true" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda">
       <predefined_log_file id="RUBY_TESTUNIT" enabled="true" />
@@ -1961,7 +1964,11 @@
       <created>1342805346071</created>
       <updated>1342805346071</updated>
     </task>
-    <option name="localTasksCounter" value="188" />
+    <task id="LOCAL-00188" summary="Several changes, but mostly unchanged files.">
+      <created>1342997410643</created>
+      <updated>1342997410644</updated>
+    </task>
+    <option name="localTasksCounter" value="189" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1985,18 +1992,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1380" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.039513677" sideWeight="0.61513156" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27865168" sideWeight="0.80649114" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.039215688" sideWeight="0.7213483" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27865168" sideWeight="0.80649114" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3247191" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27941176" sideWeight="0.24719101" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21504559" sideWeight="0.61513156" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21813725" sideWeight="0.7213483" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39910814" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24448529" sideWeight="0.23258427" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3741573" sideWeight="0.06556372" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3848684" sideWeight="0.9993443" order="2" side_tool="false" content_ui="tabs" x="77" y="500" width="1633" height="304" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3848684" sideWeight="0.9993443" order="2" side_tool="false" content_ui="tabs" x="77" y="500" width="1633" height="304" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32565284" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32921347" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2048,7 +2055,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes to food inventory presentation, simplified." />
+    <option name="LAST_COMMIT_MESSAGE" value="Several changes, but mostly unchanged files." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -2061,7 +2068,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Created links from inventory to item detail, sorted inventory by item name." />
     <MESSAGE value="Corrected error in retrieval of last purchase when adding inventory item." />
     <MESSAGE value="Added admin name to Adjustment log entry." />
     <MESSAGE value="Created return breadcrumb to main site page." />
@@ -2086,119 +2092,94 @@
     <MESSAGE value="Installed new relic RPM" />
     <MESSAGE value="New gemfile.lock" />
     <MESSAGE value="Changes to food inventory presentation, simplified." />
+    <MESSAGE value="Several changes, but mostly unchanged files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/food_inventories_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="0" selection-start="2562" selection-end="2562" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/initializers/timeout.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="46" selection-start="37" selection-end="37" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/dashboards.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/programs_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="1114" selection-end="1114" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/program.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="4" selection-start="1258" selection-end="1258" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/session.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="75" selection-start="2249" selection-end="2249" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/staff_reports/_food_budget_items.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="73" selection-start="593" selection-end="593" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/ops_pages_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="30" selection-start="255" selection-end="255" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="34" selection-start="2897" selection-end="2897" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="37" column="0" selection-start="1114" selection-end="1114" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/ops_pages/timeout.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="84" selection-start="221" selection-end="221" vertical-scroll-proportion="0.20668693">
-          <folding />
-        </state>
+        <state line="4" column="84" selection-start="221" selection-end="221" vertical-scroll-proportion="0.20668693" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/items/_item_category_form.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="38" selection-start="133" selection-end="133" vertical-scroll-proportion="0.051671732">
-          <folding />
-        </state>
+        <state line="1" column="38" selection-start="133" selection-end="133" vertical-scroll-proportion="0.051671732" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="9" selection-start="4813" selection-end="4813" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="93" column="9" selection-start="4813" selection-end="4813" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="80" column="34" selection-start="2897" selection-end="2897" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/ops_pages_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="30" selection-start="255" selection-end="255" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/programs/show.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="44" selection-start="1989" selection-end="1989" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="63" column="44" selection-start="1989" selection-end="1989" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/programs/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/programs/_table.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="5.8846154">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/programs/_program.html.erb">
       <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/staff_reports/_food_budget_items.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="73" selection-start="593" selection-end="593" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/session.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="75" selection-start="2249" selection-end="2249" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/program.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="4" selection-start="1258" selection-end="1258" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/initializers/setup_mail.rb">
+      <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/initializers/timeout.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="46" selection-start="37" selection-end="37" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/newrelic.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="88" selection-start="1377" selection-end="1377" vertical-scroll-proportion="0.85427135">
           <folding />
         </state>
       </provider>
