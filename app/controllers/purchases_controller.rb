@@ -36,9 +36,9 @@ class PurchasesController < ApplicationController
 
   def show
     @page_title = "#{@purchase.vendor.name} #{@purchase.date}"
-    if session[:program]
-      add_breadcrumb Program.find(session[:program]).name, program_path(session[:program])
-    end
+    #if session[:program]
+    #  add_breadcrumb Program.find(session[:program]).name, program_path(session[:program])
+    #end
     @item_type = params[:item_type]
 
     if @item_type.nil? || @item_type == "0"

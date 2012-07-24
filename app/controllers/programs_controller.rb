@@ -61,17 +61,17 @@ class ProgramsController < ApplicationController
   end
 
   def get_purchases_items
-    @scope ||= 'past7'
-    case @scope
-      when 'All', nil
+    #@scope ||= 'past7'
+    #case @scope
+    #  when 'All', nil
         @scoped_purchases = Purchase.for_program(@program).newest_first
-      when 'past7'
-        @scoped_purchases = Purchase.for_program(@program).past_week.newest_first
-      when 'unaccounted'
-        @scoped_purchases = Purchase.for_program(@program).all.sort{ |a,b| b.unaccounted_for.abs <=> a.unaccounted_for.abs}
-      when 'alphabetized'
-        @scoped_purchases = Purchase.for_program(@program).all.sort{ |a,b| b.unaccounted_for.abs <=> a.unaccounted_for.abs}
-    end
+    #  when 'past7'
+    #    @scoped_purchases = Purchase.for_program(@program).past_week.newest_first
+    #  when 'unaccounted'
+    #    @scoped_purchases = Purchase.for_program(@program).all.sort{ |a,b| b.unaccounted_for.abs <=> a.unaccounted_for.abs}
+    #  when 'alphabetized'
+    #    @scoped_purchases = Purchase.for_program(@program).all.sort{ |a,b| b.unaccounted_for.abs <=> a.unaccounted_for.abs}
+    #end
     render :partial => "purchases_items"
   end
 

@@ -49,19 +49,19 @@ class FoodInventoryFoodItem < ActiveRecord::Base
   end
 
   def total_price
-    average_cost * consumed
+    ave_cost * consumed
   end
 
   def total_consumed_cost
-    average_cost * consumed
+    ave_cost * consumed
   end
 
   def total_inventoried_cost
-    average_cost * in_base_units
+    ave_cost * in_base_units
   end
 
   def total_starting_inventory_cost
-    average_cost * in_inventory
+    ave_cost * in_inventory
   end
 
   def update_calculated_fields
@@ -101,6 +101,10 @@ class FoodInventoryFoodItem < ActiveRecord::Base
   end
 
   private
+
+  def ave_cost
+    average_cost || item.item_purchases.for_program(food_inventory.program).last.price || 0
+  end
 
   def update_base_units
     self.in_base_units = self.quantity.u.to(self.item.base_unit).abs

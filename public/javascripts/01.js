@@ -96,13 +96,6 @@ $(this).removeClass('hover');
  });
 });
 
-//$(document).ready(function() {
-//    $("#budget-toggle h3").click(function() {
-//        $("div#budget-info").toggle("fast");
-//    });
-//});
-//
-
 $(document).ready(function() {
 $("#budget-toggle h3").hover(function() {
 $(this).addClass('hover');
@@ -110,7 +103,6 @@ $(this).addClass('hover');
 $(this).removeClass('hover');
  });
 });
-
 
 
 //$(document).ready(function() {
@@ -220,52 +212,102 @@ $(document).ready(function() {
         $("input[type=submit]").removeAttr("disabled");
     });
 });
+var budgetState = 'new'
 $(document).ready(function() {
     $("#budget-toggle").click(function(){
-        $.get("3/get_budget_info",
-            function(data){ $("#budget-info").html(data); }
-        );
+        if(budgetState == 'new') {
+            $.get($('div#program-number').text() + "/get_budget_info",
+                function(data){ $("#budget-info").html(data);} )
+            budgetState = 'loaded'; }
+        else { $("div#budget-info").toggle("fast"); }
     });
 });
 
+var foodSnapshotState = 'new'
 $(document).ready(function() {
     $("#food-snapshot-toggle").click(function(){
-        $.get("3/get_food_info",
-            function(data){ $("#food-snapshot-info").html(data); }
-        );
+        if(foodSnapshotState == 'new') {
+            $.get($('div#program-number').text() + "/get_food_info",
+                function(data){ $("#food-snapshot-info").html(data);} )
+            foodSnapshotState = 'loaded'; }
+        else { $("div#food-snapshot-info").toggle("fast"); }
+
     });
 });
-
+//
+//$(document).ready(function() {
+//    $("#projects-toggle").click(function(){
+//        $.get($('div#program-number').text() + "/get_projects_info",
+//            function(data){ $("#projects-info").html(data); }
+//        );
+//    });
+//});
+var projectsState = 'new'
 $(document).ready(function() {
     $("#projects-toggle").click(function(){
-        $.get("3/get_projects_info",
-            function(data){ $("#projects-info").html(data); }
-        );
+        if(projectsState == 'new') {
+            $.get($('div#program-number').text() + "/get_projects_info",
+                function(data){ $("#projects-info").html(data);} )
+            projectsState = 'loaded'; }
+        else { $("div#projects-info").toggle("fast"); }
+
     });
 });
 
 $(document).ready(function() {
-    $("#purchases-toggle").click(function(){
-        $.get("3/get_purchases_info",
+    $("#past7-select").click(function(){
+        $.get($('div#program-number').text() + "/get_purchases_info?scope=past7",
             function(data){ $("#purchases-info").html(data); }
         );
     });
 });
+var purchasesState = 'new'
 $(document).ready(function() {
-    $("#sessions-toggle").click(function(){
-        $.get("3/get_sessions_info",
-            function(data){ $("#sessions-info").html(data); }
-        );
+    $("#purchases-toggle").click(function(){
+        if(purchasesState == 'new') {
+            $.get($('div#program-number').text() + "/get_purchases_info",
+                function(data){ $("#purchases-info").html(data);} )
+            purchasesState = 'loaded'; }
+        else { $("div#purchases-info").toggle("fast"); }
     });
 });
 
+var sessionsState = 'new'
 $(document).ready(function() {
-    $("#staff-toggle").click(function(){
-        $.get("3/get_staff_info",
-            function(data){ $("#staff-info").html(data); }
-        );
+    $("#sessions-toggle").click(function(){
+        if(sessionsState == 'new') {
+            $.get($('div#program-number').text() + "/get_sessions_info",
+                function(data){ $("#sessions-info").html(data);} )
+            sessionsState = 'loaded'; }
+        else { $("div#sessions-info").toggle("fast"); }
     });
 });
+//$(document).ready(function() {
+//    $("#sessions-toggle").click(function(){
+//        $.get($('div#program-number').text() + "/get_sessions_info",
+//            function(data){ $("#sessions-info").html(data); }
+//        );
+//    });
+//});
+var staffState = 'new'
+$(document).ready(function() {
+    $("#staff-toggle").click(function(){
+        if(staffState == 'new') {
+            $.get($('div#program-number').text() + "/get_staff_info",
+                function(data){ $("#staff-info").html(data);} )
+            staffState = 'loaded'; }
+        else { $("div#staff-info").toggle("fast"); }
+
+    });
+});
+
+//$(document).ready(function() {
+//    $("#staff-toggle").click(function(){
+//        $.get($('div#program-number').text() + "/get_staff_info",
+//            function(data){ $("#staff-info").html(data); }
+//        );
+//    });
+//});
 
 $(document).ready(function() {
     $("#itemDropdown").change(function(){

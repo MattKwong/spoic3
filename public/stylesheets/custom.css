@@ -375,3 +375,6 @@ td.inventory-table {
     width: 20%;
 }
 
+.hidden-field {
+    display: none;
+}

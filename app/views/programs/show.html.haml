@@ -1,4 +1,6 @@
 #active_admin_content
+  .hidden-field#program-number
+    =@program.id
   .span-7.properties
     %dl
       %dt Site
@@ -14,6 +16,7 @@
       -if can? :create, Project
         %dlt= link_to "Create a New Project", new_program_project_path(@program)
       -if can? :create, Vendor
+
         %dlt= link_to "Create a New Vendor", new_site_vendor_path(@program.site)
 
   .span-7.properties
@@ -54,7 +57,6 @@
     .group-header
       #purchases-toggle
         %h3 Purchases
-
     #purchases-info
 
 
