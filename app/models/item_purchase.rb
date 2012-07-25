@@ -1,7 +1,6 @@
 class ItemPurchase < ActiveRecord::Base
   attr_accessible :item_id, :purchase_id, :quantity, :size, :price, :taxable, :uom, :total_base_units
 
-
   belongs_to :item
   belongs_to :purchase
 
@@ -16,6 +15,8 @@ class ItemPurchase < ActiveRecord::Base
   scope :by_budget_line_type, lambda { |id| joins(:item).where("budget_item_type_id = ?", id) }
   scope :for_program, lambda { |program| joins(:purchase).where('purchases.program_id = ?', program) }
   scope :for_program_budget_line_type, lambda { |program_id, budget_line_id| joins(:purchase).where('purchase.program_id = ?', program_id) }
+  scope :for_program_tracked, lambda { |id| joins(:item, :purchase).where("purchases.program_id = ? AND budget_item_type_id = ? AND untracked = ?", id, 1, 'f') }
+  scope :for_program_untracked, lambda { |id| joins(:item, :purchase).where("purchases.program_id = ? AND budget_item_type_id = ? AND untracked != ?", id, 1, 'f') }
 
   scope :for_item, lambda { |item| joins(:item).where('item_id = ?', item) }
   scope :taxable, where(:taxable => true)

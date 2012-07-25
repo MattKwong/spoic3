@@ -20,7 +20,9 @@ class Session < ActiveRecord::Base
       false
     end
   end
-
+  def week
+    period.name
+  end
   def scheduled_adults
     (self.scheduled_groups.map &:current_counselors).sum
   end
