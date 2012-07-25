@@ -8,9 +8,8 @@
   <component name="ChangeListManager">
     <list id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="Collapse item purchase details on page load." />
     <list id="6515e16b-01b0-44f6-bd49-9d9ce8271564" name="Failed commit: Default" comment="Added update of second payment fields in ScheduledGroup to payment controller code." />
-    <list default="true" id="e869ade2-2c0f-42bd-b5a5-3ff2c24839cd" name="Gemfile changes" comment="">
+    <list default="true" id="e869ade2-2c0f-42bd-b5a5-3ff2c24839cd" name="Gemfile changes" comment="Gemfile changes">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
     </list>
     <ignored path="spoic3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,7 +74,7 @@
       <file leaf-file-name="Gemfile.lock" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Gemfile.lock">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="195" column="56" selection-start="4761" selection-end="4761" vertical-scroll-proportion="0.5008726">
+            <state line="184" column="53" selection-start="4513" selection-end="4513" vertical-scroll-proportion="0.17452008">
               <folding />
             </state>
           </provider>
@@ -85,15 +84,6 @@
         <entry file="file://$PROJECT_DIR$/app/views/programs/_projects_items.html.haml">
           <provider selected="true" editor-type-id="text-editor">
             <state line="16" column="47" selection-start="394" selection-end="394" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="show.html.haml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/projects/show.html.haml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="119" column="130" selection-start="4469" selection-end="4469" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -2083,7 +2073,11 @@
       <created>1343176735724</created>
       <updated>1343176735724</updated>
     </task>
-    <option name="localTasksCounter" value="195" />
+    <task id="LOCAL-00195" summary="Gemfile changes">
+      <created>1343177266448</created>
+      <updated>1343177266448</updated>
+    </task>
+    <option name="localTasksCounter" value="196" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -2170,7 +2164,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added new fields to project footer, added an item to the project labor display, added sort to project delivered items." />
+    <option name="LAST_COMMIT_MESSAGE" value="Gemfile changes" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -2183,7 +2177,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Fixed bug in creating new Item (removed protected attribute). Implemented column sort capability." />
     <MESSAGE value="Added material item estimateds to item model." />
     <MESSAGE value="Updated CSS file to show up and down sort arrows." />
     <MESSAGE value="Corrected calculation of inventory and on hand items. Handles returns correctly." />
@@ -2208,18 +2201,12 @@
     <MESSAGE value="Changes to 01.js and program/show to defer retrieval of data until each sub-item is requested. Not finished." />
     <MESSAGE value="Changes to program/show page to defer grabbing data until the subheadings are clicked. Fix to the calculation of average-cost to calculate on the fly if none has been stored in dataset." />
     <MESSAGE value="Added new fields to project footer, added an item to the project labor display, added sort to project delivered items." />
+    <MESSAGE value="Gemfile changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/item_purchase.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="40" selection-start="1131" selection-end="1131" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/projects/_fields.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -2318,9 +2305,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile.lock">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="195" column="56" selection-start="4761" selection-end="4761" vertical-scroll-proportion="0.5008726">
+        <state line="184" column="53" selection-start="4513" selection-end="4513" vertical-scroll-proportion="0.17452008">
           <folding />
         </state>
       </provider>
