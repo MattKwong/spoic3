@@ -37,7 +37,7 @@ class FoodInventoryFoodItem < ActiveRecord::Base
 #  after_destroy :update_derived_fields, :unless => Proc.new {|item| item.skip_calculations? || item.skip_derivations? }
 
   def consumed
-    in_inventory - in_base_units
+    in_inv - in_base_units
   end
 
   def consumed_units
@@ -45,7 +45,7 @@ class FoodInventoryFoodItem < ActiveRecord::Base
   end
   
   def in_inventory_units
-    "#{in_inventory} #{item.base_unit}"
+    "#{in_inv} #{item.base_unit}"
   end
 
   def total_price
@@ -61,7 +61,10 @@ class FoodInventoryFoodItem < ActiveRecord::Base
   end
 
   def total_starting_inventory_cost
-    ave_cost * in_inventory
+    logger.debug ave_cost
+    logger.debug in_inventory.inspect
+
+    ave_cost * in_inv
   end
 
   def update_calculated_fields
@@ -77,6 +80,7 @@ class FoodInventoryFoodItem < ActiveRecord::Base
         item.save
       end
     end
+
   end
 
   def update_in_inventory
@@ -101,6 +105,10 @@ class FoodInventoryFoodItem < ActiveRecord::Base
   end
 
   private
+
+  def in_inv
+    in_inventory || 0
+  end
 
   def ave_cost
     average_cost || item.item_purchases.for_program(food_inventory.program).last.price || 0

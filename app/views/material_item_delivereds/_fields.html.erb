@@ -13,7 +13,7 @@
                             :include_blank => false,
                            :input_html => { :class => "jq-combo" }%>
     <%= form.input :delivery_date, :as => :date %>
-    <%= form.input :quantity, :hint => "Enter negative quantity to return previously delivered items.",
+    <%= form.input :quantity, :hint => "Enter in this item's base units. Use negative quantity to return previously delivered items.",
                    :input_html => { :size => 4 } %>
     <input type = "hidden" name="material_item_delivered[project_id]" value= <%= @material_item_delivered.project_id %> />
   <% end %>

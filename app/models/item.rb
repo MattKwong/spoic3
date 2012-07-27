@@ -93,7 +93,7 @@ class Item < ActiveRecord::Base
     end
 
     def construction_onhand(program)
-      program_purchases(program) - program_deliveries(program)
+      program_purchases_in_base_units(program) - program_deliveries(program)
     end
 
     def in_inventory_for(program)
