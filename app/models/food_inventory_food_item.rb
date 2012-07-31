@@ -61,8 +61,8 @@ class FoodInventoryFoodItem < ActiveRecord::Base
   end
 
   def total_starting_inventory_cost
-    logger.debug ave_cost
-    logger.debug in_inventory.inspect
+    #logger.debug ave_cost
+    #logger.debug in_inventory.inspect
 
     ave_cost * in_inv
   end
@@ -104,15 +104,23 @@ class FoodInventoryFoodItem < ActiveRecord::Base
     @skip_calculations
   end
 
+  def ave_cost
+    if average_cost
+      average_cost
+    else if item.item_purchases.for_program(food_inventory.program).last
+           item.item_purchases.for_program(food_inventory.program).last.price_per_base_unit.unit.scalar
+         else
+           item.default_cost || 0
+         end
+    end
+  end
   private
 
   def in_inv
     in_inventory || 0
   end
 
-  def ave_cost
-    average_cost || item.item_purchases.for_program(food_inventory.program).last.price || 0
-  end
+
 
   def update_base_units
     self.in_base_units = self.quantity.u.to(self.item.base_unit).abs

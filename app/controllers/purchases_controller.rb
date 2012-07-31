@@ -36,15 +36,13 @@ class PurchasesController < ApplicationController
 
   def show
     @page_title = "#{@purchase.vendor.name} #{@purchase.date}"
-    #if session[:program]
-    #  add_breadcrumb Program.find(session[:program]).name, program_path(session[:program])
-    #end
     @item_type = params[:item_type]
 
     if @item_type.nil? || @item_type == "0"
       @items = Item.all_for_program(@purchase.program).alphabetized
     else
       @items = Item.all_for_program_by_type(@purchase.program, @item_type).alphabetized
+      logger.debug @items.inspect
     end
   end
 

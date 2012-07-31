@@ -105,9 +105,15 @@ $(this).removeClass('hover');
 });
 
 
-//$(document).ready(function() {
-//    $("#budget-toggle h3").trigger('click');
-//});
+$(document).ready(function() {
+    $('<div id="loading">Retrieving data...please be patient!</div>')
+        .insertBefore("#active_admin_content")
+        .ajaxStart(function() {
+            $(this).show();
+        }).ajaxStop(function() {
+            $(this).hide();
+        });
+    });
 
 
 //$(document).ready(function() {

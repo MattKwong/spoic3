@@ -378,3 +378,11 @@ td.inventory-table {
 .hidden-field {
     display: none;
 }
+
+div#loading {
+    width: 100%;
+    border-top-left-radius: 3px;
+    text-align: center;
+    background-color: #9FBECD;
+    display: none;
+}

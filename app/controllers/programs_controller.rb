@@ -27,17 +27,9 @@ class ProgramsController < ApplicationController
   end
 
   def show
-
-    #if current_admin_user.admin?
-    #  session[:program] = @program.id
-    ##  #logger.debug session[:program].inspect
-    #end
-
     @scope = params[:scope]
     @page_title = @program.name
-
     @budget_type_id = BudgetItemType.find_by_name('Food').id
-
   end
 
   def edit
@@ -56,7 +48,6 @@ class ProgramsController < ApplicationController
   end
 
   def get_projects_items
-
     render :partial => "projects_items"
   end
 
@@ -76,12 +67,10 @@ class ProgramsController < ApplicationController
   end
 
   def get_sessions_items
-
     render :partial => "sessions_items"
   end
 
   def get_staff_items
-
     render :partial => "staff_items"
   end
 
