@@ -25,12 +25,12 @@
              <li class="has_nested" ><a href="#">Reports</a>
                 <ul>
                   <li><%= link_to "Invoice report", invoice_report_path%></li>
-                  <li><%= link_to "Scheduled Liaisons: Web page", scheduled_liaisons_html_path(:format => :html)%></li>
                   <li><%= link_to "Scheduled Liaisons: CSV", scheduled_liaisons_csv_path(:format => :csv)%></li>
                   <li><%= link_to "All Churches and Liaisons: CSV", church_and_liaison_csv_path(:format => :csv)%></li>
                   <li><%= link_to "Show the schedule - scheduled summer domestic",
                           registration_show_schedule_path(:reg_or_sched => 'scheduled', :type => 'summer_domestic')%></li>
                   <li><%= link_to "Show t-shirt order report", tshirt_report_path %></li>
+                  <li><%= link_to "Roster Summary: CSV", rosters_csv_path(:format => :csv)%></li>
                 </ul>
             </li>
             <li class="has_nested" ><a href="#">Budgets</a>

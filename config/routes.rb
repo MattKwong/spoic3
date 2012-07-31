@@ -144,6 +144,8 @@ Spoic3::Application.routes.draw do
   match "reports/church_and_liaison" => 'reports#church_and_liaison', :as => 'church_and_liaison_csv'
   match "reports/scheduled_liaisons" => 'reports#scheduled_liaisons', :as => 'scheduled_liaisons_csv'
   match "reports/scheduled_liaisons" => 'reports#scheduled_liaisons', :as => 'scheduled_liaisons_html'
+  match "reports/rosters" => 'reports#rosters', :as => 'rosters_csv'
+  match "reports/rosters" => 'reports#rosters', :as => 'rosters_html'
 
   resources :vendors
   resources :churches
