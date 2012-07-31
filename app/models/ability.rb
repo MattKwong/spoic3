@@ -58,7 +58,7 @@ class Ability
       end
      if user.construction? || user.sd?
         can :read, StandardItem
-        can [:read, :create, :destroy, :update], Project, :program_id => program.id
+        can [:read, :create, :destroy, :update, :move_stage], Project, :program_id => program.id
         #can [:read, :create, :destroy, :update], Item, :program_id => program.id
         can [:read, :create, :destroy, :update], LaborItem, :project => { :program_id => program_id }
         can [:read, :create, :destroy, :update], MaterialItemDelivered, :project => { :program_id => program_id }
