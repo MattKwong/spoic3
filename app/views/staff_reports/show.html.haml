@@ -10,6 +10,7 @@
             %th Food Budget
             %th Food Consumption
             %th Weekly Food Cost
+            %th Current Materials Inventory
         %tbody
           - @programs.each do |program|
             %tr
@@ -19,3 +20,4 @@
               %td= link_to "view", url_for(:controller => :staff_reports, :action => :food_budget, :id => program.id)
               %td= link_to "view", url_for(:controller => :staff_reports, :action => :food_consumption, :id => program.id)
               %td= link_to "view", url_for(:controller => :staff_reports, :action => :session, :id => program.id)
+              %td= link_to "view", url_for(:controller => :staff_reports, :action => :materials_inventory, :id => program.id)

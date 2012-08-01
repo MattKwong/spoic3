@@ -1,0 +1,27 @@
+#active_admin_content
+  .index_content
+    .index_as_table
+      %table.index_table
+        %thead
+          %tr
+            %th Item Name
+            %th Description
+            %th Tracked or Untracked?
+            %th Total Purchased
+            %th Currently In Inventory
+            %th Amount Counted
+        %tbody
+          - @items.each do |item|
+            -purchased = item.purchased_for_program @program, @program.start_date, @program.end_date
+            -in_inventory = item.construction_onhand(@program)
+            -if (in_inventory != 0) || (purchased != 0)
+              %tr
+                %td= link_to item.name, item
+                %td= item.description
+                -if item.untracked
+                  %td Untracked
+                -else
+                  %td Tracked
+                %td= "%.2f %s" % [purchased, item.base_unit]
+                %td= "%.2f %s" % [in_inventory, item.base_unit]
+                %td

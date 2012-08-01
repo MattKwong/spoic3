@@ -18,6 +18,17 @@ class StaffReportsController < ApplicationController
     @items = Item.food.all_for_program(@program)
     @budget_type_id = BudgetItemType.find_by_name('Food').id
   end
+  def materials_inventory
+    @program = Program.find(params[:id])
+    @page_title = "Materials Inventory Report: #{@program}"
+    @date = (Date.parse(params[:date]) if params[:date]) || Date.today
+#For testing
+#    @date = (Date.parse(params[:date]) if params[:date]) || "07/08/2012".to_date
+    @items = Item.materials.all_for_program(@program)
+    @items.sort_by! {|a| -a.construction_onhand(@program) }
+    @budget_type_id = BudgetItemType.find_by_name('Materials').id
+    #eliminate zero items
+  end
 
   def food_reconciliation
     @program = Program.find(params[:id])
