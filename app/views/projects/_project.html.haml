@@ -41,7 +41,7 @@
     %th Untracked Materials Purchases
     %th= number_to_currency (ItemPurchase.for_program_untracked(@program).map &:total_price_with_tax).sum
     %th In Stock Tracked Materials
-    %th= number_to_currency (ItemPurchase.for_program_tracked(@program).map &:total_price_with_tax).sum - total_actual_cost
+    %th= number_to_currency (Item.materials.tracked.all_for_program(@program).map {|i| i.average_cost(@program, Date.today) * i.construction_onhand(@program)}).sum
     %th Budgeted Cost/Day
     %th= number_to_currency BudgetItem.for_program(@program).materials.first.amount / @program.total_days
 

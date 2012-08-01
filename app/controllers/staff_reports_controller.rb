@@ -27,7 +27,7 @@ class StaffReportsController < ApplicationController
     @items = Item.materials.all_for_program(@program)
     @items.sort_by! {|a| -a.construction_onhand(@program) }
     @budget_type_id = BudgetItemType.find_by_name('Materials').id
-    #eliminate zero items
+
   end
 
   def food_reconciliation

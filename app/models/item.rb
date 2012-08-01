@@ -37,7 +37,7 @@ class Item < ActiveRecord::Base
     scope :untracked, where(:untracked => true)
     scope :tracked, where(:untracked => false)
     scope :master, where(:program_id => nil)
-    scope :all_for_program, lambda {|program| where('program_id IS NULL OR program_id = ?', program.id) }
+    scope :all_for_program, lambda {|program| where('program_id IS NULL OR program_id = ? OR program_id = ?', '0', program.id) }
     scope :alphabetized, order("name")
     scope :all_for_program_by_type, lambda {|program, type| where('(program_id IS NULL OR program_id = ? OR program_id = ?) AND item_type_id = ?', '0', program.id, type) }
     scope :all_by_item_type, lambda {|type| where('item_type_id = ?', type) }

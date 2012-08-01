@@ -109,9 +109,12 @@ $(document).ready(function() {
     $('<div id="loading">Retrieving data...please be patient!</div>')
         .insertBefore("#active_admin_content")
         .ajaxStart(function() {
-            $(this).show();
+            $(this).show()
+//            $(this).addClass('wait');
+
         }).ajaxStop(function() {
             $(this).hide();
+//            $(this).removeClass('wait').unbind('click');
         });
     });
 
