@@ -72,7 +72,7 @@
                       <li><%= link_to "Food Inventories", program_food_inventories_path(current_admin_user.program_user.program) if current_admin_user.cook? || current_admin_user.sd?%></li>
                   </ul>
                 </li>
-                <li><%= link_to "Site Home", current_admin_user.program_user.program, %></li>
+                <li><%= link_to "Site Home", current_admin_user.program_user.program %></li>
 
         <% end %>
         <% if signed_in? && current_admin_user.liaison? %>
