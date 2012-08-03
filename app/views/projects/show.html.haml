@@ -53,7 +53,7 @@
         %dt Actual Start
         %dd= @project.actual_start
         %dt  Last updated
-        %dd= "#{Date.today - @project.updated_at.to_date} days ago"
+        %dd= "#{((Time.now - @project.updated_at)/1.days).round} days ago"
         %dt Current Vol Days
         %dd= @project.actual_days
         %dt Current Cost

@@ -12,6 +12,11 @@ class MaterialItemDelivered < ActiveRecord::Base
   validates_numericality_of :quantity, :decimal => true
   validate :quantity_cannot_be_zero, :quantity_cannot_be_greater_than_on_hand
   validate :returned_cannot_be_greater_than_net_delivered, :if => :return?
+  after_save :update_project
+
+  def update_project
+    project.update_change_date
+  end
 
   def quantity_cannot_be_zero
     if quantity == 0

@@ -110,14 +110,22 @@ $(document).ready(function() {
         .insertBefore("#active_admin_content")
         .ajaxStart(function() {
             $(this).show()
+            $('body').css('cursor', 'progress');
 //            $(this).addClass('wait');
 
         }).ajaxStop(function() {
             $(this).hide();
-//            $(this).removeClass('wait').unbind('click');
+            $('body').css('cursor', 'default');
         });
     });
 
+//$('html').ajaxStart(function(){
+//    $(this).addClass('wait').bind('click',function(){
+//        return false;
+//    });
+//}).ajaxStop(function(){
+//        $(this).removeClass('wait').unbind('click');
+//    });
 
 //$(document).ready(function() {
 //  $("#food-snapshot-toggle h3").click(function() {
