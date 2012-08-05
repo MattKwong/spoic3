@@ -31,7 +31,7 @@ class MaterialItemDeliveredsController < ApplicationController
     else
       flash[:error] = "Material delivery could not be recorded because: " + @material_item_delivered.errors.first[1].humanize
       @title = "#{@project.program.short_name}: Material Delivery for Project: #{@project.name}"
-      @item_list = Hash[@project.material_item_estimateds.map {|i| ["#{i.item.name} (base units: #{i.base_unit})", i.item_id ]}]
+      @item_list = Hash[@project.material_item_estimateds.map {|i| ["#{i.item.name} (base units: #{i.item.base_unit})", i.item_id ]}]
       @user_list = Hash[@project.program.program_users.map {|u| ["#{u.admin_user.name}", u.admin_user.id ]}]
       redirect_to @project
     end

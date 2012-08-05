@@ -35,7 +35,7 @@ class Purchase < ActiveRecord::Base
   scope :for_program, lambda { |program| where(:program_id => program.id) }
   scope :after, lambda { |date| where('date > ?', date) }
   scope :before, lambda { |date| where('date <=', date) }
-
+  #scope :unaccounted, lambda {self.unaccounted_for > 0.05 }
 #  default_scope :order => 'date DESC'
   scope :past_week, where('date > ?', Date.today - 7)
   scope :newest_first, :order => 'date DESC'

@@ -4,6 +4,11 @@ ActiveAdmin.register Purchase do
   show :title => "#{:vendor} #{:date}"
   #scope :incomplete
 
+  #filter :unaccounted_for, :as => :float
+  #filter :program
+  #filter :vendor
+  #filter :unaccounted, :as => :select
+
   index do
     column "Purchase", :sortable => :vendor_id do |purchase|
       link_to "#{purchase.vendor} #{purchase.date}", purchase_path(purchase.id)
