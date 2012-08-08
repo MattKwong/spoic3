@@ -104,7 +104,6 @@
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v0.3.33, ruby-1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="validates_timeliness (v3.0.12, ruby-1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="warden (v1.2.1, ruby-1.9.2-p290) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="webrat (v0.7.1, ruby-1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="xpath (v0.1.4, ruby-1.9.2-p290) [gem]" level="application" />
   </component>
   <component name="RModuleSettingsStorage">

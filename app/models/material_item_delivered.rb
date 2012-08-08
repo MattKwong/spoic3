@@ -33,8 +33,8 @@ class MaterialItemDelivered < ActiveRecord::Base
 
   def returned_cannot_be_greater_than_net_delivered
 
-    if quantity.abs > net_delivered(project_id)
-      errors.add(:quantity, "Only #{net_delivered(project_id)} of this item has been delivered to this project.")
+    if quantity.abs > net_delivered(item, project_id)
+      errors.add(:quantity, "Only #{net_delivered(item, project_id)} of this item has been delivered to this project.")
     end
   end
 

@@ -5,6 +5,8 @@ module ControllerMacros
       @request.env["devise.mapping"] = Devise.mappings[:admin_user]
       sign_in FactoryGirl.create(:admin_user)
     end
+
+
   end
 
   def login_liaison

@@ -17,7 +17,7 @@ describe ApplicationController do
     end
 
   describe "Liaison Login" do
-    liaison_admin
+    login_liaison
 
     it "should have a current user" do
       subject.current_admin_user.should_not be_nil
