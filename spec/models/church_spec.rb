@@ -102,6 +102,13 @@ describe Church do
       good_email = Church.new(@attr)
       good_email.should be_valid
     end
+
+    it "should reject a duplicate email" do
+      good_email = Church.new(@attr)
+      good_email.save
+      dup_email = Church.new(@attr.merge(:name => "Duplicate email church"))
+      dup_email.should_not be_valid
+    end
   end
   
   describe "Office and Fax tests"

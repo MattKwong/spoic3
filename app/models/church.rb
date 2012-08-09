@@ -32,6 +32,7 @@ class Church < ActiveRecord::Base
   validates :zip,   :presence => true,
                     :length => { :is => 5},
                     :numericality => true
+  validates :email1, :uniqueness => true
   validates_format_of :email1,
             :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i,
             :message => 'Email appears to be invalid.', :allow_blank => true
