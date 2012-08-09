@@ -10,10 +10,11 @@ class PurchasesController < ApplicationController
   end
 
   def show_all_unaccounted
-    @purchases = Purchase.for_program(@program).order(:date)
+    @purchases = Purchase.all
+    @page_title = 'All Purchases With Unaccounted $$'
     @purchases_with_unaccounted = Array.new
     @purchases.each do |p|
-      if p.unaccounted_for_abs > .05
+      if p.unaccounted_for_abs > 0.05
         @purchases_with_unaccounted << p
       end
     end
