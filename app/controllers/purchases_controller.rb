@@ -9,6 +9,17 @@ class PurchasesController < ApplicationController
     @purchases = Purchase.for_program(@program).order(:date).page params[:page]
   end
 
+  def show_all_unaccounted
+    @purchases = Purchase.for_program(@program).order(:date)
+    @purchases_with_unaccounted = Array.new
+    @purchases.each do |p|
+      if p.unaccounted_for_abs > .05
+        @purchases_with_unaccounted << p
+      end
+    end
+    @purchases_with_unaccounted
+  end
+
   def new
     @page_title = "New Purchase"
     @purchase.program = @program
@@ -42,7 +53,6 @@ class PurchasesController < ApplicationController
       @items = Item.all_for_program(@purchase.program).alphabetized
     else
       @items = Item.all_for_program_by_type(@purchase.program, @item_type).alphabetized
-      logger.debug @items.inspect
     end
   end
 
