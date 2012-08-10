@@ -10,7 +10,7 @@ class AdminUser < ActiveRecord::Base
   has_many :programs, :through => :program_users
   has_many :purchases, :foreign_key => "purchaser_id", :dependent => :restrict
 
-  # Setup accessible (or protected) attributes for your model
+
   attr_accessible :email, :name, :user_role_id, :first_name, :last_name, :site_id,
                   :liaison_id, :password, :password_confirmation, :remember_me, :admin, :username, :phone
 
@@ -36,18 +36,28 @@ class AdminUser < ActiveRecord::Base
                       :message => 'Phone number must be 10 digits plus optional separators.',
                       :allow_blank => true
 
+  #validates_presence_of :liaison_id, :if => :liaison?
+  validates_numericality_of :liaison_id, :integer_only => true, :greater_than => 0, :if => :liaison?
+  validates_numericality_of :site_id, :integer_only => true, :greater_than => 0, :if => :field_staff?
+
   before_save :create_name
   before_save :format_phone_numbers
 
-  scope :admin, where(:user_role_id == 1)
-#  scope :liaison, where(self.user_role.name == 'Liaison')
+  scope :admin, lambda {
+    joins(:user_role).
+    where("user_roles.name = ?", 'Admin')}
+
+  scope :liaison, lambda {
+    joins(:user_role).
+    where("user_roles.name = ?", 'Liaison')}
+
 #  scope :staff, where(self.user_role.name == 'Staff')
 
     def format_phone_numbers
-       unless self.phone.nil? || self.phone == ""
-         self.phone = self.phone.insert 6, '-'
-         self.phone = self.phone.insert 3, '-'
-       end
+      unless self.phone.nil? || self.phone == ""
+        self.phone = self.phone.insert 6, '-'
+        self.phone = self.phone.insert 3, '-'
+      end
     end
     def admin?
       self.user_role.name == "Admin"
