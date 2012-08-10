@@ -37,8 +37,10 @@ class AdminUser < ActiveRecord::Base
                       :allow_blank => true
 
   #validates_presence_of :liaison_id, :if => :liaison?
-  validates_numericality_of :liaison_id, :integer_only => true, :greater_than => 0, :if => :liaison?
-  validates_numericality_of :site_id, :integer_only => true, :greater_than => 0, :if => :field_staff?
+  #validates_numericality_of :liaison_id, :only_integer => true, :greater_than => 0, :if => :liaison?
+
+  validates_presence_of :site_id, :if => :field_staff?
+  validates_numericality_of :site_id, :only_integer => true, :greater_than => 0, :if => :field_staff?
 
   before_save :create_name
   before_save :format_phone_numbers

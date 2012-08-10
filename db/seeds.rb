@@ -34,3 +34,5 @@ if UserRole.find_by_name("Staff")
   end
 UserRole.create(:name => 'Staff', :description => 'Field staff, work limited to one site only')
 
+
+
