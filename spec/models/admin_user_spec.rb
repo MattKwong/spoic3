@@ -4,6 +4,8 @@ describe AdminUser do
   before (:each) do
     @attr = { :email => "valid@example.com", :name => "John Smith", :first_name => "John", :last_name => "Smith", :user_role_id => UserRole.find_by_name("Admin").id,
               :username => "JSmith1"  }
+    @staff_attr = @attr.merge(:site_id => 1, :admin => false, :user_role_id => UserRole.find_by_name("Staff").id,
+      :site_id => Site.find_by_name('Test Site 1').id)
   end
 
   describe "Valid entries" do
@@ -89,6 +91,30 @@ describe AdminUser do
     end
     it "should return the correct number of staff entries" do
       AdminUser.staff.count.should == 1
+    end
+  end
+
+  describe "program user tests" do
+    before :each do
+
+    end
+
+    it "admin user should have no program user" do
+      no_prog = AdminUser.new(@attr)
+      no_prog.program_user.should == nil
+    end
+    it "admin user program id should return zero" do
+      no_prog = AdminUser.new(@attr)
+      no_prog.program_id.should == 0
+    end
+    it "admin user program id should return zero" do
+      no_prog = AdminUser.new(@attr)
+      no_prog.program_id.should == 0
+    end
+    it "staff admin user program id should return 1" do
+      prog = AdminUser.create!(@staff_attr)
+      ProgramUser.create!(:program_id => 1, :user_id => prog.id, :job_id => 1 )
+      prog.program_id.should == 1
     end
   end
 

@@ -54,7 +54,9 @@ class AdminUser < ActiveRecord::Base
     joins(:user_role).
     where("user_roles.name = ?", 'Liaison')}
 
-#  scope :staff, where(self.user_role.name == 'Staff')
+  scope :staff, lambda {
+    joins(:user_role).
+    where("user_roles.name = ?", 'Staff')}
 
     def format_phone_numbers
       unless self.phone.nil? || self.phone == ""
@@ -91,11 +93,7 @@ class AdminUser < ActiveRecord::Base
     end
 
     def program_id
-      unless ProgramUser.find_by_user_id(self.id)
-        0
-      else
-        ProgramUser.find_by_user_id(self.id).program_id
-      end
+      program_user ? 0 : program_user.program_id
     end
 
     def program_user
