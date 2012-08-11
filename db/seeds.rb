@@ -34,5 +34,16 @@ if UserRole.find_by_name("Staff")
   end
 UserRole.create(:name => 'Staff', :description => 'Field staff, work limited to one site only')
 
+if Site.find_by_name("Test Site 1")
+  Site.find_by_name("Test Site 1").delete
+  end
+Site.create(:name => 'Test Site 1', :address1 => "100 Elm Street", :city => "Susanville", :state => "CA", :zip => "90000", :listing_priority => 10,
+            :abbr => "T1", :active => true, :phone => "800-700-6000")
+
+if Site.find_by_name("Test Site 2")
+  Site.find_by_name("Test Site 2").delete
+  end
+Site.create(:name => 'Test Site 2', :address1 => "100 Reservation Way", :city => "McDermitt", :state => "NV", :zip => "80000", :listing_priority => 20,
+            :abbr => "T2", :active => true, :phone => "800-700-6000")
 
 

@@ -17,7 +17,7 @@ describe AdminUser do
     end
     it "should create a valid staff entry" do
       valid_staff = AdminUser.new(@attr.merge(:site_id => 1, :admin => false, :user_role_id => UserRole.find_by_name("Staff").id,
-                                  :phone => "1234567890"))
+                                   :site_id => Site.find_by_name('Test Site 1').id))
       valid_staff.should be_valid
     end
   end
@@ -63,51 +63,34 @@ describe AdminUser do
       no_site = AdminUser.new(@attr.merge(:admin => false, :user_role_id => UserRole.find_by_name("Staff").id, :site_id => 0))
       no_site.should_not be_valid
     end
-    #it "should require a site id that points to a valid site" do
-    #
-    #end
-
-
+    it "should require a site id that points to a valid site" do
+      #this assumes that we will not ever have an id of 99 for a site in the test database
+      bad_site = AdminUser.new(@attr.merge(:admin => false, :user_role_id => UserRole.find_by_name("Staff").id, :site_id => 99))
+      bad_site.should_not be_valid
+    end
   end
-  #  it "should require a activity details" do
-  #    no_details_txn = Activity.new(@attr.merge(:activity_details => ""))
-  #    no_details_txn.should_not be_valid
-  #  end
-  #
-  #  it "should require a activity type" do
-  #    no_type_txn = Activity.new(@attr.merge(:activity_type => ""))
-  #    no_type_txn.should_not be_valid
-  #  end
-  #
-  #  it "should require a user id" do
-  #    no_user_txn = Activity.new(@attr.merge(:user_id=> ""))
-  #    no_user_txn.should_not be_valid
-  #  end
-  #
-  #  it "should require a user name" do
-  #    no_name_txn = Activity.new(@attr.merge(:user_name=> ""))
-  #    no_name_txn.should_not be_valid
-  #  end
-  #end
-  #
-  #describe "Data type tests" do
-  #  it "should require a valid date" do
-  #    invalid_date_txn = Activity.new(@attr.merge(:activity_date=> "xyz"))
-  #    invalid_date_txn.should_not be_valid
-  #  end
-  #
-  #  it "user id should be nonnegative integer" do
-  #    invalid_user_id_txn = Activity.new(@attr.merge(:user_id=> 0))
-  #    invalid_user_id_txn.should_not be_valid
-  #  end
-  #end
-  #
-  #describe "Valid entry" do
-  #  it "should create a valid entry" do
-  #    valid_txn = Activity.new(@attr)
-  #    valid_txn.should be_valid
-  #  end
-  #end
+  describe "scope tests" do
+    before :each do
+      AdminUser.create!(@attr)
+      AdminUser.create!(@attr.merge(:email => "test2@example.com", :first_name => "Liaison", :last_name => "User", :username => "Liaison User",
+                                    :liaison_id => 1, :admin => false, :user_role_id => UserRole.find_by_name("Liaison").id))
+      AdminUser.create!(@attr.merge(:email => "test3@example.com", :first_name => "Staff", :last_name => "User", :username => "Staff User",
+                                    :site_id => 1, :admin => false, :user_role_id => UserRole.find_by_name("Staff").id,
+                                    :site_id => Site.find_by_name('Test Site 1').id))
+    end
+    it "should return the correct number of AdminUser entries " do
+      AdminUser.all.count.should == 3
+    end
+    it "should return the correct number of liaison entries" do
+      AdminUser.liaison.count.should == 1
+    end
+    it "should return the correct number of admin entries" do
+      AdminUser.admin.count.should == 1
+    end
+    it "should return the correct number of staff entries" do
+      AdminUser.staff.count.should == 1
+    end
+  end
 
 end
 

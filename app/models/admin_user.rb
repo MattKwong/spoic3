@@ -36,11 +36,12 @@ class AdminUser < ActiveRecord::Base
                       :message => 'Phone number must be 10 digits plus optional separators.',
                       :allow_blank => true
 
-  #validates_presence_of :liaison_id, :if => :liaison?
-  #validates_numericality_of :liaison_id, :only_integer => true, :greater_than => 0, :if => :liaison?
+  validates_presence_of :liaison_id, :if => :liaison?
+  validates_numericality_of :liaison_id, :only_integer => true, :greater_than => 0, :if => :liaison?
 
   validates_presence_of :site_id, :if => :field_staff?
   validates_numericality_of :site_id, :only_integer => true, :greater_than => 0, :if => :field_staff?
+  validates_inclusion_of :site_id, :in => Site.all.map { |s| s.id }, :if => :field_staff?
 
   before_save :create_name
   before_save :format_phone_numbers
