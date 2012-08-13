@@ -12,7 +12,7 @@ gem 'cancan'
 gem 'prawn_rails'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'fastercsv'
-gem 'rspec-rails', :group => [:development, :test]
+#gem 'rspec-rails', :group => [:development, :test]
 gem 'rails3-jquery-autocomplete'
 gem 'ruby-units'
 gem 'breadcrumbs_on_rails'
@@ -30,6 +30,7 @@ group :development do
 end
 
 group :test do
+  gem 'rspec-rails'
   gem 'spork-rails', '3.2.0'
   #gem 'webrat', '0.7.1'
   gem 'factory_girl_rails', "~> 4.0"

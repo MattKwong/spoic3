@@ -41,7 +41,7 @@ class AdminUser < ActiveRecord::Base
 
   validates_presence_of :site_id, :if => :field_staff?
   validates_numericality_of :site_id, :only_integer => true, :greater_than => 0, :if => :field_staff?
-  #validates_inclusion_of :site_id, :in => Site.all.map { |s| s.id }, :if => :field_staff?
+  validates_inclusion_of :site_id, :in => Site.all.map { |s| s.id }, :if => :field_staff?
 
   before_save :create_name
   before_save :format_phone_numbers
@@ -57,6 +57,17 @@ class AdminUser < ActiveRecord::Base
   scope :staff, lambda {
     joins(:user_role).
     where("user_roles.name = ?", 'Staff')}
+
+  scope :not_admin, lambda {
+    joins(:user_role).
+        where("user_roles.name <> ?", 'Admin')}
+
+  scope :current_staff, where(:user_role => "Staff") #, includes(:programs).where('programs.end_date >= ?', Time.now)
+                                                     #  scope :not_current_staff, includes(:programs).where('programs.end_date < ? OR programs.end_date IS NULL', Time.now)
+
+  scope :search_by_name, lambda { |q|
+    (q ? where(["lower(name) LIKE ?", '%' + q.downcase + '%']) : {} )
+  }
 
     def format_phone_numbers
       unless self.phone.nil? || self.phone == ""
@@ -165,14 +176,6 @@ class AdminUser < ActiveRecord::Base
     unless_confirmed {yield}
   end
 
-  scope :not_admin, where(:admin != "Admin")
-
-  scope :current_staff, where(:user_role => "Staff") #, includes(:programs).where('programs.end_date >= ?', Time.now)
-#  scope :not_current_staff, includes(:programs).where('programs.end_date < ? OR programs.end_date IS NULL', Time.now)
-
-  scope :search_by_name, lambda { |q|
-    (q ? where(["lower(name) LIKE ?", '%' + q.downcase + '%']) : {} )
-  }
 
   def to_s
     name

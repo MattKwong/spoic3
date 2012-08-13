@@ -6,9 +6,9 @@ describe AdminUser do
               :user_role_id => UserRole.find_by_name("Admin").id, :username => "JSmith1"  }
     @staff_attr = {:admin => false, :user_role_id => UserRole.find_by_name("Staff").id,
               :email => "validstaff@example.com", :first_name => "Joe", :last_name => "Staffer",
-              :username => "JoStaffer1", :site_id => Site.first.id }
+              :username => "JoStaffer1", :site_id => Site.find_by_name('Test Site 1').id }
     @liaison_attr = {:admin => false, :user_role_id => UserRole.find_by_name("Liaison").id,
-              :email => "validliaison@example.com", :first_name => "Cindy", :last_name => "Liaison", :user_role_id => UserRole.find_by_name("Liaison").id,
+              :email => "validliaison@example.com", :first_name => "Cindy", :last_name => "Liaison",
               :username => "CindyLiaison1", :liaison_id => 1}
   end
 
@@ -92,6 +92,9 @@ describe AdminUser do
     it "should return the correct number of staff entries" do
       AdminUser.staff.count.should == 1
     end
+    it "should return the correct number of non-admin entries" do
+      AdminUser.not_admin.count.should == 2
+    end
   end
 
   describe "program user tests" do
@@ -125,8 +128,26 @@ describe AdminUser do
       it "user of HRC should respond to construction?" do
         hrc_job = Job.find_by_name('Home Repair Coordinator')
         prog = AdminUser.create!(@staff_attr)
-        ProgramUser.create!(:program_id => 1, :user_id => prog.id, :job_id => sd_job.id )
+        ProgramUser.create!(:program_id => 1, :user_id => prog.id, :job_id => hrc_job.id )
         prog.should be_construction
+      end
+      it "user of supply coordinator should respond to construction?" do
+        supply_job = Job.find_by_name('Supply Coordinator')
+        prog = AdminUser.create!(@staff_attr)
+        ProgramUser.create!(:program_id => 1, :user_id => prog.id, :job_id => supply_job.id )
+        prog.should be_construction
+      end
+      it "user of construction coordinator should respond to construction?" do
+        construction_job = Job.find_by_name('Construction Coordinator')
+        prog = AdminUser.create!(@staff_attr)
+        ProgramUser.create!(:program_id => 1, :user_id => prog.id, :job_id => construction_job.id )
+        prog.should be_construction
+      end
+      it "user of SLC should respond to slc?" do
+        slc_job = Job.find_by_name('Spiritual Life Coordinator')
+        prog = AdminUser.create!(@staff_attr)
+        ProgramUser.create!(:program_id => 1, :user_id => prog.id, :job_id => slc_job.id )
+        prog.should be_slc
       end
     end
   end
