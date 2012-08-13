@@ -38,66 +38,63 @@
     <favorites_list name="spoic3" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.36778846">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="admin_user.rb" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/models/admin_user.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="25" column="73" selection-start="872" selection-end="872" vertical-scroll-proportion="-3.362903">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="..sites" pinned="false" current="false" current-in-tab="false">
-            <entry file="dbDummy://dbElement:/56df5c37/8659851c-df59-4db9-85d6-9f7cb14f74f9/..sites">
-              <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
-                <state />
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="..admin_users" pinned="false" current="false" current-in-tab="false">
-            <entry file="dbDummy://dbElement:/56df5c37/8659851c-df59-4db9-85d6-9f7cb14f74f9/..admin_users">
-              <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
-                <state />
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="seeds.rb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/db/seeds.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="46" column="68" selection-start="2036" selection-end="2036" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="admin_user_spec.rb" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/spec/models/admin_user_spec.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="90" column="54" selection-start="3951" selection-end="3951" vertical-scroll-proportion="0.7692308">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="site.rb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/models/site.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="17" column="91" selection-start="585" selection-end="585" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="admin_user.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/admin_user.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="48" column="54" selection-start="1862" selection-end="1862" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="seeds.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/seeds.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="67" column="40" selection-start="2660" selection-end="2660" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="..jobs" pinned="false" current="false" current-in-tab="false">
+        <entry file="dbDummy://dbElement:/56df5c37/8659851c-df59-4db9-85d6-9f7cb14f74f9/..jobs">
+          <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="..sites" pinned="false" current="false" current-in-tab="false">
+        <entry file="dbDummy://dbElement:/56df5c37/8659851c-df59-4db9-85d6-9f7cb14f74f9/..sites">
+          <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="..job_types" pinned="false" current="false" current-in-tab="false">
+        <entry file="dbDummy://dbElement:/56df5c37/8659851c-df59-4db9-85d6-9f7cb14f74f9/..job_types">
+          <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin_user_spec.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/spec/models/admin_user_spec.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="87" column="80" selection-start="3489" selection-end="3489" vertical-scroll-proportion="3.8818898">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="..user_roles" pinned="false" current="false" current-in-tab="false">
+        <entry file="dbDummy://dbElement:/56df5c37/8659851c-df59-4db9-85d6-9f7cb14f74f9/..user_roles">
+          <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+            <state />
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -120,6 +117,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock:///Rails console: spoic3" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Rails console: spoic3" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
@@ -137,8 +135,8 @@
         <option value="$PROJECT_DIR$/app/models/activity.rb" />
         <option value="$PROJECT_DIR$/spec/models/activity_spec.rb" />
         <option value="$PROJECT_DIR$/spec/models/admin_user.rb" />
-        <option value="$PROJECT_DIR$/app/models/admin_user.rb" />
         <option value="$PROJECT_DIR$/db/seeds.rb" />
+        <option value="$PROJECT_DIR$/app/models/admin_user.rb" />
         <option value="$PROJECT_DIR$/spec/models/admin_user_spec.rb" />
       </list>
     </option>
@@ -182,6 +180,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="RailsProjectView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spoic3" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane />
         <subPane subId="Non-Project Files" />
@@ -266,16 +274,6 @@
             <PATH_ELEMENT USER_OBJECT=".idea">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="RailsProjectView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spoic3" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -397,7 +395,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="124" />
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="121" />
-    <property name="Database.TableEditor.Splitter" value="0.8451244" />
+    <property name="Database.TableEditor.Splitter" value="0.95454544" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
@@ -427,7 +425,7 @@
       <recent name="C:\Users\Rick\railsprojects\ctab\app\views\admin\churches" />
     </key>
   </component>
-  <component name="RunManager" selected="RSpec.admin_user_spec">
+  <component name="RunManager" selected="Rake.db:seed">
     <configuration default="false" name="application_controller_spec" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
       <predefined_log_file id="RUBY_RSPEC" enabled="true" />
       <module name="spoic3" />
@@ -1903,7 +1901,15 @@
       <created>1344629042358</created>
       <updated>1344629042358</updated>
     </task>
-    <option name="localTasksCounter" value="216" />
+    <task id="LOCAL-00216" summary="Updating admin user specs">
+      <created>1344723186585</created>
+      <updated>1344723186585</updated>
+    </task>
+    <task id="LOCAL-00217" summary="Admin user specs; 20 passing examples.">
+      <created>1344726326784</created>
+      <updated>1344726326784</updated>
+    </task>
+    <option name="localTasksCounter" value="218" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1928,17 +1934,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1380" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14589666" sideWeight="0.68421054" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14589666" sideWeight="0.68914473" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27631578" sideWeight="0.80649114" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3247191" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27941176" sideWeight="0.24719101" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16945289" sideWeight="0.68421054" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17553191" sideWeight="0.68914473" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39910814" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24448529" sideWeight="0.23258427" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31578946" sideWeight="0.25" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31578946" sideWeight="0.7446808" order="2" side_tool="false" content_ui="tabs" x="77" y="500" width="1633" height="304" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31085527" sideWeight="0.7446808" order="2" side_tool="false" content_ui="tabs" x="77" y="500" width="1633" height="304" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32565284" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32894737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1990,7 +1996,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="More work on tests for AdminUser model." />
+    <option name="LAST_COMMIT_MESSAGE" value="Admin user specs; 20 passing examples." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -2003,8 +2009,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Changes to food inventory presentation, simplified." />
-    <MESSAGE value="Several changes, but mostly unchanged files." />
     <MESSAGE value="Added newrelic.yml file." />
     <MESSAGE value="    Corrected error in session start and end date determination which was affecting food inventory calculations." />
     <MESSAGE value="New gemfile.lock" />
@@ -2028,49 +2032,66 @@
     <MESSAGE value="Updated church model and church specs" />
     <MESSAGE value="Finished activity spec, working on admin user spec and scope :admin." />
     <MESSAGE value="More work on tests for AdminUser model." />
+    <MESSAGE value="Updating admin user specs" />
+    <MESSAGE value="Admin user specs; 20 passing examples." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/church.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/site.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="75" selection-start="1997" selection-end="1997" vertical-scroll-proportion="0.0" />
+        <state line="17" column="91" selection-start="585" selection-end="585" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
+    <entry file="file://$PROJECT_DIR$/app/models/program_user.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+        <state line="25" column="0" selection-start="566" selection-end="566" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/activity.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="63" selection-start="370" selection-end="370" vertical-scroll-proportion="0.49275362" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/models/activity_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="36" selection-start="1564" selection-end="1564" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/admin_users.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbElement:/56df5c37/5f7321ab-36b9-48eb-912a-84148ea6d9d0/..user_roles">
+    <entry file="dbDummy://dbElement:/56df5c37/5f7321ab-36b9-48eb-912a-84148ea6d9d0/..jobs">
       <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
         <state />
       </provider>
     </entry>
-    <entry file="dbDummy://dbElement:/56df5c37/8659851c-df59-4db9-85d6-9f7cb14f74f9/..active_admin_comments">
+    <entry file="file://C:/Ruby192/lib/ruby/gems/1.9.1/gems/rspec-expectations-2.11.2/lib/rspec/expectations/syntax.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="0" selection-start="1802" selection-end="1802" vertical-scroll-proportion="0.33333334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/job.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/job_type.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbElement:/56df5c37/5f7321ab-36b9-48eb-912a-84148ea6d9d0/..sites">
       <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
         <state />
       </provider>
     </entry>
-    <entry file="dbDummy://dbElement:/56df5c37/5f7321ab-36b9-48eb-912a-84148ea6d9d0/..admin_users">
+    <entry file="dbDummy://dbElement:/56df5c37/5f7321ab-36b9-48eb-912a-84148ea6d9d0/..job_types">
       <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://C:/Ruby192/lib/ruby/gems/1.9.1/gems/activerecord-3.0.12/lib/active_record/validations.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="0" selection-start="1665" selection-end="1665" vertical-scroll-proportion="0.33246073">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbElement:/56df5c37/8659851c-df59-4db9-85d6-9f7cb14f74f9/..user_roles">
@@ -2078,23 +2099,26 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/models/church_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="47" selection-start="2986" selection-end="2986" vertical-scroll-proportion="0.20858896">
-          <folding />
-        </state>
+    <entry file="dbDummy://dbElement:/56df5c37/8659851c-df59-4db9-85d6-9f7cb14f74f9/..job_types">
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/site.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="91" selection-start="585" selection-end="585" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+    <entry file="dbDummy://dbElement:/56df5c37/8659851c-df59-4db9-85d6-9f7cb14f74f9/..jobs">
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db/seeds.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="68" selection-start="2036" selection-end="2036" vertical-scroll-proportion="0.0">
+        <state line="67" column="40" selection-start="2660" selection-end="2660" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/admin_user.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="54" selection-start="1862" selection-end="1862" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -2104,21 +2128,9 @@
         <state />
       </provider>
     </entry>
-    <entry file="dbDummy://dbElement:/56df5c37/8659851c-df59-4db9-85d6-9f7cb14f74f9/..admin_users">
-      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/admin_user.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="73" selection-start="872" selection-end="872" vertical-scroll-proportion="-3.362903">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/models/admin_user_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="54" selection-start="3951" selection-end="3951" vertical-scroll-proportion="0.7692308">
+        <state line="87" column="80" selection-start="3489" selection-end="3489" vertical-scroll-proportion="3.8818898">
           <folding />
         </state>
       </provider>

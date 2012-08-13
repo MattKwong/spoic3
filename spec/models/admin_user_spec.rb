@@ -2,10 +2,14 @@ require 'spec_helper'
 
 describe AdminUser do
   before (:each) do
-    @attr = { :email => "valid@example.com", :name => "John Smith", :first_name => "John", :last_name => "Smith", :user_role_id => UserRole.find_by_name("Admin").id,
-              :username => "JSmith1"  }
-    @staff_attr = @attr.merge(:site_id => 1, :admin => false, :user_role_id => UserRole.find_by_name("Staff").id,
-      :site_id => Site.find_by_name('Test Site 1').id)
+    @attr = { :email => "validadmin@example.com", :first_name => "Test", :last_name => "Admin",
+              :user_role_id => UserRole.find_by_name("Admin").id, :username => "JSmith1"  }
+    @staff_attr = {:admin => false, :user_role_id => UserRole.find_by_name("Staff").id,
+              :email => "validstaff@example.com", :first_name => "Joe", :last_name => "Staffer",
+              :username => "JoStaffer1", :site_id => Site.first.id }
+    @liaison_attr = {:admin => false, :user_role_id => UserRole.find_by_name("Liaison").id,
+              :email => "validliaison@example.com", :first_name => "Cindy", :last_name => "Liaison", :user_role_id => UserRole.find_by_name("Liaison").id,
+              :username => "CindyLiaison1", :liaison_id => 1}
   end
 
   describe "Valid entries" do
@@ -14,12 +18,11 @@ describe AdminUser do
       valid_admin.should be_valid
     end
     it "should create a valid liaison entry" do
-      valid_liaison = AdminUser.new(@attr.merge(:liaison_id => 1, :admin => false, :user_role_id => UserRole.find_by_name("Liaison").id))
+      valid_liaison = AdminUser.new(@liaison_attr)
       valid_liaison.should be_valid
     end
     it "should create a valid staff entry" do
-      valid_staff = AdminUser.new(@attr.merge(:site_id => 1, :admin => false, :user_role_id => UserRole.find_by_name("Staff").id,
-                                   :site_id => Site.find_by_name('Test Site 1').id))
+      valid_staff = AdminUser.new(@staff_attr)
       valid_staff.should be_valid
     end
   end
@@ -74,11 +77,8 @@ describe AdminUser do
   describe "scope tests" do
     before :each do
       AdminUser.create!(@attr)
-      AdminUser.create!(@attr.merge(:email => "test2@example.com", :first_name => "Liaison", :last_name => "User", :username => "Liaison User",
-                                    :liaison_id => 1, :admin => false, :user_role_id => UserRole.find_by_name("Liaison").id))
-      AdminUser.create!(@attr.merge(:email => "test3@example.com", :first_name => "Staff", :last_name => "User", :username => "Staff User",
-                                    :site_id => 1, :admin => false, :user_role_id => UserRole.find_by_name("Staff").id,
-                                    :site_id => Site.find_by_name('Test Site 1').id))
+      AdminUser.create!(@liaison_attr)
+      AdminUser.create!(@staff_attr)
     end
     it "should return the correct number of AdminUser entries " do
       AdminUser.all.count.should == 3
@@ -95,10 +95,6 @@ describe AdminUser do
   end
 
   describe "program user tests" do
-    before :each do
-
-    end
-
     it "admin user should have no program user" do
       no_prog = AdminUser.new(@attr)
       no_prog.program_user.should == nil
@@ -107,14 +103,31 @@ describe AdminUser do
       no_prog = AdminUser.new(@attr)
       no_prog.program_id.should == 0
     end
-    it "admin user program id should return zero" do
-      no_prog = AdminUser.new(@attr)
-      no_prog.program_id.should == 0
-    end
-    it "staff admin user program id should return 1" do
-      prog = AdminUser.create!(@staff_attr)
-      ProgramUser.create!(:program_id => 1, :user_id => prog.id, :job_id => 1 )
-      prog.program_id.should == 1
+
+    describe "staff admin user tests" do
+      it "staff admin user program id should return 1" do
+        prog = AdminUser.create!(@staff_attr)
+        ProgramUser.create!(:program_id => 1, :user_id => prog.id, :job_id => 1 )
+        prog.program_id.should == 1
+      end
+      it "staff user should return a job name" do
+        any_job = Job.first
+        prog = AdminUser.create!(@staff_attr)
+        ProgramUser.create!(:program_id => 1, :user_id => prog.id, :job_id => any_job.id )
+        prog.job_name.should == any_job.name
+      end
+      it "user of site director should respond to sd?" do
+        sd_job = Job.find_by_name('Site Director')
+        prog = AdminUser.create!(@staff_attr)
+        ProgramUser.create!(:program_id => 1, :user_id => prog.id, :job_id => sd_job.id )
+        prog.should be_sd
+      end
+      it "user of HRC should respond to construction?" do
+        hrc_job = Job.find_by_name('Home Repair Coordinator')
+        prog = AdminUser.create!(@staff_attr)
+        ProgramUser.create!(:program_id => 1, :user_id => prog.id, :job_id => sd_job.id )
+        prog.should be_construction
+      end
     end
   end
 

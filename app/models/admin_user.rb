@@ -41,7 +41,7 @@ class AdminUser < ActiveRecord::Base
 
   validates_presence_of :site_id, :if => :field_staff?
   validates_numericality_of :site_id, :only_integer => true, :greater_than => 0, :if => :field_staff?
-  validates_inclusion_of :site_id, :in => Site.all.map { |s| s.id }, :if => :field_staff?
+  #validates_inclusion_of :site_id, :in => Site.all.map { |s| s.id }, :if => :field_staff?
 
   before_save :create_name
   before_save :format_phone_numbers
@@ -93,7 +93,7 @@ class AdminUser < ActiveRecord::Base
     end
 
     def program_id
-      program_user ? 0 : program_user.program_id
+      self.program_user ? program_user.program_id : 0
     end
 
     def program_user
