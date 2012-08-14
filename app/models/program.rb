@@ -94,12 +94,14 @@ class Program < ActiveRecord::Base
     BudgetItemType.find(budget_item_type_id).name
   end
 
-  def budget_item_spent(budget_item_type_id)
-    (self.item_purchases.by_budget_line_type(budget_item_type_id).map &:total_price).sum
+  def budget_item_spent(budget_item_type_id, start_date = 0, end_date = 0)
+    (start_date == 0 || (end_date == 0)) ? (self.item_purchases.by_budget_line_type(budget_item_type_id).map &:total_price).sum :
+       (self.item_purchases.by_budget_line_type(budget_item_type_id).map &:total_price).sum
   end
 
-  def budget_item_spent_with_tax(budget_item_type_id)
-    (self.item_purchases.by_budget_line_type(budget_item_type_id).map &:total_price_with_tax).sum
+  def budget_item_spent_with_tax(budget_item_type_id, start_date = 0, end_date = 0)
+    (start_date == 0 || (end_date == 0)) ? (self.item_purchases.by_budget_line_type(budget_item_type_id).map &:total_price_with_tax).sum :
+        (self.item_purchases.by_budget_line_type(budget_item_type_id).map &:total_price_with_tax).sum
   end
 
   def budget_item_budgeted(budget_item_type_id)

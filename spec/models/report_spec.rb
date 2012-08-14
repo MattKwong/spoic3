@@ -6,6 +6,8 @@ describe Report do
                      :end_date => Date.strptime("08/31/2012", "%m/%d/%Y"),
                      :program_type_id => ProgramType.find_by_name("Summer Domestic").id, :active => true,
                      :name => "Test Program 1", :short_name  => "TP 1"}
+    @start_date = Date.strptime("06/01/2012", "%m/%d/%Y")
+    @end_date = Date.strptime("08/31/2012", "%m/%d/%Y")
   end
 
   it "should return a list of all active programs" do
@@ -24,7 +26,7 @@ describe Report do
 
     it "given a budget item id and no purchase items, should return zero" do
       report = Report.new
-      report.spending_without_tax(BudgetItemType.find_by_name("Food").id).should == 0
+      report.spending_without_tax(BudgetItemType.find_by_name("Food").id, @start_date, @end_date).should == 0
     end
 
     describe "purchases of non taxable items with no program specified" do
@@ -42,14 +44,14 @@ describe Report do
         report = Report.new
         ItemPurchase.create!(:item_id => @item1.id, :price => 5.00, :purchase_id => @purchase1.id, :quantity => 100,
             :taxable => false, :size => '1 lbs', :uom => "oz")
-        report.spending_without_tax(BudgetItemType.find_by_name("Food").id).should == 500.00
+        report.spending_without_tax(BudgetItemType.find_by_name("Food").id, @start_date, @end_date).should == 500.00
       end
 
       it "given a budget item id, should return the amount spent with tax" do
         report = Report.new
         ItemPurchase.create!(:item_id => @item1.id, :price => 5.00, :purchase_id => @purchase1.id, :quantity => 100,
                              :taxable => false, :size => '1 lbs', :uom => "oz")
-        report.spending_with_tax(BudgetItemType.find_by_name("Food").id).should == 500.00
+        report.spending_with_tax(BudgetItemType.find_by_name("Food").id, @start_date, @end_date).should == 500.00
       end
     end
     describe "purchases of taxable items with no program specified" do
@@ -67,14 +69,14 @@ describe Report do
         report = Report.new
         ItemPurchase.create!(:item_id => @item2.id, :price => 45.75, :purchase_id => @purchase2.id, :quantity => 2,
             :taxable => true, :size => 'each', :uom => "each")
-        report.spending_without_tax(BudgetItemType.find_by_name("Materials").id).should == 91.50
+        report.spending_without_tax(BudgetItemType.find_by_name("Materials").id, @start_date, @end_date).should == 91.50
       end
 
       it "given a budget item id, should return the amount spent with tax" do
         report = Report.new
         ItemPurchase.create!(:item_id => @item2.id, :price => 45.75, :purchase_id => @purchase2.id, :quantity => 2,
                              :taxable => true, :size => 'each', :uom => "each")
-        report.spending_with_tax(BudgetItemType.find_by_name("Materials").id).should be_within(0.005).of(100.00)
+        report.spending_with_tax(BudgetItemType.find_by_name("Materials").id, @start_date, @end_date).should be_within(0.005).of(100.00)
       end
     end
     describe "purchases of non taxable items with a program specified" do
@@ -92,14 +94,14 @@ describe Report do
         report = Report.new
         ItemPurchase.create!(:item_id => @item1.id, :price => 5.00, :purchase_id => @purchase1.id, :quantity => 100,
                              :taxable => false, :size => '1 lbs', :uom => "oz")
-        @test_prog1.budget_item_spent(BudgetItemType.find_by_name("Food").id).should == 500.00
+        @test_prog1.budget_item_spent(BudgetItemType.find_by_name("Food").id, @start_date, @end_date).should == 500.00
       end
 
       it "given a budget item id, should return the amount spent with tax" do
         report = Report.new
         ItemPurchase.create!(:item_id => @item1.id, :price => 5.00, :purchase_id => @purchase1.id, :quantity => 100,
                              :taxable => false, :size => '1 lbs', :uom => "oz")
-        @test_prog1.budget_item_spent(BudgetItemType.find_by_name("Food").id).should == 500.00
+        @test_prog1.budget_item_spent(BudgetItemType.find_by_name("Food").id, @start_date, @end_date).should == 500.00
       end
     end
     describe "purchases of taxable items with no program specified" do
@@ -117,14 +119,14 @@ describe Report do
         report = Report.new
         ItemPurchase.create!(:item_id => @item2.id, :price => 45.75, :purchase_id => @purchase2.id, :quantity => 2,
                              :taxable => true, :size => 'each', :uom => "each")
-        @test_prog1.budget_item_spent(BudgetItemType.find_by_name("Materials").id).should == 91.50
+        @test_prog1.budget_item_spent(BudgetItemType.find_by_name("Materials").id, @start_date, @end_date).should == 91.50
       end
 
       it "given a budget item id, should return the amount spent with tax" do
         report = Report.new
         ItemPurchase.create!(:item_id => @item2.id, :price => 45.75, :purchase_id => @purchase2.id, :quantity => 2,
                              :taxable => true, :size => 'each', :uom => "each")
-        @test_prog1.budget_item_spent_with_tax(BudgetItemType.find_by_name("Materials").id).should be_within(0.005).of(100.00)
+        @test_prog1.budget_item_spent_with_tax(BudgetItemType.find_by_name("Materials").id, @start_date, @end_date).should be_within(0.005).of(100.00)
       end
     end
     describe "purchases of taxable items with no program specified with multiple sites" do
@@ -144,20 +146,27 @@ describe Report do
         report = Report.new
         ItemPurchase.create!(:item_id => @item2.id, :price => 45.75, :purchase_id => @purchase2.id, :quantity => 2,
                              :taxable => true, :size => 'each', :uom => "each")
-        @test_prog2.budget_item_spent(BudgetItemType.find_by_name("Materials").id).should == 0.00
+        @test_prog2.budget_item_spent(BudgetItemType.find_by_name("Materials").id, @start_date, @end_date).should == 0.00
       end
 
       it "given a budget item id, should return the amount spent with tax" do
         report = Report.new
         ItemPurchase.create!(:item_id => @item2.id, :price => 45.75, :purchase_id => @purchase2.id, :quantity => 2,
                              :taxable => true, :size => 'each', :uom => "each")
-        @test_prog2.budget_item_spent_with_tax(BudgetItemType.find_by_name("Materials").id).should be_within(0.005).of(0.00)
+        @test_prog2.budget_item_spent_with_tax(BudgetItemType.find_by_name("Materials").id, @start_date, @end_date).should be_within(0.005).of(0.00)
       end
       it "should return the total amount spent with tax for all programs" do
         report = Report.new
         ItemPurchase.create!(:item_id => @item2.id, :price => 45.75, :purchase_id => @purchase2.id, :quantity => 2,
                              :taxable => true, :size => 'each', :uom => "each")
-        report.spending_with_tax_total.should be_within(0.005).of(100.00)
+        report.spending_with_tax_total(@start_date, @end_date).should be_within(0.005).of(100.00)
+      end
+      it "should exclude purchase outside of date range" do
+        report = Report.new
+        @end_date = Date.today - 5
+        ItemPurchase.create!(:item_id => @item2.id, :price => 45.75, :purchase_id => @purchase2.id, :quantity => 2,
+                             :taxable => true, :size => 'each', :uom => "each")
+        report.spending_with_tax_total(@start_date, @end_date).should be_within(0.005).of(0.00)
       end
     end
   end

@@ -22,6 +22,7 @@ class ItemPurchase < ActiveRecord::Base
   scope :taxable, where(:taxable => true)
   scope :alphabetized, joins(:item).order('items.name')
   scope :by_date, joins(:purchase).order('purchases.date')
+  scope :between_dates, lambda { |start_date, end_date| joins(:purchase).where('purchases.date >= ? AND purchases.date < ?', start_date, end_date) }
 
 
 #  after_save :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }

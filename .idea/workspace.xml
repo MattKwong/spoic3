@@ -9,8 +9,12 @@
     <list id="379a22e9-9cc6-4325-ab88-44d916e9f998" name="Default" comment="Collapse item purchase details on page load." />
     <list id="6515e16b-01b0-44f6-bd49-9d9ce8271564" name="Failed commit: Default" comment="Added update of second payment fields in ScheduledGroup to payment controller code." />
     <list default="true" id="e869ade2-2c0f-42bd-b5a5-3ff2c24839cd" name="Gemfile changes" comment="Updated church model and church specs">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/report.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/item_purchase.rb" afterPath="$PROJECT_DIR$/app/models/item_purchase.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/program.rb" afterPath="$PROJECT_DIR$/app/models/program.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/report_spec.rb" afterPath="$PROJECT_DIR$/spec/models/report_spec.rb" />
     </list>
     <ignored path="spoic3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,43 +43,16 @@
       <file leaf-file-name="report.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/report.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="33" selection-start="554" selection-end="554" vertical-scroll-proportion="0.0">
+            <state line="22" column="29" selection-start="658" selection-end="658" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gemfile.lock" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Gemfile.lock">
+      <file leaf-file-name="item_purchase.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/item_purchase.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="65" selection-start="270" selection-end="270" vertical-scroll-proportion="0.34375">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="staff_reports_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/staff_reports_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="53" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="budget_item_type.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/budget_item_type.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="29" selection-start="479" selection-end="479" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="spending_by_site.html.haml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/staff_reports/spending_by_site.html.haml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="91" selection-start="404" selection-end="404" vertical-scroll-proportion="0.0">
+            <state line="31" column="126" selection-start="1790" selection-end="1790" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -84,25 +61,16 @@
       <file leaf-file-name="program.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/program.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="129" column="81" selection-start="3437" selection-end="3437" vertical-scroll-proportion="0.0">
+            <state line="88" column="107" selection-start="2327" selection-end="2327" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="report_spec.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="report_spec.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spec/models/report_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="161" column="71" selection-start="10503" selection-end="10503" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_budget_items.html.haml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/programs/_budget_items.html.haml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="0" selection-start="871" selection-end="871" vertical-scroll-proportion="0.0">
+            <state line="171" column="94" selection-start="11336" selection-end="11336" vertical-scroll-proportion="0.7934028">
               <folding />
             </state>
           </provider>
@@ -134,7 +102,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/models/budget.rb" />
         <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/app/models/vendor.rb" />
         <option value="$PROJECT_DIR$/app/models/purchase.rb" />
@@ -146,10 +113,11 @@
         <option value="$PROJECT_DIR$/app/controllers/staff_reports_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/programs/_budget_items.html.haml" />
         <option value="$PROJECT_DIR$/app/views/staff_reports/spending_by_site.html.haml" />
-        <option value="$PROJECT_DIR$/spec/models/report_spec.rb" />
-        <option value="$PROJECT_DIR$/app/models/program.rb" />
-        <option value="$PROJECT_DIR$/app/models/report.rb" />
         <option value="$PROJECT_DIR$/Gemfile.lock" />
+        <option value="$PROJECT_DIR$/app/models/item_purchase.rb" />
+        <option value="$PROJECT_DIR$/app/models/report.rb" />
+        <option value="$PROJECT_DIR$/app/models/program.rb" />
+        <option value="$PROJECT_DIR$/spec/models/report_spec.rb" />
       </list>
     </option>
   </component>
@@ -2057,7 +2025,11 @@
       <created>1344979271320</created>
       <updated>1344979271320</updated>
     </task>
-    <option name="localTasksCounter" value="222" />
+    <task id="LOCAL-00222" summary="Updated church model and church specs">
+      <created>1344979587594</created>
+      <updated>1344979587595</updated>
+    </task>
+    <option name="localTasksCounter" value="223" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -2094,7 +2066,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3988764" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24448529" sideWeight="0.23258427" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31578946" sideWeight="0.25" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31011236" sideWeight="0.7446808" order="2" side_tool="false" content_ui="tabs" x="77" y="500" width="1633" height="304" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31011236" sideWeight="0.7446808" order="2" side_tool="false" content_ui="tabs" x="77" y="500" width="1633" height="304" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3247191" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32894737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2144,7 +2116,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Spending report without date parameters." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated church model and church specs" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -2179,21 +2151,14 @@
     <MESSAGE value="Updating admin user specs" />
     <MESSAGE value="Admin user specs; 20 passing examples." />
     <MESSAGE value="Work on admin user spec" />
-    <MESSAGE value="Updated church model and church specs" />
     <MESSAGE value="Work started on spending report" />
     <MESSAGE value="Spending report without date parameters." />
+    <MESSAGE value="Updated church model and church specs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/_header.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="99" selection-start="2366" selection-end="2366" vertical-scroll-proportion="0.71090907">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/reports_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="0" selection-start="120" selection-end="120" vertical-scroll-proportion="0.0">
@@ -2232,20 +2197,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/budget_item_type.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="29" selection-start="479" selection-end="479" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/staff_reports_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="53" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/reports_controller_bal.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="0" selection-start="121" selection-end="121" vertical-scroll-proportion="0.0">
@@ -2267,30 +2218,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/models/report_spec.rb">
+    <entry file="file://$PROJECT_DIR$/Gemfile.lock">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="161" column="71" selection-start="10503" selection-end="10503" vertical-scroll-proportion="0.0">
+        <state line="22" column="124" selection-start="536" selection-end="536" vertical-scroll-proportion="0.6875">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/program.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/budget_item_type.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="129" column="81" selection-start="3437" selection-end="3437" vertical-scroll-proportion="0.0">
+        <state line="17" column="29" selection-start="479" selection-end="479" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/staff_reports_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="126" selection-start="510" selection-end="510" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/report.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="33" selection-start="554" selection-end="554" vertical-scroll-proportion="0.0">
+        <state line="22" column="29" selection-start="658" selection-end="658" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile.lock">
+    <entry file="file://$PROJECT_DIR$/app/models/item_purchase.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="65" selection-start="270" selection-end="270" vertical-scroll-proportion="0.34375">
+        <state line="31" column="126" selection-start="1790" selection-end="1790" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/program.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="88" column="107" selection-start="2327" selection-end="2327" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/models/report_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="171" column="94" selection-start="11336" selection-end="11336" vertical-scroll-proportion="0.7934028">
           <folding />
         </state>
       </provider>
