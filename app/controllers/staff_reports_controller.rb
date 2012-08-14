@@ -13,11 +13,10 @@ class StaffReportsController < ApplicationController
     @program = Program.find(params[:id])
     @page_title = "Food Inventory Report: #{@program}"
     @date = (Date.parse(params[:date]) if params[:date]) || Date.today
-#For testing
-#    @date = (Date.parse(params[:date]) if params[:date]) || "07/08/2012".to_date
     @items = Item.food.all_for_program(@program)
     @budget_type_id = BudgetItemType.find_by_name('Food').id
   end
+
   def materials_inventory
     @program = Program.find(params[:id])
     @page_title = "Materials Inventory Report: #{@program}"
@@ -104,6 +103,12 @@ class StaffReportsController < ApplicationController
     end
   end
 
+  def spending_report
+    @page_title = "Spending Report"
+
+
+
+  end
   protected
 
   def get_program

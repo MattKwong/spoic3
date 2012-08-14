@@ -14,7 +14,7 @@
 #  tax          :decimal(, )
 
 class Purchase < ActiveRecord::Base
-  attr_accessible :vendor_id, :purchaser_id, :date, :total, :tax, :purchase_type
+  attr_accessible :vendor_id, :purchaser_id, :date, :total, :tax, :purchase_type, :program_id
 
   validates :program_id, :presence => true
   validates :vendor_id, :presence => true
@@ -23,7 +23,7 @@ class Purchase < ActiveRecord::Base
   validates :tax, :presence => true
   validates :date, :presence => true
   validates_inclusion_of :purchase_type, :in => ['Credit', 'Gift Card', 'Cash', 'Return', 'Mixed']
-  validate :date_range
+  #validate :date_range
 
   belongs_to :program
   belongs_to :vendor

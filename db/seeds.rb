@@ -77,7 +77,22 @@ Job.create(:name => 'Cook', :job_type_id => JobType.find_by_name('Food').id)
 end
 
 
+if ProgramType.find_by_name("Summer Domestic")
+  ProgramType.find_by_name("Summer Domestic").delete
+end
+ProgramType.create(:name => 'Summer Domestic', :description => 'Standard summer domestic program', :position => 10)
 
+[['Materials','Construction materials and consumable tools', 10], ['Food','Food and consumable kitchen items', 20],
+['Worship & Study','Materials purchased for program activities', 30], ['Fuel','Fuel for all site vehicles', 40],
+['Lodging','If necessary to and from site from Sacramento', 50], ['Meals', 'Staff meals to and from site as well as a few meals during summer - restaurant receipts', 60],
+['Team Building','If necessary team activities to boost moral', 70], ['Office Supply', 'Toner, paper, copy keys, etc.', 80],
+['Misc','Items that do not fit in other budget item types - be sure to put notes so Meghan can account for them appropriately', 90],
+['Tools', 'Tools approved by Megan Taylor to purchase. Items that will become part of tool trailer inventory', 15]].each do |item|
+  if BudgetItemType.find_by_name(item[0])
+    BudgetItemType.find_by_name(item[0]).delete
+  end
+  BudgetItemType.create(:name => item[0], :description => item[1], :seq_number => item[2])
+end
 
 
 

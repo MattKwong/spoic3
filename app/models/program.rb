@@ -51,8 +51,8 @@ class Program < ActiveRecord::Base
 
   def start_date_not_in_past
      unless start_date.nil?
-       if start_date < Date.today
-        errors.add(:start_date, "Start date cannot be in the past")
+       if start_date < Date.today - 90
+        errors.add(:start_date, "Start date cannot be more than 90 days in the past")
        end
     end
   end
@@ -62,9 +62,8 @@ class Program < ActiveRecord::Base
 #  default_scope :include => :site, :order => 'end_date DESC, sites.name ASC'
   before_validation :set_name
 
-  #TODO: The +100 is put in for testing and demonstrating. Needs to be removed in production.
   def to_current
-    self.sessions.joins(:period).where("start_date < ?", Date.today + 100)
+    self.sessions.joins(:period).where("start_date < ?", Date.today)
   end
 
   def first_session_start
