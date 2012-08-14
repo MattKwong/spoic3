@@ -4,6 +4,15 @@ class StaffReportsController < ApplicationController
 #  load_and_authorize_resource
   require 'csv'
 
+
+  def spending_by_site
+    @report = Report.new
+    @page_title = 'Spending Summary Report'
+    @programs = @report.all_programs
+    @selected_program = @programs.first
+    @budget_items_types = BudgetItemType.all
+  end
+
   def show
     @page_title = "Food Reports"
     @programs = Program.accessible_by(current_ability, :site_report)

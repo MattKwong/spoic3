@@ -3,6 +3,7 @@ require 'csv'
 class ReportsController < ApplicationController
   load_and_authorize_resource :liaison, :parent => false
 
+
   def church_and_liaison(scope = nil)
     @headers = get_headers
     @rows = get_rows
@@ -25,7 +26,6 @@ class ReportsController < ApplicationController
       Church.first.attributes.each do |k, v|
         @headers << k.camelize
       end
-      logger.debug @headers.inspect
       return @headers
   end
 

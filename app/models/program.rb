@@ -114,20 +114,20 @@ class Program < ActiveRecord::Base
     budget_item_budgeted(budget_item_type_id) - budget_item_spent_with_tax(budget_item_type_id)
   end
 
-  def budget_item_spent_total
+  def spent_total
     (self.item_purchases.map &:total_price).sum
   end
 
-  def budget_item_spent_with_tax_total
+  def spent_with_tax_total
     (self.item_purchases.map &:total_price_with_tax).sum
   end
 
-  def budget_item_budgeted_total
+  def budgeted_total
     (self.budget_items.map &:amount).sum
   end
 
-  def budget_item_remaining_total
-    budget_item_budgeted_total - budget_item_spent_with_tax_total
+  def remaining_total
+    budgeted_total - spent_with_tax_total
   end
 
   def purchased_items

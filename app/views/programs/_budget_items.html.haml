@@ -18,7 +18,7 @@
           %td= number_to_currency @program.budget_item_remaining(item.budget_item_type_id)
       %tr
         %td Totals
-        %td= number_to_currency @program.budget_item_budgeted_total
-        %td= number_to_currency @program.budget_item_spent_total
-        %td= number_to_currency @program.budget_item_spent_with_tax_total
-        %td= number_to_currency @program.budget_item_remaining_total
+        %td= number_to_currency @program.budgeted_total
+        %td= number_to_currency @program.spent_total
+        %td= number_to_currency @program.spent_with_tax_total
+        %td= number_to_currency @program.remaining_total
