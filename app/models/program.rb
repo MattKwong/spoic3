@@ -15,6 +15,8 @@ class Program < ActiveRecord::Base
   has_many :food_inventories
   has_many :projects
 
+  before_validation :set_name
+
   validates :name, :presence => true, :uniqueness => true
   validates :short_name, :presence => true, :uniqueness => true
   validates :site_id, :presence => true
@@ -22,10 +24,12 @@ class Program < ActiveRecord::Base
   validates :end_date, :presence => true
   validates :program_type_id, :presence => true
   validates :active, :inclusion => [true, false]
-
-  validate :start_date_before_end_date
+    validate :start_date_before_end_date
   validate :start_date_not_in_past
+
   scope :active, where(:active => true)
+  scope :current, where(:active => true)
+  scope :past, where(:active => false)
 
   def total_days
     total = 0
@@ -56,11 +60,6 @@ class Program < ActiveRecord::Base
        end
     end
   end
-
-  scope :current, where(:active => true)
-  scope :past, where(:active => false)
-#  default_scope :include => :site, :order => 'end_date DESC, sites.name ASC'
-  before_validation :set_name
 
   def to_current
     self.sessions.joins(:period).where("start_date < ?", Date.today)

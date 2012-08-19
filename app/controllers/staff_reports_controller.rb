@@ -10,6 +10,9 @@ class StaffReportsController < ApplicationController
     @page_title = 'Spending Summary Report'
     @programs = @report.all_programs
     @selected_program = @programs.first
+    @start_date = @programs.first.start_date
+    @end_date = @programs.first.end_date
+
     @budget_items_types = BudgetItemType.all
   end
 
