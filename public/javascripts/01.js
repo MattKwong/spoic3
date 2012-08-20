@@ -175,16 +175,6 @@ $(this).removeClass('hover');
  });
 });
 
-//$(document).ready(function() {
-//    $("#purchases-toggle h3").trigger('click');
-//});
-//
-//$(document).ready(function() {
-//  $("#sessions-toggle h3").click(function() {
-//     $("div#sessions-info").toggle("fast");
-// });
-//});
-
 $(document).ready(function() {
 $("#sessions-toggle h3").hover(function() {
 $(this).addClass('hover');
@@ -192,16 +182,6 @@ $(this).addClass('hover');
 $(this).removeClass('hover');
  });
 });
-
-//$(document).ready(function() {
-//    $("#sessions-toggle h3").trigger('click');
-//});
-
-//$(document).ready(function() {
-//  $("#staff-toggle h3").click(function() {
-//     $("div#staff-info").toggle("fast");
-// });
-//});
 
 $(document).ready(function() {
 $("#staff-toggle h3").hover(function() {
@@ -299,13 +279,7 @@ $(document).ready(function() {
         else { $("div#sessions-info").toggle("fast"); }
     });
 });
-//$(document).ready(function() {
-//    $("#sessions-toggle").click(function(){
-//        $.get($('div#program-number').text() + "/get_sessions_info",
-//            function(data){ $("#sessions-info").html(data); }
-//        );
-//    });
-//});
+
 var staffState = 'new'
 $(document).ready(function() {
     $("#staff-toggle").click(function(){
@@ -317,14 +291,6 @@ $(document).ready(function() {
 
     });
 });
-
-//$(document).ready(function() {
-//    $("#staff-toggle").click(function(){
-//        $.get($('div#program-number').text() + "/get_staff_info",
-//            function(data){ $("#staff-info").html(data); }
-//        );
-//    });
-//});
 
 $(document).ready(function() {
     $("#itemDropdown").change(function(){
@@ -342,21 +308,6 @@ $(document).ready(function() {
     });
 });
 
-//
-//$(document).ready(function() {
-//    $("#itemType").change(function(){
-//        $.get("get_item_categories?newValue="+$("#itemType").val(),
-//        function(data){ $("#item_category_form").html(data); }
-//        );
-//    });
-//});
-
-//
-//$(document).ready(function() {
-//    $("#item-filter").change(function(){
-//        $location.reload();
-//    });
-//});
 $(document).ready(function() {
  $("#recorded-items-toggle h3").click(function() {
      $("div#recorded-items-info").toggle("fast");
@@ -376,10 +327,22 @@ $(this).removeClass('hover');
  });
 });
 
-//$(document).ready(function() {
-//    $("#purchase_scopes").click(function(){
-//        $.get("limit_purchases?scope="+$("#purchase_scopes").val(),
-//            function(data){ $("#similar_items_table").html(data); }
-//        );
-//    });
-//});
+$(document).ready(function() {
+    $("#spending-link h3").hover(function() {
+        $(this).addClass('hover');
+    }, function() {
+        $(this).removeClass('hover');
+    });
+});
+
+//var purchasesState = 'new'
+$(document).ready(function() {
+    $("#spending-link").click(function(){
+//             $.get("get_spending_info?startDate="+$("#startDate").val()+"?endDate="+$("#endDate").val(),
+//                function(data){ $("#spending-table").html(data);} )
+        $.get("get_spending_info" , { startDate: $("#startDate").val(), endDate: $("#endDate").val() },
+                function(data){ $("#spending-table").html(data);} )
+
+
+    });
+});

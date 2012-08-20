@@ -76,31 +76,45 @@ class AdminUser < ActiveRecord::Base
       end
     end
     def admin?
-      self.user_role.name == "Admin"
+      if user_role
+        self.user_role.name == "Admin"
+      end
     end
 
     def liaison?
-      self.user_role.name == "Liaison"
+      if user_role
+        self.user_role.name == "Liaison"
+      end
     end
 
     def area_admin?
-      self.user_role.name == "Food Admin" || "Construction Admin" || "Other Admin"
+      if user_role
+        self.user_role.name == "Food Admin" || "Construction Admin" || "Other Admin"
+      end
     end
 
     def food_admin?
-      self.user_role.name == "Food Admin"
+      if user_role
+        self.user_role.name == "Food Admin"
+      end
     end
 
     def construction_admin?
-      self.user_role.name == "Construction Admin"
+      if user_role
+        self.user_role.name == "Construction Admin"
+      end
     end
 
     def field_staff?
-      self.user_role.name == "Staff"
+      if user_role
+        self.user_role.name == "Staff"
+      end
     end
 
     def staff?
-      self.user_role.name == "Staff" || self.area_admin? || self.admin?
+      if user_role
+        self.user_role.name == "Staff" || self.area_admin? || self.admin?
+      end
     end
 
     def program_id

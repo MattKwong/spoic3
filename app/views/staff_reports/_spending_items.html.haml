@@ -1,0 +1,26 @@
+.index_content
+  .group-container
+    .index_as_table
+      %table
+        %thead
+          %tr
+            %th Category
+            -if @programs
+              -@programs.each do |s|
+                %th{:style => 'text-align:right'}= s.name
+            %th{:style => 'text-align:right'} All Sites
+        %tbody
+        -@budget_items_types.each do |item|
+          %tr
+            %td= item.name
+            -if @programs
+              -@programs.each do |p|
+                %td{:style => 'text-align:right'}= number_to_currency p.budget_item_spent_with_tax(item.id, start_date, end_date)
+            %td{:style => 'text-align:right'}= number_to_currency @report.spending_with_tax(item.id, start_date, end_date)
+        %tfoot
+          %tr
+            %td Totals
+            -if @programs
+              -@programs.each do |p|
+                %td{:style => 'text-align:right'}= number_to_currency p.spent_with_tax_total
+            %td{:style => 'text-align:right'}= number_to_currency @report.spending_with_tax_total(start_date, end_date)

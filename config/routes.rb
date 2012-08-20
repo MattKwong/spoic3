@@ -149,6 +149,7 @@ Spoic3::Application.routes.draw do
   match "reports/rosters" => 'reports#rosters', :as => 'rosters_html'
   match "reports/purchases_with_unaccounted" => 'purchases#show_all_unaccounted', :as => 'unaccounted_report'
   match "staff_reports/spending_by_site" => 'staff_reports#spending_by_site', :as => 'spending_by_site_report'
+  match "staff_reports/get_spending_info" => 'staff_reports#get_spending_items'
 
   resources :vendors
   resources :churches
