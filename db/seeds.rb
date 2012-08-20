@@ -94,5 +94,8 @@ ProgramType.create(:name => 'Summer Domestic', :description => 'Standard summer 
   BudgetItemType.create(:name => item[0], :description => item[1], :seq_number => item[2])
 end
 
-
+Program.delete_all
+Program.create(:site_id => Site.find_by_name('Test Site 1').id, :program_type_id => ProgramType.find_by_name('Summer Domestic').id,
+               :start_date => Date.strptime("06/01/2012", "%m/%d/%Y"),
+               :end_date => Date.strptime("08/31/2012", "%m/%d/%Y"), :active => 't' )
 
