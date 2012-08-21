@@ -5,7 +5,7 @@ class Report
   end
 
   def all_programs
-    @programs
+    Program.current
   end
 
   def spending_without_tax(budget_item_type_id, start_date, end_date)

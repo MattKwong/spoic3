@@ -1,19 +1,16 @@
 class StaffReportsController < ApplicationController
   layout 'admin_layout_alt'
-  before_filter :get_program, :except => :show
+  before_filter :get_program, :except => [ :show, :spending_by_site]
 #  load_and_authorize_resource
   require 'csv'
-
 
   def spending_by_site
     @report = Report.new
     @page_title = 'Spending Summary Report'
     @programs = @report.all_programs
-    @selected_program = @programs.first
+    #@selected_program = @programs.first
     @start_date = @programs.first.start_date
     @end_date = @programs.first.end_date
-
-    @budget_items_types = BudgetItemType.all
   end
 
   def show
@@ -117,10 +114,20 @@ class StaffReportsController < ApplicationController
 
   def spending_report
     @page_title = "Spending Report"
-
-
-
   end
+
+  def get_spending_items
+    @budget_items_types = BudgetItemType.all
+    @report = Report.new
+    @programs = @report.all_programs
+    start_date = params[:startDate]
+    end_date = params[:endDate]
+    logger.debug start_date
+    logger.debug end_date
+
+    render :partial => "spending_items", :locals => { :start_date => start_date, :end_date => end_date }
+  end
+
   protected
 
   def get_program
