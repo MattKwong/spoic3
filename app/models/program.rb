@@ -95,12 +95,12 @@ class Program < ActiveRecord::Base
 
   def budget_item_spent(budget_item_type_id, start_date = 0, end_date = 0)
     (start_date == 0 || (end_date == 0)) ? (self.item_purchases.by_budget_line_type(budget_item_type_id).map &:total_price).sum :
-       (self.item_purchases.by_budget_line_type(budget_item_type_id).map &:total_price).sum
+       (self.item_purchases.by_budget_line_type(budget_item_type_id).between_dates(start_date,end_date).map &:total_price).sum
   end
 
   def budget_item_spent_with_tax(budget_item_type_id, start_date = 0, end_date = 0)
     (start_date == 0 || (end_date == 0)) ? (self.item_purchases.by_budget_line_type(budget_item_type_id).map &:total_price_with_tax).sum :
-        (self.item_purchases.by_budget_line_type(budget_item_type_id).map &:total_price_with_tax).sum
+        (self.item_purchases.by_budget_line_type(budget_item_type_id).between_dates(start_date,end_date).map &:total_price_with_tax).sum
   end
 
   def budget_item_budgeted(budget_item_type_id)
@@ -119,8 +119,9 @@ class Program < ActiveRecord::Base
     (self.item_purchases.map &:total_price).sum
   end
 
-  def spent_with_tax_total
-    (self.item_purchases.map &:total_price_with_tax).sum
+  def spent_with_tax_total(start_date = 0, end_date = 0)
+    (start_date == 0 || (end_date == 0)) ? (self.item_purchases.map &:total_price_with_tax).sum :
+        (self.item_purchases.between_dates(start_date, end_date).map &:total_price_with_tax).sum
   end
 
   def budgeted_total

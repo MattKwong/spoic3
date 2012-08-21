@@ -22,5 +22,5 @@
             %td Totals
             -if @programs
               -@programs.each do |p|
-                %td{:style => 'text-align:right'}= number_to_currency p.spent_with_tax_total
+                %td{:style => 'text-align:right'}= number_to_currency p.spent_with_tax_total(start_date, end_date)
             %td{:style => 'text-align:right'}= number_to_currency @report.spending_with_tax_total(start_date, end_date)
