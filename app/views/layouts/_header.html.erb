@@ -33,6 +33,7 @@
                   <li><%= link_to "Roster Summary: CSV", rosters_csv_path(:format => :csv)%></li>
                   <li><%= link_to "Purchases with Unaccounted $", unaccounted_report_path%></li>
                   <li><%= link_to "Spending Report", spending_by_site_report_path%></li>
+                  <li><%= link_to "Participant Summary: CSV", part_sum_csv_path(:format => :csv)%></li>
                 </ul>
             </li>
             <li class="has_nested" ><a href="#">Budgets</a>
@@ -74,7 +75,7 @@
                       <li><%= link_to "Food Inventories", program_food_inventories_path(current_admin_user.program_user.program) if current_admin_user.cook? || current_admin_user.sd?%></li>
                   </ul>
                 </li>
-                <li><%= link_to "Site Home", current_admin_user.program_user.program, %></li>
+                <li><%= link_to "Site Home", current_admin_user.program_user.program %></li>
 
         <% end %>
         <% if signed_in? && current_admin_user.liaison? %>

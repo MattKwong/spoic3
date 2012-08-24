@@ -147,6 +147,8 @@ Spoic3::Application.routes.draw do
   match "reports/scheduled_liaisons" => 'reports#scheduled_liaisons', :as => 'scheduled_liaisons_html'
   match "reports/rosters" => 'reports#rosters', :as => 'rosters_csv'
   match "reports/rosters" => 'reports#rosters', :as => 'rosters_html'
+  match "reports/participation_summary" => 'reports#participation_summary', :as => 'part_sum_csv'
+
   match "reports/purchases_with_unaccounted" => 'purchases#show_all_unaccounted', :as => 'unaccounted_report'
   match "staff_reports/spending_by_site" => 'staff_reports#spending_by_site', :as => 'spending_by_site_report'
   match "staff_reports/get_spending_info" => 'staff_reports#get_spending_items'

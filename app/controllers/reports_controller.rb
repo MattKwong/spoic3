@@ -110,6 +110,36 @@ class ReportsController < ApplicationController
       return @rows
    end
 
+  def participation_summary
+    @headers = get_headers_part_sum
+    @rows = get_rows_part_sum
+
+    respond_to do |format|
+      format.csv { create_csv("part-sum-#{Time.now.strftime("%Y%m%d")}.csv") }
+      format.html { @title = 'Participation Summary'}
+    end
+  end
+
+
+  def get_headers_part_sum
+
+    @headers = []
+    @headers << "Group Name" << "Church Name" << "Church Type" << "Session Type" << "Site" << "Youth" << "Counselors" << "Total"
+    return @headers
+
+  end
+
+  def get_rows_part_sum
+
+    @rows = []
+    ScheduledGroup.active.each do |g|
+        row = []
+        row << g.name << g.church.name << g.church.church_type.name << g.session.site.name << g.session.session_type.name << g.current_youth.to_i << g.current_counselors.to_i << g.current_total.to_i
+        @rows << row
+    end
+    return @rows
+  end
+
 private
   def trim(s)
     if s.instance_of?(String)
