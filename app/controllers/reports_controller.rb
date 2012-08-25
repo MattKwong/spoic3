@@ -124,7 +124,7 @@ class ReportsController < ApplicationController
   def get_headers_part_sum
 
     @headers = []
-    @headers << "Group Name" << "Church Name" << "Church Type" << "Session Type" << "Site" << "Youth" << "Counselors" << "Total"
+    @headers << "Group Name" << "Church Name" << "Church Type" << "Site" << "Session Type" << "Youth" << "Counselors" << "Total" << "Roster Total"
     return @headers
 
   end
@@ -134,7 +134,8 @@ class ReportsController < ApplicationController
     @rows = []
     ScheduledGroup.active.each do |g|
         row = []
-        row << g.name << g.church.name << g.church.church_type.name << g.session.site.name << g.session.session_type.name << g.current_youth.to_i << g.current_counselors.to_i << g.current_total.to_i
+        row << g.name << g.church.name << g.church.church_type.name << g.session.site.name << g.session.session_type.name
+        row << g.current_youth.to_i << g.current_counselors.to_i << g.current_total << Roster.find_by_group_id(g.id).roster_items.count << ""
         @rows << row
     end
     return @rows
