@@ -3,6 +3,48 @@ ActiveAdmin.register Item do
   menu :if => proc{ can?(:read, Item) }, :parent => "Items"
   show :title => :name
 
+  index do
+    column :name, :sortable => :name
+    column :description
+    column :notes
+    column :base_unit
+    column :default_taxed
+    column :created_at
+    column :updated_at
+    column :untracked
+    column :default_cost
+    column :average_Cost do |item|
+      number_to_currency item.total_average_cost
+    end
+    column :total_items do |item|
+      item.total_units_purchased
+    end
+    column :total_spent do |item|
+      number_to_currency item.total_spent
+    end
+  end
+
+  csv do
+    column :name
+    column :description
+    column :notes
+    column :base_unit
+    column :default_taxed
+    column :created_at
+    column :updated_at
+    column :untracked
+    column :default_cost
+    column :total_average_cost do |item|
+      item.total_average_cost
+    end
+    column :total_items_purchased do |item|
+      item.total_units_purchased
+    end
+    column :total_spent do |item|
+      item.total_spent
+    end
+  end
+
 form do |f|
   f.inputs "Item Details" do
     f.input :name
