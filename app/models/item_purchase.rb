@@ -29,6 +29,13 @@ class ItemPurchase < ActiveRecord::Base
 #  after_destroy :update_derived_fields, :unless => Proc.new { skip_calculations? || skip_derivations? }
 
   before_save :update_base_units, :unless => :skip_calculations?
+  def corrected_base_units
+    if quantity < 0
+      new_value = total_base_units * -1
+    else
+      total_base_units
+    end
+  end
 
   def size_in_base_units
     if size.u.compatible?(item.base_unit)

@@ -115,7 +115,7 @@
             -if @program
               = sprintf '%.2f', @item.construction_onhand(@program)
             -else
-              = sprintf '%.2f', (@item.item_purchases.map &:total_base_units).sum - (@item.material_item_delivereds.map &:quantity).sum
+              = sprintf '%.2f', (@item.item_purchases.map &:corrected_base_units).sum - (@item.material_item_delivereds.map &:quantity).sum
             = @item.base_unit
 
 
