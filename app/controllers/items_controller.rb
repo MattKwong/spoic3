@@ -108,15 +108,19 @@ class ItemsController < ApplicationController
 
   def show
     @page_title = @item.name
-    if session[:program]
-      add_breadcrumb Program.find(session[:program]).name, program_path(session[:program])
-    end
+
     if current_admin_user.program_id > 0
       @program = Program.find(current_admin_user.program_id)
     end
-    num = (@item.item_purchases.map {|p| p.total_base_units * p.price_per_base_unit.scalar }).sum
-    denom = (@item.item_purchases.map &:total_base_units).sum
-    @avg_price = num / denom if denom != 0
+    if @program
+      @avg_price = @item.average_cost(@program, Date.today)
+    else
+      @avg_price = @item.total_average_cost
+    end
+
+    #num = (@item.item_purchases.map {|p| p.total_base_units * p.price_per_base_unit.scalar }).sum
+    #denom = (@item.item_purchases.map &:total_base_units).sum
+    #@avg_price = num / denom if denom != 0
     @inventories = @item.food_inventory_food_items.accessible_by(current_ability).includes(:food_inventory => :program).order('food_inventories.date ASC')
   end
 

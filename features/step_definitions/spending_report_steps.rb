@@ -2,12 +2,6 @@ include Devise::TestHelpers
 
 Given /^a logged on admin$/ do
 
-    ##@request.env["devise.mapping"] = Devise.mappings[:admin_user]
-    #@current_admin_user = FactoryGirl.create(:admin_user)
-    ##current_admin_user.user_role.name = "Admin"
-    #@current_admin_user.confirm!
-    ##sign_in current_admin_user
-
 end
 
 When /^I click on the spending report item on the Reports Menu$/ do
@@ -28,9 +22,10 @@ When /^I click on the spending report item on the Reports Menu$/ do
   fill_in "Password", :with => password
   check 'Remember me'
   click_button 'Sign in'
-  save_and_open_page
+  click_link "Sierra Service Project Manager"
   click_link 'Reports'
   click_link 'Spending Report'
+  save_and_open_page
 
 end
 

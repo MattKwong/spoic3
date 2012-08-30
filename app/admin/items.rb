@@ -4,7 +4,9 @@ ActiveAdmin.register Item do
   show :title => :name
 
   index do
-    column :name, :sortable => :name
+    column :name, :sortable => :name do |item|
+      link_to item.name, item_path(item.id)
+    end
     column :description
     column :notes
     column :base_unit
@@ -13,7 +15,7 @@ ActiveAdmin.register Item do
     column :updated_at
     column :untracked
     column :default_cost
-    column :average_Cost do |item|
+    column :average_cost do |item|
       number_to_currency item.total_average_cost
     end
     column :total_items do |item|

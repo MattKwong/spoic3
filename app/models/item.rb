@@ -131,19 +131,21 @@ class Item < ActiveRecord::Base
     end
 
     def average_cost(program, date)
-    p = purchases_between(program, program.start_date, program.end_date)
-    if p.any?
-      num = (p.inject(0) {|t, i| t += i.quantity * i.price })
-      denom = ( p.inject(0) {|t,i| t += i.total_base_units})
-      denom == 0 ? 0 : num/denom
-    else
-      if self.default_cost.nil?
-        0
+      p = purchases_between(program, program.start_date, program.end_date)
+      if p.any?
+        total = 0
+        p.each { |i| total += i.price * i.quantity }
+        denom = (p.map &:total_base_units).sum
+        denom != 0 ? total/denom : 0
       else
-        self.default_cost
+        if self.default_cost.nil?
+          0
+        else
+          self.default_cost
+        end
       end
     end
-    end
+
     def total_average_cost
       (total_units_purchased != 0) ? (total_spent / total_units_purchased) : 0
     end
@@ -153,7 +155,7 @@ class Item < ActiveRecord::Base
     end
     def total_spent
       total = 0
-      item_purchases.each { |i| total = i.price * i.total_base_units }
+      item_purchases.each { |i| total += i.price * i.quantity }
       total
     end
 

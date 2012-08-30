@@ -18,6 +18,7 @@ gem 'ruby-units'
 gem 'breadcrumbs_on_rails'
 gem 'newrelic_rpm'
 gem "rack-timeout"
+gem "heroku"
 
 group :production, :staging do
   gem "pg"
