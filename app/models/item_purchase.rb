@@ -31,7 +31,12 @@ class ItemPurchase < ActiveRecord::Base
   before_save :update_base_units, :unless => :skip_calculations?
 
   def size_in_base_units
-    size.u >> item.base_unit
+    if size.u.compatible?(item.base_unit)
+      size.u >> item.base_unit
+    else
+#if units aren't convertable, use size
+      size.u
+    end
   end
 
   def items_by_budget_item_type_id
