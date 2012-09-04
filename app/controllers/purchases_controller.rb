@@ -9,6 +9,18 @@ class PurchasesController < ApplicationController
     @purchases = Purchase.for_program(@program).order(:date).page params[:page]
   end
 
+  def show_all_unaccounted
+    @purchases = Purchase.all
+    @page_title = 'All Purchases With Unaccounted $$'
+    @purchases_with_unaccounted = Array.new
+    @purchases.each do |p|
+      if p.unaccounted_for_abs > 0.05
+        @purchases_with_unaccounted << p
+      end
+    end
+    @purchases_with_unaccounted
+  end
+
   def new
     @page_title = "New Purchase"
     @purchase.program = @program
@@ -36,9 +48,6 @@ class PurchasesController < ApplicationController
 
   def show
     @page_title = "#{@purchase.vendor.name} #{@purchase.date}"
-    #if session[:program]
-    #  add_breadcrumb Program.find(session[:program]).name, program_path(session[:program])
-    #end
     @item_type = params[:item_type]
 
     if @item_type.nil? || @item_type == "0"

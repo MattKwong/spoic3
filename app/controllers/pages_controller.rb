@@ -5,20 +5,6 @@ class PagesController < ApplicationController
     @title = "Welcome"
   end
 
-  def admin
-    @page_title = "SSP Information Center"
-    @title = "Administrative Center"
-  end
-
-  def food
-    @page_title = "SSP Food Tracking Application"
-    @title = "SSP Food"
-  end
-
-  def construction
-    @title = "CTAB"
-  end
-
   def contact
     @page_title = "SSP Information Center"
     @title = "Contact"
@@ -33,6 +19,5 @@ class PagesController < ApplicationController
     @page_title = "SSP Information Center"
     @title = "Help"
   end
-
 
 end

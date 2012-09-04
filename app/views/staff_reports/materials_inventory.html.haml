@@ -1,0 +1,44 @@
+#active_admin_content
+  .span-7.properties
+    %dl.properties
+      %dlt= link_to "Download Report as CSV", request.parameters.merge({:format => :csv})
+  .index_content
+    .index_as_table
+      %table.index_table
+        %thead
+          %tr
+            %th
+            %th Item Name
+            %th Description
+            %th Tracked or Untracked?
+            %th Base Unit
+            %th Average Cost
+            %th Total Purchased
+            %th Currently In Inventory
+            %th Amount Counted
+        %tbody
+          -index = 0
+          - @items.each do |item|
+            -purchased = item.purchased_for_program @program, @program.start_date, @program.end_date
+            -in_inventory = item.construction_onhand(@program)
+            -if (in_inventory != 0) || (purchased != 0)
+              %tr
+                -index += 1
+                %td= index.to_i
+                %td= link_to item.name, item
+                %td= item.description
+                -if item.untracked
+                  %td Untracked
+                -else
+                  %td Tracked
+                %td= item.base_unit
+                %td= number_to_currency item.average_cost(@program, Date.today)
+                -if (purchased - purchased.to_i) == 0
+                  %td= purchased.to_i
+                -else
+                  %td= "%.2f" % purchased
+                -if (in_inventory - in_inventory.to_i) == 0
+                  %td= in_inventory.to_i
+                -else
+                  %td= "%.2f" % in_inventory
+                %td

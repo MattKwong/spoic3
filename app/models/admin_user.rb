@@ -10,7 +10,7 @@ class AdminUser < ActiveRecord::Base
   has_many :programs, :through => :program_users
   has_many :purchases, :foreign_key => "purchaser_id", :dependent => :restrict
 
-  # Setup accessible (or protected) attributes for your model
+
   attr_accessible :email, :name, :user_role_id, :first_name, :last_name, :site_id,
                   :liaison_id, :password, :password_confirmation, :remember_me, :admin, :username, :phone
 
@@ -36,53 +36,89 @@ class AdminUser < ActiveRecord::Base
                       :message => 'Phone number must be 10 digits plus optional separators.',
                       :allow_blank => true
 
+  validates_presence_of :liaison_id, :if => :liaison?
+  validates_numericality_of :liaison_id, :only_integer => true, :greater_than => 0, :if => :liaison?
+
+  validates_presence_of :site_id, :if => :field_staff?
+  validates_numericality_of :site_id, :only_integer => true, :greater_than => 0, :if => :field_staff?
+  validates_inclusion_of :site_id, :in => Site.all.map { |s| s.id }, :if => :field_staff?
+
   before_save :create_name
   before_save :format_phone_numbers
 
-  scope :admin, where(:user_role_id == 1)
-#  scope :liaison, where(self.user_role.name == 'Liaison')
-#  scope :staff, where(self.user_role.name == 'Staff')
+  scope :admin, lambda {
+    joins(:user_role).
+    where("user_roles.name = ?", 'Admin')}
+
+  scope :liaison, lambda {
+    joins(:user_role).
+    where("user_roles.name = ?", 'Liaison')}
+
+  scope :staff, lambda {
+    joins(:user_role).
+    where("user_roles.name = ?", 'Staff')}
+
+  scope :not_admin, lambda {
+    joins(:user_role).
+        where("user_roles.name <> ?", 'Admin')}
+
+  scope :current_staff, where(:user_role => "Staff") #, includes(:programs).where('programs.end_date >= ?', Time.now)
+                                                     #  scope :not_current_staff, includes(:programs).where('programs.end_date < ? OR programs.end_date IS NULL', Time.now)
+
+  scope :search_by_name, lambda { |q|
+    (q ? where(["lower(name) LIKE ?", '%' + q.downcase + '%']) : {} )
+  }
 
     def format_phone_numbers
-       unless self.phone.nil? || self.phone == ""
-         self.phone = self.phone.insert 6, '-'
-         self.phone = self.phone.insert 3, '-'
-       end
+      unless self.phone.nil? || self.phone == ""
+        self.phone = self.phone.insert 6, '-'
+        self.phone = self.phone.insert 3, '-'
+      end
     end
     def admin?
-      self.user_role.name == "Admin"
+      if user_role
+        self.user_role.name == "Admin"
+      end
     end
 
     def liaison?
-      self.user_role.name == "Liaison"
+      if user_role
+        self.user_role.name == "Liaison"
+      end
     end
 
     def area_admin?
-      self.user_role.name == "Food Admin" || "Construction Admin" || "Other Admin"
+      if user_role
+        self.user_role.name == "Food Admin" || "Construction Admin" || "Other Admin"
+      end
     end
 
     def food_admin?
-      self.user_role.name == "Food Admin"
+      if user_role
+        self.user_role.name == "Food Admin"
+      end
     end
 
     def construction_admin?
-      self.user_role.name == "Construction Admin"
+      if user_role
+        self.user_role.name == "Construction Admin"
+      end
     end
 
     def field_staff?
-      self.user_role.name == "Staff"
+      if user_role
+        self.user_role.name == "Staff"
+      end
     end
 
     def staff?
-      self.user_role.name == "Staff" || self.area_admin? || self.admin?
+      if user_role
+        self.user_role.name == "Staff" || self.area_admin? || self.admin?
+      end
     end
 
     def program_id
-      unless ProgramUser.find_by_user_id(self.id)
-        0
-      else
-        ProgramUser.find_by_user_id(self.id).program_id
-      end
+      self.program_user ? program_user.program_id : 0
     end
 
     def program_user
@@ -154,14 +190,6 @@ class AdminUser < ActiveRecord::Base
     unless_confirmed {yield}
   end
 
-  scope :not_admin, where(:admin != "Admin")
-
-  scope :current_staff, where(:user_role => "Staff") #, includes(:programs).where('programs.end_date >= ?', Time.now)
-#  scope :not_current_staff, includes(:programs).where('programs.end_date < ? OR programs.end_date IS NULL', Time.now)
-
-  scope :search_by_name, lambda { |q|
-    (q ? where(["lower(name) LIKE ?", '%' + q.downcase + '%']) : {} )
-  }
 
   def to_s
     name

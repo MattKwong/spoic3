@@ -7,11 +7,16 @@ class MaterialItemDelivered < ActiveRecord::Base
 
   scope :for_program, lambda { |program| includes(:project).where('projects.program_id = ?', program.id) }
   scope :for_item_program, lambda { |item_id, program_id| includes(:project).where('projects.program_id = ? and item_id = ?', program_id, item_id) }
-
+  scope :alphabetized, :include => :item, :order => 'items.name'
   validates :item_id, :project_id, :quantity, :delivered_by, :presence => true
   validates_numericality_of :quantity, :decimal => true
   validate :quantity_cannot_be_zero, :quantity_cannot_be_greater_than_on_hand
   validate :returned_cannot_be_greater_than_net_delivered, :if => :return?
+  after_save :update_project
+
+  def update_project
+    project.update_change_date
+  end
 
   def quantity_cannot_be_zero
     if quantity == 0
@@ -28,8 +33,8 @@ class MaterialItemDelivered < ActiveRecord::Base
 
   def returned_cannot_be_greater_than_net_delivered
 
-    if quantity.abs > net_delivered(project_id)
-      errors.add(:quantity, "Only #{net_delivered(project_id)} of this item has been delivered to this project.")
+    if quantity.abs > net_delivered(item, project_id)
+      errors.add(:quantity, "Only #{net_delivered(item, project_id)} of this item has been delivered to this project.")
     end
   end
 

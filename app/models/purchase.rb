@@ -14,7 +14,7 @@
 #  tax          :decimal(, )
 
 class Purchase < ActiveRecord::Base
-  attr_accessible :vendor_id, :purchaser_id, :date, :total, :tax, :purchase_type
+  attr_accessible :vendor_id, :purchaser_id, :date, :total, :tax, :purchase_type, :program_id
 
   validates :program_id, :presence => true
   validates :vendor_id, :presence => true
@@ -23,7 +23,7 @@ class Purchase < ActiveRecord::Base
   validates :tax, :presence => true
   validates :date, :presence => true
   validates_inclusion_of :purchase_type, :in => ['Credit', 'Gift Card', 'Cash', 'Return', 'Mixed']
-  validate :date_range
+  #validate :date_range
 
   belongs_to :program
   belongs_to :vendor
@@ -35,7 +35,7 @@ class Purchase < ActiveRecord::Base
   scope :for_program, lambda { |program| where(:program_id => program.id) }
   scope :after, lambda { |date| where('date > ?', date) }
   scope :before, lambda { |date| where('date <=', date) }
-
+  #scope :unaccounted, lambda {self.unaccounted_for > 0.05 }
 #  default_scope :order => 'date DESC'
   scope :past_week, where('date > ?', Date.today - 7)
   scope :newest_first, :order => 'date DESC'

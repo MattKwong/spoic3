@@ -20,7 +20,9 @@ class Session < ActiveRecord::Base
       false
     end
   end
-
+  def week
+    period.name
+  end
   def scheduled_adults
     (self.scheduled_groups.map &:current_counselors).sum
   end
@@ -36,15 +38,18 @@ class Session < ActiveRecord::Base
   def session_food_purchased
     #if this session is the first in the program, we need to pick up all purchases made prior to the session as well.
     if id == program.first_session_id
-      purchases = program.purchases.where('date < ?', period.end_date.to_date)
+      #purchases = program.purchases.where('date < ?', period.end_date.to_date)
+      total = program.purchases.where('date < ? ', period.end_date.to_date).inject(0) { |t, p| t += p.food_item_total }
     else
-      purchases = program.purchases.where('date > ? AND date < ?',
-                                  period.start_date.to_date - 1, period.end_date.to_date + 1)
+      #purchases = program.purchases.where('date > ? AND date < ?',
+      #                            period.start_date.to_date - 1, period.end_date.to_date + 1)
+      total = program.purchases.where('date > ? AND date < ?',
+                                  period.start_date.to_date - 1, period.end_date.to_date + 1).inject(0) { |t, p| t += p.food_item_total }
     end
 
-    budget_type = BudgetItemType.find_by_name("Food").id
-    total = 0
-    purchases.each { |p| p.item_purchases.by_budget_line_type(budget_type).each {|i| total += i.total_price } }
+    #budget_type = BudgetItemType.find_by_name("Food").id
+    #total = 0
+    #purchases.each { |p| p.item_purchases.by_budget_line_type(budget_type).each {|i| total += i.total_price } }
     return total
   end
 
@@ -80,6 +85,7 @@ class Session < ActiveRecord::Base
   def ending_inventory_value
     #Find an inventory at the last day of the session
     ending_inventory = program.food_inventories.where('date = ? ', period.end_date.to_date).last
+    logger.debug ending_inventory.inspect
     if ending_inventory.nil?
       ending_inventory = program.food_inventories.where('date = ? ', period.end_date.to_date - 1).last
     end

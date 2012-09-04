@@ -1,0 +1,17 @@
+<% headers = ['Line Number', 'Item Name', 'Description', 'Tracked/Untracked', 'Base Unit', 'Average Cost', 'Total Purchased', 'In Inventory', 'Amount Counted'] %>
+<%= CSV.generate_line headers, :col_sep => ?\,, :row_sep => ?\t, :quote_char => ?\ %>
+<% index = 0 %>
+<% @items.each do |i| %>
+    <% purchased = i.purchased_for_program @program, @program.start_date, @program.end_date %>
+    <% in_inventory = i.construction_onhand(@program) %>
+    <% if (in_inventory != 0) || (purchased != 0) %>
+        <% index += 1 %>
+        <% if i.untracked %>
+            <% tracked = 'Untracked' %>
+        <% else %>
+            <% tracked = 'Tracked' %>
+        <% end %>
+        <% row = [ index.to_i, i.name.gsub(/\,/,""), i.description.gsub(/\,/,""), tracked, i.base_unit, i.average_cost(@program, Date.today), purchased, in_inventory, '' ] %>
+        <%= CSV.generate_line row, :col_sep => ?\,, :row_sep => ?\t, :quote_char => ?\ %>
+    <% end %>
+<% end %>

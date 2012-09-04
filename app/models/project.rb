@@ -37,6 +37,11 @@ class Project < ActiveRecord::Base
 
   before_save :format_phone_numbers
 
+  def update_change_date
+    self.updated_at= Time.now
+    self.save!
+  end
+
   def stage_new?
     stage.blank? || stage == 'New'
   end

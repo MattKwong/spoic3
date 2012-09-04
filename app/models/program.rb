@@ -15,6 +15,8 @@ class Program < ActiveRecord::Base
   has_many :food_inventories
   has_many :projects
 
+  before_validation :set_name
+
   validates :name, :presence => true, :uniqueness => true
   validates :short_name, :presence => true, :uniqueness => true
   validates :site_id, :presence => true
@@ -22,10 +24,12 @@ class Program < ActiveRecord::Base
   validates :end_date, :presence => true
   validates :program_type_id, :presence => true
   validates :active, :inclusion => [true, false]
-
-  validate :start_date_before_end_date
+    validate :start_date_before_end_date
   validate :start_date_not_in_past
+
   scope :active, where(:active => true)
+  scope :current, where(:active => true)
+  scope :past, where(:active => false)
 
   def total_days
     total = 0
@@ -51,20 +55,14 @@ class Program < ActiveRecord::Base
 
   def start_date_not_in_past
      unless start_date.nil?
-       if start_date < Date.today
-        errors.add(:start_date, "Start date cannot be in the past")
+       if start_date < Date.today - 90
+        errors.add(:start_date, "Start date cannot be more than 90 days in the past")
        end
     end
   end
 
-  scope :current, where(:active => true)
-  scope :past, where(:active => false)
-#  default_scope :include => :site, :order => 'end_date DESC, sites.name ASC'
-  before_validation :set_name
-
-  #TODO: The +100 is put in for testing and demonstrating. Needs to be removed in production.
   def to_current
-    self.sessions.joins(:period).where("start_date < ?", Date.today + 100)
+    self.sessions.joins(:period).where("start_date < ?", Date.today)
   end
 
   def first_session_start
@@ -95,12 +93,14 @@ class Program < ActiveRecord::Base
     BudgetItemType.find(budget_item_type_id).name
   end
 
-  def budget_item_spent(budget_item_type_id)
-    (self.item_purchases.by_budget_line_type(budget_item_type_id).map &:total_price).sum
+  def budget_item_spent(budget_item_type_id, start_date = 0, end_date = 0)
+    (start_date == 0 || (end_date == 0)) ? (self.item_purchases.by_budget_line_type(budget_item_type_id).map &:total_price).sum :
+       (self.item_purchases.by_budget_line_type(budget_item_type_id).between_dates(start_date,end_date).map &:total_price).sum
   end
 
-  def budget_item_spent_with_tax(budget_item_type_id)
-    (self.item_purchases.by_budget_line_type(budget_item_type_id).map &:total_price_with_tax).sum
+  def budget_item_spent_with_tax(budget_item_type_id, start_date = 0, end_date = 0)
+    (start_date == 0 || (end_date == 0)) ? (self.item_purchases.by_budget_line_type(budget_item_type_id).map &:total_price_with_tax).sum :
+        (self.item_purchases.by_budget_line_type(budget_item_type_id).between_dates(start_date,end_date).map &:total_price_with_tax).sum
   end
 
   def budget_item_budgeted(budget_item_type_id)
@@ -115,20 +115,21 @@ class Program < ActiveRecord::Base
     budget_item_budgeted(budget_item_type_id) - budget_item_spent_with_tax(budget_item_type_id)
   end
 
-  def budget_item_spent_total
+  def spent_total
     (self.item_purchases.map &:total_price).sum
   end
 
-  def budget_item_spent_with_tax_total
-    (self.item_purchases.map &:total_price_with_tax).sum
+  def spent_with_tax_total(start_date = 0, end_date = 0)
+    (start_date == 0 || (end_date == 0)) ? (self.item_purchases.map &:total_price_with_tax).sum :
+        (self.item_purchases.between_dates(start_date, end_date).map &:total_price_with_tax).sum
   end
 
-  def budget_item_budgeted_total
+  def budgeted_total
     (self.budget_items.map &:amount).sum
   end
 
-  def budget_item_remaining_total
-    budget_item_budgeted_total - budget_item_spent_with_tax_total
+  def remaining_total
+    budgeted_total - spent_with_tax_total
   end
 
   def purchased_items

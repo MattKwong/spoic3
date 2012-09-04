@@ -1,23 +1,8 @@
 require 'spec_helper'
 
-def login_admin
-  before (:each) do
-    @request.env["devise.mapping"] = Devise.mappings[:admin_user]
-    sign_in FactoryGirl.create(:admin_user)
-  end
-end
-
-def login_liaison
-  before (:each) do
-    @request.env["devise.mapping"] = Devise.mappings[:admin_user]
-    sign_in FactoryGirl.create(:liaison_user)
-  end
-end
-
 describe ApplicationController do
   include Devise::TestHelpers
   render_views
-
   describe "Admin Login" do
     login_admin
 
@@ -29,7 +14,7 @@ describe ApplicationController do
       subject.current_admin_user.admin?.should be_true
     end
 
-  end
+    end
 
   describe "Liaison Login" do
     login_liaison

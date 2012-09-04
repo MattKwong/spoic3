@@ -1,8 +1,17 @@
 class StaffReportsController < ApplicationController
   layout 'admin_layout_alt'
-  before_filter :get_program, :except => :show
+  before_filter :get_program, :except => [ :show, :spending_by_site]
 #  load_and_authorize_resource
   require 'csv'
+
+  def spending_by_site
+    @report = Report.new
+    @page_title = 'Spending Summary Report'
+    @programs = @report.all_programs
+    #@selected_program = @programs.first
+    @start_date = @programs.first.start_date
+    @end_date = @programs.first.end_date
+  end
 
   def show
     @page_title = "Food Reports"
@@ -13,10 +22,20 @@ class StaffReportsController < ApplicationController
     @program = Program.find(params[:id])
     @page_title = "Food Inventory Report: #{@program}"
     @date = (Date.parse(params[:date]) if params[:date]) || Date.today
-#For testing
-#    @date = (Date.parse(params[:date]) if params[:date]) || "07/08/2012".to_date
     @items = Item.food.all_for_program(@program)
     @budget_type_id = BudgetItemType.find_by_name('Food').id
+  end
+
+  def materials_inventory
+    @program = Program.find(params[:id])
+    @page_title = "Materials Inventory Report: #{@program}"
+    @date = (Date.parse(params[:date]) if params[:date]) || Date.today
+#For testing
+#    @date = (Date.parse(params[:date]) if params[:date]) || "07/08/2012".to_date
+    @items = Item.materials.all_for_program(@program)
+    @items.sort_by! {|a| -a.construction_onhand(@program) }
+    @budget_type_id = BudgetItemType.find_by_name('Materials').id
+
   end
 
   def food_reconciliation
@@ -91,6 +110,22 @@ class StaffReportsController < ApplicationController
       @program = Program.find(current_admin_user.program_id)
       @page_title = "Food Costs by for all sessions"
     end
+  end
+
+  def spending_report
+    @page_title = "Spending Report"
+  end
+
+  def get_spending_items
+    @budget_items_types = BudgetItemType.all
+    @report = Report.new
+    @programs = @report.all_programs
+    start_date = params[:startDate]
+    end_date = params[:endDate]
+    logger.debug start_date
+    logger.debug end_date
+
+    render :partial => "spending_items", :locals => { :start_date => start_date, :end_date => end_date }
   end
 
   protected

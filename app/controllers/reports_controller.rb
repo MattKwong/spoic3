@@ -11,7 +11,7 @@ class ReportsController < ApplicationController
       format.csv { create_csv("liaisons_and_churches-#{Time.now.strftime("%Y%m%d")}.csv") }
       format.html { @title = 'Liaisons and Churches'}
     end
-    end
+  end
 
   def scheduled_liaisons
     @headers = get_headers_scheduled_liaisons
@@ -20,6 +20,16 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.csv { create_csv("scheduled liaisons-#{Time.now.strftime("%Y%m%d")}.csv") }
       format.html { @title = 'Scheduled Liaison'}
+    end
+  end
+
+  def rosters
+    @headers = get_headers_rosters
+    @rows = get_rows_rosters
+
+    respond_to do |format|
+      format.csv { create_csv("rosters-#{Time.now.strftime("%Y%m%d")}.csv") }
+      format.html { @title = 'Rosters'}
     end
   end
 
@@ -77,7 +87,59 @@ class ReportsController < ApplicationController
           @rows << row
       end
       return @rows
+  end
+
+  def get_headers_rosters
+
+      @headers = []
+      @headers << "Group Name" << "Current Total" << "Roster Items Entered" << "Missing (Extra)"
+      return @headers
+  end
+
+  def get_rows_rosters
+
+      @rows = []
+      rosters = Roster.all
+      rosters.each do |r|
+        if r.scheduled_group
+          row = []
+          row << r.scheduled_group.name << r.scheduled_group.current_total << r.roster_items.count << (r.scheduled_group.current_total - r.roster_items.count)
+          @rows << row
+        end
+      end
+      return @rows
    end
+
+  def participation_summary
+    @headers = get_headers_part_sum
+    @rows = get_rows_part_sum
+
+    respond_to do |format|
+      format.csv { create_csv("part-sum-#{Time.now.strftime("%Y%m%d")}.csv") }
+      format.html { @title = 'Participation Summary'}
+    end
+  end
+
+
+  def get_headers_part_sum
+
+    @headers = []
+    @headers << "Group Name" << "Church Name" << "Church Type" << "Site" << "Session Type" << "Youth" << "Counselors" << "Total" << "Roster Total"
+    return @headers
+
+  end
+
+  def get_rows_part_sum
+
+    @rows = []
+    ScheduledGroup.active.each do |g|
+        row = []
+        row << g.name << g.church.name << g.church.church_type.name << g.session.site.name << g.session.session_type.name
+        row << g.current_youth.to_i << g.current_counselors.to_i << g.current_total << Roster.find_by_group_id(g.id).roster_items.count << ""
+        @rows << row
+    end
+    return @rows
+  end
 
 private
   def trim(s)

@@ -74,7 +74,7 @@ class ProjectsController < ApplicationController
 
     @standard_item_list = standard_item_list.invert
     @existing_item_list = existing_item_list.invert
-    @item_list = Hash[@project.material_item_estimateds.map {|i| ["#{i.item.name}", i.item_id ]}]
+    @item_list = Hash[@project.material_item_estimateds.map {|i| ["#{i.item.name} (base units: #{i.item.base_unit})", i.item_id ]}]
     @user_list = Hash[@project.program.program_users.map {|u| ["#{u.admin_user.name}", u.admin_user.id ]}]
     @material_item_delivered = MaterialItemDelivered.new
     @material_item_delivered.delivery_date = Date.today

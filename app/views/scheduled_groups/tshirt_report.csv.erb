@@ -5,5 +5,4 @@
     <% row = [ i[:church_name], i[:group_id], i[:site], i[:period_name], i[:youth], i[:counselors], (i[:total_registered]), i[:number_xsmall], i[:number_small],
                i[:number_medium], i[:number_large], i[:number_xlarge],i[:number_xx],i[:number_xxx],i[:total_ordered], i[:discrepancy] ] %>
     <%= CSV.generate_line row, :col_sep => ?\,, :row_sep => ?\t, :quote_char => ?\ %>
-<% end %>
-                                                                                                                                   0
+<% end %>                                                                            0

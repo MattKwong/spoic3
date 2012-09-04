@@ -37,9 +37,9 @@ class Item < ActiveRecord::Base
     scope :untracked, where(:untracked => true)
     scope :tracked, where(:untracked => false)
     scope :master, where(:program_id => nil)
-    scope :all_for_program, lambda {|program| where('program_id IS NULL OR program_id = ?', program.id) }
+    scope :all_for_program, lambda {|program| where('program_id IS NULL OR program_id = ? OR program_id = ?', '0', program.id) }
     scope :alphabetized, order("name")
-    scope :all_for_program_by_type, lambda {|program, type| where('(program_id IS NULL OR program_id = ?) AND item_type_id = ?', program.id, type) }
+    scope :all_for_program_by_type, lambda {|program, type| where('(program_id IS NULL OR program_id = ? OR program_id = ?) AND item_type_id = ?', '0', program.id, type) }
     scope :all_by_item_type, lambda {|type| where('item_type_id = ?', type) }
     scope :search_by_name, lambda { |q| (q ? where(["name Like ?", '%' + q + '%']) : {} ) }
 
@@ -93,7 +93,7 @@ class Item < ActiveRecord::Base
     end
 
     def construction_onhand(program)
-      program_purchases(program) - program_deliveries(program)
+      program_purchases_in_base_units(program) - program_deliveries(program)
     end
 
     def in_inventory_for(program)
@@ -131,18 +131,30 @@ class Item < ActiveRecord::Base
     end
 
     def average_cost(program, date)
-      p = purchases_between(program, program.start_date, program.end_date)
-      if p.any?
-        num = (p.inject(0) {|t, i| t += i.quantity * i.price })
-        denom = ( p.inject(0) {|t,i| t += i.total_base_units})
-        denom == 0 ? 0 : num/denom
+    p = purchases_between(program, program.start_date, program.end_date)
+    if p.any?
+      num = (p.inject(0) {|t, i| t += i.quantity * i.price })
+      denom = ( p.inject(0) {|t,i| t += i.total_base_units})
+      denom == 0 ? 0 : num/denom
+    else
+      if self.default_cost.nil?
+        0
       else
-        if self.default_cost.nil?
-          0
-        else
-          self.default_cost
-        end
+        self.default_cost
       end
+    end
+    end
+    def total_average_cost
+      (total_units_purchased != 0) ? (total_spent / total_units_purchased) : 0
+    end
+
+    def total_units_purchased
+       (item_purchases.map &:total_base_units).sum
+    end
+    def total_spent
+      total = 0
+      item_purchases.each { |i| total = i.price * i.total_base_units }
+      total
     end
 
     def in_inventory_for_program_at(program, date)

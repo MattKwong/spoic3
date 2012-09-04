@@ -16,6 +16,9 @@
     %td= project.actual_days
     - total_actual_days += project.actual_days
     %td= project.estimated_days - project.actual_days
+    %td= number_to_currency(project.estimated_cost / project.estimated_days) if project.estimated_days > 0
+    %td= number_to_currency(project.actual_cost / project.actual_days) if project.actual_days > 0
+
 
 %tfoot
   %tr
@@ -28,14 +31,17 @@
     %th= total_estimated_days
     %th= total_actual_days
     %th= total_estimated_days - total_actual_days
+    %th= number_to_currency total_estimated_cost / total_estimated_days
+    %th= number_to_currency total_actual_cost / total_actual_days
   %tr
     %th{:style => "text-align:right;"} Total budget:
     %th= number_to_currency BudgetItem.for_program(@program).materials.first.amount
-    %th Budget Remaining:
-    %th= number_to_currency BudgetItem.for_program(@program).materials.first.amount - total_actual_cost
+    %th Tracked Materials Purchases
+    %th= number_to_currency (ItemPurchase.for_program_tracked(@program).map &:total_price_with_tax).sum
+    %th Untracked Materials Purchases
+    %th= number_to_currency (ItemPurchase.for_program_untracked(@program).map &:total_price_with_tax).sum
+    %th In Stock Tracked Materials
+    %th= number_to_currency (Item.materials.tracked.all_for_program(@program).map {|i| i.average_cost(@program, Date.today) * i.construction_onhand(@program)}).sum
     %th Budgeted Cost/Day
     %th= number_to_currency BudgetItem.for_program(@program).materials.first.amount / @program.total_days
-    %th Planned Cost/Day
-    %th= number_to_currency total_estimated_cost / total_estimated_days unless total_estimated_days == 0
-    %th Actual Cost/Day
-    %th= total_actual_days == 0 ? 0 : (number_to_currency total_actual_cost / total_actual_days)
+

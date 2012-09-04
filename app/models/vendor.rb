@@ -1,5 +1,5 @@
 class Vendor < ActiveRecord::Base
-  attr_accessible :name, :address, :city, :state, :zip, :contact, :phone, :notes
+  attr_accessible :name, :address, :city, :state, :zip, :contact, :phone, :notes, :site_id
 
   validates :name,  :presence => true,
                     :length => { :within => 6..45}

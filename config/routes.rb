@@ -78,6 +78,7 @@ Spoic3::Application.routes.draw do
   get "staff_reports", :controller => :staff_reports, :action => 'show', :as => 'staff_reports'
   get "staff_reports/food_reconciliation/:id", :controller => :staff_reports, :action => 'food_reconciliation', :as => 'food_reconciliation_report'
   get "staff_reports/food_inventory/:id", :controller => :staff_reports, :action => 'food_inventory', :as => 'food_inventory_report'
+  get "staff_reports/materials_inventory/:id", :controller => :staff_reports, :action => 'materials_inventory', :as => 'materials_inventory_report'
   get "staff_reports/food_budget/:id", :controller => :staff_reports, :action => :food_budget, :as => 'food_budget_report'
   get "staff_reports/food_consumption/:id", :controller => :staff_reports, :action => :food_consumption, :as => 'food_consumption_report'
   get "staff_reports/session/:id", :controller => :staff_reports, :action => :session, :as => 'session_report'
@@ -144,6 +145,13 @@ Spoic3::Application.routes.draw do
   match "reports/church_and_liaison" => 'reports#church_and_liaison', :as => 'church_and_liaison_csv'
   match "reports/scheduled_liaisons" => 'reports#scheduled_liaisons', :as => 'scheduled_liaisons_csv'
   match "reports/scheduled_liaisons" => 'reports#scheduled_liaisons', :as => 'scheduled_liaisons_html'
+  match "reports/rosters" => 'reports#rosters', :as => 'rosters_csv'
+  match "reports/rosters" => 'reports#rosters', :as => 'rosters_html'
+  match "reports/participation_summary" => 'reports#participation_summary', :as => 'part_sum_csv'
+
+  match "reports/purchases_with_unaccounted" => 'purchases#show_all_unaccounted', :as => 'unaccounted_report'
+  match "staff_reports/spending_by_site" => 'staff_reports#spending_by_site', :as => 'spending_by_site_report'
+  match "staff_reports/get_spending_info" => 'staff_reports#get_spending_items'
 
   resources :vendors
   resources :churches
