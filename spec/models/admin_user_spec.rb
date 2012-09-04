@@ -2,11 +2,12 @@ require 'spec_helper'
 
 describe AdminUser do
   before (:each) do
+    AdminUser.delete_all
     @attr = { :email => "validadmin@example.com", :first_name => "Test", :last_name => "Admin",
               :user_role_id => UserRole.find_by_name("Admin").id, :username => "JSmith1"  }
     @staff_attr = {:admin => false, :user_role_id => UserRole.find_by_name("Staff").id,
               :email => "validstaff@example.com", :first_name => "Joe", :last_name => "Staffer",
-              :username => "JoStaffer1", :site_id => Site.find_by_name('Test Site 1').id }
+              :username => "JoStaffer1", :site_id => Site.first.id }
     @liaison_attr = {:admin => false, :user_role_id => UserRole.find_by_name("Liaison").id,
               :email => "validliaison@example.com", :first_name => "Cindy", :last_name => "Liaison",
               :username => "CindyLiaison1", :liaison_id => 1}

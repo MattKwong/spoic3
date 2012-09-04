@@ -33,6 +33,26 @@ FactoryGirl.define do
     id { 1 }
     name  "Admin"
   end
+
+  #factory :user_role_liaison do
+  #  id { 2 }
+  #  name  "Liaison"
+  #end
+  #
+  #factory :user_role_food_admin do
+  #  id { 3 }
+  #  name  "Food Admin"
+  #end
+  #
+  #factory :user_role_construction_admin do
+  #  id { 4 }
+  #  name  "Construction Admin"
+  #end
+  #
+  #factory :user_role_staff do
+  #  id { 5 }
+  #  name  "Staff"
+  #end
 end
 
 #Rick's New Factories

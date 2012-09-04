@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe ChurchType do
   before (:each) do
+    if ChurchType.find_by_name("Generic Church")
+      ChurchType.find_by_name("Generic Church").delete
+    end
     @attr = { :name => "Generic Church"}
   end
 

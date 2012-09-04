@@ -99,3 +99,31 @@ Program.create(:site_id => Site.find_by_name('Test Site 1').id, :program_type_id
                :start_date => Date.strptime("06/01/2012", "%m/%d/%Y"),
                :end_date => Date.strptime("08/31/2012", "%m/%d/%Y"), :active => 't' )
 
+LiaisonType.delete_all
+LiaisonType.create(:name => "Both Junior and Senior High", :description => "Both junior and senior high groups")
+LiaisonType.create(:name => "Senior High Only", :description => "Senior high only liaisons")
+
+ChurchType.delete_all
+ChurchType.create(:name => "Cal Pac UM Church")
+ChurchType.create(:name => "Cal Nevada UM Church")
+
+Church.delete_all
+Church.create(:active => 't', :address1 => "100 Highway 99", :city => "Modesto", :state => "CA",
+      :church_type_id => ChurchType.first.id, :email1 => "testchurch@church.com", :fax => '800-123-1234',
+      :name => 'Modesto First UMC', :office_phone => "799-234-1888", :registered => 'n',
+      :zip => "98750")
+
+Church.create(:active => 't', :address1 => "100 Highway 99", :city => "Stockton", :state => "CA",
+      :church_type_id => ChurchType.first.id, :email1 => "stocktonchurch@church.com", :fax => '800-123-1234',
+      :name => 'Stockton First UMC', :office_phone => "799-234-1888", :registered => 'n',
+      :zip => "98750")
+
+Liaison.delete_all
+Liaison.create(:address1 => "100 Elm Street", :city => "Sacramento", :state => "CA",
+    :zip => "95608", :first_name => "Susan", :last_name => "Liaison", :name => "Susan Liaison",
+    :title => "Youth Director", :cell_phone => "800-123-1234", :work_phone => "800-123-5667",
+    :home_phone => "800-123-1234", :fax => "800-123-1234", :church_id => Church.first.id,
+    :liaison_type_id => LiaisonType.find_by_name('Both Junior and Senior High').id,
+    :email1 => "liaison@church.com")
+
+

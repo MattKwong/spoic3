@@ -81,7 +81,8 @@ class Item < ActiveRecord::Base
   def program_purchases_in_base_units(program)
       p = item_purchases.joins(:purchase).where('purchases.program_id = ?', program.id)
       total = 0
-      p.each {|i| total += i.total_base_units }
+      #p.each {|i| total += i.total_base_units }
+      p.each {|i| total += i.corrected_base_units }
       total
     end
 
@@ -117,7 +118,8 @@ class Item < ActiveRecord::Base
     def purchased_for_program(program, start_date, end_date)
       total = 0
       purchases_between(program, start_date, end_date).each do |purchase|
-        total +=  purchase.total_base_units
+        #total +=  purchase.total_base_units
+        total +=  purchase.corrected_base_units
       end
       total
     end
@@ -131,29 +133,33 @@ class Item < ActiveRecord::Base
     end
 
     def average_cost(program, date)
-    p = purchases_between(program, program.start_date, program.end_date)
-    if p.any?
-      num = (p.inject(0) {|t, i| t += i.quantity * i.price })
-      denom = ( p.inject(0) {|t,i| t += i.total_base_units})
-      denom == 0 ? 0 : num/denom
-    else
-      if self.default_cost.nil?
-        0
+      p = purchases_between(program, program.start_date, program.end_date)
+      if p.any?
+        total = 0
+        p.each { |i| total += i.price * i.quantity }
+        #denom = (p.map &:total_base_units).sum
+        denom = (p.map &:corrected_base_units).sum
+        denom != 0 ? total/denom : 0
       else
-        self.default_cost
+        if self.default_cost.nil?
+          0
+        else
+          self.default_cost
+        end
       end
     end
-    end
+
     def total_average_cost
       (total_units_purchased != 0) ? (total_spent / total_units_purchased) : 0
     end
 
     def total_units_purchased
-       (item_purchases.map &:total_base_units).sum
+       #(item_purchases.map &:total_base_units).sum
+       (item_purchases.map &:corrected_base_units).sum
     end
     def total_spent
       total = 0
-      item_purchases.each { |i| total = i.price * i.total_base_units }
+      item_purchases.each { |i| total += i.price * i.quantity }
       total
     end
 
@@ -197,7 +203,8 @@ class Item < ActiveRecord::Base
       end
 
       item_purchases.each do |food_item_purchase|
-        amount_available = Unit.new("#{food_item_purchase.total_base_units} #{food_item_purchase.item.base_unit}")
+        #amount_available = Unit.new("#{food_item_purchase.total_base_units} #{food_item_purchase.item.base_unit}")
+        amount_available = Unit.new("#{food_item_purchase.corrected_base_units} #{food_item_purchase.item.base_unit}")
         if excluded > 0
           to_debit = [excluded, amount_available].min
           excluded -= to_debit

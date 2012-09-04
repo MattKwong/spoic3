@@ -18,4 +18,14 @@ task :update_admins => :environment do
     puts i.username
     i.save
   end
+  end
+
+task :fix_quantities => :environment do
+  items = ItemPurchase.where('quantity < ?', 0)
+
+  items.each do |i|
+    puts i.item.name, i.price.to_s, i.quantity, i.total_base_units
+
+    #i.save
+  end
 end
