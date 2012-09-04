@@ -36,6 +36,7 @@ class Ability
       can [:read, :see_purchases_for, :see_food_inventories_for, :see_projects_for, :report], Program,
           :id => program_id
       can :index, Item
+      cannot :index, Church
       can [:edit, :create, :delete], Item, :program_id => program_id
       can :read, Church
       can :read, Liaison

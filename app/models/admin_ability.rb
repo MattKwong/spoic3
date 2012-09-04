@@ -11,6 +11,7 @@ class AdminAbility
       if liaison then
         can [:edit, :update], Church, :id => liaison.church_id
         can [:read, :edit, :update], Liaison, :id => liaison.id
+        cannot :index, Church
       end
       groups = ScheduledGroup.find_all_by_liaison_id(user.liaison_id)
       if groups then
@@ -39,6 +40,7 @@ class AdminAbility
       can :index, Vendor #, :site_id => user.program_user.program.site_id
       can :manage, Vendor #, :site_id => user.program_user.program.site_id
       can :index, Item
+      cannot :index, Church
       can :manage, Item, :program_id => user.program_id
       can :manage, Program #, :id => user.program_user.program_id
 #      can :report, Program

@@ -33,7 +33,7 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'spork-rails', '3.2.0'
-  #gem 'webrat', '0.7.1'
+  #gem 'webrat'
   gem 'factory_girl_rails', "~> 4.0"
   gem "capybara"
   gem "guard-rspec"
