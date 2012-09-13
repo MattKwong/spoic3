@@ -3,8 +3,10 @@ require 'spec_helper'
 describe Site do
 
   before (:each) do
+    # Just the required attributes
     @attr = { :name => "Site Name", :address1 => "4410 S. Budlong Avenue", :city => "Los Angeles", :state => "CA",
               :zip => "90037", :phone => "123-456-7890", :listing_priority => 1, :abbr => "SN"}
+    # All of the attributes
     #@attr = { :name => "Site Name", :address1 => "4410 S. Budlong Avenue", :city => "Los Angeles", :state => "CA",
     #          :zip => "90037", :phone => "123-456-7890", :listing_priority => 10, :active => "t", :summer_domestic => "t",
     #          :abbr => "SN"}
@@ -95,7 +97,7 @@ describe Site do
 
   describe "Abbreviation (of site name) tests" do
 
-    it "should be an number" do
+    it "should not be empty" do
       no_abbr = Site.new(@attr.merge(:abbr => ""))
       no_abbr.should_not be_valid
     end
